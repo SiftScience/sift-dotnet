@@ -6,5 +6,10 @@
         {
             AddField("$api_key", apiKey);
         }
+
+        public void AddTime(long time)
+        {
+            AddField("$time", time);
+        }
     }
 }

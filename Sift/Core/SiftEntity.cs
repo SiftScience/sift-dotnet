@@ -9,7 +9,12 @@ namespace Sift
         [JsonExtensionData]
         Dictionary<string, object> fields;
 
-        public void AddField<T>(string key, int value)
+        public void AddField(string key, long value)
+        {
+            AddField(key, (object)value);
+        }
+
+        public void AddField(string key, double value)
         {
             AddField(key, (object)value);
         }
