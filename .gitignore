@@ -2,8 +2,10 @@
 *~
 
 # Schema generation
-Sift/Generate.cs
-Sift/Schema
+Generate/
+
+# Demo
+Demo/
 
 # build
 [Oo]bj/
