@@ -1,26 +1,22 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <OutputType>Library</OutputType>
-    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <LangVersion>7.1</LangVersion>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <LangVersion>7.1</LangVersion>
-  </PropertyGroup>
-  <ItemGroup>
-    <PackageReference Include="System.CodeDom" Version="4.5.0" />
-    <PackageReference Include="NJsonSchema.CodeGeneration.CSharp" Version="9.12.5" />
-  </ItemGroup>
+
   <ItemGroup>
     <Folder Include="Schema\" />
     <Folder Include="Schema\ComplexTypes\" />
-    <Folder Include="Core\" />
-    <Folder Include="Util\" />
-    <Folder Include="Response\" />
-    <Folder Include="Request\" />
-    <Folder Include="Exception\" />
     <Folder Include="Event\" />
+    <Folder Include="Core\" />
+    <Folder Include="Exception\" />
+    <Folder Include="Request\" />
+    <Folder Include="Response\" />
+    <Folder Include="Util\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
+    <PackageReference Include="System.ComponentModel.Annotations" Version="4.5.0" />
   </ItemGroup>
 </Project>
