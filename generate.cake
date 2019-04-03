@@ -2,8 +2,8 @@ Task("generate")
     .Does(() =>
     {
       Information("Generating schemas...");
-      Generate("Schema/ComplexTypes", "Event", false);
-      Generate("Schema", "Event", true);
+      Generate("Sift/Schema/ComplexTypes", "Sift/Event", false);
+      Generate("Sift/Schema", "Sift/Event", true);
       Information("Done");
     });
 

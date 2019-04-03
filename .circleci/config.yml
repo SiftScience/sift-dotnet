@@ -1,7 +1,6 @@
 version: 2
 jobs:
   build:
-    working_directory: ~/sift-dotnet/Sift
     docker:
       - image: circleci/buildpack-deps:bionic
 #      - image: mcr.microsoft.com/dotnet/core/sdk:2.2
@@ -18,7 +17,7 @@ jobs:
       - save_cache:
           key: cake-{{ .Environment.CAKE_VERSION }}
           paths:
-            - ~/sift-dotnet/Sift/tools
+            - ~/sift-dotnet/tools
       - run: ./build.sh --target=build
       - run: ./build.sh --target=generate
       - run: ./build.sh --target=test

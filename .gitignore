@@ -1,13 +1,10 @@
-# Autosave files
+# autosave files
 *~
 
-# Demo
-Demo/
+# cake
+tools
 
-# Cake
-Sift/tools/
-
-# Generated
+# generated
 Sift/Event/
 
 # build
@@ -38,7 +35,7 @@ test-results/
 Thumbs.db
 .vs/
 
-# Mac bundle stuff
+# mac bundle stuff
 *.dmg
 *.app
 
