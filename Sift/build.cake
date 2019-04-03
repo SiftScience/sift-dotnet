@@ -22,6 +22,7 @@ Task("default")
     .IsDependentOn("clean")
     .IsDependentOn("restore")
     .IsDependentOn("build")
+    .IsDependentOn("generate")
     .IsDependentOn("test");
 
 var target = Argument("target", "default");
