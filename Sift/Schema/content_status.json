@@ -1,0 +1,36 @@
+﻿{
+  "$schema": "http://json-schema.org/draft-04/schema",
+  "title": "ContentStatus",
+  "type": "object",
+  "required": [ "$type" ],
+  "properties": {
+    "$type": {
+      "type": "string",
+      "default": "$content_status"
+    },
+    "$user_id": {
+      "type": [ "string", "null" ]
+    },
+    "$session_id": {
+      "type": [ "string", "null" ]
+    },
+    "$content_id": {
+      "type": [ "string", "null" ]
+    },
+    "$status": {
+      "type": [ "string", "null" ]
+    },
+    "$app": {
+      "oneOf": [
+        { "$ref": "ComplexTypes/app.json" },
+        { "type": "null" }
+      ]
+    },
+    "$browser": {
+      "oneOf": [
+        { "$ref": "ComplexTypes/browser.json" },
+        { "type": "null" }
+      ]
+    }
+  }
+}

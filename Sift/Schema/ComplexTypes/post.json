@@ -1,0 +1,34 @@
+﻿{
+  "$schema": "http://json-schema.org/draft-04/schema",
+  "title": "Post",
+  "type": "object",
+  "properties": {
+    "$subject": {
+      "type": [ "string", "null" ]
+    },
+    "$body": {
+      "type": [ "string", "null" ]
+    },
+    "$contact_email": {
+      "type": [ "string", "null" ]
+    },
+    "$contact_address": {
+      "$ref": "address.json"
+    },
+    "$locations": {
+      "type": [ "array", "null" ],
+      "items": { "$ref": "address.json" }
+    },
+    "$categories": {
+      "type": [ "array", "null" ],
+      "items": { "type": "string" }
+    },
+    "$images": {
+      "type": [ "array", "null" ],
+      "items": { "$ref": "image.json" }
+    },
+    "$expiration_time": {
+      "type": [ "integer", "null" ]
+    }
+  }
+}

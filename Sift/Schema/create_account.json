@@ -1,0 +1,65 @@
+﻿{
+  "$schema": "http://json-schema.org/draft-04/schema",
+  "title": "CreateAccount",
+  "type": "object",
+  "required": [ "$type" ],
+  "properties": {
+    "$type": {
+      "type": "string",
+      "default": "$create_account"
+    },
+    "$user_id": {
+      "type": [ "string", "null" ]
+    },
+    "$session_id": {
+      "type": [ "string", "null" ]
+    },
+    "$user_email": {
+      "type": [ "string", "null" ]
+    },
+    "$name": {
+      "type": [ "string", "null" ]
+    },
+    "$phone": {
+      "type": [ "string", "null" ]
+    },
+    "\u0024referrer_user_id": {
+      "type": [ "string", "null" ]
+    },
+    "$payment_methods": {
+      "type": [ "array", "null" ],
+      "items": { "$ref": "ComplexTypes/payment_method.json" }
+    },
+    "$billing_address": {
+      "oneOf": [
+        { "$ref": "ComplexTypes/address.json" },
+        { "type": "null" }
+      ]
+    },
+    "$shipping_address": {
+      "oneOf": [
+        { "$ref": "ComplexTypes/address.json" },
+        { "type": "null" }
+      ]
+    },
+    "$promotions": {
+      "type": [ "array", "null" ],
+      "items": { "$ref": "ComplexTypes/promotion.json" }
+    },
+    "$social_sign_on_type": {
+      "type": [ "string", "null" ]
+    },
+    "$app": {
+      "oneOf": [
+        { "$ref": "ComplexTypes/app.json" },
+        { "type": "null" }
+      ]
+    },
+    "$browser": {
+      "oneOf": [
+        { "$ref": "ComplexTypes/browser.json" },
+        { "type": "null" }
+      ]
+    }
+  }
+}

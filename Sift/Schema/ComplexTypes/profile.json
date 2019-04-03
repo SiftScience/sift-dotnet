@@ -1,0 +1,24 @@
+﻿{
+  "$schema": "http://json-schema.org/draft-04/schema",
+  "title": "Profile",
+  "type": "object",
+  "properties": {
+    "$body": {
+      "type": [ "string", "null" ]
+    },
+    "$contact_email": {
+      "type": [ "string", "null" ]
+    },
+    "$contact_address": {
+      "$ref": "address.json"
+    },
+    "$images": {
+      "type": [ "array", "null" ],
+      "items": { "$ref": "image.json" }
+    },
+    "$categories": {
+      "type": [ "array", "null" ],
+      "items": { "type": "string" }
+    }
+  }
+}

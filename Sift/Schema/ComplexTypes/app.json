@@ -1,0 +1,28 @@
+﻿{
+  "$schema": "http://json-schema.org/draft-04/schema",
+  "title": "App",
+  "type": "object",
+  "properties": {
+    "$os": {
+      "type": [ "string", "null" ]
+    },
+    "$os_version": {
+      "type": [ "string", "null" ]
+    },
+    "$device_manufacturer": {
+      "type": [ "string", "null" ]
+    },
+    "$device_model": {
+      "type": [ "string", "null" ]
+    },
+    "$device_unique_id": {
+      "type": [ "string", "null" ]
+    },
+    "$app_name": {
+      "type": [ "string", "null" ]
+    },
+    "$app_version": {
+      "type": [ "string", "null" ]
+    }
+  }
+}

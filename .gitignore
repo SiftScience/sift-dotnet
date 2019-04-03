@@ -1,11 +1,14 @@
 # Autosave files
 *~
 
-# Schema generation
-Generate/
-
 # Demo
 Demo/
+
+# Cake
+Sift/tools/
+
+# Generated
+Sift/Event/
 
 # build
 [Oo]bj/

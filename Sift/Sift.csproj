@@ -1,18 +1,26 @@
-<Project Sdk="Microsoft.NET.Sdk">
-
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
   </PropertyGroup>
-
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <LangVersion>7.1</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <LangVersion>7.1</LangVersion>
+  </PropertyGroup>
   <ItemGroup>
-    <Folder Include="Event\" />
-    <Folder Include="Core\" />
-    <Folder Include="Exception\" />
-    <Folder Include="Request\" />
-    <Folder Include="Response\" />
-    <Folder Include="Util\" />
+    <PackageReference Include="System.CodeDom" Version="4.5.0" />
+    <PackageReference Include="NJsonSchema.CodeGeneration.CSharp" Version="9.12.5" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="NJsonSchema.CodeGeneration.CSharp" Version="9.13.28" />
+    <Folder Include="Schema\" />
+    <Folder Include="Schema\ComplexTypes\" />
+    <Folder Include="Core\" />
+    <Folder Include="Util\" />
+    <Folder Include="Response\" />
+    <Folder Include="Request\" />
+    <Folder Include="Exception\" />
+    <Folder Include="Event\" />
   </ItemGroup>
 </Project>

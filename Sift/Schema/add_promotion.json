@@ -1,0 +1,34 @@
+﻿{
+  "$schema": "http://json-schema.org/draft-04/schema",
+  "title": "AddPromotion",
+  "type": "object",
+  "required": [ "$type" ],
+  "properties": {
+    "$type": {
+      "type": "string",
+      "default": "$add_promotion"
+    },
+    "$user_id": {
+      "type": [ "string", "null" ]
+    },
+    "$session_id": {
+      "type": [ "string", "null" ]
+    },
+    "$promotions": {
+      "type": [ "array", "null" ],
+      "items": { "$ref": "ComplexTypes/promotion.json" }
+    },
+    "$app": {
+      "oneOf": [
+        { "$ref": "ComplexTypes/app.json" },
+        { "type": "null" }
+      ]
+    },
+    "$browser": {
+      "oneOf": [
+        { "$ref": "ComplexTypes/browser.json" },
+        { "type": "null" }
+      ]
+    }
+  }
+}

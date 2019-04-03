@@ -1,0 +1,70 @@
+﻿{
+  "$schema": "http://json-schema.org/draft-04/schema",
+  "title": "PaymentMethod",
+  "type": "object",
+  "properties": {
+    "$payment_type": {
+      "type": [ "string", "null" ]
+    },
+    "$payment_gateway": {
+      "type": [ "string", "null" ]
+    },
+    "$card_bin": {
+      "type": [ "string", "null" ]
+    },
+    "$card_last4": {
+      "type": [ "string", "null" ]
+    },
+    "$avs_result_code": {
+      "type": [ "string", "null" ]
+    },
+    "$cvv_result_code": {
+      "type": [ "string", "null" ]
+    },
+    "$verification_status": {
+      "type": [ "string", "null" ]
+    },
+    "$routing_number": {
+      "type": [ "string", "null" ]
+    },
+    "$decline_reason_code": {
+      "type": [ "string", "null" ]
+    },
+    "$paypal_payer_id": {
+      "type": [ "string", "null" ]
+    },
+    "$paypal_payer_email": {
+      "type": [ "string", "null" ]
+    },
+    "$paypal_payer_status": {
+      "type": [ "string", "null" ]
+    },
+    "$paypal_address_status": {
+      "type": [ "string", "null" ]
+    },
+    "$paypal_protection_eligibility": {
+      "type": [ "string", "null" ]
+    },
+    "$paypal_payment_status": {
+      "type": [ "string", "null" ]
+    },
+    "$stripe_cvc_check": {
+      "type": [ "string", "null" ]
+    },
+    "$stripe_address_line1_check": {
+      "type": [ "string", "null" ]
+    },
+    "$stripe_address_line2_check": {
+      "type": [ "string", "null" ]
+    },
+    "$stripe_address_zip_check": {
+      "type": [ "string", "null" ]
+    },
+    "$stripe_funding": {
+      "type": [ "string", "null" ]
+    },
+    "$stripe_brand": {
+      "type": [ "string", "null" ]
+    }
+  }
+}

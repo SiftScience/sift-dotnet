@@ -1,0 +1,42 @@
+﻿{
+  "$schema": "http://json-schema.org/draft-04/schema",
+  "title": "Chargeback",
+  "type": "object",
+  "required": [ "$type" ],
+  "properties": {
+    "$type": {
+      "type": "string",
+      "default": "$chargeback"
+    },
+    "$user_id": {
+      "type": [ "string", "null" ]
+    },
+    "$session_id": {
+      "type": [ "string", "null" ]
+    },
+    "$order_id": {
+      "type": [ "string", "null" ]
+    },
+    "$transaction_id": {
+      "type": [ "string", "null" ]
+    },
+    "$chargeback_state": {
+      "type": [ "string", "null" ]
+    },
+    "$chargeback_reason": {
+      "type": [ "string", "null" ]
+    },
+    "$app": {
+      "oneOf": [
+        { "$ref": "ComplexTypes/app.json" },
+        { "type": "null" }
+      ]
+    },
+    "$browser": {
+      "oneOf": [
+        { "$ref": "ComplexTypes/browser.json" },
+        { "type": "null" }
+      ]
+    }
+  }
+}

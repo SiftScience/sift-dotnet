@@ -1,0 +1,23 @@
+﻿{
+  "$schema": "http://json-schema.org/draft-04/schema",
+  "title": "Comment",
+  "type": "object",
+  "properties": {
+    "$body": {
+      "type": [ "string", "null" ]
+    },
+    "$contact_email": {
+      "type": [ "string", "null" ]
+    },
+    "$parent_comment_id": {
+      "type": [ "string", "null" ]
+    },
+    "$root_content_id": {
+      "type": [ "string", "null" ]
+    },
+    "$images": {
+      "type": [ "array", "null" ],
+      "items": { "$ref": "image.json" }
+    }
+  }
+}

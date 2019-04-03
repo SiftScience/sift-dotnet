@@ -1,0 +1,16 @@
+﻿{
+  "$schema": "http://json-schema.org/draft-04/schema",
+  "title": "CustomEvent",
+  "type": "object",
+  "properties": {
+    "$type": {
+      "type": "string"
+    },
+    "$user_id": {
+      "type": [ "string", "null" ]
+    },
+    "$session_id": {
+      "type": [ "string", "null" ]
+    }
+  }
+}

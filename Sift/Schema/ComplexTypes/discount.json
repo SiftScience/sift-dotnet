@@ -1,0 +1,19 @@
+﻿{
+  "$schema": "http://json-schema.org/draft-04/schema",
+  "title": "Discount",
+  "type": "object",
+  "properties": {
+    "$percentage_off": {
+      "type": [ "number", "null" ]
+    },
+    "$amount": {
+      "type": [ "integer", "null" ]
+    },
+    "$currency_code": {
+      "type": [ "string", "null" ]
+    },
+    "$minimum_purchase_amount": {
+      "type": [ "integer", "null" ]
+    },
+  }
+}

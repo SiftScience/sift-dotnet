@@ -1,0 +1,33 @@
+﻿{
+  "$schema": "http://json-schema.org/draft-04/schema",
+  "title": "CreateOrder",
+  "type": "object",
+  "required": [ "$type" ],
+  "properties": {
+    "$type": {
+      "type": "string",
+      "default": "$login"
+    },
+    "$user_id": {
+      "type": [ "string", "null" ]
+    },
+    "$login_status": {
+      "type": [ "string", "null" ]
+    },
+    "$ip": {
+      "type": [ "string", "null" ]
+    },
+    "$app": {
+      "oneOf": [
+        { "$ref": "ComplexTypes/app.json" },
+        { "type": "null" }
+      ]
+    },
+    "$browser": {
+      "oneOf": [
+        { "$ref": "ComplexTypes/browser.json" },
+        { "type": "null" }
+      ]
+    }
+  }
+}
