@@ -8,7 +8,7 @@ jobs:
       - DOTNET_CLI_TELEMETRY_OPTOUT: 1
       - CAKE_VERSION: 0.32.1
     steps:
-      - run: sudo apt update && sudo apt install -y mono-complete=5.16
+      - run: sudo apt update && sudo apt install -y mono-complete=5.18.1.0
       - checkout
       - restore_cache:
           keys:
