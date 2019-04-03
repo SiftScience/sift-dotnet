@@ -96,15 +96,9 @@ namespace Test
                 ["payment_status"] = "$success"
             });
 
-            Console.WriteLine("{\"$type\":\"make_call\",\"$user_id\":\"gary\",\"foo\":" +
+            Assert.Equal("{\"$type\":\"make_call\",\"$user_id\":\"gary\",\"foo\":" +
                               "\"bar\",\"payment_status\":\"$success\"}",
                               makeCall.ToJson());
-        }
-
-        [Fact]
-        public void TestGetDecisionsRequest()
-        {
-            
         }
     }
 }
