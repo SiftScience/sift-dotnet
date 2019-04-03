@@ -22,6 +22,6 @@ jobs:
           key: cake-{{ .Environment.CAKE_VERSION }}
           paths:
             - ~/sift-dotnet/tools
-      - run: ./build.sh --target=build
       - run: ./build.sh --target=generate
+      - run: ./build.sh --target=build
       - run: ./build.sh --target=test
