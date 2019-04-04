@@ -1,5 +1,10 @@
 version: 2
 jobs:
+  test:
+    docker:
+      - image: mcr.microsoft.com/dotnet/core/sdk:2.2
+    steps:
+      - run: dotnet test Test/Test.csproj
   build:
     docker:
       - image: circleci/buildpack-deps:bionic
@@ -28,4 +33,3 @@ jobs:
       #       - ~/sift-dotnet/tools
       - run: ./build.sh --target=generate
       - run: ./build.sh --target=build
-      - run: dotnet test Test/Test.csproj
