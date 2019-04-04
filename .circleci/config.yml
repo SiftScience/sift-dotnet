@@ -14,9 +14,9 @@ jobs:
       - run: echo "deb https://download.mono-project.com/repo/ubuntu stable-bionic main" | sudo tee /etc/apt/sources.list.d/mono-official-stable.list
       - run: sudo apt update && sudo apt install -y mono-complete
       - checkout
-      - restore_cache:
-          keys:
-            - cake-{{ .Environment.CAKE_VERSION }}
+      # - restore_cache:
+      #     keys:
+      #       - cake-{{ .Environment.CAKE_VERSION }}
       - run: ./build.sh --target=restore
       - save_cache:
           key: cake-{{ .Environment.CAKE_VERSION }}
