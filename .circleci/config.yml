@@ -17,11 +17,9 @@ jobs:
       # - restore_cache:
       #     keys:
       #       - cake-{{ .Environment.CAKE_VERSION }}
-      - run: ./build.sh --target=restore
-      - save_cache:
-          key: cake-{{ .Environment.CAKE_VERSION }}
-          paths:
-            - ~/sift-dotnet/tools
-      - run: ./build.sh --target=generate
-      - run: ./build.sh --target=build
-      - run: ./build.sh --target=test
+      - run: ./build.sh
+      # - save_cache:
+      #     key: cake-{{ .Environment.CAKE_VERSION }}
+      #     paths:
+      #       - ~/sift-dotnet/tools
+      
