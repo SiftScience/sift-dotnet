@@ -2,7 +2,6 @@ version: 2
 jobs:
   build:
     docker:
-      # - image: circleci/buildpack-deps:bionic
       - image: microsoft/dotnet:2.0.5-sdk-2.1.4
     environment:
       - DOTNET_CLI_TELEMETRY_OPTOUT: 1
@@ -13,19 +12,8 @@ jobs:
           command: |
             apt-get update
             apt-get install -y unzip
-      # - run: sudo apt update
-      # - run: sudo apt install gnupg ca-certificates
-      # - run: sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF
-      # - run: echo "deb https://download.mono-project.com/repo/ubuntu stable-bionic main" | sudo tee /etc/apt/sources.list.d/mono-official-stable.list
-      # - run: sudo apt update && sudo apt install -y mono-complete
       - checkout
-      # - restore_cache:
-      #     keys:
-      #       - cake-{{ Environment.CAKE_VERSION }}
       - run: ./build.sh --target=restore
-      # - save_cache:
-      #     key: cake-{{ Environment.CAKE_VERSION }}
-      #     paths:
-      #       - ~/sift-dotnet/tools
       - run: ./build.sh --target=generate
       - run: ./build.sh --target=build
+      - run: ./build.sh --target=test
