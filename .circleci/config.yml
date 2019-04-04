@@ -17,7 +17,7 @@ jobs:
       # - restore_cache:
       #     keys:
       #       - cake-{{ Environment.CAKE_VERSION }}
-      - run: ./build.sh
+      - run: ./build.sh --target=restore
       # - save_cache:
       #     key: cake-{{ Environment.CAKE_VERSION }}
       #     paths:
