@@ -2,8 +2,8 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/buildpack-deps:bionic
-#      - image: mcr.microsoft.com/dotnet/core/sdk:2.2
+      # - image: circleci/buildpack-deps:bionic
+      - image: mcr.microsoft.com/dotnet/core/sdk:2.2
     environment:
       - DOTNET_CLI_TELEMETRY_OPTOUT: 1
       - CAKE_VERSION: 0.32.1
@@ -16,10 +16,12 @@ jobs:
       - checkout
       # - restore_cache:
       #     keys:
-      #       - cake-{{ .Environment.CAKE_VERSION }}
+      #       - cake-{{ Environment.CAKE_VERSION }}
       - run: ./build.sh
       # - save_cache:
-      #     key: cake-{{ .Environment.CAKE_VERSION }}
+      #     key: cake-{{ Environment.CAKE_VERSION }}
       #     paths:
       #       - ~/sift-dotnet/tools
-      
+      - run: ./build.sh --target=generate
+      - run: ./build.sh --target=build
+      - run: dotnet test Test/Test.cs

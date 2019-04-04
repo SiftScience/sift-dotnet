@@ -18,18 +18,6 @@ PACKAGES_CONFIG_MD5=$TOOLS_DIR/packages.config.md5sum
 ADDINS_PACKAGES_CONFIG=$ADDINS_DIR/packages.config
 MODULES_PACKAGES_CONFIG=$MODULES_DIR/packages.config
 
-# Install .NET Core CLI
-DOTNET_VERSION=2.1.403
-if [ ! -d "$SCRIPT_DIR/.dotnet" ]; then
-  mkdir "$SCRIPT_DIR/.dotnet"
-fi
-curl -Lsfo "$SCRIPT_DIR/.dotnet/dotnet-install.sh" https://dot.net/v1/dotnet-install.sh
-bash "$SCRIPT_DIR/.dotnet/dotnet-install.sh" --version $DOTNET_VERSION --install-dir .dotnet --no-path
-export PATH="$SCRIPT_DIR/.dotnet":$PATH
-export DOTNET_SKIP_FIRST_TIME_EXPERIENCE=1
-export DOTNET_CLI_TELEMETRY_OPTOUT=1
-export DOTNET_SYSTEM_NET_HTTP_USESOCKETSHTTPHANDLER=0
-
 # Define md5sum or md5 depending on Linux/OSX
 MD5_EXE=
 if [[ "$(uname -s)" == "Darwin" ]]; then
