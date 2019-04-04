@@ -4,9 +4,9 @@ Task("generate")
       Information("Generating schemas...");
       Generate("Sift/Schema/ComplexTypes", "Sift/Event", false);
       Generate("Sift/Schema", "Sift/Event", true);
-      Information("Done");
     });
 
+#addin "nuget:?package=System.CodeDom&version=4.5.0"
 #addin "nuget:?package=NJsonSchema&version=9.13.28"
 #addin "nuget:?package=NJsonSchema.CodeGeneration&version=9.13.28"
 #addin "nuget:?package=NJsonSchema.CodeGeneration.CSharp&version=9.13.28"
@@ -66,8 +66,6 @@ public static string ToPascal(string input)
 }
 
 void Generate(string inputDir, string outputDir, bool isEvent = true) {
-    Information(inputDir);
-
     string[] schemaDir = System.IO.Directory.GetFiles(inputDir);
 
     foreach (string schemaFile in schemaDir) {

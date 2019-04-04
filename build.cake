@@ -1,4 +1,3 @@
-#tool "nuget:?package=xunit.runner.console"
 #l generate.cake
 
 Task("clean")
@@ -11,7 +10,7 @@ Task("clean")
     });
 
 Task("restore")
-    .Does(() => NuGetRestore("Sift.sln"));
+    .Does(() => DotNetCoreRestore("Sift.sln"));
 
 Task("build")
     .Does(() => MSBuild("Sift.sln"));
