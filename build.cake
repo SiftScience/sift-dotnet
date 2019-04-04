@@ -1,3 +1,4 @@
+#tool "nuget:?package=xunit.runner.console"
 #l generate.cake
 
 Task("clean")
