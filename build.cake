@@ -13,7 +13,7 @@ Task("restore")
     .Does(() => DotNetCoreRestore("Sift.sln"));
 
 Task("build")
-    .Does(() => MSBuild("Sift.sln"));
+    .Does(() => DotNetCoreBuild("Sift.sln"));
 
 Task("test")
     .Does(() => DotNetCoreTest("Test/Test.csproj"));
