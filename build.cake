@@ -2,13 +2,15 @@
 
 var ARTIFACTS_DIR = "./artifacts/";
 var SOLUTION = "./Sift.sln";
-var PROJECT = "./Sift/Sift.csproj";
+var SIFT = "./Sift/Sift.csproj";
+var TEST = "./Test/Test.csproj";
 
 Task("clean")
     .Does(() =>
     {
-        CleanDirectories("obj");
-        CleanDirectories("bin");
+        CleanDirectories("Sift/obj");
+        CleanDirectories("Sift/bin");
+        CleanDirectories("Sift/Event");
         CleanDirectories("Test/obj");
         CleanDirectories("Test/bin");
         CleanDirectories("artifacts");
@@ -17,11 +19,21 @@ Task("clean")
 Task("restore")
     .Does(() => DotNetCoreRestore(SOLUTION));
 
+Task("generate")
+    .IsDependentOn("clean")
+    .IsDependentOn("restore")
+    .Does(() =>
+    {
+      Information("Generating schemas...");
+      Generate("Sift/Schema/ComplexTypes", "Sift/Event", false);
+      Generate("Sift/Schema", "Sift/Event", true);
+    });
+
 Task("build")
     .Does(() => DotNetCoreBuild(SOLUTION));
 
 Task("test")
-    .Does(() => DotNetCoreTest("Test/Test.csproj"));
+    .Does(() => DotNetCoreTest(TEST));
 
 Task("default")
     .IsDependentOn("clean")
@@ -38,11 +50,10 @@ Task("pack")
       {
           OutputDirectory = ARTIFACTS_DIR,
           NoBuild = true,
-          NoRestore = true,
-          VersionSuffix = "1010"
+          NoRestore = true
       };
 
-      DotNetCorePack(PROJECT, settings);
+      DotNetCorePack(SIFT, settings);
     });
 
 var target = Argument("target", "default");

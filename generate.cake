@@ -1,11 +1,3 @@
-Task("generate")
-    .Does(() =>
-    {
-      Information("Generating schemas...");
-      Generate("Sift/Schema/ComplexTypes", "Sift/Event", false);
-      Generate("Sift/Schema", "Sift/Event", true);
-    });
-
 #addin "nuget:?package=System.CodeDom&version=4.5.0"
 #addin "nuget:?package=NJsonSchema&version=9.13.28"
 #addin "nuget:?package=NJsonSchema.CodeGeneration&version=9.13.28"

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Net.Http;
+using System.Reflection;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 
@@ -73,7 +74,16 @@ namespace Sift
         async Task<T> Send<T>(SiftRequest siftRequest) where T : SiftResponse
         {
             siftRequest.ApiKey = this.apiKey;
-            HttpResponseMessage responseMessage = await http.SendAsync(siftRequest.Request);
+
+            // Note: we deference this once and augment the result, since the
+            // disparity in HTTP headers per API is handled upstream.
+            HttpRequestMessage request = siftRequest.Request;
+
+            string userAgent = "sift-dotnet/" + Assembly.GetExecutingAssembly().GetName().Version;
+            request.Headers.UserAgent.ParseAdd(userAgent);
+
+            HttpResponseMessage responseMessage = await http.SendAsync(request);
+
             return (T)ProcessResponse(
                 JsonConvert.DeserializeObject<T>(await responseMessage.Content.ReadAsStringAsync()),
                 (int)responseMessage.StatusCode);
