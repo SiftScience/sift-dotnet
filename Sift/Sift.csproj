@@ -1,11 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Description>Sift is the official sync/async .NET client for the Sift API. (Official Library)</Description>
+    <Description>The official sync/async .NET client for the Sift API.</Description>
     <Authors>Sift, Gary Lee</Authors>
     <AssemblyTitle>Sift</AssemblyTitle>
     <AssemblyName>Stripe</AssemblyName>
     <VersionPrefix>0.1.0</VersionPrefix>
     <VersionSuffix>beta</VersionSuffix>
+    <PackageReleaseNotes>Beta release</PackageReleaseNotes>
     <TargetFramework>netstandard2.0</TargetFramework>
     <PackageId>Sift</PackageId>
     <PackageTags>sift;siftscience;client;api;client;async</PackageTags>

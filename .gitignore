@@ -11,6 +11,7 @@ Sift/Event/
 [Oo]bj/
 [Bb]in/
 packages/
+artifacts/
 TestResults/
 
 # globs
