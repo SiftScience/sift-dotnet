@@ -26,52 +26,52 @@ namespace Sift
             http.Dispose();
         }
 
-        public async Task<EventResponse> Send(EventRequest eventRequest)
+        public async Task<EventResponse> SendAsync(EventRequest eventRequest)
         {
-            return await Send<EventResponse>(eventRequest);
+            return await SendAsync<EventResponse>(eventRequest);
         }
 
-        public async Task<ScoreResponse> Send(ScoreRequest scoreRequest)
+        public async Task<ScoreResponse> SendAsync(ScoreRequest scoreRequest)
         {
-            return await Send<ScoreResponse>(scoreRequest);
+            return await SendAsync<ScoreResponse>(scoreRequest);
         }
 
-        public async Task<ScoreResponse> Send(RescoreRequest rescoreRequest)
+        public async Task<ScoreResponse> SendAsync(RescoreRequest rescoreRequest)
         {
-            return await Send<ScoreResponse>(rescoreRequest);
+            return await SendAsync<ScoreResponse>(rescoreRequest);
         }
 
-        public async Task<SiftResponse> Send(LabelRequest labelRequest)
+        public async Task<SiftResponse> SendAsync(LabelRequest labelRequest)
         {
-            return await Send<SiftResponse>(labelRequest);
+            return await SendAsync<SiftResponse>(labelRequest);
         }
 
-        public async Task<SiftResponse> Send(UnlabelRequest unlabelRequest)
+        public async Task<SiftResponse> SendAsync(UnlabelRequest unlabelRequest)
         {
-            return await Send<SiftResponse>(unlabelRequest);
+            return await SendAsync<SiftResponse>(unlabelRequest);
         }
 
-        public async Task<ApplyDecisionResponse> Send(ApplyDecisionRequest applyDecisionRequest)
+        public async Task<ApplyDecisionResponse> SendAsync(ApplyDecisionRequest applyDecisionRequest)
         {
-            return await Send<ApplyDecisionResponse>(applyDecisionRequest);
+            return await SendAsync<ApplyDecisionResponse>(applyDecisionRequest);
         }
 
-        public async Task<GetDecisionStatusResponse> Send(GetDecisionStatusRequest getDecisionStatusRequest)
+        public async Task<GetDecisionStatusResponse> SendAsync(GetDecisionStatusRequest getDecisionStatusRequest)
         {
-            return await Send<GetDecisionStatusResponse>(getDecisionStatusRequest);
+            return await SendAsync<GetDecisionStatusResponse>(getDecisionStatusRequest);
         }
 
-        public async Task<GetDecisionsResponse> Send(GetDecisionsRequest getDecisionsRequest)
+        public async Task<GetDecisionsResponse> SendAsync(GetDecisionsRequest getDecisionsRequest)
         {
-            return await Send<GetDecisionsResponse>(getDecisionsRequest);
+            return await SendAsync<GetDecisionsResponse>(getDecisionsRequest);
         }
 
-        public async Task<WorkflowStatusResponse> Send(WorkflowStatusRequest workflowStatusRequest)
+        public async Task<WorkflowStatusResponse> SendAsync(WorkflowStatusRequest workflowStatusRequest)
         {
-            return await Send<WorkflowStatusResponse>(workflowStatusRequest);
+            return await SendAsync<WorkflowStatusResponse>(workflowStatusRequest);
         }
 
-        async Task<T> Send<T>(SiftRequest siftRequest) where T : SiftResponse
+        async Task<T> SendAsync<T>(SiftRequest siftRequest) where T : SiftResponse
         {
             siftRequest.ApiKey = this.apiKey;
 
