@@ -25,7 +25,7 @@
 
     try 
     {
-        EventResponse res = sift.Send(new EventRequest
+        EventResponse res = sift.SendAsync(new EventRequest
         {
             Event = createOrder,
             ReturnScore = true,
@@ -55,7 +55,7 @@
 
     try
     {
-        EventResponse res = sift.Send(new EventRequest
+        EventResponse res = sift.SendAsync(new EventRequest
         {
             Event = makeCall
         }).Result;
@@ -70,7 +70,7 @@
     // Get score
     try
     {
-        ScoreResponse res = sift.Send(new ScoreRequest
+        ScoreResponse res = sift.SendAsync(new ScoreRequest
         {
             UserId = "gary"
         }).Result;
@@ -85,7 +85,7 @@
     // Rescore
     try
     {
-        ScoreResponse res = sift.Send(new RescoreRequest
+        ScoreResponse res = sift.SendAsync(new RescoreRequest
         {
             UserId = "gary"
         }).Result;
@@ -100,7 +100,7 @@
     // Label
     try
     {
-        SiftResponse response = sift.Send(new LabelRequest
+        SiftResponse response = sift.SendAsync(new LabelRequest
         {
             UserId = "gary",
             IsBad = true,
@@ -117,7 +117,7 @@
     // Unlabel
     try
     {
-        SiftResponse response = sift.Send(new UnlabelRequest
+        SiftResponse response = sift.SendAsync(new UnlabelRequest
         {
             UserId = "gary",
             AbuseType = "payment_abuse"
@@ -133,7 +133,7 @@
     // Apply Decision
     try
     {
-        ApplyDecisionResponse response = sift.Send(new ApplyUserDecisionRequest
+        ApplyDecisionResponse response = sift.SendAsync(new ApplyUserDecisionRequest
         {
             AccountId = "ACCOUNT_ID",
             UserId = "gary",
@@ -151,7 +151,7 @@
     // Get Decision Status
     try
     {
-        GetDecisionStatusResponse response = sift.Send(new GetDecisionStatusRequest
+        GetDecisionStatusResponse response = sift.SendAsync(new GetDecisionStatusRequest
         {
             AccountId = "ACCOUNT_ID",
             UserId = "gary"
@@ -167,7 +167,7 @@
     // Get Decisions
     try
     {
-        GetDecisionsResponse response = sift.Send(new GetDecisionsRequest
+        GetDecisionsResponse response = sift.SendAsync(new GetDecisionsRequest
         {
             AccountId = "ACCOUNT_ID"
         }).Result;
@@ -182,7 +182,7 @@
     // Workflow Status
     try
     {
-        WorkflowStatusResponse response = sift.Send(new WorkflowStatusRequest
+        WorkflowStatusResponse response = sift.SendAsync(new WorkflowStatusRequest
         {
             AccountId = "ACCOUNT_ID",
             WorkflowRunId = "WORKFLOW_RUN_ID"
