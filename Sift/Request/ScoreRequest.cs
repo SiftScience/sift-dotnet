@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Net.Http;
 
 namespace Sift
@@ -22,7 +23,9 @@ namespace Sift
         {
             get
             {
-                var url = new Uri(String.Format(ScoreUrl, UserId, ApiKey));
+                var url = new Uri(String.Format(ScoreUrl,
+                                                WebUtility.UrlEncode(UserId),
+                                                WebUtility.UrlEncode(ApiKey)));
 
                 if (AbuseTypes.Count > 0)
                 {

@@ -13,6 +13,10 @@ namespace Sift
             httpValueCollection.Add(name, value);
 
             var ub = new UriBuilder(uri);
+
+            // https://stackoverflow.com/a/3866105
+            // Basically, HttpUtility.ParseQueryString() returns an undocumented 
+            // subclass of NameValueCollection that encodes on ToString()
             ub.Query = httpValueCollection.ToString();
 
             return ub.Uri;

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
@@ -51,7 +52,9 @@ namespace Sift
         {
             get
             {
-                return new Uri(String.Format(ApplyDecisionUrl, AccountId, UserId));
+                return new Uri(String.Format(ApplyDecisionUrl,
+                                             WebUtility.UrlEncode(AccountId),
+                                             WebUtility.UrlEncode(UserId)));
             }
         }
     }
@@ -62,7 +65,7 @@ namespace Sift
 
     public class ApplyOrderDecisionRequest : ApplyDecisionRequest
     {
-        static readonly String APPLY_ORDER_DECISION_URL = @"https://api.siftscience.com/v3/accounts/{0}/users/{1}/orders/{2}/decisions";
+        static readonly String ApplyOrderDecisionUrl = @"https://api.sift.com/v3/accounts/{0}/users/{1}/orders/{2}/decisions";
 
         [JsonIgnore]
         public string OrderId { get; set; }
@@ -72,14 +75,17 @@ namespace Sift
         {
             get
             {
-                return new Uri(String.Format(APPLY_ORDER_DECISION_URL, AccountId, UserId, OrderId));
+                return new Uri(String.Format(ApplyOrderDecisionUrl,
+                                             WebUtility.UrlEncode(AccountId),
+                                             WebUtility.UrlEncode(UserId),
+                                             WebUtility.UrlEncode(OrderId)));
             }
         }
     }
 
     public class ApplySessionDecisionRequest : ApplyDecisionRequest
     {
-        static readonly String APPLY_SESSION_DECISION_URL = @"https://api.siftscience.com/v3/accounts/{0}/users/{1}/sessions/{2}/decisions";
+        static readonly String ApplySessionDecisionUrl = @"https://api.sift.com/v3/accounts/{0}/users/{1}/sessions/{2}/decisions";
 
         [JsonIgnore]
         public string SessionId { get; set; }
@@ -89,14 +95,17 @@ namespace Sift
         {
             get
             {
-                return new Uri(String.Format(APPLY_SESSION_DECISION_URL, AccountId, UserId, SessionId));
+                return new Uri(String.Format(ApplySessionDecisionUrl,
+                                             WebUtility.UrlEncode(AccountId),
+                                             WebUtility.UrlEncode(UserId),
+                                             WebUtility.UrlEncode(SessionId)));
             }
         }
     }
 
     public class ApplyContentDecisionRequest : ApplyDecisionRequest
     {
-        static readonly String APPLY_CONTENT_DECISION_URL = @"https://api.siftscience.com/v3/accounts/{0}/users/{1}/content/{2}/decisions";
+        static readonly String ApplyContentDecisionUrl = @"https://api.sift.com/v3/accounts/{0}/users/{1}/content/{2}/decisions";
 
         [JsonIgnore]
         public string ContentId { get; set; }
@@ -106,7 +115,10 @@ namespace Sift
         {
             get
             {
-                return new Uri(String.Format(APPLY_CONTENT_DECISION_URL, AccountId, UserId, ContentId));
+                return new Uri(String.Format(ApplyContentDecisionUrl,
+                                             WebUtility.UrlEncode(AccountId),
+                                             WebUtility.UrlEncode(UserId),
+                                             WebUtility.UrlEncode(ContentId)));
             }
         }
     }

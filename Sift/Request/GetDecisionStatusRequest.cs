@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
@@ -35,7 +36,9 @@ namespace Sift
         {
             get
             {
-                return new Uri(String.Format(GetDecisionUrl, AccountId, UserId));
+                return new Uri(String.Format(GetDecisionUrl,
+                                             WebUtility.UrlEncode(AccountId),
+                                             WebUtility.UrlEncode(UserId)));
             }
         }
     }
@@ -56,7 +59,9 @@ namespace Sift
         {
             get
             {
-                return new Uri(String.Format(GetOrderDecisionUrl, AccountId, OrderId));
+                return new Uri(String.Format(GetOrderDecisionUrl,
+                                             WebUtility.UrlEncode(AccountId),
+                                             WebUtility.UrlEncode(OrderId)));
             }
         }
     }
@@ -73,7 +78,10 @@ namespace Sift
         {
             get
             {
-                return new Uri(String.Format(GetSessionDecisionUrl, AccountId, UserId, SessionId));
+                return new Uri(String.Format(GetSessionDecisionUrl,
+                                             WebUtility.UrlEncode(AccountId),
+                                             WebUtility.UrlEncode(UserId),
+                                             WebUtility.UrlEncode(SessionId)));
             }
         }
     }
@@ -90,7 +98,10 @@ namespace Sift
         {
             get
             {
-                return new Uri(String.Format(GetContentDecisionUrl, AccountId, UserId, ContentId));
+                return new Uri(String.Format(GetContentDecisionUrl,
+                                             WebUtility.UrlEncode(AccountId),
+                                             WebUtility.UrlEncode(UserId),
+                                             WebUtility.UrlEncode(ContentId)));
             }
         }
     }

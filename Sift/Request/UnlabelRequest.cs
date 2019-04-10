@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net;
 using System.Net.Http;
 
 namespace Sift
@@ -23,7 +24,9 @@ namespace Sift
         {
             get
             {
-                var url = new Uri(String.Format(UnlabelUrl, UserId, ApiKey));
+                var url = new Uri(String.Format(UnlabelUrl,
+                                                WebUtility.UrlEncode(UserId),
+                                                WebUtility.UrlEncode(ApiKey)));
 
                 if (!String.IsNullOrEmpty(AbuseType))
                 {

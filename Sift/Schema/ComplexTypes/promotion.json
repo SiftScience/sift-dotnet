@@ -15,8 +15,8 @@
     "$description": {
       "type": [ "string", "null" ]
     },
-    // $ref is a reserved key and will break NJsonSchema even if it's in a substring
     "\u0024referrer_user_id": {
+      "$comment": "$ref is a reserved key and will break NJsonSchema even if it's a substring.",
       "type": [ "string", "null" ]
     },
     "$discount": {
