@@ -99,11 +99,10 @@ void Generate(string inputDir, string outputDir, bool isEvent = true) {
         string output = System.IO.Path.Combine(outputDir, name + ".cs");
 
         using (System.IO.StreamWriter sw = new System.IO.StreamWriter(output, false))
+        using (System.CodeDom.Compiler.IndentedTextWriter tw = new System.CodeDom.Compiler.IndentedTextWriter(sw, "    "))
         {
-            System.CodeDom.Compiler.IndentedTextWriter tw = new System.CodeDom.Compiler.IndentedTextWriter(sw, "    ");
             provider.GenerateCodeFromCompileUnit(targetUnit, tw, options);
             tw.Write(generated);
-            tw.Close();
         }
     }
 }

@@ -19,8 +19,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Schema\" />
-    <Folder Include="Schema\ComplexTypes\" />
     <Folder Include="Event\" />
     <Folder Include="Core\" />
     <Folder Include="Exception\" />
