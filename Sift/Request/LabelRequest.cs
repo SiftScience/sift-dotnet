@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Net;
 using System.Net.Http;
 using System.Text;
 using Newtonsoft.Json;
@@ -48,7 +47,7 @@ namespace Sift
             get
             {
                 return new Uri(String.Format(LabelUrl,
-                                             WebUtility.EscapedDataString(UserId)));
+                                             Uri.EscapeDataString(UserId)));
             }
         }
     }

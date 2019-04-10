@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
@@ -28,8 +27,8 @@ namespace Sift
             get
             {
                 return new Uri(String.Format(WorkflowStatusUrl,
-                                             WebUtility.EscapedDataString(AccountId),
-                                             WebUtility.EscapedDataString(WorkflowRunId)));
+                                             Uri.EscapeDataString(AccountId),
+                                             Uri.EscapeDataString(WorkflowRunId)));
             }
         }
     }
