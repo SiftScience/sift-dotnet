@@ -1,5 +1,7 @@
 # sift-dotnet
 
+    // You can also pass in your own HttpClient implementation as the second parameter.
+    // Dispose() will dispose of the HttpClient instance.
     var sift = new Client("REST_API_KEY");
 
     // Construct reserved events with known fields
