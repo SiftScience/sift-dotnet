@@ -15,6 +15,7 @@
     "$description": {
       "type": [ "string", "null" ]
     },
+    // $ref is a reserved key and will break NJsonSchema even if it's in a substring
     "\u0024referrer_user_id": {
       "type": [ "string", "null" ]
     },
