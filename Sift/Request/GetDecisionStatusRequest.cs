@@ -8,7 +8,7 @@ namespace Sift
 {
     public class GetDecisionStatusRequest : SiftRequest
     {
-        static readonly String GET_DECISION_URL = @"https://api.sift.com/v3/accounts/{0}/users/{1}/decisions";
+        static readonly String GetDecisionUrl = @"https://api.sift.com/v3/accounts/{0}/users/{1}/decisions";
 
         [JsonIgnore]
         public string UserId { get; set; }
@@ -24,18 +24,20 @@ namespace Sift
         {
             get
             {
-                var request = new HttpRequestMessage(HttpMethod.Get, URL);
+                var request = new HttpRequestMessage(HttpMethod.Get, Url);
                 request.Headers.Authorization = new AuthenticationHeaderValue("Basic", Convert.ToBase64String(Encoding.Default.GetBytes(ApiKey)));
                 return request;
             }
         }
 
         [JsonIgnore]
-        protected override Uri URL
+        protected override Uri Url
         {
             get
             {
-                return new Uri(String.Format(GET_DECISION_URL, AccountId, UserId));
+                return new Uri(String.Format(GetDecisionUrl,
+                                             Uri.EscapeDataString(AccountId),
+                                             Uri.EscapeDataString(UserId)));
             }
         }
     }
@@ -46,51 +48,59 @@ namespace Sift
 
     public class GetOrderDecisionStatusRequest : ApplyDecisionRequest
     {
-        static readonly String GET_ORDER_DECISION_URL = @"https://api.siftscience.com/v3/accounts/{0}/orders/{1}/decisions";
+        static readonly String GetOrderDecisionUrl = @"https://api.sift.com/v3/accounts/{0}/orders/{1}/decisions";
 
         [JsonIgnore]
         public string OrderId { get; set; }
 
         [JsonIgnore]
-        protected override Uri URL
+        protected override Uri Url
         {
             get
             {
-                return new Uri(String.Format(GET_ORDER_DECISION_URL, AccountId, OrderId));
+                return new Uri(String.Format(GetOrderDecisionUrl,
+                                             Uri.EscapeDataString(AccountId),
+                                             Uri.EscapeDataString(OrderId)));
             }
         }
     }
 
     public class GetSessionDecisionStatusRequest : ApplyDecisionRequest
     {
-        static readonly String GET_SESSION_DECISION_URL = @"https://api.siftscience.com/v3/accounts/{0}/users/{1}/sessions/{2}/decisions";
+        static readonly String GetSessionDecisionUrl = @"https://api.sift.com/v3/accounts/{0}/users/{1}/sessions/{2}/decisions";
 
         [JsonIgnore]
         public string SessionId { get; set; }
 
         [JsonIgnore]
-        protected override Uri URL
+        protected override Uri Url
         {
             get
             {
-                return new Uri(String.Format(GET_SESSION_DECISION_URL, AccountId, UserId, SessionId));
+                return new Uri(String.Format(GetSessionDecisionUrl,
+                                             Uri.EscapeDataString(AccountId),
+                                             Uri.EscapeDataString(UserId),
+                                             Uri.EscapeDataString(SessionId)));
             }
         }
     }
 
     public class GetContentDecisionStatusRequest : ApplyDecisionRequest
     {
-        static readonly String GET_CONTENT_DECISION_URL = @"https://api.siftscience.com/v3/accounts/{0}/users/{1}/content/{2}/decisions";
+        static readonly String GetContentDecisionUrl = @"https://api.sift.com/v3/accounts/{0}/users/{1}/content/{2}/decisions";
 
         [JsonIgnore]
         public string ContentId { get; set; }
 
         [JsonIgnore]
-        protected override Uri URL
+        protected override Uri Url
         {
             get
             {
-                return new Uri(String.Format(GET_CONTENT_DECISION_URL, AccountId, UserId, ContentId));
+                return new Uri(String.Format(GetContentDecisionUrl,
+                                             Uri.EscapeDataString(AccountId),
+                                             Uri.EscapeDataString(UserId),
+                                             Uri.EscapeDataString(ContentId)));
             }
         }
     }

@@ -25,7 +25,7 @@ namespace Sift
             {
                 this.fields = new Dictionary<string, object>();
             }
-            this.fields.Add(key, value);
+            this.fields[key] = value;
         }
 
         public void AddFields(Dictionary<string, object> fields)

@@ -5,7 +5,7 @@ namespace Sift
 {
     public class UnlabelRequest : SiftRequest
     {
-        static readonly String UNLABEL_URL = @"https://api.sift.com/v205/users/{0}/labels?api_key={1}";
+        static readonly String UnlabelUrl = @"https://api.sift.com/v205/users/{0}/labels?api_key={1}";
 
         public string UserId { get; set; }
         public string AbuseType { get; set; }
@@ -14,16 +14,18 @@ namespace Sift
         {
             get
             {
-                var request = new HttpRequestMessage(HttpMethod.Delete, URL);
+                var request = new HttpRequestMessage(HttpMethod.Delete, Url);
                 return request;
             }
         }
 
-        protected override Uri URL
+        protected override Uri Url
         {
             get
             {
-                var url = new Uri(String.Format(UNLABEL_URL, UserId, ApiKey));
+                var url = new Uri(String.Format(UnlabelUrl,
+                                                Uri.EscapeDataString(UserId),
+                                                Uri.EscapeDataString(ApiKey)));
 
                 if (!String.IsNullOrEmpty(AbuseType))
                 {

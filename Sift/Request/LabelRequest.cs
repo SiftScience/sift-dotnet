@@ -7,7 +7,7 @@ namespace Sift
 {
     public class LabelRequest : SiftRequest
     {
-        static readonly String LABEL_URL = @"https://api.sift.com/v205/users/{0}/labels";
+        static readonly String LabelUrl = @"https://api.sift.com/v205/users/{0}/labels";
 
         [JsonIgnore]
         public string UserId { get; set; }
@@ -35,18 +35,19 @@ namespace Sift
         {
             get
             {
-                var request = new HttpRequestMessage(HttpMethod.Post, URL);
+                var request = new HttpRequestMessage(HttpMethod.Post, Url);
                 request.Content = new StringContent(JsonConvert.SerializeObject(this), Encoding.UTF8, "application/json");
                 return request;
             }
         }
 
         [JsonIgnore]
-        protected override Uri URL
+        protected override Uri Url
         {
             get
             {
-                return new Uri(String.Format(LABEL_URL, UserId));
+                return new Uri(String.Format(LabelUrl,
+                                             Uri.EscapeDataString(UserId)));
             }
         }
     }

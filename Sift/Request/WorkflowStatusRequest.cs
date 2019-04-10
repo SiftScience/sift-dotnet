@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
@@ -8,7 +7,7 @@ namespace Sift
 {
     public class WorkflowStatusRequest : SiftRequest
     {
-        static readonly String WORKFLOW_STATUS_URL = @"https://api.sift.com/v3/accounts/{0}/workflows/runs/{1}";
+        static readonly String WorkflowStatusUrl = @"https://api.sift.com/v3/accounts/{0}/workflows/runs/{1}";
 
         public string AccountId { get; set; }
         public string WorkflowRunId { get; set; }
@@ -17,17 +16,19 @@ namespace Sift
         {
             get
             {
-                var request = new HttpRequestMessage(HttpMethod.Get, URL);
+                var request = new HttpRequestMessage(HttpMethod.Get, Url);
                 request.Headers.Authorization = new AuthenticationHeaderValue("Basic", Convert.ToBase64String(Encoding.Default.GetBytes(ApiKey)));
                 return request;
             }
         }
 
-        protected override Uri URL
+        protected override Uri Url
         {
             get
             {
-                return new Uri(String.Format(WORKFLOW_STATUS_URL, AccountId, WorkflowRunId));
+                return new Uri(String.Format(WorkflowStatusUrl,
+                                             Uri.EscapeDataString(AccountId),
+                                             Uri.EscapeDataString(WorkflowRunId)));
             }
         }
     }

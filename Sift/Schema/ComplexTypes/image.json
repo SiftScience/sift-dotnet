@@ -1,0 +1,16 @@
+﻿{
+  "$schema": "http://json-schema.org/draft-04/schema",
+  "title": "Image",
+  "type": "object",
+  "properties": {
+    "$md5_hash": {
+      "type": [ "string", "null" ]
+    },
+    "$link": {
+      "type": [ "string", "null" ]
+    },
+    "$description": {
+      "type": [ "string", "null" ]
+    }
+  }
+}

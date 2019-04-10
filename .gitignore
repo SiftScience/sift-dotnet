@@ -1,16 +1,17 @@
-# Autosave files
+# autosave files
 *~
 
-# Schema generation
-Generate/
+# cake
+tools
 
-# Demo
-Demo/
+# generated
+Sift/Event/
 
 # build
 [Oo]bj/
 [Bb]in/
 packages/
+artifacts/
 TestResults/
 
 # globs
@@ -35,7 +36,7 @@ test-results/
 Thumbs.db
 .vs/
 
-# Mac bundle stuff
+# mac bundle stuff
 *.dmg
 *.app
 

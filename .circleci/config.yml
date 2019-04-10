@@ -1,0 +1,18 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: microsoft/dotnet:2.0.5-sdk-2.1.4
+    environment:
+      - DOTNET_CLI_TELEMETRY_OPTOUT: 1
+    steps:
+      - run:
+          name: Install unzip
+          command: |
+            apt-get update
+            apt-get install -y unzip
+      - checkout
+      - run: ./build.sh --target=restore
+      - run: ./build.sh --target=generate
+      - run: ./build.sh --target=build
+      - run: ./build.sh --target=test

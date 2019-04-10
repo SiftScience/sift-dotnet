@@ -1,0 +1,52 @@
+﻿{
+  "$schema": "http://json-schema.org/draft-04/schema",
+  "title": "Item",
+  "type": "object",
+  "properties": {
+    "$item_id": {
+      "type": [ "string", "null" ]
+    },
+    "$product_title": {
+      "type": [ "string", "null" ]
+    },
+    "$price": {
+      "type": [ "integer", "null" ]
+    },
+    "$currency_code": {
+      "type": [ "string", "null" ]
+    },
+    "$quantity": {
+      "type": [ "integer", "null" ]
+    },
+    "$upc": {
+      "type": [ "string", "null" ]
+    },
+    "$sku": {
+      "type": [ "string", "null" ]
+    },
+    "$isbn": {
+      "type": [ "string", "null" ]
+    },
+    "$brand": {
+      "type": [ "string", "null" ]
+    },
+    "$manufacturer": {
+      "type": [ "string", "null" ]
+    },
+    "$category": {
+      "type": [ "string", "null" ]
+    },
+    "$tags": {
+      "type": [ "array", "null" ],
+      "items": {
+        "type": "string"
+      }
+    },
+    "$color": {
+      "type": [ "string", "null" ]
+    },
+    "$size": {
+      "type": [ "string", "null" ]
+    }
+  }
+}

@@ -1,0 +1,27 @@
+﻿{
+  "$schema": "http://json-schema.org/draft-04/schema",
+  "title": "Message",
+  "type": "object",
+  "properties": {
+    "$subject": {
+      "type": [ "string", "null" ]
+    },
+    "$body": {
+      "type": [ "string", "null" ]
+    },
+    "$contact_email": {
+      "type": [ "string", "null" ]
+    },
+    "$root_content_id": {
+      "type": [ "string", "null" ]
+    },
+    "$recipient_user_ids": {
+      "type": [ "array", "null" ],
+      "items": { "type": "string" }
+    },
+    "$images": {
+      "type": [ "array", "null" ],
+      "items": { "$ref": "image.json" }
+    }
+  }
+}

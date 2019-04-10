@@ -1,0 +1,75 @@
+﻿{
+  "$schema": "http://json-schema.org/draft-04/schema",
+  "title": "UpdateOrder",
+  "type": "object",
+  "required": [ "$type" ],
+  "properties": {
+    "$type": {
+      "type": "string",
+      "default": "$update_order"
+    },
+    "$user_id": {
+      "type": [ "string", "null" ]
+    },
+    "$session_id": {
+      "type": [ "string", "null" ]
+    },
+    "$order_id": {
+      "type": ["string", "null"]
+    },
+    "$user_email": {
+      "type": [ "string", "null" ]
+    },
+    "$amount": {
+      "type": ["integer", "null"]
+    },
+    "$currency_code": {
+      "type": [ "string", "null" ]
+    },
+    "$billing_address": {
+      "oneOf": [
+        { "$ref": "ComplexTypes/address.json" },
+        { "type": "null" }
+      ]
+    },
+    "$payment_methods": {
+      "type": [ "array", "null" ],
+      "items": { "$ref": "ComplexTypes/payment_method.json" }
+    },
+    "$shipping_address": {
+      "oneOf": [
+        { "$ref": "ComplexTypes/address.json" },
+        { "type": "null" }
+      ]
+    },
+    "$expedited_shipping": {
+      "type": [ "boolean", "null" ]
+    },
+    "$items": {
+      "type": [ "array", "null" ],
+      "items": { "$ref": "ComplexTypes/item.json" }
+    },
+    "$seller_user_id": {
+      "type": [ "string", "null" ]
+    },
+    "$promotions": {
+      "type": [ "array", "null" ],
+      "items": { "$ref": "ComplexTypes/promotion.json" }
+    },
+    "$shipping_method": {
+      "type": [ "string", "null" ]
+    },
+    "$app": {
+      "oneOf": [
+        { "$ref": "ComplexTypes/app.json" },
+        { "type": "null" }
+      ]
+    },
+    "$browser": {
+      "oneOf": [
+        { "$ref": "ComplexTypes/browser.json" },
+        { "type": "null" }
+      ]
+    }
+  }
+}

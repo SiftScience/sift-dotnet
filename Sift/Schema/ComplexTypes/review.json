@@ -1,0 +1,33 @@
+﻿{
+  "$schema": "http://json-schema.org/draft-04/schema",
+  "title": "Review",
+  "type": "object",
+  "properties": {
+    "$subject": {
+      "type": [ "string", "null" ]
+    },
+    "$body": {
+      "type": [ "string", "null" ]
+    },
+    "$contact_email": {
+      "type": [ "string", "null" ]
+    },
+    "$locations": {
+      "type": [ "array", "null" ],
+      "items": { "$ref": "address.json" }
+    },
+    "$item_reviewed": {
+      "$ref": "item.json"
+    },
+    "$reviewed_content_id": {
+      "type": [ "string", "null" ]
+    },
+    "$rating": {
+      "type": [ "number", "null" ]
+    },
+    "$images": {
+      "type": [ "array", "null" ],
+      "items": { "$ref": "image.json" }
+    }
+  }
+}

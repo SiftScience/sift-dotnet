@@ -8,7 +8,7 @@ namespace Sift
 {
     public class GetDecisionsRequest : SiftRequest
     {
-        static readonly String GET_DECISIONS_URL = @"https://api.sift.com/v3/accounts/{0}/decisions";
+        static readonly String GetDecisionsUrl = @"https://api.sift.com/v3/accounts/{0}/decisions";
 
         public string AccountId { get; set; }
         public List<String> AbuseTypes { get; set; } = new List<string>();
@@ -20,17 +20,18 @@ namespace Sift
         {
             get
             {
-                var request = new HttpRequestMessage(HttpMethod.Get, URL);
+                var request = new HttpRequestMessage(HttpMethod.Get, Url);
                 request.Headers.Authorization = new AuthenticationHeaderValue("Basic", Convert.ToBase64String(Encoding.Default.GetBytes(ApiKey)));
                 return request;
             }
         }
 
-        protected override Uri URL
+        protected override Uri Url
         {
             get
             {
-                var url = new Uri(String.Format(GET_DECISIONS_URL, AccountId));
+                var url = new Uri(String.Format(GetDecisionsUrl,
+                                                Uri.EscapeDataString(AccountId)));
 
                 if (AbuseTypes.Count > 0)
                 {

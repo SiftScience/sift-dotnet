@@ -8,7 +8,7 @@ namespace Sift
 {
     public class ApplyDecisionRequest : SiftRequest
     {
-        static readonly String APPLY_DECISION_URL = @"https://api.sift.com/v3/accounts/{0}/users/{1}/decisions";
+        static readonly String ApplyDecisionUrl = @"https://api.sift.com/v3/accounts/{0}/users/{1}/decisions";
 
         [JsonIgnore]
         public string AccountId { get; set; }
@@ -39,7 +39,7 @@ namespace Sift
         {
             get
             {
-                var request = new HttpRequestMessage(HttpMethod.Post, URL);
+                var request = new HttpRequestMessage(HttpMethod.Post, Url);
                 request.Headers.Authorization = new AuthenticationHeaderValue("Basic", Convert.ToBase64String(Encoding.Default.GetBytes(ApiKey)));
                 request.Content = new StringContent(JsonConvert.SerializeObject(this), Encoding.UTF8, "application/json");
                 return request;
@@ -47,11 +47,13 @@ namespace Sift
         }
 
         [JsonIgnore]
-        protected override Uri URL
+        protected override Uri Url
         {
             get
             {
-                return new Uri(String.Format(APPLY_DECISION_URL, AccountId, UserId));
+                return new Uri(String.Format(ApplyDecisionUrl,
+                                             Uri.EscapeDataString(AccountId),
+                                             Uri.EscapeDataString(UserId)));
             }
         }
     }
@@ -62,51 +64,60 @@ namespace Sift
 
     public class ApplyOrderDecisionRequest : ApplyDecisionRequest
     {
-        static readonly String APPLY_ORDER_DECISION_URL = @"https://api.siftscience.com/v3/accounts/{0}/users/{1}/orders/{2}/decisions";
+        static readonly String ApplyOrderDecisionUrl = @"https://api.sift.com/v3/accounts/{0}/users/{1}/orders/{2}/decisions";
 
         [JsonIgnore]
         public string OrderId { get; set; }
 
         [JsonIgnore]
-        protected override Uri URL
+        protected override Uri Url
         {
             get
             {
-                return new Uri(String.Format(APPLY_ORDER_DECISION_URL, AccountId, UserId, OrderId));
+                return new Uri(String.Format(ApplyOrderDecisionUrl,
+                                             Uri.EscapeDataString(AccountId),
+                                             Uri.EscapeDataString(UserId),
+                                             Uri.EscapeDataString(OrderId)));
             }
         }
     }
 
     public class ApplySessionDecisionRequest : ApplyDecisionRequest
     {
-        static readonly String APPLY_SESSION_DECISION_URL = @"https://api.siftscience.com/v3/accounts/{0}/users/{1}/sessions/{2}/decisions";
+        static readonly String ApplySessionDecisionUrl = @"https://api.sift.com/v3/accounts/{0}/users/{1}/sessions/{2}/decisions";
 
         [JsonIgnore]
         public string SessionId { get; set; }
 
         [JsonIgnore]
-        protected override Uri URL
+        protected override Uri Url
         {
             get
             {
-                return new Uri(String.Format(APPLY_SESSION_DECISION_URL, AccountId, UserId, SessionId));
+                return new Uri(String.Format(ApplySessionDecisionUrl,
+                                             Uri.EscapeDataString(AccountId),
+                                             Uri.EscapeDataString(UserId),
+                                             Uri.EscapeDataString(SessionId)));
             }
         }
     }
 
     public class ApplyContentDecisionRequest : ApplyDecisionRequest
     {
-        static readonly String APPLY_CONTENT_DECISION_URL = @"https://api.siftscience.com/v3/accounts/{0}/users/{1}/content/{2}/decisions";
+        static readonly String ApplyContentDecisionUrl = @"https://api.sift.com/v3/accounts/{0}/users/{1}/content/{2}/decisions";
 
         [JsonIgnore]
         public string ContentId { get; set; }
 
         [JsonIgnore]
-        protected override Uri URL
+        protected override Uri Url
         {
             get
             {
-                return new Uri(String.Format(APPLY_CONTENT_DECISION_URL, AccountId, UserId, ContentId));
+                return new Uri(String.Format(ApplyContentDecisionUrl,
+                                             Uri.EscapeDataString(AccountId),
+                                             Uri.EscapeDataString(UserId),
+                                             Uri.EscapeDataString(ContentId)));
             }
         }
     }

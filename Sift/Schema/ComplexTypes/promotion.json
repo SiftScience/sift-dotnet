@@ -1,0 +1,29 @@
+﻿{
+  "$schema": "http://json-schema.org/draft-04/schema",
+  "title": "Promotion",
+  "type": "object",
+  "properties": {
+    "$promotion_id": {
+      "type": [ "string", "null" ]
+    },
+    "$status": {
+      "type": [ "string", "null" ]
+    },
+    "$failure_reason": {
+      "type": [ "string", "null" ]
+    },
+    "$description": {
+      "type": [ "string", "null" ]
+    },
+    "\u0024referrer_user_id": {
+      "$comment": "$ref is a reserved key and will break NJsonSchema even if it's a substring.",
+      "type": [ "string", "null" ]
+    },
+    "$discount": {
+      "$ref": "discount.json"
+    },
+    "$credit_point": {
+      "$ref": "credit_point.json"
+    }
+  }
+}
