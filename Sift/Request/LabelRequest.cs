@@ -48,7 +48,7 @@ namespace Sift
             get
             {
                 return new Uri(String.Format(LabelUrl,
-                                             WebUtility.UrlEncode(UserId)));
+                                             WebUtility.EscapedDataString(UserId)));
             }
         }
     }

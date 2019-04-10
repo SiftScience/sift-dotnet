@@ -32,7 +32,7 @@ namespace Sift
             get
             {
                 var url = new Uri(String.Format(GetDecisionsUrl,
-                                                WebUtility.UrlEncode(AccountId)));
+                                                WebUtility.EscapedDataString(AccountId)));
 
                 if (AbuseTypes.Count > 0)
                 {

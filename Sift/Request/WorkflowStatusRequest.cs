@@ -28,8 +28,8 @@ namespace Sift
             get
             {
                 return new Uri(String.Format(WorkflowStatusUrl,
-                                             WebUtility.UrlEncode(AccountId),
-                                             WebUtility.UrlEncode(WorkflowRunId)));
+                                             WebUtility.EscapedDataString(AccountId),
+                                             WebUtility.EscapedDataString(WorkflowRunId)));
             }
         }
     }

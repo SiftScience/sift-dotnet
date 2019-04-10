@@ -53,8 +53,8 @@ namespace Sift
             get
             {
                 return new Uri(String.Format(ApplyDecisionUrl,
-                                             WebUtility.UrlEncode(AccountId),
-                                             WebUtility.UrlEncode(UserId)));
+                                             WebUtility.EscapedDataString(AccountId),
+                                             WebUtility.EscapedDataString(UserId)));
             }
         }
     }
@@ -76,9 +76,9 @@ namespace Sift
             get
             {
                 return new Uri(String.Format(ApplyOrderDecisionUrl,
-                                             WebUtility.UrlEncode(AccountId),
-                                             WebUtility.UrlEncode(UserId),
-                                             WebUtility.UrlEncode(OrderId)));
+                                             WebUtility.EscapedDataString(AccountId),
+                                             WebUtility.EscapedDataString(UserId),
+                                             WebUtility.EscapedDataString(OrderId)));
             }
         }
     }
@@ -96,9 +96,9 @@ namespace Sift
             get
             {
                 return new Uri(String.Format(ApplySessionDecisionUrl,
-                                             WebUtility.UrlEncode(AccountId),
-                                             WebUtility.UrlEncode(UserId),
-                                             WebUtility.UrlEncode(SessionId)));
+                                             WebUtility.EscapedDataString(AccountId),
+                                             WebUtility.EscapedDataString(UserId),
+                                             WebUtility.EscapedDataString(SessionId)));
             }
         }
     }
@@ -116,9 +116,9 @@ namespace Sift
             get
             {
                 return new Uri(String.Format(ApplyContentDecisionUrl,
-                                             WebUtility.UrlEncode(AccountId),
-                                             WebUtility.UrlEncode(UserId),
-                                             WebUtility.UrlEncode(ContentId)));
+                                             WebUtility.EscapedDataString(AccountId),
+                                             WebUtility.EscapedDataString(UserId),
+                                             WebUtility.EscapedDataString(ContentId)));
             }
         }
     }

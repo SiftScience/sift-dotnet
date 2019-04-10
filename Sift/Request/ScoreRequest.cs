@@ -24,8 +24,8 @@ namespace Sift
             get
             {
                 var url = new Uri(String.Format(ScoreUrl,
-                                                WebUtility.UrlEncode(UserId),
-                                                WebUtility.UrlEncode(ApiKey)));
+                                                WebUtility.EscapedDataString(UserId),
+                                                WebUtility.EscapedDataString(ApiKey)));
 
                 if (AbuseTypes.Count > 0)
                 {
