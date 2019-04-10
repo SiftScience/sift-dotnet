@@ -6,7 +6,7 @@ namespace Sift
 {
     public class ScoreRequest : SiftRequest
     {
-        static readonly String SCORE_URL = @"https://api.sift.com/v205/users/{0}/score?api_key={1}";
+        static readonly String ScoreUrl = @"https://api.sift.com/v205/users/{0}/score?api_key={1}";
 
         public string UserId { get; set; }
         public List<String> AbuseTypes { get; set; } = new List<string>();
@@ -14,15 +14,15 @@ namespace Sift
         public override HttpRequestMessage Request {
             get
             {
-                return new HttpRequestMessage(HttpMethod.Get, URL);
+                return new HttpRequestMessage(HttpMethod.Get, Url);
             }
         }
 
-        protected override Uri URL
+        protected override Uri Url
         {
             get
             {
-                var url = new Uri(String.Format(SCORE_URL, UserId, ApiKey));
+                var url = new Uri(String.Format(ScoreUrl, UserId, ApiKey));
 
                 if (AbuseTypes.Count > 0)
                 {
@@ -40,7 +40,7 @@ namespace Sift
         {
             get
             {
-                return new HttpRequestMessage(HttpMethod.Post, URL);
+                return new HttpRequestMessage(HttpMethod.Post, Url);
             }
         }
     }

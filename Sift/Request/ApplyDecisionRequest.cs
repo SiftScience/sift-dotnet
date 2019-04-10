@@ -8,7 +8,7 @@ namespace Sift
 {
     public class ApplyDecisionRequest : SiftRequest
     {
-        static readonly String APPLY_DECISION_URL = @"https://api.sift.com/v3/accounts/{0}/users/{1}/decisions";
+        static readonly String ApplyDecisionUrl = @"https://api.sift.com/v3/accounts/{0}/users/{1}/decisions";
 
         [JsonIgnore]
         public string AccountId { get; set; }
@@ -39,7 +39,7 @@ namespace Sift
         {
             get
             {
-                var request = new HttpRequestMessage(HttpMethod.Post, URL);
+                var request = new HttpRequestMessage(HttpMethod.Post, Url);
                 request.Headers.Authorization = new AuthenticationHeaderValue("Basic", Convert.ToBase64String(Encoding.Default.GetBytes(ApiKey)));
                 request.Content = new StringContent(JsonConvert.SerializeObject(this), Encoding.UTF8, "application/json");
                 return request;
@@ -47,11 +47,11 @@ namespace Sift
         }
 
         [JsonIgnore]
-        protected override Uri URL
+        protected override Uri Url
         {
             get
             {
-                return new Uri(String.Format(APPLY_DECISION_URL, AccountId, UserId));
+                return new Uri(String.Format(ApplyDecisionUrl, AccountId, UserId));
             }
         }
     }
@@ -68,7 +68,7 @@ namespace Sift
         public string OrderId { get; set; }
 
         [JsonIgnore]
-        protected override Uri URL
+        protected override Uri Url
         {
             get
             {
@@ -85,7 +85,7 @@ namespace Sift
         public string SessionId { get; set; }
 
         [JsonIgnore]
-        protected override Uri URL
+        protected override Uri Url
         {
             get
             {
@@ -102,7 +102,7 @@ namespace Sift
         public string ContentId { get; set; }
 
         [JsonIgnore]
-        protected override Uri URL
+        protected override Uri Url
         {
             get
             {

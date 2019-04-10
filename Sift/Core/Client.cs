@@ -8,6 +8,8 @@ namespace Sift
 {
     public class Client : IDisposable
     {
+        static string UserAgent = "sift-dotnet/" + Assembly.GetExecutingAssembly().GetName().Version;
+
         readonly String apiKey;
         readonly HttpClient http;
 
@@ -79,8 +81,7 @@ namespace Sift
             // disparity in HTTP headers per API is handled upstream.
             HttpRequestMessage request = siftRequest.Request;
 
-            string userAgent = "sift-dotnet/" + Assembly.GetExecutingAssembly().GetName().Version;
-            request.Headers.UserAgent.ParseAdd(userAgent);
+            request.Headers.UserAgent.ParseAdd(UserAgent);
 
             HttpResponseMessage responseMessage = await http.SendAsync(request);
 

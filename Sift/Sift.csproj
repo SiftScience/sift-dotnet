@@ -3,7 +3,7 @@
     <Description>The official sync/async .NET client for the Sift API.</Description>
     <Authors>Sift, Gary Lee</Authors>
     <AssemblyTitle>Sift</AssemblyTitle>
-    <AssemblyName>Stripe</AssemblyName>
+    <AssemblyName>Sift</AssemblyName>
     <VersionPrefix>0.1.0</VersionPrefix>
     <VersionSuffix>beta</VersionSuffix>
     <PackageReleaseNotes>Beta release</PackageReleaseNotes>

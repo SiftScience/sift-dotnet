@@ -7,7 +7,7 @@ namespace Sift
 {
     public class EventRequest : SiftRequest
     {
-        private static readonly String EVENTS_URL = "https://api.sift.com/v205/events";
+        static readonly String EventsUrl = "https://api.sift.com/v205/events";
 
         public SiftEvent Event { get; set; }
         public List<String> AbuseTypes { get; set; } = new List<string>();
@@ -19,18 +19,18 @@ namespace Sift
         {
             get
             {
-                var request = new HttpRequestMessage(HttpMethod.Post, URL);
+                var request = new HttpRequestMessage(HttpMethod.Post, Url);
                 Event.AddApiKey(ApiKey);
                 request.Content = new StringContent(Event.ToJson(), Encoding.UTF8, "application/json");
                 return request;
             }
         }
 
-        protected override Uri URL
+        protected override Uri Url
         {
             get
             {
-                var url = new Uri(EVENTS_URL);
+                var url = new Uri(EventsUrl);
 
                 if (AbuseTypes.Count > 0)
                 {

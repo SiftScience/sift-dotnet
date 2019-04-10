@@ -7,6 +7,6 @@ namespace Sift
     {
         public virtual string ApiKey { get; set; }
         public abstract HttpRequestMessage Request { get; }
-        protected abstract Uri URL { get; }
+        protected abstract Uri Url { get; }
     }
 }
