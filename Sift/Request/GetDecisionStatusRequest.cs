@@ -48,7 +48,7 @@ namespace Sift
 
     public class GetOrderDecisionStatusRequest : ApplyDecisionRequest
     {
-        static readonly String GetOrderDecisionUrl = @"https://api.siftscience.com/v3/accounts/{0}/orders/{1}/decisions";
+        static readonly String GetOrderDecisionUrl = @"https://api.sift.com/v3/accounts/{0}/orders/{1}/decisions";
 
         [JsonIgnore]
         public string OrderId { get; set; }
@@ -67,7 +67,7 @@ namespace Sift
 
     public class GetSessionDecisionStatusRequest : ApplyDecisionRequest
     {
-        static readonly String GetSessionDecisionUrl = @"https://api.siftscience.com/v3/accounts/{0}/users/{1}/sessions/{2}/decisions";
+        static readonly String GetSessionDecisionUrl = @"https://api.sift.com/v3/accounts/{0}/users/{1}/sessions/{2}/decisions";
 
         [JsonIgnore]
         public string SessionId { get; set; }
@@ -87,7 +87,7 @@ namespace Sift
 
     public class GetContentDecisionStatusRequest : ApplyDecisionRequest
     {
-        static readonly String GetContentDecisionUrl = @"https://api.siftscience.com/v3/accounts/{0}/users/{1}/content/{2}/decisions";
+        static readonly String GetContentDecisionUrl = @"https://api.sift.com/v3/accounts/{0}/users/{1}/content/{2}/decisions";
 
         [JsonIgnore]
         public string ContentId { get; set; }
