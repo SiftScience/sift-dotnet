@@ -22,7 +22,7 @@ namespace Test
 
             applyDecisionRequest.ApiKey = "key";
 
-            Assert.Equal("https://api.siftscience.com/v3/accounts/123/users/gary/orders/1/decisions",
+            Assert.Equal("https://api.sift.com/v3/accounts/123/users/gary/orders/1/decisions",
                          applyDecisionRequest.Request.RequestUri.ToString());
 
             Assert.Equal(Convert.ToBase64String(Encoding.Default.GetBytes("key")),
