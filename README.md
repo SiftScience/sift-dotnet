@@ -1,8 +1,18 @@
 # sift-dotnet
 
+![Nuget (with prereleases)](https://img.shields.io/nuget/vpre/sift.svg)
+
+The official Sift .NET client, supporting .NET Standard 2.0+
+
+## Documentation
+
+### Initialization
+
     // You can also pass in your own HttpClient implementation as the second parameter.
     // Dispose() will dispose of the HttpClient instance.
     var sift = new Client("REST_API_KEY");
+    
+### Reserved Events
 
     // Construct reserved events with known fields
     var createOrder = new CreateOrder
@@ -39,7 +49,7 @@
         // Handle InnerException
     }
 
-
+### Custom Events
 
     // Construct custom events with required fields
     var makeCall = new CustomEvent
@@ -66,71 +76,8 @@
     {
         // Handle InnerException
     }
-
-
-
-    // Get score
-    try
-    {
-        ScoreResponse res = sift.SendAsync(new ScoreRequest
-        {
-            UserId = "gary"
-        }).Result;
-    }
-    catch (AggregateException ae)
-    {
-        // Handle InnerException
-    }
-
-
-
-    // Rescore
-    try
-    {
-        ScoreResponse res = sift.SendAsync(new RescoreRequest
-        {
-            UserId = "gary"
-        }).Result;
-    }
-    catch (AggregateException ae)
-    {
-        // Handle InnerException
-    }
-
-
-
-    // Label
-    try
-    {
-        SiftResponse response = sift.SendAsync(new LabelRequest
-        {
-            UserId = "gary",
-            IsBad = true,
-            AbuseType = "payment_abuse"
-        }).Result;
-    }
-    catch (AggregateException ae)
-    {
-        // Handle InnerException
-    }
-
-
-
-    // Unlabel
-    try
-    {
-        SiftResponse response = sift.SendAsync(new UnlabelRequest
-        {
-            UserId = "gary",
-            AbuseType = "payment_abuse"
-        }).Result;
-    }
-    catch (AggregateException ae)
-    {
-        // Handle InnerException
-    }
-
-
+    
+### Decisions
 
     // Apply Decision
     try
@@ -164,8 +111,6 @@
         // Handle InnerException
     }
 
-
-
     // Get Decisions
     try
     {
@@ -179,7 +124,7 @@
         // Handle InnerException
     }
 
-
+### Workflows
 
     // Workflow Status
     try
@@ -188,6 +133,65 @@
         {
             AccountId = "ACCOUNT_ID",
             WorkflowRunId = "WORKFLOW_RUN_ID"
+        }).Result;
+    }
+    catch (AggregateException ae)
+    {
+        // Handle InnerException
+    }
+
+### Scores
+
+    // Get score
+    try
+    {
+        ScoreResponse res = sift.SendAsync(new ScoreRequest
+        {
+            UserId = "gary"
+        }).Result;
+    }
+    catch (AggregateException ae)
+    {
+        // Handle InnerException
+    }
+
+    // Rescore
+    try
+    {
+        ScoreResponse res = sift.SendAsync(new RescoreRequest
+        {
+            UserId = "gary"
+        }).Result;
+    }
+    catch (AggregateException ae)
+    {
+        // Handle InnerException
+    }
+
+### Labels
+
+    // Label
+    try
+    {
+        SiftResponse response = sift.SendAsync(new LabelRequest
+        {
+            UserId = "gary",
+            IsBad = true,
+            AbuseType = "payment_abuse"
+        }).Result;
+    }
+    catch (AggregateException ae)
+    {
+        // Handle InnerException
+    }
+
+    // Unlabel
+    try
+    {
+        SiftResponse response = sift.SendAsync(new UnlabelRequest
+        {
+            UserId = "gary",
+            AbuseType = "payment_abuse"
         }).Result;
     }
     catch (AggregateException ae)
