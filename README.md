@@ -1,6 +1,7 @@
 # sift-dotnet
 
 [![Nuget (with prereleases)](https://img.shields.io/nuget/vpre/sift.svg)](https://www.nuget.org/packages/Sift)
+[![CircleCI](https://circleci.com/gh/SiftScience/sift-dotnet.svg?style=svg)](https://circleci.com/gh/SiftScience/sift-dotnet)
 
 The official Sift .NET client, supporting .NET Standard 2.0+
 
