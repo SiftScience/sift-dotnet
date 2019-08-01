@@ -28,7 +28,8 @@
       "items": { "$ref": "image.json" }
     },
     "$expiration_time": {
-      "type": [ "integer", "null" ]
+      "type": [ "integer", "null" ],
+      "format": "long"
     }
   }
 }

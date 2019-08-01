@@ -4,7 +4,8 @@
   "type": "object",
   "properties": {
     "$amount": {
-      "type": [ "integer", "null" ]
+      "type": [ "integer", "null" ],
+      "format": "long"
     },
     "$credit_point_type": {
       "type": [ "string", "null" ]

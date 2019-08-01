@@ -10,7 +10,8 @@
       "type": [ "string", "null" ]
     },
     "$price": {
-      "type": [ "integer", "null" ]
+      "type": [ "integer", "null" ],
+      "format": "long"
     },
     "$currency_code": {
       "type": [ "string", "null" ]

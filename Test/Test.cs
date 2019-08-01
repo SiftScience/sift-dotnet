@@ -37,7 +37,7 @@ namespace Test
             {
                 user_id = "gary",
                 order_id = "oid",
-                amount = 1000000,
+                amount = 1000000000000L,
                 currency_code = "USD",
                 billing_address = new Address
                 {
@@ -55,7 +55,7 @@ namespace Test
             createOrder.AddField("foo", "bar");
 
             Assert.Equal("{\"$type\":\"$create_order\",\"$user_id\":\"gary\"," +
-                         "\"$order_id\":\"oid\",\"$amount\":1000000,\"$currency_code\":" +
+                         "\"$order_id\":\"oid\",\"$amount\":1000000000000,\"$currency_code\":" +
                          "\"USD\",\"$billing_address\":{\"$name\":\"gary\",\"$city\":" +
                          "\"san francisco\"},\"$app\":{\"$app_name\":\"app\"," +
                          "\"$app_version\":\"1.0\"},\"foo\":\"bar\"}",
