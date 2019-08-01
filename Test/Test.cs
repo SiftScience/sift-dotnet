@@ -31,7 +31,7 @@ namespace Test
 
         }
 
-        [Fact
+        [Fact]
         public void TestEventRequest()
         {
             var createOrder = new CreateOrder
