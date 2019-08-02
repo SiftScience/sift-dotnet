@@ -38,7 +38,7 @@ namespace Test
             {
                 user_id = "test_dotnet_booking_with_all_fields",
                 order_id = "oid",
-                amount = 1000000,
+                amount = 1000000000000L,
                 currency_code = "USD",
                 time = 1518834678,
                 session_id = "gigtleqddo84l8cm15qe4il",
@@ -100,7 +100,7 @@ namespace Test
                                     country = "US",
                                     zipcode = "03257"
                                 },
-                                start_time = 2038412903,
+                                start_time = 203841290300L,
                                 end_time = 2038412903,
                                 vessel_number = "LH454",
                                 fare_class = "Premium Economy",
