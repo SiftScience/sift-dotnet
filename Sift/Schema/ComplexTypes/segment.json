@@ -1,0 +1,37 @@
+﻿{
+    "$schema": "http://json-schema.org/draft-04/schema",
+    "title": "Segment",
+    "type": "object",
+    "properties": {
+        "$start_time": {
+            "type": [ "integer", "null" ]
+        },
+        "$end_time": {
+            "type": [ "integer", "null" ]
+        },
+        "$vessel_number": {
+            "type": [ "string", "null" ]
+        },
+        "$departure_airport_code": {
+            "type": [ "string", "null" ]
+        },
+        "$arrival_airport_code": {
+            "type": [ "string", "null" ]
+        },
+        "$fare_class": {
+            "type": [ "string", "null" ]
+        },
+        "$departure_address": {
+            "oneOf": [
+                { "$ref": "address.json" },
+                { "type": "null" }
+            ]
+        },
+        "$arrival_address": {
+            "oneOf": [
+                { "$ref": "address.json" },
+                { "type": "null" }
+            ]
+        }
+    }
+}

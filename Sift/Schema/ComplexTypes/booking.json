@@ -1,0 +1,61 @@
+﻿{
+    "$schema": "http://json-schema.org/draft-04/schema",
+    "title": "Booking",
+    "type": "object",
+    "required": [ "$booking_type" ],
+    "properties": {
+        "$booking_type": {
+            "type": [ "string", "null" ]
+        },
+        "$title": {
+            "type": [ "string", "null" ]
+        },
+        "$start_time": {
+            "type": [ "integer", "null" ]
+        },
+        "$end_time": {
+            "type": [ "integer", "null" ]
+        },
+        "$price": {
+            "type": [ "integer", "null" ]
+        },
+        "$currency_code": {
+            "type": [ "string", "null" ]
+        },
+        "$quantity": {
+            "type": [ "integer", "null" ]
+        },
+        "$guests": {
+            "type": [ "array", "null" ],
+            "items": { "$ref": "guest.json" }
+        },
+        "$segments": {
+            "type": [ "array", "null" ],
+            "items": { "$ref": "segment.json" }
+        },
+        "$room_type": {
+            "type": [ "string", "null" ]
+        },
+        "$event_id": {
+            "type": [ "string", "null" ]
+        },
+        "$venue_id": {
+            "type": [ "string", "null" ]
+        },
+        "$location": {
+            "oneOf": [
+                { "$ref": "address.json" },
+                { "type": "null" }
+            ]
+        },
+        "$category": {
+            "type": [ "string", "null" ]
+        },
+        "$tags": {
+            "type": [ "array", "null" ],
+            "items": {
+                "type": "string"
+            }
+        }
+    }
+}

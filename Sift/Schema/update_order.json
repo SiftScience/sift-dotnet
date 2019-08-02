@@ -11,6 +11,12 @@
     "$user_id": {
       "type": [ "string", "null" ]
     },
+    "$time": {
+        "type": [ "integer", "null" ]
+    },
+    "$ip": {
+        "type": [ "string", "null" ]
+    },
     "$session_id": {
       "type": [ "string", "null" ]
     },
@@ -49,6 +55,10 @@
     "$items": {
       "type": [ "array", "null" ],
       "items": { "$ref": "ComplexTypes/item.json" }
+    },
+    "$bookings": {
+        "type": [ "array", "null" ],
+        "items": { "$ref": "ComplexTypes/booking.json" }
     },
     "$seller_user_id": {
       "type": [ "string", "null" ]

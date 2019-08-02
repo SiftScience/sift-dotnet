@@ -1,0 +1,25 @@
+﻿{
+    "$schema": "http://json-schema.org/draft-04/schema",
+    "title": "Guest",
+    "type": "object",
+    "properties": {
+        "$name": {
+            "type": [ "string", "null" ]
+        },
+        "$email": {
+            "type": [ "string", "null" ]
+        },
+        "$phone": {
+            "type": [ "string", "null" ]
+        },
+        "$loyalty_program": {
+            "type": [ "string", "null" ]
+        },
+        "$loyalty_program_id": {
+            "type": [ "string", "null" ]
+        },
+        "$birth_date": {
+            "type": [ "string", "null" ]
+        }
+    }
+}
