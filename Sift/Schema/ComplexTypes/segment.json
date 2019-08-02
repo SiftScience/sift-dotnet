@@ -4,10 +4,12 @@
     "type": "object",
     "properties": {
         "$start_time": {
-            "type": [ "integer", "null" ]
+            "type": [ "integer", "null" ],
+            "format": "long"
         },
         "$end_time": {
-            "type": [ "integer", "null" ]
+            "type": [ "integer", "null" ],
+            "format": "long"
         },
         "$vessel_number": {
             "type": [ "string", "null" ]
