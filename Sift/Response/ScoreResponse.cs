@@ -14,6 +14,9 @@ namespace Sift
         [JsonProperty("latest_labels")]
         public Dictionary<string, LabelJson> LatestLabels { get; set; }
 
+        [JsonProperty("workflow_statuses")]
+        public List<WorkflowStatusResponse> WorkflowStatuses { get; set; }
+
         public class ScoreJson
         {
             [JsonProperty("score")]
