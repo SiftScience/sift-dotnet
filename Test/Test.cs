@@ -136,7 +136,7 @@ namespace Test
             // Augment with custom fields
             createOrder.AddField("foo", "bar");
             Assert.Equal("{\"$type\":\"$create_order\",\"$user_id\":\"test_dotnet_booking_with_all_fields\"," +
-                         "\"$time\":1518834678,\"$session_id\":\"gigtleqddo84l8cm15qe4il\"," +
+                         "\"$session_id\":\"gigtleqddo84l8cm15qe4il\"," +
                          "\"$order_id\":\"oid\",\"$user_email\":\"bill@gmail.com\",\"$amount\":1000000000000," +
                          "\"$currency_code\":\"USD\",\"$billing_address\":{\"$name\":\"gary\"," +
                          "\"$city\":\"san francisco\"},\"$bookings\":[{\"$booking_type\":\"$flight\"," +
