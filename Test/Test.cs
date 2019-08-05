@@ -40,7 +40,6 @@ namespace Test
                 order_id = "oid",
                 amount = 1000000000000L,
                 currency_code = "USD",
-                time = 1518834678,
                 session_id = "gigtleqddo84l8cm15qe4il",
                 user_email = "bill@gmail.com",
                 bookings = new ObservableCollection<Booking>()
