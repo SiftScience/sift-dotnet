@@ -11,12 +11,6 @@
     "$user_id": {
       "type": [ "string", "null" ]
     },
-    "$time": {
-        "type": [ "integer", "null" ]
-    },
-    "$ip": {
-        "type": [ "string", "null" ]
-    },
     "$session_id": {
       "type": [ "string", "null" ]
     },
