@@ -50,6 +50,10 @@
       "type": [ "array", "null" ],
       "items": { "$ref": "ComplexTypes/item.json" }
     },
+    "$bookings": {
+        "type": [ "array", "null" ],
+        "items": { "$ref": "ComplexTypes/booking.json" }
+    },
     "$seller_user_id": {
       "type": [ "string", "null" ]
     },
