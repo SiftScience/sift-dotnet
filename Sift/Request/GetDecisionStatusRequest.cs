@@ -42,11 +42,11 @@ namespace Sift
         }
     }
 
-    public class GetUserDecisionStatusRequest : ApplyDecisionRequest
+    public class GetUserDecisionStatusRequest : GetDecisionStatusRequest
     {
     }
 
-    public class GetOrderDecisionStatusRequest : ApplyDecisionRequest
+    public class GetOrderDecisionStatusRequest : GetDecisionStatusRequest
     {
         static readonly String GetOrderDecisionUrl = @"https://api.sift.com/v3/accounts/{0}/orders/{1}/decisions";
 
@@ -65,7 +65,7 @@ namespace Sift
         }
     }
 
-    public class GetSessionDecisionStatusRequest : ApplyDecisionRequest
+    public class GetSessionDecisionStatusRequest : GetDecisionStatusRequest
     {
         static readonly String GetSessionDecisionUrl = @"https://api.sift.com/v3/accounts/{0}/users/{1}/sessions/{2}/decisions";
 
@@ -85,7 +85,7 @@ namespace Sift
         }
     }
 
-    public class GetContentDecisionStatusRequest : ApplyDecisionRequest
+    public class GetContentDecisionStatusRequest : GetDecisionStatusRequest
     {
         static readonly String GetContentDecisionUrl = @"https://api.sift.com/v3/accounts/{0}/users/{1}/content/{2}/decisions";
 
