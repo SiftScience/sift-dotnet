@@ -129,16 +129,39 @@ namespace Test
                 app = new App
                 {
                     app_name = "my app",
-                    app_version = "1.0"
-                }
+                    app_version = "1.0",
+                    client_language = "en-US"
+                },
+                ordered_from = new OrderedFrom
+                {
+                    store_id = "123",
+                    store_address = new Address
+                    {
+                        name = "Bill Jones",
+                        phone = "1-415-555-6040",
+                        address_1 = "2100 Main Street",
+                        address_2 = "Apt 3B",
+                        city = "New London",
+                        region = "New Hampshire",
+                        country = "US",
+                        zipcode = "03257"
+                    }
+                },
+                site_country = "US",
+                site_domain = "sift.com",
+                brand_name = "sift"
             };
 
             // Augment with custom fields
             createOrder.AddField("foo", "bar");
             Assert.Equal("{\"$type\":\"$create_order\",\"$user_id\":\"test_dotnet_booking_with_all_fields\"," +
                          "\"$session_id\":\"gigtleqddo84l8cm15qe4il\"," +
+                         "\"$ordered_from\" : {\"$store_id\": \"12345\",\"$store_address\": {\"$address_1\": \"2100 Main Street\"," +
+                         "\"$address_2\": \"Apt 3B\",\"$city\": \"New London\",\"$country\": \"US\",\"$name\": \"Bill Jones\"," +
+                         "\"$phone\": \"1-415-555-6041\",\"$region\": \"New Hampshire\",\"$zipcode\": \"03257\"},"+
                          "\"$order_id\":\"oid\",\"$user_email\":\"bill@gmail.com\",\"$amount\":1000000000000," +
                          "\"$currency_code\":\"USD\",\"$billing_address\":{\"$name\":\"gary\"," +
+                         "\"$site_country\":\"US\",\"$site_domain\":\"sift.com\",\"$brand_name\":\"sift\"," +
                          "\"$city\":\"san francisco\"},\"$bookings\":[{\"$booking_type\":\"$flight\"," +
                          "\"$title\":\"SFO - LAS, 2 Adults\",\"$start_time\":2038412903,\"$end_time\":2038412903," +
                          "\"$price\":49900000,\"$currency_code\":\"USD\",\"$quantity\":1,\"$guests\":[{\"$name\":\"John Doe\"," +
@@ -154,7 +177,7 @@ namespace Test
                          "\"$venue_id\":\"venue-123\",\"$location\":{\"$name\":\"Bill Jones\",\"$address_1\":\"2100 Main Street\"," +
                          "\"$address_2\":\"Apt 3B\",\"$city\":\"New London\",\"$region\":\"New Hampshire\",\"$country\":\"US\"," +
                          "\"$zipcode\":\"03257\",\"$phone\":\"1-415-555-6040\"},\"$category\":\"pop\",\"$tags\":[\"tag-123\",\"tag-321\"]}]," +
-                         "\"$app\":{\"$app_name\":\"my app\",\"$app_version\":\"1.0\"},\"foo\":\"bar\"}",
+                         "\"$app\":{\"$app_name\":\"my app\",\"$app_version\":\"1.0\",\"$client_language\":\"en-US\"},\"foo\":\"bar\"}",
                          createOrder.ToJson());
 
 

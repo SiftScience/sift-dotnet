@@ -5,6 +5,12 @@
   "properties": {
     "$user_agent": {
       "type": [ "string", "null" ]
+    },
+    "$accept_language": {
+      "type": [ "string", "null" ]
+    },
+    "$content_language": {
+      "type": [ "string", "null" ]
     }
   }
 }

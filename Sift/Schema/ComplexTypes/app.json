@@ -23,6 +23,9 @@
     },
     "$app_version": {
       "type": [ "string", "null" ]
+    },
+    "$client_language": {
+      "type": [ "string", "null" ]
     }
   }
 }
