@@ -154,30 +154,26 @@ namespace Test
 
             // Augment with custom fields
             createOrder.AddField("foo", "bar");
+            Console.WriteLine(createOrder.ToJson());
             Assert.Equal("{\"$type\":\"$create_order\",\"$user_id\":\"test_dotnet_booking_with_all_fields\"," +
-                         "\"$session_id\":\"gigtleqddo84l8cm15qe4il\"," +
-                         "\"$ordered_from\" : {\"$store_id\": \"12345\",\"$store_address\": {\"$address_1\": \"2100 Main Street\"," +
-                         "\"$address_2\": \"Apt 3B\",\"$city\": \"New London\",\"$country\": \"US\",\"$name\": \"Bill Jones\"," +
-                         "\"$phone\": \"1-415-555-6041\",\"$region\": \"New Hampshire\",\"$zipcode\": \"03257\"},"+
-                         "\"$order_id\":\"oid\",\"$user_email\":\"bill@gmail.com\",\"$amount\":1000000000000," +
-                         "\"$currency_code\":\"USD\",\"$billing_address\":{\"$name\":\"gary\"," +
-                         "\"$site_country\":\"US\",\"$site_domain\":\"sift.com\",\"$brand_name\":\"sift\"," +
-                         "\"$city\":\"san francisco\"},\"$bookings\":[{\"$booking_type\":\"$flight\"," +
-                         "\"$title\":\"SFO - LAS, 2 Adults\",\"$start_time\":2038412903,\"$end_time\":2038412903," +
-                         "\"$price\":49900000,\"$currency_code\":\"USD\",\"$quantity\":1,\"$guests\":[{\"$name\":\"John Doe\"," +
-                         "\"$email\":\"jdoe@domain.com\",\"$phone\":\"1-415-555-6040\",\"$loyalty_program\":\"skymiles\"," +
-                         "\"$loyalty_program_id\":\"PSOV34DF\",\"$birth_date\":\"1985-01-19\"},{\"$name\":\"John Doe\"}]," +
-                         "\"$segments\":[{\"$start_time\":203841290300,\"$end_time\":2038412903,\"$vessel_number\":\"LH454\"," +
-                         "\"$departure_airport_code\":\"SFO\",\"$arrival_airport_code\":\"LAS\",\"$fare_class\":\"Premium Economy\"," +
-                         "\"$departure_address\":{\"$name\":\"Bill Jones\",\"$address_1\":\"2100 Main Street\",\"$address_2\":\"Apt 3B\"," +
-                         "\"$city\":\"New London\",\"$region\":\"New Hampshire\",\"$country\":\"US\",\"$zipcode\":\"03257\"," +
-                         "\"$phone\":\"1-415-555-6040\"},\"$arrival_address\":{\"$name\":\"Bill Jones\",\"$address_1\":\"2100 Main Street\"," +
-                         "\"$address_2\":\"Apt 3B\",\"$city\":\"New London\",\"$region\":\"New Hampshire\",\"$country\":\"US\"," +
-                         "\"$zipcode\":\"03257\",\"$phone\":\"1-415-555-6040\"}}],\"$room_type\":\"deluxe\",\"$event_id\":\"event-123\"," +
-                         "\"$venue_id\":\"venue-123\",\"$location\":{\"$name\":\"Bill Jones\",\"$address_1\":\"2100 Main Street\"," +
-                         "\"$address_2\":\"Apt 3B\",\"$city\":\"New London\",\"$region\":\"New Hampshire\",\"$country\":\"US\"," +
-                         "\"$zipcode\":\"03257\",\"$phone\":\"1-415-555-6040\"},\"$category\":\"pop\",\"$tags\":[\"tag-123\",\"tag-321\"]}]," +
-                         "\"$app\":{\"$app_name\":\"my app\",\"$app_version\":\"1.0\",\"$client_language\":\"en-US\"},\"foo\":\"bar\"}",
+                         "\"$session_id\":\"gigtleqddo84l8cm15qe4il\",\"$order_id\":\"oid\",\"$user_email\":\"bill@gmail.com\"," +
+                         "\"$amount\":1000000000000,\"$currency_code\":\"USD\",\"$billing_address\":{\"$name\":\"gary\",\"$city\":\"san francisco\"}," +
+                         "\"$bookings\":[{\"$booking_type\":\"$flight\",\"$title\":\"SFO - LAS, 2 Adults\",\"$start_time\":2038412903," +
+                         "\"$end_time\":2038412903,\"$price\":49900000,\"$currency_code\":\"USD\",\"$quantity\":1,\"$guests\":[{\"$name\":\"John Doe\"," +
+                         "\"$email\":\"jdoe@domain.com\",\"$phone\":\"1-415-555-6040\",\"$loyalty_program\":\"skymiles\",\"$loyalty_program_id\":\"PSOV34DF\"," +
+                         "\"$birth_date\":\"1985-01-19\"},{\"$name\":\"John Doe\"}],\"$segments\":[{\"$start_time\":203841290300,\"$end_time\":2038412903," +
+                         "\"$vessel_number\":\"LH454\",\"$departure_airport_code\":\"SFO\",\"$arrival_airport_code\":\"LAS\",\"$fare_class\":\"Premium Economy\"," +
+                         "\"$departure_address\":{\"$name\":\"Bill Jones\",\"$address_1\":\"2100 Main Street\",\"$address_2\":\"Apt 3B\",\"$city\":\"New London\"," +
+                         "\"$region\":\"New Hampshire\",\"$country\":\"US\",\"$zipcode\":\"03257\",\"$phone\":\"1-415-555-6040\"}," +
+                         "\"$arrival_address\":{\"$name\":\"Bill Jones\",\"$address_1\":\"2100 Main Street\",\"$address_2\":\"Apt 3B\",\"$city\":\"New London\"," +
+                         "\"$region\":\"New Hampshire\",\"$country\":\"US\",\"$zipcode\":\"03257\",\"$phone\":\"1-415-555-6040\"}}],\"$room_type\":\"deluxe\"," +
+                         "\"$event_id\":\"event-123\",\"$venue_id\":\"venue-123\",\"$location\":{\"$name\":\"Bill Jones\",\"$address_1\":\"2100 Main Street\"," +
+                         "\"$address_2\":\"Apt 3B\",\"$city\":\"New London\",\"$region\":\"New Hampshire\",\"$country\":\"US\",\"$zipcode\":\"03257\"," +
+                         "\"$phone\":\"1-415-555-6040\"},\"$category\":\"pop\",\"$tags\":[\"tag-123\",\"tag-321\"]}],\"$app\":{\"$app_name\":\"my app\"," +
+                         "\"$app_version\":\"1.0\",\"$client_language\":\"en-US\"},\"$brand_name\":\"sift\",\"$site_country\":\"US\",\"$site_domain\":\"sift.com\"," +
+                         "\"$ordered_from\":{\"$store_id\":\"123\",\"$store_address\":{\"$name\":\"Bill Jones\",\"$address_1\":\"2100 Main Street\"," +
+                         "\"$address_2\":\"Apt 3B\",\"$city\":\"New London\",\"$region\":\"New Hampshire\",\"$country\":\"US\",\"$zipcode\":\"03257\"," +
+                         "\"$phone\":\"1-415-555-6040\"}},\"foo\":\"bar\"}",
                          createOrder.ToJson());
 
 
