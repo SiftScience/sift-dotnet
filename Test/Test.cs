@@ -239,7 +239,7 @@ namespace Test
             createOrder.AddField("foo", "bar");
             Assert.Equal("{\"$type\":\"$create_order\",\"$user_id\":\"test_dotnet_booking_with_all_fields\",\"$session_id\":\"gigtleqddo84l8cm15qe4il\"," +
                          "\"$order_id\":\"oid\",\"$user_email\":\"bill@gmail.com\",\"$amount\":1000000000000,\"$currency_code\":\"USD\"," +
-                         "\"$browser\":{\"$user_agent\":\"Mozilla 5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit 537.36 (KHTML, like Gecko) Chrome 56.0.2924.87 Safari 537.36\"," +
+                         "\"$browser\":{\"$user_agent\":\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36\"," +
                          "\"$accept_language\":\"en-US\",\"$content_language\":\"en-GB\"},\"foo\":\"bar\"}",
                          createOrder.ToJson());
 
