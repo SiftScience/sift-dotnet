@@ -154,7 +154,6 @@ namespace Test
 
             // Augment with custom fields
             createOrder.AddField("foo", "bar");
-            Console.WriteLine(createOrder.ToJson());
             Assert.Equal("{\"$type\":\"$create_order\",\"$user_id\":\"test_dotnet_booking_with_all_fields\"," +
                          "\"$session_id\":\"gigtleqddo84l8cm15qe4il\",\"$order_id\":\"oid\",\"$user_email\":\"bill@gmail.com\"," +
                          "\"$amount\":1000000000000,\"$currency_code\":\"USD\",\"$billing_address\":{\"$name\":\"gary\",\"$city\":\"san francisco\"}," +
@@ -215,6 +214,52 @@ namespace Test
             Assert.Equal("{\"$type\":\"make_call\",\"$user_id\":\"gary\",\"foo\":" +
                               "\"bar\",\"payment_status\":\"$success\"}",
                               makeCall.ToJson());
+        }
+
+        [Fact]
+        public void TestEventWithBrowser()
+        {
+            var createOrder = new CreateOrder
+            {
+                user_id = "test_dotnet_booking_with_all_fields",
+                order_id = "oid",
+                amount = 1000000000000L,
+                currency_code = "USD",
+                session_id = "gigtleqddo84l8cm15qe4il",
+                user_email = "bill@gmail.com",
+                browser = new Browser
+                {
+                    user_agent       = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36",
+                    accept_language  = "en-US",
+                    content_language = "en-GB"
+                }
+            };
+
+            // Augment with custom fields
+            createOrder.AddField("foo", "bar");
+            Assert.Equal("{\"$type\":\"$create_order\",\"$user_id\":\"test_dotnet_booking_with_all_fields\",\"$session_id\":\"gigtleqddo84l8cm15qe4il\"," +
+                         "\"$order_id\":\"oid\",\"$user_email\":\"bill@gmail.com\",\"$amount\":1000000000000,\"$currency_code\":\"USD\"," +
+                         "\"$browser\":{\"$user_agent\":\"Mozilla 5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit 537.36 (KHTML, like Gecko) Chrome 56.0.2924.87 Safari 537.36\"," +
+                         "\"$accept_language\":\"en-US\",\"$content_language\":\"en-GB\"},\"foo\":\"bar\"}",
+                         createOrder.ToJson());
+
+
+            EventRequest eventRequest = new EventRequest
+            {
+                Event = createOrder
+            };
+
+            Assert.Equal("https://api.sift.com/v205/events", eventRequest.Request.RequestUri.ToString());
+
+            eventRequest = new EventRequest
+            {
+                Event = createOrder,
+                AbuseTypes = { "legacy", "payment_abuse" },
+                ReturnScore = true
+            };
+
+            Assert.Equal("https://api.sift.com/v205/events?abuse_types=legacy,payment_abuse&return_score=true",
+                         Uri.UnescapeDataString(eventRequest.Request.RequestUri.ToString()));
         }
     }
 }
