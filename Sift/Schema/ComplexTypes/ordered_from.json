@@ -1,0 +1,16 @@
+﻿{
+  "$schema": "http://json-schema.org/draft-04/schema",
+  "title": "OrderedFrom",
+  "type": "object",
+  "properties": {
+    "$store_id": {
+      "type": [ "string", "null" ]
+    },
+    "$store_address": {
+      "oneOf": [
+        { "$ref": "address.json" },
+        { "type": "null" }
+      ]
+    }
+  }
+}

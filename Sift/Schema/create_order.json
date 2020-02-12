@@ -75,6 +75,21 @@
         { "$ref": "ComplexTypes/browser.json" },
         { "type": "null" }
       ]
+    },
+    "$brand_name": {
+      "type": [ "string", "null" ]
+    },
+    "$site_country": {
+      "type": [ "string", "null" ]
+    },
+    "$site_domain": {
+      "type": [ "string", "null" ]
+    },
+    "$ordered_from": {
+      "oneOf": [
+        { "$ref": "ComplexTypes/ordered_from.json" },
+        { "type": "null" }
+      ]
     }
   }
 }
