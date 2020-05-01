@@ -86,6 +86,9 @@
         { "$ref": "ComplexTypes/ordered_from.json" },
         { "type": "null" }
       ]
+    },
+    "$decline_category": {
+      "type": [ "string", "null" ]
     }
   }
 }
