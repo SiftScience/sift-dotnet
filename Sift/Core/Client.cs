@@ -20,6 +20,7 @@ namespace Sift
         }
 
         public Client(String apiKey, HttpClient http) {
+            this.apiKey = apiKey;
             this.http = http;
         }
 
