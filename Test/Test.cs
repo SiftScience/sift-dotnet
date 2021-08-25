@@ -181,7 +181,7 @@ namespace Test
                 Event = createOrder
             };
 
-            Assert.Equal("https://api.sift.com/v205/events", eventRequest.Request.RequestUri.ToString());
+            Assert.Equal("https://api.sift.com/v206/events", eventRequest.Request.RequestUri.ToString());
 
             eventRequest = new EventRequest
             {
@@ -190,7 +190,7 @@ namespace Test
                 ReturnScore = true
             };
 
-            Assert.Equal("https://api.sift.com/v205/events?abuse_types=legacy,payment_abuse&return_score=true",
+            Assert.Equal("https://api.sift.com/v206/events?abuse_types=legacy,payment_abuse&return_score=true",
                          Uri.UnescapeDataString(eventRequest.Request.RequestUri.ToString()));
         }
 
@@ -249,7 +249,7 @@ namespace Test
                 Event = createOrder
             };
 
-            Assert.Equal("https://api.sift.com/v205/events", eventRequest.Request.RequestUri.ToString());
+            Assert.Equal("https://api.sift.com/v206/events", eventRequest.Request.RequestUri.ToString());
 
             eventRequest = new EventRequest
             {
@@ -258,7 +258,7 @@ namespace Test
                 ReturnScore = true
             };
 
-            Assert.Equal("https://api.sift.com/v205/events?abuse_types=legacy,payment_abuse&return_score=true",
+            Assert.Equal("https://api.sift.com/v206/events?abuse_types=legacy,payment_abuse&return_score=true",
                          Uri.UnescapeDataString(eventRequest.Request.RequestUri.ToString()));
         }
 
@@ -287,7 +287,7 @@ namespace Test
                 Event = transaction
             };
 
-            Assert.Equal("https://api.sift.com/v205/events", eventRequest.Request.RequestUri.ToString());
+            Assert.Equal("https://api.sift.com/v206/events", eventRequest.Request.RequestUri.ToString());
 
             eventRequest = new EventRequest
             {
@@ -296,7 +296,7 @@ namespace Test
                 ReturnScore = true
             };
 
-            Assert.Equal("https://api.sift.com/v205/events?abuse_types=legacy,payment_abuse&return_score=true",
+            Assert.Equal("https://api.sift.com/v206/events?abuse_types=legacy,payment_abuse&return_score=true",
                           Uri.UnescapeDataString(eventRequest.Request.RequestUri.ToString()));
         }
     }

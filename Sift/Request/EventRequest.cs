@@ -7,7 +7,7 @@ namespace Sift
 {
     public class EventRequest : SiftRequest
     {
-        static readonly String EventsUrl = "https://api.sift.com/v205/events";
+        static readonly String EventsUrl = "https://api.sift.com/v206/events";
 
         public SiftEvent Event { get; set; }
         public List<String> AbuseTypes { get; set; } = new List<string>();

@@ -6,7 +6,7 @@ namespace Sift
 {
     public class ScoreRequest : SiftRequest
     {
-        static readonly String ScoreUrl = @"https://api.sift.com/v205/users/{0}/score?api_key={1}";
+        static readonly String ScoreUrl = @"https://api.sift.com/v206/users/{0}/score?api_key={1}";
 
         public string UserId { get; set; }
         public List<String> AbuseTypes { get; set; } = new List<string>();

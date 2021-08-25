@@ -7,7 +7,7 @@ namespace Sift
 {
     public class LabelRequest : SiftRequest
     {
-        static readonly String LabelUrl = @"https://api.sift.com/v205/users/{0}/labels";
+        static readonly String LabelUrl = @"https://api.sift.com/v206/users/{0}/labels";
 
         [JsonIgnore]
         public string UserId { get; set; }

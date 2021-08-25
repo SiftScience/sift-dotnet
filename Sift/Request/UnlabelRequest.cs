@@ -5,7 +5,7 @@ namespace Sift
 {
     public class UnlabelRequest : SiftRequest
     {
-        static readonly String UnlabelUrl = @"https://api.sift.com/v205/users/{0}/labels?api_key={1}";
+        static readonly String UnlabelUrl = @"https://api.sift.com/v206/users/{0}/labels?api_key={1}";
 
         public string UserId { get; set; }
         public string AbuseType { get; set; }
