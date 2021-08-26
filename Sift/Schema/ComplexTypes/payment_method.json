@@ -71,6 +71,12 @@
         { "$ref": "ach.json" },
         { "type": "null" }
       ]
+    },
+    "$sepa": {
+        "oneOf": [
+            { "$ref": "sepa.json" },
+            { "type": "null" }
+        ]
     }
   }
 }
