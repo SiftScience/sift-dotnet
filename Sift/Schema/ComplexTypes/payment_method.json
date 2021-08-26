@@ -65,6 +65,12 @@
     },
     "$stripe_brand": {
       "type": [ "string", "null" ]
+    },
+    "$ach": {
+      "oneOf": [
+        { "$ref": "ach.json" },
+        { "type": "null" }
+      ]
     }
   }
 }

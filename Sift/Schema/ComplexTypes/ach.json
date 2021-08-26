@@ -1,0 +1,20 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema",
+  "title": "Ach",
+  "type": "object",
+  "required": [ "$ach_type", "$routing_number", "$account_holder_name"],
+  "properties": {
+    "$ach_type": {
+      "type": [ "string", "null" ]
+    },
+    "$routing_number": {
+      "type": [ "string", "null" ]
+    },
+    "$account_number": {
+      "type": [ "string", "null" ]
+    },
+    "$account_holder_name": {
+      "type": [ "string", "null" ]
+    }
+  }
+}

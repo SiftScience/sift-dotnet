@@ -299,5 +299,51 @@ namespace Test
             Assert.Equal("https://api.sift.com/v206/events?abuse_types=legacy,payment_abuse&return_score=true",
                           Uri.UnescapeDataString(eventRequest.Request.RequestUri.ToString()));
         }
+
+        [Fact]
+        public void TestCreateOrderEvent206()
+        {
+            var createOrder = new CreateOrder {
+                user_id = "test_dotnet_fintech_payment_methods",
+                session_id = "gigtleqddo84l8cm15qe4il",
+                order_id = "12345",
+                payment_methods = new ObservableCollection<PaymentMethod>()
+                {
+                    new PaymentMethod
+                    {
+                        ach = new Ach
+                        {
+                            ach_type = "$credit",
+                            routing_number = "072403005",
+                            account_number = "12345",
+                            account_holder_name = "John Doe"
+                        }
+                    }
+                }
+            };
+
+            // Augment with custom fields
+            createOrder.AddField("foo", "bar");
+            Assert.Equal("{\"$type\":\"$create_order\",\"$user_id\":\"test_dotnet_fintech_payment_methods\",\"$session_id\":\"gigtleqddo84l8cm15qe4il\"," +
+                                 "\"$order_id\":\"12345\",\"$payment_methods\":[{\"$ach\":{\"$ach_type\":\"$credit\",\"$routing_number\":\"072403005\"," +
+                                 "\"$account_number\":\"12345\",\"$account_holder_name\":\"John Doe\"}}],\"foo\":\"bar\"}", createOrder.ToJson());
+
+            EventRequest eventRequest = new EventRequest
+            {
+                Event = createOrder
+            };
+
+            Assert.Equal("https://api.sift.com/v206/events", eventRequest.Request.RequestUri.ToString());
+
+            eventRequest = new EventRequest
+            {
+                Event = createOrder,
+                AbuseTypes = { "legacy", "payment_abuse" },
+                ReturnScore = true
+            };
+
+            Assert.Equal("https://api.sift.com/v206/events?abuse_types=legacy,payment_abuse&return_score=true",
+                          Uri.UnescapeDataString(eventRequest.Request.RequestUri.ToString()));
+        }
     }
 }
