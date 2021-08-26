@@ -1,0 +1,23 @@
+﻿{
+    "$schema": "http://json-schema.org/draft-04/schema",
+    "title": "Sepa",
+    "type": "object",
+    "required": [ "$sepa_type", "$account_holder_name", "$shortened_iban" ],
+    "properties": {
+        "$sepa_type": {
+            "type": [ "string", "null" ]
+        },
+        "$account_holder_name": {
+            "type": [ "string", "null" ]
+        },
+        "$shortened_iban": {
+            "type": [ "string", "null" ]
+        },
+        "$bic": {
+            "type": [ "string", "null" ]
+        },
+        "$mandate_id": {
+            "type": [ "string", "null" ]
+        }
+    }
+}
