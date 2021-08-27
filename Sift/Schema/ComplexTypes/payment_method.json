@@ -77,6 +77,12 @@
             { "$ref": "sepa.json" },
             { "type": "null" }
         ]
+    },
+    "$wire": {
+      "oneOf": [
+        { "$ref": "wire.json" },
+        { "type": "null" }
+      ]
     }
   }
 }

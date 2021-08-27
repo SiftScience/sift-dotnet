@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema",
+  "title": "Wire",
+  "type": "object",
+  "required": [ "$wire_type", "$account_holder_name"],
+  "properties": {
+    "$wire_type": {
+      "type": [ "string", "null" ]
+    },
+    "$account_holder_name": {
+      "type": [ "string", "null" ]
+    },
+    "$account_number": {
+      "type": [ "string", "null" ]
+    },
+    "$bank_name": {
+      "type": [ "string", "null" ]
+    },
+    "$bank_country": {
+      "type": [ "string", "null" ]
+    },
+    "$routing_number": {
+      "type": [ "string", "null" ]
+    },
+    "$swift_id": {
+      "type": [ "string", "null" ]
+    },
+    "$bic": {
+      "type": [ "string", "null" ]
+    }
+  }
+}
