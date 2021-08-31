@@ -394,5 +394,56 @@ namespace Test
             Assert.Equal("https://api.sift.com/v206/events?abuse_types=legacy,payment_abuse&return_score=true",
                           Uri.UnescapeDataString(eventRequest.Request.RequestUri.ToString()));
         }
+
+        [Fact]
+        public void TestCreateOrderEvent206WithWirePaymentMethod()
+        {
+            var createOrder = new CreateOrder
+            {
+                user_id = "test_dotnet_fintech_payment_methods",
+                session_id = "gigtleqddo84l8cm15qe4il",
+                order_id = "12345",
+                payment_methods = new ObservableCollection<PaymentMethod>()
+                {
+                    new PaymentMethod
+                    {
+                        wire = new Wire
+                        {
+                            wire_type = "$credit",
+                            account_holder_name = "John Doe",
+                            account_number = "12345",
+                            bank_name = "Chase",
+                            bank_country = "US",
+                            swift_id = "CHASUS33XX"
+                        }
+                    }
+                }
+            };
+
+            // Augment with custom fields
+            createOrder.AddField("foo", "bar");
+            Assert.Equal("{\"$type\":\"$create_order\",\"$user_id\":\"test_dotnet_fintech_payment_methods\",\"$session_id\":\"gigtleqddo84l8cm15qe4il\"," +
+                                 "\"$order_id\":\"12345\",\"$payment_methods\":[{\"$wire\":{\"$wire_type\":\"$credit\",\"$account_holder_name\":\"John Doe\"," +
+                                 "\"$account_number\":\"12345\",\"$bank_name\":\"Chase\",\"$bank_country\":\"US\",\"$swift_id\":\"CHASUS33XX\"}}],\"foo\":\"bar\"}",
+                                 createOrder.ToJson());
+
+            EventRequest eventRequest = new EventRequest
+            {
+                Event = createOrder
+            };
+
+            Assert.Equal("https://api.sift.com/v206/events", eventRequest.Request.RequestUri.ToString());
+
+            eventRequest = new EventRequest
+            {
+                Event = createOrder,
+                AbuseTypes = { "legacy", "payment_abuse" },
+                ReturnScore = true
+            };
+
+            Assert.Equal("https://api.sift.com/v206/events?abuse_types=legacy,payment_abuse&return_score=true",
+                          Uri.UnescapeDataString(eventRequest.Request.RequestUri.ToString()));
+        }
+
     }
 }
