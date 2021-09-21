@@ -65,6 +65,24 @@
     },
     "$stripe_brand": {
       "type": [ "string", "null" ]
+    },
+    "$account_holder_name": {
+      "type": [ "string", "null" ]
+    },
+    "$account_number_last5": {
+      "type": [ "string", "null" ]
+    },
+    "$bank_name": {
+      "type": [ "string", "null" ]
+    },
+    "$bank_country": {
+      "type": [ "string", "null" ]
+    },
+    "$swift_id": {
+      "type": [ "string", "null" ]
+    },
+    "$bic": {
+      "type": [ "string", "null" ]
     }
   }
 }
