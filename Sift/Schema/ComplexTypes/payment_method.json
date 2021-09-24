@@ -80,9 +80,6 @@
     },
     "$swift_id": {
       "type": [ "string", "null" ]
-    },
-    "$bic": {
-      "type": [ "string", "null" ]
     }
   }
 }
