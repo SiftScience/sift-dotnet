@@ -65,6 +65,15 @@
     },
     "$stripe_brand": {
       "type": [ "string", "null" ]
+    },
+    "$shortened_iban_first6": {
+        "type": [ "string", "null" ]
+    },
+    "$shortened_iban_last4": {
+        "type": [ "string", "null" ]
+    },
+    "$sepa_direct_debit_mandate": {
+        "type": [ "boolean", "null" ]
     }
   }
 }
