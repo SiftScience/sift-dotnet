@@ -1,0 +1,22 @@
+﻿{
+    "$schema": "http://json-schema.org/draft-04/schema",
+    "title": "OrderedFrom",
+    "type": "object",
+    "properties": {
+        "$merchant_id": {
+            "type": [ "string", "null" ]
+        },
+        "$merchant_category_code": {
+            "type": [ "string", "null" ]
+        },
+        "$merchant_name": {
+            "type": [ "string", "null" ]
+        },
+        "$merchant_address": {
+            "oneOf": [
+                { "$ref": "address.json" },
+                { "type": "null" }
+            ]
+        }
+    }
+}

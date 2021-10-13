@@ -89,6 +89,33 @@
     },
     "$decline_category": {
       "type": [ "string", "null" ]
+    },
+    "$sent_address": {
+        "oneOf": [
+            { "$ref": "ComplexTypes/address.json" },
+            { "type": "null" }
+        ]
+    },
+    "$received_address": {
+        "oneOf": [
+            { "$ref": "ComplexTypes/address.json" },
+            { "type": "null" }
+        ]
+    },
+    "$status_3ds": {
+        "type": [ "string", "null" ]
+    },
+    "$triggered_3ds": {
+        "type": [ "string", "null" ]
+    },
+    "$merchant_initiated_transaction": {
+        "type": [ "boolean", "null" ]
+    },
+    "$merchant_profile": {
+        "oneOf": [
+            { "$ref": "ComplexTypes/merchant_profile.json" },
+            { "type": "null" }
+        ]
     }
   }
 }

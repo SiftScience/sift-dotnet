@@ -221,7 +221,7 @@ namespace Test
         {
             var createOrder = new CreateOrder
             {
-                user_id = "test_dotnet_booking_with_all_fields",
+                user_id = "test_dotnet_browser_field",
                 order_id = "oid",
                 amount = 1000000000000L,
                 currency_code = "USD",
@@ -237,7 +237,7 @@ namespace Test
 
             // Augment with custom fields
             createOrder.AddField("foo", "bar");
-            Assert.Equal("{\"$type\":\"$create_order\",\"$user_id\":\"test_dotnet_booking_with_all_fields\",\"$session_id\":\"gigtleqddo84l8cm15qe4il\"," +
+            Assert.Equal("{\"$type\":\"$create_order\",\"$user_id\":\"test_dotnet_browser_field\",\"$session_id\":\"gigtleqddo84l8cm15qe4il\"," +
                          "\"$order_id\":\"oid\",\"$user_email\":\"bill@gmail.com\",\"$amount\":1000000000000,\"$currency_code\":\"USD\"," +
                          "\"$browser\":{\"$user_agent\":\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36\"," +
                          "\"$accept_language\":\"en-US\",\"$content_language\":\"en-GB\"},\"foo\":\"bar\"}",
@@ -267,7 +267,7 @@ namespace Test
         {
             var transaction = new Transaction
             {
-                user_id = "test_dotnet_booking_with_all_fields",
+                user_id = "test_dotnet_transaction_event",
                 amount = 1000000000000L,
                 currency_code = "USD",
                 session_id = "gigtleqddo84l8cm15qe4il",
@@ -278,9 +278,213 @@ namespace Test
 
             // Augment with custom fields
             transaction.AddField("foo", "bar");
-            Assert.Equal("{\"$type\":\"$transaction\",\"$user_id\":\"test_dotnet_booking_with_all_fields\",\"$session_id\":\"gigtleqddo84l8cm15qe4il\"," +
+            Assert.Equal("{\"$type\":\"$transaction\",\"$user_id\":\"test_dotnet_transaction_event\",\"$session_id\":\"gigtleqddo84l8cm15qe4il\"," +
                                  "\"$transaction_type\":\"$sale\",\"$transaction_status\":\"$failure\",\"$amount\":1000000000000,\"$currency_code\":\"USD\"," +
                                  "\"$decline_category\":\"$invalid\",\"foo\":\"bar\"}", transaction.ToJson());
+
+            EventRequest eventRequest = new EventRequest
+            {
+                Event = transaction
+            };
+
+            Assert.Equal("https://api.sift.com/v205/events", eventRequest.Request.RequestUri.ToString());
+
+            eventRequest = new EventRequest
+            {
+                Event = transaction,
+                AbuseTypes = { "legacy", "payment_abuse" },
+                ReturnScore = true
+            };
+
+            Assert.Equal("https://api.sift.com/v205/events?abuse_types=legacy,payment_abuse&return_score=true",
+                          Uri.UnescapeDataString(eventRequest.Request.RequestUri.ToString()));
+        }
+
+        [Fact]
+        public void TestCreateOrderEventWithSepaPaymentMethodFields()
+        {
+            var createOrder = new CreateOrder
+            {
+                user_id = "test_dotnet_sepa_payment_method_fields",
+                session_id = "gigtleqddo84l8cm15qe4il",
+                order_id = "12345",
+                payment_methods = new ObservableCollection<PaymentMethod>()
+                {
+                    new PaymentMethod
+                    {
+                        payment_type = "$sepa_instant_credit",
+                        shortened_iban_first6 = "FR7630",
+                        shortened_iban_last4 = "1234",
+                        sepa_direct_debit_mandate = true
+                    }
+                }
+            };
+
+            // Augment with custom fields
+            createOrder.AddField("foo", "bar");
+            Assert.Equal("{\"$type\":\"$create_order\",\"$user_id\":\"test_dotnet_sepa_payment_method_fields\",\"$session_id\":\"gigtleqddo84l8cm15qe4il\"," +
+                                 "\"$order_id\":\"12345\",\"$payment_methods\":[{\"$payment_type\":\"$sepa_instant_credit\",\"$shortened_iban_first6\":\"FR7630\"," +
+                                 "\"$shortened_iban_last4\":\"1234\",\"$sepa_direct_debit_mandate\":true}],\"foo\":\"bar\"}",
+                                 createOrder.ToJson());
+
+            EventRequest eventRequest = new EventRequest
+            {
+                Event = createOrder
+            };
+
+            Assert.Equal("https://api.sift.com/v205/events", eventRequest.Request.RequestUri.ToString());
+
+            eventRequest = new EventRequest
+            {
+                Event = createOrder,
+                AbuseTypes = { "legacy", "payment_abuse" },
+                ReturnScore = true
+            };
+
+            Assert.Equal("https://api.sift.com/v205/events?abuse_types=legacy,payment_abuse&return_score=true",
+                          Uri.UnescapeDataString(eventRequest.Request.RequestUri.ToString()));
+        }
+
+        [Fact]
+        public void TestCreateOrderEventWithMerchantProfileField()
+        {
+            var createOrder = new CreateOrder
+            {
+                user_id = "test_dotnet_merchant_profile_field",
+                session_id = "gigtleqddo84l8cm15qe4il",
+                order_id = "12345",
+                payment_methods = new ObservableCollection<PaymentMethod>()
+                {
+                    new PaymentMethod
+                    {
+                        payment_type = "$sepa_instant_credit",
+                        shortened_iban_first6 = "FR7630",
+                        shortened_iban_last4 = "1234",
+                        sepa_direct_debit_mandate = true
+                    }
+                },
+                merchant_profile = new MerchantProfile
+                {
+                    merchant_id = "123",
+                    merchant_category_code = "9876",
+                    merchant_name = "ABC Merchant",
+                    merchant_address = new Address
+                    {
+                        name = "Bill Jones",
+                        phone = "1-415-555-6040",
+                        address_1 = "2100 Main Street",
+                        address_2 = "Apt 3B",
+                        city = "New London",
+                        region = "New Hampshire",
+                        country = "US",
+                        zipcode = "03257"
+                    }
+                }
+            };
+
+            // Augment with custom fields
+            createOrder.AddField("foo", "bar");
+            Assert.Equal("{\"$type\":\"$create_order\",\"$user_id\":\"test_dotnet_merchant_profile_field\",\"$session_id\":\"gigtleqddo84l8cm15qe4il\"," +
+                                 "\"$order_id\":\"12345\",\"$payment_methods\":[{\"$payment_type\":\"$sepa_instant_credit\",\"$shortened_iban_first6\":\"FR7630\"," +
+                                 "\"$shortened_iban_last4\":\"1234\",\"$sepa_direct_debit_mandate\":true}],\"$merchant_profile\":{\"$merchant_id\":\"123\"," +
+                                 "\"$merchant_category_code\":\"9876\",\"$merchant_name\":\"ABC Merchant\",\"$merchant_address\":{\"$name\":\"Bill Jones\"," +
+                                 "\"$address_1\":\"2100 Main Street\",\"$address_2\":\"Apt 3B\",\"$city\":\"New London\",\"$region\":\"New Hampshire\"," +
+                                 "\"$country\":\"US\",\"$zipcode\":\"03257\",\"$phone\":\"1-415-555-6040\"}},\"foo\":\"bar\"}",
+                                 createOrder.ToJson());
+
+            EventRequest eventRequest = new EventRequest
+            {
+                Event = createOrder
+            };
+
+            Assert.Equal("https://api.sift.com/v205/events", eventRequest.Request.RequestUri.ToString());
+
+            eventRequest = new EventRequest
+            {
+                Event = createOrder,
+                AbuseTypes = { "legacy", "payment_abuse" },
+                ReturnScore = true
+            };
+            
+            Assert.Equal("https://api.sift.com/v205/events?abuse_types=legacy,payment_abuse&return_score=true",
+                          Uri.UnescapeDataString(eventRequest.Request.RequestUri.ToString()));
+        }
+
+        [Fact]
+        public void TestTransactionEventWithFintechFields()
+        {
+            var transaction = new Transaction
+            {
+                user_id = "test_dotnet_transaction_event",
+                amount = 1000000000000L,
+                currency_code = "USD",
+                session_id = "gigtleqddo84l8cm15qe4il",
+                transaction_type = "$sale",
+                transaction_status = "$failure",
+                decline_category = "$invalid",
+                merchant_profile = new MerchantProfile
+                {
+                    merchant_id = "123",
+                    merchant_category_code = "9876",
+                    merchant_name = "ABC Merchant",
+                    merchant_address = new Address
+                    {
+                        name = "Bill Jones",
+                        phone = "1-415-555-6040",
+                        address_1 = "2100 Main Street",
+                        address_2 = "Apt 3B",
+                        city = "New London",
+                        region = "New Hampshire",
+                        country = "US",
+                        zipcode = "03257"
+                    }
+                },
+                sent_address = new Address
+                {
+                    name = "Bill Jones",
+                    phone = "1-415-555-6040",
+                    address_1 = "2100 Main Street",
+                    address_2 = "Apt 3B",
+                    city = "New London",
+                    region = "New Hampshire",
+                    country = "US",
+                    zipcode = "03257"
+                },
+                received_address = new Address
+                {
+                    name = "Bill Jones",
+                    phone = "1-415-555-6040",
+                    address_1 = "2100 Main Street",
+                    address_2 = "Apt 3B",
+                    city = "New London",
+                    region = "New Hampshire",
+                    country = "US",
+                    zipcode = "03257"
+                },
+                payment_method = new PaymentMethod
+                {
+                    payment_type = "$sepa_instant_credit",
+                    shortened_iban_first6 = "FR7630",
+                    shortened_iban_last4 = "1234",
+                    sepa_direct_debit_mandate = true
+                },
+                status_3ds = "$successful",
+                triggered_3ds = "$processor",
+                merchant_initiated_transaction = true
+            };
+            Assert.Equal("{\"$type\":\"$transaction\",\"$user_id\":\"test_dotnet_transaction_event\",\"$session_id\":\"gigtleqddo84l8cm15qe4il\"," +
+                                 "\"$transaction_type\":\"$sale\",\"$transaction_status\":\"$failure\",\"$amount\":1000000000000,\"$currency_code\":\"USD\"," +
+                                 "\"$payment_method\":{\"$payment_type\":\"$sepa_instant_credit\",\"$shortened_iban_first6\":\"FR7630\"," +
+                                 "\"$shortened_iban_last4\":\"1234\",\"$sepa_direct_debit_mandate\":true},\"$decline_category\":\"$invalid\"," +
+                                 "\"$sent_address\":{\"$name\":\"Bill Jones\",\"$address_1\":\"2100 Main Street\",\"$address_2\":\"Apt 3B\"," +
+                                 "\"$city\":\"New London\",\"$region\":\"New Hampshire\",\"$country\":\"US\",\"$zipcode\":\"03257\",\"$phone\":\"1-415-555-6040\"}," +
+                                 "\"$received_address\":{\"$name\":\"Bill Jones\",\"$address_1\":\"2100 Main Street\",\"$address_2\":\"Apt 3B\"," +
+                                 "\"$city\":\"New London\",\"$region\":\"New Hampshire\",\"$country\":\"US\",\"$zipcode\":\"03257\",\"$phone\":\"1-415-555-6040\"}," +
+                                 "\"$status_3ds\":\"$successful\",\"$triggered_3ds\":\"$processor\",\"$merchant_initiated_transaction\":true," +
+                                 "\"$merchant_profile\":{\"$merchant_id\":\"123\",\"$merchant_category_code\":\"9876\",\"$merchant_name\":\"ABC Merchant\"," +
+                                 "\"$merchant_address\":{\"$name\":\"Bill Jones\",\"$address_1\":\"2100 Main Street\",\"$address_2\":\"Apt 3B\"," +
+                                 "\"$city\":\"New London\",\"$region\":\"New Hampshire\",\"$country\":\"US\",\"$zipcode\":\"03257\",\"$phone\":\"1-415-555-6040\"}}}",
+                                 transaction.ToJson());
 
             EventRequest eventRequest = new EventRequest
             {
