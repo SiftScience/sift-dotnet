@@ -74,6 +74,18 @@
     },
     "$sepa_direct_debit_mandate": {
         "type": [ "boolean", "null" ]
+    },
+    "$account_number_last5": {
+      "type": [ "string", "null" ]
+    },
+    "$account_holder_name": {
+      "type": [ "string", "null" ]
+    },
+    "$bank_name": {
+      "type": [ "string", "null" ]
+    },
+    "$bank_country": {
+      "type": [ "string", "null" ]
     }
   }
 }
