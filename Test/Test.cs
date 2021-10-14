@@ -229,8 +229,8 @@ namespace Test
                 user_email = "bill@gmail.com",
                 browser = new Browser
                 {
-                    user_agent       = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36",
-                    accept_language  = "en-US",
+                    user_agent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36",
+                    accept_language = "en-US",
                     content_language = "en-GB"
                 }
             };
@@ -405,7 +405,7 @@ namespace Test
                 AbuseTypes = { "legacy", "payment_abuse" },
                 ReturnScore = true
             };
-            
+
             Assert.Equal("https://api.sift.com/v205/events?abuse_types=legacy,payment_abuse&return_score=true",
                           Uri.UnescapeDataString(eventRequest.Request.RequestUri.ToString()));
         }
@@ -496,6 +496,53 @@ namespace Test
             eventRequest = new EventRequest
             {
                 Event = transaction,
+                AbuseTypes = { "legacy", "payment_abuse" },
+                ReturnScore = true
+            };
+
+            Assert.Equal("https://api.sift.com/v205/events?abuse_types=legacy,payment_abuse&return_score=true",
+                          Uri.UnescapeDataString(eventRequest.Request.RequestUri.ToString()));
+        }
+
+        [Fact]
+        public void TestCreateOrderEventWithWirePaymentMethod()
+        {
+            var createOrder = new CreateOrder
+            {
+                user_id = "test_dotnet_wire_payment_methods",
+                session_id = "gigtleqddo84l8cm15qe4il",
+                order_id = "12345",
+                payment_methods = new ObservableCollection<PaymentMethod>()
+            {
+                new PaymentMethod
+                {
+                    payment_type = "$wire_credit",
+                    routing_number = "CHASUS33XX",
+                    account_number_last5 = "12345",
+                    account_holder_name = "John Doe",
+                    bank_name = "Chase",
+                    bank_country = "US"
+                }
+            }
+            };
+
+            // Augment with custom fields
+            createOrder.AddField("foo", "bar");
+            Assert.Equal("{\"$type\":\"$create_order\",\"$user_id\":\"test_dotnet_wire_payment_methods\",\"$session_id\":\"gigtleqddo84l8cm15qe4il\"," +
+                                 "\"$order_id\":\"12345\",\"$payment_methods\":[{\"$payment_type\":\"$wire_credit\",\"$routing_number\":\"CHASUS33XX\"," +
+                                 "\"$account_number_last5\":\"12345\",\"$account_holder_name\":\"John Doe\",\"$bank_name\":\"Chase\",\"$bank_country\":\"US\"}],\"foo\":\"bar\"}",
+                                 createOrder.ToJson());
+
+            EventRequest eventRequest = new EventRequest
+            {
+                Event = createOrder
+            };
+
+            Assert.Equal("https://api.sift.com/v205/events", eventRequest.Request.RequestUri.ToString());
+
+            eventRequest = new EventRequest
+            {
+                Event = createOrder,
                 AbuseTypes = { "legacy", "payment_abuse" },
                 ReturnScore = true
             };
