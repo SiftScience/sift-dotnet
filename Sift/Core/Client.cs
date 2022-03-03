@@ -73,7 +73,20 @@ namespace Sift
         {
             return await SendAsync<WorkflowStatusResponse>(workflowStatusRequest);
         }
+        public async Task<VerificationCheckResponse> SendAsync(VerificationCheckRequest verificationCheckRequest)
+        {
+            return await SendAsync<VerificationCheckResponse>(verificationCheckRequest);
+        }
 
+        public async Task<VerificationSendResponse> SendAsync(VerificationSendRequest verificationSendRequest)
+        {
+            return await SendAsync<VerificationSendResponse>(verificationSendRequest);
+        }
+
+        public async Task<VerificationReSendResponse> SendAsync(VerificationReSendRequest verificationReSendRequest)
+        {
+            return await SendAsync<VerificationReSendResponse>(verificationReSendRequest);
+        }
         async Task<T> SendAsync<T>(SiftRequest siftRequest) where T : SiftResponse
         {
             siftRequest.ApiKey = this.apiKey;

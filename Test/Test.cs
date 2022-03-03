@@ -550,5 +550,80 @@ namespace Test
             Assert.Equal("https://api.sift.com/v205/events?abuse_types=legacy,payment_abuse&return_score=true",
                           Uri.UnescapeDataString(eventRequest.Request.RequestUri.ToString()));
         }
+
+        [Fact]
+        public void TestVerificationCheckRequest()
+        {
+            var verificationCheckRequest = new VerificationCheckRequest
+            {
+                ApiKey = "35d603c1513f2567:",
+                Code = 655543,
+                UserId = "vineethk@exalture.com"
+
+            };
+
+            verificationCheckRequest.ApiKey = "35d603c1513f2567:";
+
+            Assert.Equal("https://api.sift.com/v1.1/verification/check",
+                         verificationCheckRequest.Request.RequestUri.ToString());
+
+            Assert.Equal(Convert.ToBase64String(Encoding.Default.GetBytes("key")),
+                         verificationCheckRequest.Request.Headers.Authorization.Parameter);
+        }
+
+        [Fact]
+        public void TestVerificationSendRequest()
+        {
+            var verificationSendRequest = new VerificationSendRequest
+            {
+                UserId = "vineethk@exalture.com",
+                ApiKey = "35d603c1513f2567:",
+                BrandName = "all",
+                VerificationType = "$email",
+                SendTo = "vineethk@exalture.com",
+                Language = "en",
+                Event = new VerificationSendEvent()
+                {
+                    Browser = new VerificationSendBrowser()
+                    {
+                        UserAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36"
+                    },
+                    IP = "192.168.1.1",
+                    Reason = "$automated_rule",
+                    SessionId = "gigtleqddo84l8cm15qe4il",
+                    VerifiedEvent = "$login"
+                }
+            };
+
+            verificationSendRequest.ApiKey = "35d603c1513f2567:";
+
+            Assert.Equal("https://api.sift.com/v1.1/verification/send",
+                         verificationSendRequest.Request.RequestUri.ToString());
+
+            Assert.Equal(Convert.ToBase64String(Encoding.Default.GetBytes("key")),
+                         verificationSendRequest.Request.Headers.Authorization.Parameter);
+        }
+
+        [Fact]
+        public void TestVerificationReSendRequest()
+        {
+            var verificationResendRequest = new VerificationReSendRequest
+            {
+
+
+                UserId = "vineethk@exalture.com",
+                ApiKey = "35d603c1513f2567:"
+
+
+            };
+
+            verificationResendRequest.ApiKey = "35d603c1513f2567:";
+
+            Assert.Equal("https://api.sift.com/v1.1/verification/send",
+                         verificationResendRequest.Request.RequestUri.ToString());
+
+            Assert.Equal(Convert.ToBase64String(Encoding.Default.GetBytes("key")),
+                         verificationResendRequest.Request.Headers.Authorization.Parameter);
+        }
     }
 }
