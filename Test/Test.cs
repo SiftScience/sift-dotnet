@@ -4,6 +4,10 @@ using Sift;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
+using System.Security.Cryptography;
+using System.IO;
+using Sift.Core;
+using System.Linq;
 
 namespace Test
 {
@@ -624,6 +628,52 @@ namespace Test
 
             Assert.Equal(Convert.ToBase64String(Encoding.Default.GetBytes("key")),
                          verificationResendRequest.Request.Headers.Authorization.Parameter);
+        }
+
+        [Fact]
+        public void TestWebHookValidation()
+        {
+            String secretKey = "1d708fe409f22591";
+            String requestBody = "{\n" +
+                "  \"entity\": {\n" +
+                "    \"type\": \"user\",\n" +
+                "    \"id\": \"USER123\"\n" +
+                "  },\n" +
+                "  \"decision\": {\n" +
+                "    \"id\": \"block_user_payment_abuse\"\n" +
+                "  },\n" +
+                "  \"time\": 1461963439151\n" +
+                "}";
+            byte[] key = Encoding.ASCII.GetBytes("1d708fe409f22591");
+            HMACSHA1 myhmacsha1 = new HMACSHA1(key);
+            byte[] byteArray = Encoding.ASCII.GetBytes(requestBody);
+            MemoryStream stream = new MemoryStream(byteArray);
+            string signatureCore = myhmacsha1.ComputeHash(stream).Aggregate("", (s, e) => s + String.Format("{0:x2}", e), s => s);
+            String signature = "sha1=" + signatureCore;
+            WebhookValidator webhook = new WebhookValidator();
+            Assert.True(webhook.IsValidWebhook(requestBody, secretKey, signature));
+
+        }
+
+        [Fact]
+        public void TestWebHookValidationForInvalidSecretKey()
+        {
+            String secretKey = "1d708fe409f22591";
+            String requestBody = "{\n" +
+                "  \"entity\": {\n" +
+                "    \"type\": \"user\",\n" +
+                "    \"id\": \"USER123\"\n" +
+                "  },\n" +
+                "  \"decision\": {\n" +
+                "    \"id\": \"block_user_payment_abuse\"\n" +
+                "  },\n" +
+                "  \"time\": 1461963439151\n" +
+                "}";
+
+            WebhookValidator webhook = new WebhookValidator();
+            Assert.True(webhook.IsValidWebhook(requestBody, secretKey, "InValid Key"));
+
+
         }
     }
 }
