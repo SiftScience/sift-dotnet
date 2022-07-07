@@ -13,6 +13,7 @@ namespace Sift
         public List<String> AbuseTypes { get; set; } = new List<string>();
         public bool ReturnScore { get; set; }
         public bool ReturnWorkflowStatus { get; set; }
+        public bool ReturnRouteInfo { get; set; }
         public bool ForceWorkflowRun { get; set; }
 
         public override HttpRequestMessage Request
@@ -45,6 +46,11 @@ namespace Sift
                 if (ReturnWorkflowStatus)
                 {
                     url = url.AddQuery("return_workflow_status", "true");
+                }
+
+                if (ReturnRouteInfo)
+                {
+                    url = url.AddQuery("return_route_info", "true");
                 }
 
                 if (ForceWorkflowRun)
