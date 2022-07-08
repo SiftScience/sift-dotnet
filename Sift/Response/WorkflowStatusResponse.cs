@@ -26,6 +26,9 @@ namespace Sift
         [JsonProperty("history")]
         public List<HistoryJson> History { get; set; }
 
+        [JsonProperty("route")]
+        public RouteInfoJson Route { get; set; }
+
         public class WorkflowConfigJson
         {
             [JsonProperty("id")]
@@ -42,6 +45,12 @@ namespace Sift
 
             [JsonProperty("type")]
             public string Type { get; set; }
+        }
+
+        public class RouteInfoJson
+        {
+            [JsonProperty("name")]
+            public string Name { get; set; }
         }
 
         public class HistoryJson

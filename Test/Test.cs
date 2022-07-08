@@ -187,10 +187,11 @@ namespace Test
             {
                 Event = createOrder,
                 AbuseTypes = { "legacy", "payment_abuse" },
-                ReturnScore = true
+                ReturnScore = true,
+                ReturnRouteInfo = true
             };
 
-            Assert.Equal("https://api.sift.com/v205/events?abuse_types=legacy,payment_abuse&return_score=true",
+            Assert.Equal("https://api.sift.com/v205/events?abuse_types=legacy,payment_abuse&return_score=true&return_route_info=true",
                          Uri.UnescapeDataString(eventRequest.Request.RequestUri.ToString()));
         }
 
