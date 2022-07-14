@@ -116,6 +116,9 @@
             { "$ref": "ComplexTypes/merchant_profile.json" },
             { "type": "null" }
         ]
+    },
+    "$keyless_user_id": {
+      "type": [ "string", "null" ]
     }
   }
 }
