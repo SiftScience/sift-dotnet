@@ -4,7 +4,7 @@
     <Authors>Sift, Gary Lee</Authors>
     <AssemblyTitle>Sift</AssemblyTitle>
     <AssemblyName>Sift</AssemblyName>
-    <VersionPrefix>0.8.0</VersionPrefix>
+    <VersionPrefix>0.8.1</VersionPrefix>
     <VersionSuffix>beta</VersionSuffix>
     <PackageReleaseNotes>Beta release</PackageReleaseNotes>
     <TargetFramework>netstandard2.0</TargetFramework>
