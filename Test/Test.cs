@@ -149,6 +149,7 @@ namespace Test
                 },
                 site_country = "US",
                 site_domain = "sift.com",
+                keyless_user_id = "keylessId",
                 brand_name = "sift"
             };
 
@@ -172,7 +173,7 @@ namespace Test
                          "\"$app_version\":\"1.0\",\"$client_language\":\"en-US\"},\"$brand_name\":\"sift\",\"$site_country\":\"US\",\"$site_domain\":\"sift.com\"," +
                          "\"$ordered_from\":{\"$store_id\":\"123\",\"$store_address\":{\"$name\":\"Bill Jones\",\"$address_1\":\"2100 Main Street\"," +
                          "\"$address_2\":\"Apt 3B\",\"$city\":\"New London\",\"$region\":\"New Hampshire\",\"$country\":\"US\",\"$zipcode\":\"03257\"," +
-                         "\"$phone\":\"1-415-555-6040\"}},\"foo\":\"bar\"}",
+                         "\"$phone\":\"1-415-555-6040\"}},\"$keyless_user_id\":\"keylessId\",\"foo\":\"bar\"}",
                          createOrder.ToJson());
 
 
@@ -745,6 +746,7 @@ namespace Test
                 username = "test_user_name",
                 site_country = "US",
                 site_domain = "sift.com",
+                keyless_user_id = "keylessId",
                 brand_name = "sift",
                 browser = new Browser
                 {
@@ -760,7 +762,7 @@ namespace Test
                                  "\"$social_sign_on_type\":\"$facebook\",\"$username\":\"test_user_name\",\"$ip\":\"128.148.1.135\",\"$browser\":" +
                                  "{\"$user_agent\":\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) " +
                                  "Chrome/56.0.2924.87 Safari/537.36\",\"$accept_language\":\"en-US\",\"$content_language\":\"en-GB\"},\"$brand_name\":" +
-                                 "\"sift\",\"$site_country\":\"US\",\"$site_domain\":\"sift.com\",\"$account_types\":[\"merchant\",\"premium\"]}",
+                                 "\"sift\",\"$site_country\":\"US\",\"$site_domain\":\"sift.com\",\"$account_types\":[\"merchant\",\"premium\"],"+ "\"$keyless_user_id\":\"keylessId\"" +"}",
                                  login.ToJson());
 
             EventRequest eventRequest = new EventRequest

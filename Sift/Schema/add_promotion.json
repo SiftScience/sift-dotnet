@@ -38,6 +38,9 @@
     },
     "$site_domain": {
       "type": [ "string", "null" ]
+    },
+    "$keyless_user_id": {
+      "type": [ "string", "null" ]
     }
   }
 }
