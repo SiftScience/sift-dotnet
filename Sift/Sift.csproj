@@ -4,10 +4,10 @@
     <Authors>Sift, Gary Lee</Authors>
     <AssemblyTitle>Sift</AssemblyTitle>
     <AssemblyName>Sift</AssemblyName>
-    <VersionPrefix>0.7.0</VersionPrefix>
+    <VersionPrefix>0.9.3</VersionPrefix>
     <VersionSuffix>beta</VersionSuffix>
     <PackageReleaseNotes>Beta release</PackageReleaseNotes>
-    <TargetFramework>netstandard2.1</TargetFramework>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <PackageId>Sift</PackageId>
     <PackageTags>sift;siftscience;client;api;client;async</PackageTags>
     <PackageIconUrl>https://s3.amazonaws.com/sift-assets/email/sift_32h.png</PackageIconUrl>

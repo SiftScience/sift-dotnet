@@ -8,19 +8,8 @@ namespace Sift.Core
     public class WebhookValidator
     {
         private const string Sha1Prefix = "sha1=";
-        public bool IsValidWebhook(String requestBody, String secretKey, string signatureWithPrefix)
-        {
-            if (IsWebHookAllowed(requestBody, secretKey, signatureWithPrefix))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
-        private bool IsWebHookAllowed(string payload, string secretKey, string signatureWithPrefix)
+  
+        private bool IsValidWebhook(string payload, string secretKey, string signatureWithPrefix)
         {
             if (string.IsNullOrWhiteSpace(payload))
             {
