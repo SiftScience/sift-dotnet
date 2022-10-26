@@ -20,10 +20,7 @@
 
   <ItemGroup>
     <Folder Include="Event\" />
-    <Folder Include="Core\" />
     <Folder Include="Exception\" />
-    <Folder Include="Request\" />
-    <Folder Include="Response\" />
     <Folder Include="Util\" />
   </ItemGroup>
 

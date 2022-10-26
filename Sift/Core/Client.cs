@@ -87,6 +87,27 @@ namespace Sift
         {
             return await SendAsync<VerificationReSendResponse>(verificationReSendRequest);
         }
+
+        public async Task<GetMerchantsResponse> SendAsync(GetMerchantsRequest getMerchantRequest)
+        {
+            return await SendAsync<GetMerchantsResponse>(getMerchantRequest);
+        }
+
+        public async Task<CreateMerchantResponse> SendAsync(CreateMerchantRequest createMerchantRequest)
+        {
+            return await SendAsync<CreateMerchantResponse>(createMerchantRequest);
+        }
+
+        public async Task<UpdateMerchantResponse> SendAsync(UpdateMerchantRequest updateMerchantRequest)
+        {
+            return await SendAsync<UpdateMerchantResponse>(updateMerchantRequest);
+        }
+
+        public async Task<GetMerchantDetailsResponse> SendAsync(GetMerchantDetailsRequest getMerchantRequest)
+        {
+            return await SendAsync<GetMerchantDetailsResponse>(getMerchantRequest);
+        }
+
         async Task<T> SendAsync<T>(SiftRequest siftRequest) where T : SiftResponse
         {
             siftRequest.ApiKey = this.apiKey;
