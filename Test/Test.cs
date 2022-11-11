@@ -794,7 +794,8 @@ namespace Test
             Assert.Equal(Convert.ToBase64String(Encoding.Default.GetBytes("key")),
                          getMerchantDetailRequest.Request.Headers.Authorization.Parameter);
         }
-      
+        
+        [Fact]
         public void TestChargebackEvent()
         {
             var chargeback = new Chargeback
