@@ -90,6 +90,12 @@
         { "$ref": "ComplexTypes/ordered_from.json" },
         { "type": "null" }
       ]
+    },
+    "$keyless_user_id": {
+      "type": [ "string", "null" ]
+    },
+    "$verification_phone_number": {
+      "type": [ "string", "null" ]
     }
   }
 }

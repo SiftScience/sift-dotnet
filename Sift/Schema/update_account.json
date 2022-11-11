@@ -68,6 +68,22 @@
     },
     "$site_domain": {
       "type": [ "string", "null" ]
+    },
+    "$merchant_profile": {
+        "oneOf": [
+            { "$ref": "ComplexTypes/merchant_profile.json" },
+            { "type": "null" }
+        ]
+    },
+    "$account_types": {
+        "type": [ "array", "null" ],
+        "items": { "type": "string" }
+    },
+    "$keyless_user_id": {
+      "type": [ "string", "null" ]
+    },
+    "$verification_phone_number": {
+      "type": [ "string", "null" ]
     }
   }
 }
