@@ -623,7 +623,7 @@ namespace Test
 
             verificationResendRequest.ApiKey = "35d603c1513f2567:";
 
-            Assert.Equal("https://api.sift.com/v1.1/verification/send",
+            Assert.Equal("https://api.sift.com/v1.1/verification/resend",
                          verificationResendRequest.Request.RequestUri.ToString());
 
             Assert.Equal(Convert.ToBase64String(Encoding.Default.GetBytes("key")),
