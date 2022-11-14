@@ -9,7 +9,7 @@ namespace Sift.Core
     {
         private const string Sha1Prefix = "sha1=";
   
-        public bool IsValidWebhook(string payload, string secretKey, string signatureWithPrefix)
+        private bool IsValidWebhook(string payload, string secretKey, string signatureWithPrefix)
         {
             if (string.IsNullOrWhiteSpace(payload))
             {

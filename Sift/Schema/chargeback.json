@@ -37,6 +37,12 @@
         { "$ref": "ComplexTypes/browser.json" },
         { "type": "null" }
       ]
+    },
+    "$merchant_profile": {
+        "oneOf": [
+            { "$ref": "ComplexTypes/merchant_profile.json" },
+            { "type": "null" }
+        ]
     }
   }
 }

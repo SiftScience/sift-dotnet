@@ -11,7 +11,22 @@
     "$user_id": {
       "type": [ "string", "null" ]
     },
+    "$session_id": {
+      "type": [ "string", "null" ]
+    },
+    "$user_email": {
+      "type": [ "string", "null" ]
+    },
     "$login_status": {
+      "type": [ "string", "null" ]
+    },
+    "$failure_reason": {
+      "type": [ "string", "null" ]
+    },
+    "$social_sign_on_type": {
+      "type": [ "string", "null" ]
+    },
+    "$username": {
       "type": [ "string", "null" ]
     },
     "$ip": {
@@ -36,6 +51,16 @@
       "type": [ "string", "null" ]
     },
     "$site_domain": {
+      "type": [ "string", "null" ]
+    },
+    "$account_types": {
+        "type": [ "array", "null" ],
+        "items": { "type": "string" }
+    },
+    "$keyless_user_id": {
+      "type": [ "string", "null" ]
+    },
+    "$verification_phone_number": {
       "type": [ "string", "null" ]
     }
   }
