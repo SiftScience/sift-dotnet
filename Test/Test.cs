@@ -568,7 +568,10 @@ namespace Test
 
             };
 
-            verificationCheckRequest.ApiKey = "35d603c1513f2567:";
+            verificationCheckRequest.ApiKey = "35d603c1513f2567";
+
+            Assert.Equal(Convert.ToBase64String(Encoding.Default.GetBytes("35d603c1513f2567")),
+                verificationCheckRequest.Request.Headers.Authorization.Parameter);
 
             Assert.Equal("https://api.sift.com/v1.1/verification/check",
                          verificationCheckRequest.Request.RequestUri.ToString());
@@ -598,7 +601,10 @@ namespace Test
                 }
             };
 
-            verificationSendRequest.ApiKey = "35d603c1513f2567:";
+            verificationSendRequest.ApiKey = "35d603c1513f2567";
+
+            Assert.Equal(Convert.ToBase64String(Encoding.Default.GetBytes("35d603c1513f2567")),
+                verificationSendRequest.Request.Headers.Authorization.Parameter);
 
             Assert.Equal("https://api.sift.com/v1.1/verification/send",
                          verificationSendRequest.Request.RequestUri.ToString());
@@ -617,7 +623,11 @@ namespace Test
 
             };
 
-            verificationResendRequest.ApiKey = "35d603c1513f2567:";
+            verificationResendRequest.ApiKey = "35d603c1513f2567";
+
+            Assert.Equal(Convert.ToBase64String(Encoding.Default.GetBytes("35d603c1513f2567")),
+                verificationResendRequest.Request.Headers.Authorization.Parameter);
+
 
             Assert.Equal("https://api.sift.com/v1.1/verification/resend",
                          verificationResendRequest.Request.RequestUri.ToString());
@@ -719,6 +729,10 @@ namespace Test
 
             createMerchantRequest.ApiKey = "09f7f361575d11ff";
 
+            Assert.Equal(Convert.ToBase64String(Encoding.Default.GetBytes("09f7f361575d11ff")),
+                createMerchantRequest.Request.Headers.Authorization.Parameter);
+
+
             Assert.Equal("https://api.sift.com/v3/accounts/5f053f004025ca08a187fad6/psp_management/merchants",
                          createMerchantRequest.Request.RequestUri.ToString());
         }
@@ -756,7 +770,11 @@ namespace Test
             };
 
             updateMerchantRequest.ApiKey = "09f7f361575d11ff";
-            
+
+            Assert.Equal(Convert.ToBase64String(Encoding.Default.GetBytes("09f7f361575d11ff")),
+                updateMerchantRequest.Request.Headers.Authorization.Parameter);
+
+
             Assert.Equal(Newtonsoft.Json.JsonConvert.SerializeObject(updateMerchantRequest),
                                Newtonsoft.Json.JsonConvert.SerializeObject(updateMerchantRequest));
             
@@ -767,10 +785,17 @@ namespace Test
         {
             var getMerchantDetailRequest = new GetMerchantDetailsRequest
             {
-                AccountId = "5f053f004025ca08a187fad6"
+                AccountId = "5f053f004025ca08a187fad6",
+                MerchantId = "test-merchat-id",
             };
 
             getMerchantDetailRequest.ApiKey = "09f7f361575d11ff";
+
+            Assert.Equal(Convert.ToBase64String(Encoding.Default.GetBytes("09f7f361575d11ff")),
+                getMerchantDetailRequest.Request.Headers.Authorization.Parameter);
+
+            Assert.Equal("https://api.sift.com/v3/accounts/5f053f004025ca08a187fad6/psp_management/merchants/test-merchat-id",
+             getMerchantDetailRequest.Request.RequestUri.ToString());
         }
 
         [Fact]
