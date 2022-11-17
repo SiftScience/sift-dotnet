@@ -743,6 +743,7 @@ namespace Test
             var updateMerchantRequest = new UpdateMerchantRequest
             {
                 AccountId = "5f053f004025ca08a187fad6",
+                MerchantId = "test2",
                 ApiKey = "09f7f361575d11ff",
                 Id = "test-vineeth-5",
                 Name = "Wonderful Payments Inc",
@@ -774,10 +775,27 @@ namespace Test
             Assert.Equal(Convert.ToBase64String(Encoding.Default.GetBytes("09f7f361575d11ff")),
                 updateMerchantRequest.Request.Headers.Authorization.Parameter);
 
+            Assert.Equal("https://api.sift.com/v3/accounts/5f053f004025ca08a187fad6/psp_management/merchants/test2",
+                         updateMerchantRequest.Request.RequestUri.ToString());
 
-            Assert.Equal(Newtonsoft.Json.JsonConvert.SerializeObject(updateMerchantRequest),
+
+            Assert.Equal("{\"id\":\"test-vineeth-5\"," +
+                "\"name\":\"Wonderful Payments Inc\"," +
+                "\"description\":\"Wonderful Payments payment provider\"," +
+                "\"address\":{\"name\":\"Alany\"," +
+                    "\"address_1\":\"Big Payment blvd, 22\"," +
+                    "\"address_2\":\"apt, 8\"," +
+                    "\"city\":\"New Orleans\"," +
+                    "\"region\":\"NA\"," +
+                    "\"country\":\"US\"," +
+                    "\"zipcode\":\"76830\"," +
+                    "\"phone\":\"0394888320\"}," +
+                "\"category\":\"1002\"," +
+                "\"service_level\":\"Platinum\"," +
+                "\"status\":\"active\"," +
+                "\"risk_profile\":{\"level\":\"low\",\"score\":10}}",
                                Newtonsoft.Json.JsonConvert.SerializeObject(updateMerchantRequest));
-            
+
         }
 
         [Fact]
