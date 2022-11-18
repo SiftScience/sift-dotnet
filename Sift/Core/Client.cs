@@ -73,6 +73,40 @@ namespace Sift
         {
             return await SendAsync<WorkflowStatusResponse>(workflowStatusRequest);
         }
+        public async Task<VerificationCheckResponse> SendAsync(VerificationCheckRequest verificationCheckRequest)
+        {
+            return await SendAsync<VerificationCheckResponse>(verificationCheckRequest);
+        }
+
+        public async Task<VerificationSendResponse> SendAsync(VerificationSendRequest verificationSendRequest)
+        {
+            return await SendAsync<VerificationSendResponse>(verificationSendRequest);
+        }
+
+        public async Task<VerificationReSendResponse> SendAsync(VerificationReSendRequest verificationReSendRequest)
+        {
+            return await SendAsync<VerificationReSendResponse>(verificationReSendRequest);
+        }
+
+        public async Task<GetMerchantsResponse> SendAsync(GetMerchantsRequest getMerchantRequest)
+        {
+            return await SendAsync<GetMerchantsResponse>(getMerchantRequest);
+        }
+
+        public async Task<CreateMerchantResponse> SendAsync(CreateMerchantRequest createMerchantRequest)
+        {
+            return await SendAsync<CreateMerchantResponse>(createMerchantRequest);
+        }
+
+        public async Task<UpdateMerchantResponse> SendAsync(UpdateMerchantRequest updateMerchantRequest)
+        {
+            return await SendAsync<UpdateMerchantResponse>(updateMerchantRequest);
+        }
+
+        public async Task<GetMerchantDetailsResponse> SendAsync(GetMerchantDetailsRequest getMerchantRequest)
+        {
+            return await SendAsync<GetMerchantDetailsResponse>(getMerchantRequest);
+        }
 
         async Task<T> SendAsync<T>(SiftRequest siftRequest) where T : SiftResponse
         {

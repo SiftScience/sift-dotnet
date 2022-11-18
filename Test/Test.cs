@@ -4,6 +4,10 @@ using Sift;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
+using System.Security.Cryptography;
+using System.IO;
+using Sift.Core;
+using System.Linq;
 
 namespace Test
 {
@@ -551,6 +555,265 @@ namespace Test
 
             Assert.Equal("https://api.sift.com/v205/events?abuse_types=legacy,payment_abuse&return_score=true",
                           Uri.UnescapeDataString(eventRequest.Request.RequestUri.ToString()));
+        }
+
+        [Fact]
+        public void TestVerificationCheckRequest()
+        {
+            var verificationCheckRequest = new VerificationCheckRequest
+            {
+                ApiKey = "35d603c1513f2567:",
+                Code = 655543,
+                UserId = "vineethk@exalture.com"
+
+            };
+
+            verificationCheckRequest.ApiKey = "35d603c1513f2567";
+
+            Assert.Equal(Convert.ToBase64String(Encoding.Default.GetBytes("35d603c1513f2567")),
+                verificationCheckRequest.Request.Headers.Authorization.Parameter);
+
+            Assert.Equal("https://api.sift.com/v1.1/verification/check",
+                         verificationCheckRequest.Request.RequestUri.ToString());
+        }
+
+        [Fact]
+        public void TestVerificationSendRequest()
+        {
+            var verificationSendRequest = new VerificationSendRequest
+            {
+                UserId = "vineethk@exalture.com",
+                ApiKey = "35d603c1513f2567:",
+                BrandName = "all",
+                VerificationType = "$email",
+                SendTo = "vineethk@exalture.com",
+                Language = "en",
+                Event = new VerificationSendEvent()
+                {
+                    Browser = new VerificationSendBrowser()
+                    {
+                        UserAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36"
+                    },
+                    IP = "192.168.1.1",
+                    Reason = "$automated_rule",
+                    SessionId = "gigtleqddo84l8cm15qe4il",
+                    VerifiedEvent = "$login"
+                }
+            };
+
+            verificationSendRequest.ApiKey = "35d603c1513f2567";
+
+            Assert.Equal(Convert.ToBase64String(Encoding.Default.GetBytes("35d603c1513f2567")),
+                verificationSendRequest.Request.Headers.Authorization.Parameter);
+
+            Assert.Equal("https://api.sift.com/v1.1/verification/send",
+                         verificationSendRequest.Request.RequestUri.ToString());
+        }
+
+        [Fact]
+        public void TestVerificationReSendRequest()
+        {
+            var verificationResendRequest = new VerificationReSendRequest
+            {
+
+
+                UserId = "vineethk@exalture.com",
+                ApiKey = "35d603c1513f2567:"
+
+
+            };
+
+            verificationResendRequest.ApiKey = "35d603c1513f2567";
+
+            Assert.Equal(Convert.ToBase64String(Encoding.Default.GetBytes("35d603c1513f2567")),
+                verificationResendRequest.Request.Headers.Authorization.Parameter);
+
+
+            Assert.Equal("https://api.sift.com/v1.1/verification/resend",
+                         verificationResendRequest.Request.RequestUri.ToString());
+        }
+
+
+        [Fact]
+        public void TestWebHookValidation()
+        {
+            String secretKey = "1d708fe409f22591";
+            String requestBody = "{\n" +
+                "  \"entity\": {\n" +
+                "    \"type\": \"user\",\n" +
+                "    \"id\": \"USER123\"\n" +
+                "  },\n" +
+                "  \"decision\": {\n" +
+                "    \"id\": \"block_user_payment_abuse\"\n" +
+                "  },\n" +
+                "  \"time\": 1461963439151\n" +
+                "}";
+            byte[] key = Encoding.ASCII.GetBytes("1d708fe409f22591");
+            HMACSHA1 myhmacsha1 = new HMACSHA1(key);
+            byte[] byteArray = Encoding.ASCII.GetBytes(requestBody);
+            MemoryStream stream = new MemoryStream(byteArray);
+            string signatureCore = myhmacsha1.ComputeHash(stream).Aggregate("", (s, e) => s + String.Format("{0:x2}", e), s => s);
+            String signature = "sha1=" + signatureCore;
+            WebhookValidator webhook = new WebhookValidator();
+            Assert.True(webhook.IsValidWebhook(requestBody, secretKey, signature));
+
+        }
+
+        [Fact]
+        public void TestWebHookValidationForInvalidSecretKey()
+        {
+            String secretKey = "1d708fe409f22591";
+            String requestBody = "{\n" +
+                "  \"entity\": {\n" +
+                "    \"type\": \"user\",\n" +
+                "    \"id\": \"USER123\"\n" +
+                "  },\n" +
+                "  \"decision\": {\n" +
+                "    \"id\": \"block_user_payment_abuse\"\n" +
+                "  },\n" +
+                "  \"time\": 1461963439151\n" +
+                "}";
+
+            WebhookValidator webhook = new WebhookValidator();
+            Assert.False(webhook.IsValidWebhook(requestBody, secretKey, "InValid Key"));
+
+
+        }
+
+        [Fact]
+        public void TestGetMerchantsRequest()
+        {
+            var getMerchantRequest = new GetMerchantsRequest
+            {
+                AccountId = "5f053f004025ca08a187fad6"
+            };
+
+            getMerchantRequest.ApiKey = "09f7f361575d11ff";
+
+            Assert.Equal("https://api.sift.com/v3/accounts/5f053f004025ca08a187fad6/psp_management/merchants",
+                         getMerchantRequest.Request.RequestUri.ToString());
+
+        }
+
+        [Fact]
+        public void TestCreateMerchantRequest()
+        {
+            var createMerchantRequest = new CreateMerchantRequest
+            {
+                AccountId = "5f053f004025ca08a187fad6",
+                ApiKey = "09f7f361575d11ff",
+                Id = "test-vineeth-5",
+                Name = "Wonderful Payments Inc",
+                Description = "Wonderful Payments payment provider",
+                Address = new MerchantAddress
+                {
+                    Name = "Alany",
+                    Address1 = "Big Payment blvd, 22",
+                    Address2 = "apt, 8",
+                    City = "New Orleans",
+                    Country = "US",
+                    Phone = "0394888320",
+                    Region = "NA",
+                    ZipCode = "76830"
+
+                },
+                Category = "1002",
+                ServiceLevel = "Platinum",
+                Status = "active",
+                RiskProfile = new MerchantRiskProfile
+                {
+                    Level = "low",
+                    Score = 10
+                }
+            };
+
+            createMerchantRequest.ApiKey = "09f7f361575d11ff";
+
+            Assert.Equal(Convert.ToBase64String(Encoding.Default.GetBytes("09f7f361575d11ff")),
+                createMerchantRequest.Request.Headers.Authorization.Parameter);
+
+
+            Assert.Equal("https://api.sift.com/v3/accounts/5f053f004025ca08a187fad6/psp_management/merchants",
+                         createMerchantRequest.Request.RequestUri.ToString());
+        }
+
+        [Fact]
+        public void TestUpdateMerchantRequest()
+        {
+            var updateMerchantRequest = new UpdateMerchantRequest
+            {
+                AccountId = "5f053f004025ca08a187fad6",
+                MerchantId = "test2",
+                ApiKey = "09f7f361575d11ff",
+                Id = "test-vineeth-5",
+                Name = "Wonderful Payments Inc",
+                Description = "Wonderful Payments payment provider",
+                Address = new MerchantAddress
+                {
+                    Name = "Alany",
+                    Address1 = "Big Payment blvd, 22",
+                    Address2 = "apt, 8",
+                    City = "New Orleans",
+                    Country = "US",
+                    Phone = "0394888320",
+                    Region = "NA",
+                    ZipCode = "76830"
+
+                },
+                Category = "1002",
+                ServiceLevel = "Platinum",
+                Status = "active",
+                RiskProfile = new MerchantRiskProfile
+                {
+                    Level = "low",
+                    Score = 10
+                }
+            };
+
+            updateMerchantRequest.ApiKey = "09f7f361575d11ff";
+
+            Assert.Equal(Convert.ToBase64String(Encoding.Default.GetBytes("09f7f361575d11ff")),
+                updateMerchantRequest.Request.Headers.Authorization.Parameter);
+
+            Assert.Equal("https://api.sift.com/v3/accounts/5f053f004025ca08a187fad6/psp_management/merchants/test2",
+                         updateMerchantRequest.Request.RequestUri.ToString());
+
+
+            Assert.Equal("{\"id\":\"test-vineeth-5\"," +
+                "\"name\":\"Wonderful Payments Inc\"," +
+                "\"description\":\"Wonderful Payments payment provider\"," +
+                "\"address\":{\"name\":\"Alany\"," +
+                    "\"address_1\":\"Big Payment blvd, 22\"," +
+                    "\"address_2\":\"apt, 8\"," +
+                    "\"city\":\"New Orleans\"," +
+                    "\"region\":\"NA\"," +
+                    "\"country\":\"US\"," +
+                    "\"zipcode\":\"76830\"," +
+                    "\"phone\":\"0394888320\"}," +
+                "\"category\":\"1002\"," +
+                "\"service_level\":\"Platinum\"," +
+                "\"status\":\"active\"," +
+                "\"risk_profile\":{\"level\":\"low\",\"score\":10}}",
+                               Newtonsoft.Json.JsonConvert.SerializeObject(updateMerchantRequest));
+
+        }
+
+        [Fact]
+        public void TestGetMerchantDetailsRequest()
+        {
+            var getMerchantDetailRequest = new GetMerchantDetailsRequest
+            {
+                AccountId = "5f053f004025ca08a187fad6",
+                MerchantId = "test-merchat-id",
+            };
+
+            getMerchantDetailRequest.ApiKey = "09f7f361575d11ff";
+
+            Assert.Equal(Convert.ToBase64String(Encoding.Default.GetBytes("09f7f361575d11ff")),
+                getMerchantDetailRequest.Request.Headers.Authorization.Parameter);
+
+            Assert.Equal("https://api.sift.com/v3/accounts/5f053f004025ca08a187fad6/psp_management/merchants/test-merchat-id",
+             getMerchantDetailRequest.Request.RequestUri.ToString());
         }
 
         [Fact]
