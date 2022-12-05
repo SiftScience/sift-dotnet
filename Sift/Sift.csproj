@@ -4,7 +4,7 @@
     <Authors>Sift, Gary Lee</Authors>
     <AssemblyTitle>Sift</AssemblyTitle>
     <AssemblyName>Sift</AssemblyName>
-    <VersionPrefix>0.10.0</VersionPrefix>
+    <VersionPrefix>0.10.1</VersionPrefix>
     <VersionSuffix>beta</VersionSuffix>
     <PackageReleaseNotes>Beta release</PackageReleaseNotes>
     <TargetFramework>netstandard2.0</TargetFramework>
@@ -20,7 +20,10 @@
 
   <ItemGroup>
     <Folder Include="Event\" />
+    <Folder Include="Core\" />
     <Folder Include="Exception\" />
+    <Folder Include="Request\" />
+    <Folder Include="Response\" />
     <Folder Include="Util\" />
   </ItemGroup>
 
