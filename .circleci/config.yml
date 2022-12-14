@@ -18,6 +18,4 @@ jobs:
       - run: ./build.sh --target=restore
       - run: ./build.sh --target=generate
       - run: ./build.sh --target=build
-      - store_artifacts:
-          path: ./build/
       - run: ./build.sh --target=test
