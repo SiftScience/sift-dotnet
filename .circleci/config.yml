@@ -19,5 +19,5 @@ jobs:
       - run: ./build.sh --target=generate
       - run: ./build.sh --target=build
       - store_artifacts:
-          path: ./build/
+          path: ./artifacts/
       - run: ./build.sh --target=test
