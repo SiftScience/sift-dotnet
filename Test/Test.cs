@@ -38,13 +38,15 @@ namespace Test
         [Fact]
         public void TestEventRequest()
         {
+            //Please provide the valid session id in place of 'sessionId'
+            var sessionId = "sessionId";
             var createOrder = new CreateOrder
             {
                 user_id = "test_dotnet_booking_with_all_fields",
                 order_id = "oid",
                 amount = 1000000000000L,
                 currency_code = "USD",
-                session_id = "gigtleqddo84l8cm15qe4il",
+                session_id = sessionId,
                 user_email = "bill@gmail.com",
                 bookings = new ObservableCollection<Booking>()
                 {
@@ -160,7 +162,7 @@ namespace Test
             // Augment with custom fields
             createOrder.AddField("foo", "bar");
             Assert.Equal("{\"$type\":\"$create_order\",\"$user_id\":\"test_dotnet_booking_with_all_fields\"," +
-                         "\"$session_id\":\"gigtleqddo84l8cm15qe4il\",\"$order_id\":\"oid\",\"$user_email\":\"bill@gmail.com\"," +
+                         "\"$session_id\":\"sessionId\",\"$order_id\":\"oid\",\"$user_email\":\"bill@gmail.com\"," +
                          "\"$amount\":1000000000000,\"$currency_code\":\"USD\",\"$billing_address\":{\"$name\":\"gary\",\"$city\":\"san francisco\"}," +
                          "\"$bookings\":[{\"$booking_type\":\"$flight\",\"$title\":\"SFO - LAS, 2 Adults\",\"$start_time\":2038412903," +
                          "\"$end_time\":2038412903,\"$price\":49900000,\"$currency_code\":\"USD\",\"$quantity\":1,\"$guests\":[{\"$name\":\"John Doe\"," +
@@ -225,13 +227,15 @@ namespace Test
         [Fact]
         public void TestEventWithBrowser()
         {
+            //Please provide the valid session id in place of 'sessionId'
+            var sessionId = "sessionId";
             var createOrder = new CreateOrder
             {
                 user_id = "test_dotnet_browser_field",
                 order_id = "oid",
                 amount = 1000000000000L,
                 currency_code = "USD",
-                session_id = "gigtleqddo84l8cm15qe4il",
+                session_id = sessionId,
                 user_email = "bill@gmail.com",
                 browser = new Browser
                 {
@@ -243,7 +247,7 @@ namespace Test
 
             // Augment with custom fields
             createOrder.AddField("foo", "bar");
-            Assert.Equal("{\"$type\":\"$create_order\",\"$user_id\":\"test_dotnet_browser_field\",\"$session_id\":\"gigtleqddo84l8cm15qe4il\"," +
+            Assert.Equal("{\"$type\":\"$create_order\",\"$user_id\":\"test_dotnet_browser_field\",\"$session_id\":\"sessionId\"," +
                          "\"$order_id\":\"oid\",\"$user_email\":\"bill@gmail.com\",\"$amount\":1000000000000,\"$currency_code\":\"USD\"," +
                          "\"$browser\":{\"$user_agent\":\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36\"," +
                          "\"$accept_language\":\"en-US\",\"$content_language\":\"en-GB\"},\"foo\":\"bar\"}",
@@ -271,12 +275,14 @@ namespace Test
         [Fact]
         public void TestTransactionEvent()
         {
+            //Please provide the valid session id in place of 'sessionId'
+            var sessionId = "sessionId";
             var transaction = new Transaction
             {
                 user_id = "test_dotnet_transaction_event",
                 amount = 1000000000000L,
                 currency_code = "USD",
-                session_id = "gigtleqddo84l8cm15qe4il",
+                session_id = sessionId,
                 transaction_type = "$sale",
                 transaction_status = "$failure",
                 decline_category = "$invalid"
@@ -284,7 +290,7 @@ namespace Test
 
             // Augment with custom fields
             transaction.AddField("foo", "bar");
-            Assert.Equal("{\"$type\":\"$transaction\",\"$user_id\":\"test_dotnet_transaction_event\",\"$session_id\":\"gigtleqddo84l8cm15qe4il\"," +
+            Assert.Equal("{\"$type\":\"$transaction\",\"$user_id\":\"test_dotnet_transaction_event\",\"$session_id\":\"sessionId\"," +
                                  "\"$transaction_type\":\"$sale\",\"$transaction_status\":\"$failure\",\"$amount\":1000000000000,\"$currency_code\":\"USD\"," +
                                  "\"$decline_category\":\"$invalid\",\"foo\":\"bar\"}", transaction.ToJson());
 
@@ -309,10 +315,12 @@ namespace Test
         [Fact]
         public void TestCreateOrderEventWithSepaPaymentMethodFields()
         {
+            //Please provide the valid session id in place of 'sessionId'
+            var sessionId = "sessionId";
             var createOrder = new CreateOrder
             {
                 user_id = "test_dotnet_sepa_payment_method_fields",
-                session_id = "gigtleqddo84l8cm15qe4il",
+                session_id = sessionId,
                 order_id = "12345",
                 payment_methods = new ObservableCollection<PaymentMethod>()
                 {
@@ -328,7 +336,7 @@ namespace Test
 
             // Augment with custom fields
             createOrder.AddField("foo", "bar");
-            Assert.Equal("{\"$type\":\"$create_order\",\"$user_id\":\"test_dotnet_sepa_payment_method_fields\",\"$session_id\":\"gigtleqddo84l8cm15qe4il\"," +
+            Assert.Equal("{\"$type\":\"$create_order\",\"$user_id\":\"test_dotnet_sepa_payment_method_fields\",\"$session_id\":\"sessionId\"," +
                                  "\"$order_id\":\"12345\",\"$payment_methods\":[{\"$payment_type\":\"$sepa_instant_credit\",\"$shortened_iban_first6\":\"FR7630\"," +
                                  "\"$shortened_iban_last4\":\"1234\",\"$sepa_direct_debit_mandate\":true}],\"foo\":\"bar\"}",
                                  createOrder.ToJson());
@@ -354,10 +362,12 @@ namespace Test
         [Fact]
         public void TestCreateOrderEventWithMerchantProfileField()
         {
+            //Please provide the valid session id in place of 'sessionId'
+            var sessionId = "sessionId";
             var createOrder = new CreateOrder
             {
                 user_id = "test_dotnet_merchant_profile_field",
-                session_id = "gigtleqddo84l8cm15qe4il",
+                session_id = sessionId,
                 order_id = "12345",
                 payment_methods = new ObservableCollection<PaymentMethod>()
                 {
@@ -390,7 +400,7 @@ namespace Test
 
             // Augment with custom fields
             createOrder.AddField("foo", "bar");
-            Assert.Equal("{\"$type\":\"$create_order\",\"$user_id\":\"test_dotnet_merchant_profile_field\",\"$session_id\":\"gigtleqddo84l8cm15qe4il\"," +
+            Assert.Equal("{\"$type\":\"$create_order\",\"$user_id\":\"test_dotnet_merchant_profile_field\",\"$session_id\":\"sessionId\"," +
                                  "\"$order_id\":\"12345\",\"$payment_methods\":[{\"$payment_type\":\"$sepa_instant_credit\",\"$shortened_iban_first6\":\"FR7630\"," +
                                  "\"$shortened_iban_last4\":\"1234\",\"$sepa_direct_debit_mandate\":true}],\"$merchant_profile\":{\"$merchant_id\":\"123\"," +
                                  "\"$merchant_category_code\":\"9876\",\"$merchant_name\":\"ABC Merchant\",\"$merchant_address\":{\"$name\":\"Bill Jones\"," +
@@ -419,12 +429,14 @@ namespace Test
         [Fact]
         public void TestTransactionEventWithFintechFields()
         {
+            //Please provide the valid session id in place of 'sessionId'
+            var sessionId = "sessionId";
             var transaction = new Transaction
             {
                 user_id = "test_dotnet_transaction_event",
                 amount = 1000000000000L,
                 currency_code = "USD",
-                session_id = "gigtleqddo84l8cm15qe4il",
+                session_id = sessionId,
                 transaction_type = "$sale",
                 transaction_status = "$failure",
                 decline_category = "$invalid",
@@ -478,7 +490,7 @@ namespace Test
                 triggered_3ds = "$processor",
                 merchant_initiated_transaction = true
             };
-            Assert.Equal("{\"$type\":\"$transaction\",\"$user_id\":\"test_dotnet_transaction_event\",\"$session_id\":\"gigtleqddo84l8cm15qe4il\"," +
+            Assert.Equal("{\"$type\":\"$transaction\",\"$user_id\":\"test_dotnet_transaction_event\",\"$session_id\":\"sessionId\"," +
                                  "\"$transaction_type\":\"$sale\",\"$transaction_status\":\"$failure\",\"$amount\":1000000000000,\"$currency_code\":\"USD\"," +
                                  "\"$payment_method\":{\"$payment_type\":\"$sepa_instant_credit\",\"$shortened_iban_first6\":\"FR7630\"," +
                                  "\"$shortened_iban_last4\":\"1234\",\"$sepa_direct_debit_mandate\":true},\"$decline_category\":\"$invalid\"," +
@@ -513,10 +525,12 @@ namespace Test
         [Fact]
         public void TestCreateOrderEventWithWirePaymentMethod()
         {
+            //Please provide the valid session id in place of 'sessionId'
+            var sessionId = "sessionId";
             var createOrder = new CreateOrder
             {
                 user_id = "test_dotnet_wire_payment_methods",
-                session_id = "gigtleqddo84l8cm15qe4il",
+                session_id = sessionId,
                 order_id = "12345",
                 payment_methods = new ObservableCollection<PaymentMethod>()
             {
@@ -534,7 +548,7 @@ namespace Test
 
             // Augment with custom fields
             createOrder.AddField("foo", "bar");
-            Assert.Equal("{\"$type\":\"$create_order\",\"$user_id\":\"test_dotnet_wire_payment_methods\",\"$session_id\":\"gigtleqddo84l8cm15qe4il\"," +
+            Assert.Equal("{\"$type\":\"$create_order\",\"$user_id\":\"test_dotnet_wire_payment_methods\",\"$session_id\":\"sessionId\"," +
                                  "\"$order_id\":\"12345\",\"$payment_methods\":[{\"$payment_type\":\"$wire_credit\",\"$routing_number\":\"CHASUS33XX\"," +
                                  "\"$account_number_last5\":\"12345\",\"$account_holder_name\":\"John Doe\",\"$bank_name\":\"Chase\",\"$bank_country\":\"US\"}],\"foo\":\"bar\"}",
                                  createOrder.ToJson());
@@ -585,6 +599,8 @@ namespace Test
         {
             //Please provide the valid api key in place of 'key'
             var apiKey = "key";
+            //Please provide the valid session id in place of 'sessionId'
+            var sessionId = "sessionId";
             var verificationSendRequest = new VerificationSendRequest
             {
                 UserId = "vineethk@exalture.com",
@@ -601,7 +617,7 @@ namespace Test
                     },
                     IP = "192.168.1.1",
                     Reason = "$automated_rule",
-                    SessionId = "gigtleqddo84l8cm15qe4il",
+                    SessionId = sessionId,
                     VerifiedEvent = "$login"
                 }
             };
@@ -838,10 +854,12 @@ namespace Test
         [Fact]
         public void TestChargebackEvent()
         {
+            //Please provide the valid session id in place of 'sessionId'
+            var sessionId = "sessionId";
             var chargeback = new Chargeback
             {
                 user_id = "test_dotnet_chargeback_event",
-                session_id = "gigtleqddo84l8cm15qe4il",
+                session_id = sessionId,
                 transaction_id = "719637215",
                 order_id = "ORDER-123124124",
                 chargeback_state = "$lost",
@@ -868,7 +886,7 @@ namespace Test
 
             // Augment with custom fields
             chargeback.AddField("foo", "bar");
-            Assert.Equal("{\"$type\":\"$chargeback\",\"$user_id\":\"test_dotnet_chargeback_event\",\"$session_id\":\"gigtleqddo84l8cm15qe4il\"," +
+            Assert.Equal("{\"$type\":\"$chargeback\",\"$user_id\":\"test_dotnet_chargeback_event\",\"$session_id\":\"sessionId\"," +
                                  "\"$order_id\":\"ORDER-123124124\",\"$transaction_id\":\"719637215\",\"$chargeback_state\":\"$lost\",\"$chargeback_reason\":\"$duplicate\"," +
                                  "\"$merchant_profile\":{\"$merchant_id\":\"123\",\"$merchant_category_code\":\"9876\",\"$merchant_name\":\"ABC Merchant\",\"$merchant_address\":" +
                                  "{\"$name\":\"Bill Jones\",\"$address_1\":\"2100 Main Street\",\"$address_2\":\"Apt 3B\",\"$city\":\"New London\",\"$region\":\"New Hampshire\"," +
@@ -896,10 +914,12 @@ namespace Test
         [Fact]
         public void TestCreateAccountEvent()
         {
+            //Please provide the valid session id in place of 'sessionId'
+            var sessionId = "sessionId";
             var createAccount = new CreateAccount
             {
                 user_id = "test_dotnet_create_account_event",
-                session_id = "gigtleqddo84l8cm15qe4il",
+                session_id = sessionId,
                 user_email = "bill@gmail.com",
                 name = "Bill Jones",
                 referrer_user_id = "janejane101",
@@ -927,7 +947,7 @@ namespace Test
             // Augment with custom fields
             createAccount.AddField("foo", "bar");
 
-            Assert.Equal("{\"$type\":\"$create_account\",\"$user_id\":\"test_dotnet_create_account_event\",\"$session_id\":\"gigtleqddo84l8cm15qe4il\"," +
+            Assert.Equal("{\"$type\":\"$create_account\",\"$user_id\":\"test_dotnet_create_account_event\",\"$session_id\":\"sessionId\"," +
                                  "\"$user_email\":\"bill@gmail.com\",\"$name\":\"Bill Jones\",\"$referrer_user_id\":\"janejane101\",\"$social_sign_on_type\":" +
                                  "\"$twitter\",\"$merchant_profile\":{\"$merchant_id\":\"123\",\"$merchant_category_code\":\"9876\",\"$merchant_name\":\"ABC Merchant\"," +
                                  "\"$merchant_address\":{\"$name\":\"Bill Jones\",\"$address_1\":\"2100 Main Street\",\"$address_2\":\"Apt 3B\",\"$city\":\"New London\"," +
@@ -956,10 +976,12 @@ namespace Test
         [Fact]
         public void TestUpdateAccountEvent()
         {
+            //Please provide the valid session id in place of 'sessionId'
+            var sessionId = "sessionId";
             var updateAccount = new UpdateAccount
             {
                 user_id = "test_dotnet_update_account_event",
-                session_id = "gigtleqddo84l8cm15qe4il",
+                session_id = sessionId,
                 user_email = "bill@gmail.com",
                 name = "Bill Jones",
                 referrer_user_id = "janejane101",
@@ -987,7 +1009,7 @@ namespace Test
             // Augment with custom fields
             updateAccount.AddField("foo", "bar");
 
-            Assert.Equal("{\"$type\":\"$update_account\",\"$user_id\":\"test_dotnet_update_account_event\",\"$session_id\":\"gigtleqddo84l8cm15qe4il\"," +
+            Assert.Equal("{\"$type\":\"$update_account\",\"$user_id\":\"test_dotnet_update_account_event\",\"$session_id\":\"sessionId\"," +
                                  "\"$user_email\":\"bill@gmail.com\",\"$name\":\"Bill Jones\",\"$referrer_user_id\":\"janejane101\",\"$social_sign_on_type\":" +
                                  "\"$twitter\",\"$merchant_profile\":{\"$merchant_id\":\"123\",\"$merchant_category_code\":\"9876\",\"$merchant_name\":\"ABC Merchant\"," +
                                  "\"$merchant_address\":{\"$name\":\"Bill Jones\",\"$address_1\":\"2100 Main Street\",\"$address_2\":\"Apt 3B\",\"$city\":" +
@@ -1016,10 +1038,12 @@ namespace Test
         [Fact]
         public void TestLoginEvent()
         {
+            //Please provide the valid session id in place of 'sessionId'
+            var sessionId = "sessionId";
             var login = new Login
             {
                 user_id = "test_dotnet_login_event",
-                session_id = "gigtleqddo84l8cm15qe4il",
+                session_id = sessionId,
                 user_email = "bill@gmail.com",
                 login_status = "$success",
                 ip = "128.148.1.135",
@@ -1039,7 +1063,7 @@ namespace Test
                 account_types = new ObservableCollection<string>() { "merchant", "premium" }
             };
 
-            Assert.Equal("{\"$type\":\"$login\",\"$user_id\":\"test_dotnet_login_event\",\"$session_id\":\"gigtleqddo84l8cm15qe4il\"," +
+            Assert.Equal("{\"$type\":\"$login\",\"$user_id\":\"test_dotnet_login_event\",\"$session_id\":\"sessionId\"," +
                                  "\"$user_email\":\"bill@gmail.com\",\"$login_status\":\"$success\",\"$failure_reason\":\"$account_unknown\"," +
                                  "\"$social_sign_on_type\":\"$facebook\",\"$username\":\"test_user_name\",\"$ip\":\"128.148.1.135\",\"$browser\":" +
                                  "{\"$user_agent\":\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) " +
