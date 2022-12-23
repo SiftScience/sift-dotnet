@@ -562,13 +562,14 @@ namespace Test
         {
             var verificationCheckRequest = new VerificationCheckRequest
             {
-                ApiKey = "35d603c1513f2567:",
+                //Please provide the valid api key in place of 'key'
+                ApiKey = "key",
                 Code = 655543,
                 UserId = "vineethk@exalture.com"
 
             };
-
-            verificationCheckRequest.ApiKey = "35d603c1513f2567";
+            //Please provide the valid api key in place of 'key'
+            verificationCheckRequest.ApiKey = "key";
 
             Assert.Equal(Convert.ToBase64String(Encoding.Default.GetBytes("35d603c1513f2567")),
                 verificationCheckRequest.Request.Headers.Authorization.Parameter);
@@ -580,10 +581,11 @@ namespace Test
         [Fact]
         public void TestVerificationSendRequest()
         {
+            //Please provide the valid api key in place of 'key'
             var verificationSendRequest = new VerificationSendRequest
             {
                 UserId = "vineethk@exalture.com",
-                ApiKey = "35d603c1513f2567:",
+                ApiKey = "key",
                 BrandName = "all",
                 VerificationType = "$email",
                 SendTo = "vineethk@exalture.com",
@@ -600,8 +602,8 @@ namespace Test
                     VerifiedEvent = "$login"
                 }
             };
-
-            verificationSendRequest.ApiKey = "35d603c1513f2567";
+            //Please provide the valid api key in place of 'key'
+            verificationSendRequest.ApiKey = "key";
 
             Assert.Equal(Convert.ToBase64String(Encoding.Default.GetBytes("35d603c1513f2567")),
                 verificationSendRequest.Request.Headers.Authorization.Parameter);
@@ -613,17 +615,18 @@ namespace Test
         [Fact]
         public void TestVerificationReSendRequest()
         {
+            //Please provide the valid api key in place of 'key'
             var verificationResendRequest = new VerificationReSendRequest
             {
 
 
                 UserId = "vineethk@exalture.com",
-                ApiKey = "35d603c1513f2567:"
+                ApiKey = "key"
 
 
             };
-
-            verificationResendRequest.ApiKey = "35d603c1513f2567";
+            //Please provide the valid api key in place of 'key'
+            verificationResendRequest.ApiKey = "key";
 
             Assert.Equal(Convert.ToBase64String(Encoding.Default.GetBytes("35d603c1513f2567")),
                 verificationResendRequest.Request.Headers.Authorization.Parameter);
@@ -637,7 +640,8 @@ namespace Test
         [Fact]
         public void TestWebHookValidation()
         {
-            String secretKey = "1d708fe409f22591";
+            //Please provide the valid secret key in place of 'key'
+            String secretKey = "key";
             String requestBody = "{\n" +
                 "  \"entity\": {\n" +
                 "    \"type\": \"user\",\n" +
@@ -648,7 +652,8 @@ namespace Test
                 "  },\n" +
                 "  \"time\": 1461963439151\n" +
                 "}";
-            byte[] key = Encoding.ASCII.GetBytes("1d708fe409f22591");
+            //Please provide the valid secret key in place of 'key'
+            byte[] key = Encoding.ASCII.GetBytes("key");
             HMACSHA1 myhmacsha1 = new HMACSHA1(key);
             byte[] byteArray = Encoding.ASCII.GetBytes(requestBody);
             MemoryStream stream = new MemoryStream(byteArray);
@@ -662,7 +667,8 @@ namespace Test
         [Fact]
         public void TestWebHookValidationForInvalidSecretKey()
         {
-            String secretKey = "1d708fe409f22591";
+            //Please provide the secret api key in place of 'key'
+            String secretKey = "key";
             String requestBody = "{\n" +
                 "  \"entity\": {\n" +
                 "    \"type\": \"user\",\n" +
@@ -683,12 +689,13 @@ namespace Test
         [Fact]
         public void TestGetMerchantsRequest()
         {
+            //Please provide the valid account id in place of 'accountId'
             var getMerchantRequest = new GetMerchantsRequest
             {
-                AccountId = "5f053f004025ca08a187fad6"
+                AccountId = "accountId"
             };
-
-            getMerchantRequest.ApiKey = "09f7f361575d11ff";
+            //Please provide the valid api key in place of 'key'
+            getMerchantRequest.ApiKey = "key";
 
             Assert.Equal("https://api.sift.com/v3/accounts/5f053f004025ca08a187fad6/psp_management/merchants",
                          getMerchantRequest.Request.RequestUri.ToString());
@@ -698,10 +705,12 @@ namespace Test
         [Fact]
         public void TestCreateMerchantRequest()
         {
+            //Please provide the valid account id in place of 'accountId'
+            //Please provide the valid api key in place of 'key'
             var createMerchantRequest = new CreateMerchantRequest
             {
-                AccountId = "5f053f004025ca08a187fad6",
-                ApiKey = "09f7f361575d11ff",
+                AccountId = "accountId",
+                ApiKey = "key",
                 Id = "test-vineeth-5",
                 Name = "Wonderful Payments Inc",
                 Description = "Wonderful Payments payment provider",
@@ -726,8 +735,8 @@ namespace Test
                     Score = 10
                 }
             };
-
-            createMerchantRequest.ApiKey = "09f7f361575d11ff";
+            //Please provide the valid api key in place of 'key'
+            createMerchantRequest.ApiKey = "key";
 
             Assert.Equal(Convert.ToBase64String(Encoding.Default.GetBytes("09f7f361575d11ff")),
                 createMerchantRequest.Request.Headers.Authorization.Parameter);
@@ -740,11 +749,13 @@ namespace Test
         [Fact]
         public void TestUpdateMerchantRequest()
         {
+            //Please provide the valid account id in place of 'accountId'
+            //Please provide the valid api key in place of 'key'
             var updateMerchantRequest = new UpdateMerchantRequest
             {
-                AccountId = "5f053f004025ca08a187fad6",
+                AccountId = "accountId",
                 MerchantId = "test2",
-                ApiKey = "09f7f361575d11ff",
+                ApiKey = "key",
                 Id = "test-vineeth-5",
                 Name = "Wonderful Payments Inc",
                 Description = "Wonderful Payments payment provider",
@@ -769,8 +780,8 @@ namespace Test
                     Score = 10
                 }
             };
-
-            updateMerchantRequest.ApiKey = "09f7f361575d11ff";
+            //Please provide the valid api key in place of 'key'
+            updateMerchantRequest.ApiKey = "key";
 
             Assert.Equal(Convert.ToBase64String(Encoding.Default.GetBytes("09f7f361575d11ff")),
                 updateMerchantRequest.Request.Headers.Authorization.Parameter);
@@ -801,13 +812,14 @@ namespace Test
         [Fact]
         public void TestGetMerchantDetailsRequest()
         {
+            //Please provide the valid account id in place of 'accountId'
             var getMerchantDetailRequest = new GetMerchantDetailsRequest
             {
-                AccountId = "5f053f004025ca08a187fad6",
+                AccountId = "accountId",
                 MerchantId = "test-merchat-id",
             };
-
-            getMerchantDetailRequest.ApiKey = "09f7f361575d11ff";
+            //Please provide the valid api key in place of 'key'
+            getMerchantDetailRequest.ApiKey = "key";
 
             Assert.Equal(Convert.ToBase64String(Encoding.Default.GetBytes("09f7f361575d11ff")),
                 getMerchantDetailRequest.Request.Headers.Authorization.Parameter);
