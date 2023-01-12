@@ -1,0 +1,29 @@
+name: publishing2NuGet
+
+on:
+  workflow_dispatch: 
+  release:
+    types: [published]
+    
+jobs:
+  build:
+    env:
+      SOLUTION: 'Sift.sln'
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup NuGet
+      uses: NuGet/setup-nuget@v1.0.5
+    - name: Restore dependencies
+      run: nuget restore $SOLUTION
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 2.x.x
+    - name: Build
+      run: |
+        dotnet --info  
+        echo $GITHUB_REF_NAME
+        bash -x ./build.sh --target=pack
+    - name: Publish
+      run: nuget push artifacts\Sift*.nupkg -Source 'https://api.nuget.org/v3/index.json' -ApiKey ${{secrets.NUGET_API_KEY}}
