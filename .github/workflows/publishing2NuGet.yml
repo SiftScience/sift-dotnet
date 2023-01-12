@@ -1,7 +1,6 @@
 name: publishing2NuGet
 
 on:
-  workflow_dispatch: 
   release:
     types: [published]
     
