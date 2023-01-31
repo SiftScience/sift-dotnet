@@ -15,13 +15,13 @@
       "type": [ "string", "null" ]
     },
     "$order_id": {
-      "type": ["string", "null"]
+      "type": [ "string", "null" ]
     },
     "$user_email": {
       "type": [ "string", "null" ]
     },
     "$amount": {
-      "type": ["integer", "null"],
+      "type": [ "integer", "null" ],
       "format": "long"
     },
     "$currency_code": {
@@ -51,8 +51,8 @@
       "items": { "$ref": "ComplexTypes/item.json" }
     },
     "$bookings": {
-        "type": [ "array", "null" ],
-        "items": { "$ref": "ComplexTypes/booking.json" }
+      "type": [ "array", "null" ],
+      "items": { "$ref": "ComplexTypes/booking.json" }
     },
     "$seller_user_id": {
       "type": [ "string", "null" ]
@@ -71,10 +71,10 @@
       ]
     },
     "$browser": {
-        "oneOf": [
-          { "$ref": "ComplexTypes/browser.json" },
-          { "type": "null" }
-        ]
+      "oneOf": [
+        { "$ref": "ComplexTypes/browser.json" },
+        { "type": "null" }
+      ]
     },
     "$brand_name": {
       "type": [ "string", "null" ]
@@ -96,6 +96,10 @@
     },
     "$verification_phone_number": {
       "type": [ "string", "null" ]
+    },
+    "$digital_orders": {
+      "type": [ "array", "null" ],
+      "items": { "$ref": "ComplexTypes/digital_order.json" }
     }
   }
 }

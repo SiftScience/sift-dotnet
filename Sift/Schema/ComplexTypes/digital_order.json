@@ -1,0 +1,22 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema",
+  "title": "DigitalOrder",
+  "type": "object",
+  "properties": {
+    "$digital_asset": {
+      "type": [ "string", "null" ]
+    },
+    "$pair": {
+      "type": [ "string", "null" ]
+    },
+    "$asset_type": {
+      "type": [ "string", "null" ]
+    },
+    "$order_type": {
+      "type": [ "string", "null" ]
+    },
+    "$volume": {
+      "type": [ "string", "null" ]
+    }
+  }
+}
