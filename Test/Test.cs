@@ -344,6 +344,9 @@ namespace Test
                         volume="6.0"
                     }
                 },
+                receiver_wallet_address= "jx17gVqSyo9m4MrhuhuYEUXdCicdof85Bl",
+                receiver_external_address= true
+
             };
 
             // Augment with custom fields
@@ -371,6 +374,8 @@ namespace Test
             "      \"$volume\"        : \"6.0\",\n" +
             "    }\n" +
             "  ],\n" +
+            "  \"$receiver_wallet_address\"   : \"jx17gVqSyo9m4MrhuhuYEUXdCicdof85Bl\",\n" +
+            "  \"$receiver_external_address\" : true,\n" +
             "}", transaction.ToJson());
 
             EventRequest eventRequest = new EventRequest

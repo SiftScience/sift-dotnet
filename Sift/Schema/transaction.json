@@ -121,6 +121,12 @@
       "type": [ "array", "null" ],
       "items": { "$ref": "ComplexTypes/digital_order.json" }
     },
+    "$receiver_wallet_address": {
+      "type": [ "string", "null" ]
+    },
+    "$receiver_external_address": {
+      "type": [ "boolean", "null" ]
+    },
     "$keyless_user_id": {
       "type": [ "string", "null" ]
     },
