@@ -92,10 +92,14 @@
       ]
     },
     "$merchant_profile": {
-        "oneOf": [
-            { "$ref": "ComplexTypes/merchant_profile.json" },
-            { "type": "null" }
-        ]
+      "oneOf": [
+        { "$ref": "ComplexTypes/merchant_profile.json" },
+        { "type": "null" }
+      ]
+    },
+    "$digital_orders": {
+      "type": [ "array", "null" ],
+      "items": { "$ref": "ComplexTypes/digital_order.json" }
     },
     "$keyless_user_id": {
       "type": [ "string", "null" ]

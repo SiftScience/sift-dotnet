@@ -24,7 +24,7 @@
       "type": [ "string", "null" ]
     },
     "$amount": {
-      "type": ["integer", "null"],
+      "type": [ "integer", "null" ],
       "format": "long"
     },
     "$currency_code": {
@@ -91,31 +91,41 @@
       "type": [ "string", "null" ]
     },
     "$sent_address": {
-        "oneOf": [
-            { "$ref": "ComplexTypes/address.json" },
-            { "type": "null" }
-        ]
+      "oneOf": [
+        { "$ref": "ComplexTypes/address.json" },
+        { "type": "null" }
+      ]
     },
     "$received_address": {
-        "oneOf": [
-            { "$ref": "ComplexTypes/address.json" },
-            { "type": "null" }
-        ]
+      "oneOf": [
+        { "$ref": "ComplexTypes/address.json" },
+        { "type": "null" }
+      ]
     },
     "$status_3ds": {
-        "type": [ "string", "null" ]
+      "type": [ "string", "null" ]
     },
     "$triggered_3ds": {
-        "type": [ "string", "null" ]
+      "type": [ "string", "null" ]
     },
     "$merchant_initiated_transaction": {
-        "type": [ "boolean", "null" ]
+      "type": [ "boolean", "null" ]
     },
     "$merchant_profile": {
-        "oneOf": [
-            { "$ref": "ComplexTypes/merchant_profile.json" },
-            { "type": "null" }
-        ]
+      "oneOf": [
+        { "$ref": "ComplexTypes/merchant_profile.json" },
+        { "type": "null" }
+      ]
+    },
+    "$digital_orders": {
+      "type": [ "array", "null" ],
+      "items": { "$ref": "ComplexTypes/digital_order.json" }
+    },
+    "$receiver_wallet_address": {
+      "type": [ "string", "null" ]
+    },
+    "$receiver_external_address": {
+      "type": [ "boolean", "null" ]
     },
     "$keyless_user_id": {
       "type": [ "string", "null" ]

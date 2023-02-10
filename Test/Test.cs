@@ -313,6 +313,90 @@ namespace Test
         }
 
         [Fact]
+        public void TestTransactionEventWithCryptoFields()
+        {
+            //Please provide the valid session id in place of 'sessionId'
+            var sessionId = "sessionId";
+            var transaction = new Transaction
+            {
+                user_id = "test_dotnet_transaction_event",
+                amount = 1000000000000L,
+                currency_code = "USD",
+                session_id = sessionId,
+                transaction_type = "$sale",
+                transaction_status = "$failure",
+                payment_methods = new ObservableCollection<PaymentMethod>()
+                {
+                    new PaymentMethod
+                    {
+                        wallet_address = "ZplYVmchAoywfMvC8jCiKlBLfKSBiFtHU6",
+                        wallet_type = "$crypto"
+                    }
+                },
+                digital_orders = new ObservableCollection<DigitalOrder>()
+                {
+                    new DigitalOrder
+                    {
+                        digital_asset="BTC",
+                        pair="BTC_USD",
+                        asset_type="$crypto",
+                        order_type="$market",
+                        volume="6.0"
+                    }
+                },
+                receiver_wallet_address= "jx17gVqSyo9m4MrhuhuYEUXdCicdof85Bl",
+                receiver_external_address= true
+
+            };
+
+            // Augment with custom fields
+            transaction.AddField("foo", "bar");
+            Assert.Equal("{\n" +
+            "  \"$type\"             : \"$transaction\",\n" +
+            "  \"$api_key\"          : \"YOUR_API_KEY\",\n" +
+            "  \"$user_id\"          : \"billy_jones_301\",\n" +
+            "  \"$amount\"           : 506790000,\n" +
+            "  \"$currency_code\"    : \"USD\",\n" +
+            "  \"$session_id\":\"sessionId\"," +
+            "  \"$transaction_type\" : \"$buy\",\n" +
+            "  \"$transaction_id\"   : \"719637215\",\n" +
+            "\n" +
+            "  \"$payment_method\"   : {\n" +
+            "      \"$wallet_address\" : \"ZplYVmchAoywfMvC8jCiKlBLfKSBiFtHU6\",\n" +
+            "      \"$wallet_type\"    : \"$crypto\",\n" +
+            "  },\n" +
+            "  \"$digital_orders\" : [\n" +
+            "    {\n" +
+            "      \"$digital_asset\" : \"BTC\",\n" +
+            "      \"$pair\"          : \"BTC_USD\",\n" +
+            "      \"$asset_type\"    : \"$crypto\",\n" +
+            "      \"$order_type\"    : \"$market\",\n" +
+            "      \"$volume\"        : \"6.0\",\n" +
+            "    }\n" +
+            "  ],\n" +
+            "  \"$receiver_wallet_address\"   : \"jx17gVqSyo9m4MrhuhuYEUXdCicdof85Bl\",\n" +
+            "  \"$receiver_external_address\" : true,\n" +
+            "}", transaction.ToJson());
+
+            EventRequest eventRequest = new EventRequest
+            {
+                Event = transaction
+            };
+
+            Assert.Equal("https://api.sift.com/v205/events", eventRequest.Request.RequestUri.ToString());
+
+            eventRequest = new EventRequest
+            {
+                Event = transaction,
+                AbuseTypes = { "legacy", "payment_abuse" },
+                ReturnScore = true
+            };
+
+            Assert.Equal("https://api.sift.com/v205/events?abuse_types=legacy,payment_abuse&return_score=true",
+                          Uri.UnescapeDataString(eventRequest.Request.RequestUri.ToString()));
+        }
+
+        [Fact]
         public void TestCreateOrderEventWithSepaPaymentMethodFields()
         {
             //Please provide the valid session id in place of 'sessionId'
@@ -418,6 +502,148 @@ namespace Test
             eventRequest = new EventRequest
             {
                 Event = createOrder,
+                AbuseTypes = { "legacy", "payment_abuse" },
+                ReturnScore = true
+            };
+
+            Assert.Equal("https://api.sift.com/v205/events?abuse_types=legacy,payment_abuse&return_score=true",
+                          Uri.UnescapeDataString(eventRequest.Request.RequestUri.ToString()));
+        }
+
+        [Fact]
+        public void TestCreateOrderEventWithCryptoFields()
+        {
+            //Please provide the valid session id in place of 'sessionId'
+            var sessionId = "sessionId";
+            var createOrder = new CreateOrder
+            {
+                user_id = "test_dotnet_merchant_profile_field",
+                session_id = sessionId,
+                order_id = "12345",
+                payment_methods = new ObservableCollection<PaymentMethod>()
+                {
+                    new PaymentMethod
+                    {
+                        wallet_address = "ZplYVmchAoywfMvC8jCiKlBLfKSBiFtHU6",
+                        wallet_type = "$crypto"
+                    }
+                },
+                digital_orders = new ObservableCollection<DigitalOrder>()
+                {
+                    new DigitalOrder
+                    {
+                        digital_asset="BTC",
+                        pair="BTC_USD",
+                        asset_type="$crypto",
+                        order_type="$market",
+                        volume="6.0"
+                    }
+                },
+
+            };
+
+            // Augment with custom fields
+            createOrder.AddField("foo", "bar");
+            Assert.Equal("{\"$type\":\"$create_order\",\"$user_id\":\"test_dotnet_merchant_profile_field\",\"$session_id\":\"sessionId\"," +
+            "\"$order_id\":\"12345\"," +
+            "\"$payment_methods\": [\n" +
+            "    {\n" +
+            "      \"$wallet_address\": \"ZplYVmchAoywfMvC8jCiKlBLfKSBiFtHU6\",\n" +
+            "      \"$wallet_type\": \"$crypto\",\n" +
+            "    }\n" +
+            "  ],\n" +
+            "  \"$digital_orders\" : [\n" +
+            "    {\n" +
+            "      \"$digital_asset\" : \"BTC\",\n" +
+            "      \"$pair\"          : \"BTC_USD\",\n" +
+            "      \"$asset_type\"    : \"$crypto\",\n" +
+            "      \"$order_type\"    : \"$market\",\n" +
+            "      \"$volume\"        : \"6.0\",\n" +
+            "    }\n" +
+            "  ],\n",  
+            createOrder.ToJson());
+
+            EventRequest eventRequest = new EventRequest
+            {
+                Event = createOrder
+            };
+
+            Assert.Equal("https://api.sift.com/v205/events", eventRequest.Request.RequestUri.ToString());
+
+            eventRequest = new EventRequest
+            {
+                Event = createOrder,
+                AbuseTypes = { "legacy", "payment_abuse" },
+                ReturnScore = true
+            };
+
+            Assert.Equal("https://api.sift.com/v205/events?abuse_types=legacy,payment_abuse&return_score=true",
+                          Uri.UnescapeDataString(eventRequest.Request.RequestUri.ToString()));
+        }
+
+        [Fact]
+        public void TestUpdateOrderEventWithCryptoFields()
+        {
+            //Please provide the valid session id in place of 'sessionId'
+            var sessionId = "sessionId";
+            var updateOrder = new UpdateOrder
+            {
+                user_id = "test_dotnet_merchant_profile_field",
+                session_id = sessionId,
+                order_id = "12345",
+                payment_methods = new ObservableCollection<PaymentMethod>()
+                {
+                    new PaymentMethod
+                    {
+                        wallet_address = "ZplYVmchAoywfMvC8jCiKlBLfKSBiFtHU6",
+                        wallet_type = "$crypto"
+                    }
+                },
+                digital_orders = new ObservableCollection<DigitalOrder>()
+                {
+                    new DigitalOrder
+                    {
+                        digital_asset="BTC",
+                        pair="BTC_USD",
+                        asset_type="$crypto",
+                        order_type="$market",
+                        volume="6.0"
+                    }
+                },
+
+            };
+
+            // Augment with custom fields
+            updateOrder.AddField("foo", "bar");
+            Assert.Equal("{\"$type\":\"$update_order\",\"$user_id\":\"test_dotnet_merchant_profile_field\",\"$session_id\":\"sessionId\"," +
+            "\"$order_id\":\"12345\"," +
+            "\"$payment_methods\": [\n" +
+            "    {\n" +
+            "      \"$wallet_address\": \"ZplYVmchAoywfMvC8jCiKlBLfKSBiFtHU6\",\n" +
+            "      \"$wallet_type\": \"$crypto\",\n" +
+            "    }\n" +
+            "  ],\n" +
+            "  \"$digital_orders\" : [\n" +
+            "    {\n" +
+            "      \"$digital_asset\" : \"BTC\",\n" +
+            "      \"$pair\"          : \"BTC_USD\",\n" +
+            "      \"$asset_type\"    : \"$crypto\",\n" +
+            "      \"$order_type\"    : \"$market\",\n" +
+            "      \"$volume\"        : \"6.0\",\n" +
+            "    }\n" +
+            "  ],\n",
+            updateOrder.ToJson());
+
+            EventRequest eventRequest = new EventRequest
+            {
+                Event = updateOrder
+            };
+
+            Assert.Equal("https://api.sift.com/v205/events", eventRequest.Request.RequestUri.ToString());
+
+            eventRequest = new EventRequest
+            {
+                Event = updateOrder,
                 AbuseTypes = { "legacy", "payment_abuse" },
                 ReturnScore = true
             };
@@ -881,7 +1107,8 @@ namespace Test
                         country = "US",
                         zipcode = "03257"
                     }
-                }
+                },
+                ach_return_code= "B02"
             };
 
             // Augment with custom fields
@@ -890,7 +1117,8 @@ namespace Test
                                  "\"$order_id\":\"ORDER-123124124\",\"$transaction_id\":\"719637215\",\"$chargeback_state\":\"$lost\",\"$chargeback_reason\":\"$duplicate\"," +
                                  "\"$merchant_profile\":{\"$merchant_id\":\"123\",\"$merchant_category_code\":\"9876\",\"$merchant_name\":\"ABC Merchant\",\"$merchant_address\":" +
                                  "{\"$name\":\"Bill Jones\",\"$address_1\":\"2100 Main Street\",\"$address_2\":\"Apt 3B\",\"$city\":\"New London\",\"$region\":\"New Hampshire\"," +
-                                 "\"$country\":\"US\",\"$zipcode\":\"03257\",\"$phone\":\"1-415-555-6040\"}},\"foo\":\"bar\"}",
+                                 "\"$country\":\"US\",\"$zipcode\":\"03257\",\"$phone\":\"1-415-555-6040\"}},\"foo\":\"bar\"}\","+
+                                 "\"$ach_return_code\": \"B02\",",
                                  chargeback.ToJson());
 
             EventRequest eventRequest = new EventRequest
