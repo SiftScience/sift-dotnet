@@ -124,7 +124,7 @@ namespace Test
                             country = "US",
                             zipcode = "03257"
                         },
-                        tags = new ObservableCollection<string>() { "tag-123", "tag-321" }
+                        tags = new ObservableCollection<string>() { "tag-123", "tag-321"}
                     }
                 },
                 billing_address = new Address
@@ -325,14 +325,12 @@ namespace Test
                 session_id = sessionId,
                 transaction_type = "$sale",
                 transaction_status = "$failure",
-                payment_methods = new ObservableCollection<PaymentMethod>()
+                payment_method = new PaymentMethod
                 {
-                    new PaymentMethod
-                    {
-                        wallet_address = "ZplYVmchAoywfMvC8jCiKlBLfKSBiFtHU6",
-                        wallet_type = "$crypto"
-                    }
-                },
+                    wallet_address = "ZplYVmchAoywfMvC8jCiKlBLfKSBiFtHU6",
+                    wallet_type = "$crypto"
+                }
+                ,
                 digital_orders = new ObservableCollection<DigitalOrder>()
                 {
                     new DigitalOrder
@@ -344,38 +342,39 @@ namespace Test
                         volume="6.0"
                     }
                 },
-                receiver_wallet_address= "jx17gVqSyo9m4MrhuhuYEUXdCicdof85Bl",
-                receiver_external_address= true
+                receiver_wallet_address = "jx17gVqSyo9m4MrhuhuYEUXdCicdof85Bl",
+                receiver_external_address = true
 
             };
 
             // Augment with custom fields
             transaction.AddField("foo", "bar");
-            Assert.Equal("{\n" +
-            "  \"$type\"             : \"$transaction\",\n" +
-            "  \"$api_key\"          : \"YOUR_API_KEY\",\n" +
-            "  \"$user_id\"          : \"billy_jones_301\",\n" +
-            "  \"$amount\"           : 506790000,\n" +
-            "  \"$currency_code\"    : \"USD\",\n" +
-            "  \"$session_id\":\"sessionId\"," +
-            "  \"$transaction_type\" : \"$buy\",\n" +
-            "  \"$transaction_id\"   : \"719637215\",\n" +
-            "\n" +
-            "  \"$payment_method\"   : {\n" +
-            "      \"$wallet_address\" : \"ZplYVmchAoywfMvC8jCiKlBLfKSBiFtHU6\",\n" +
-            "      \"$wallet_type\"    : \"$crypto\",\n" +
-            "  },\n" +
-            "  \"$digital_orders\" : [\n" +
-            "    {\n" +
-            "      \"$digital_asset\" : \"BTC\",\n" +
-            "      \"$pair\"          : \"BTC_USD\",\n" +
-            "      \"$asset_type\"    : \"$crypto\",\n" +
-            "      \"$order_type\"    : \"$market\",\n" +
-            "      \"$volume\"        : \"6.0\",\n" +
-            "    }\n" +
-            "  ],\n" +
-            "  \"$receiver_wallet_address\"   : \"jx17gVqSyo9m4MrhuhuYEUXdCicdof85Bl\",\n" +
-            "  \"$receiver_external_address\" : true,\n" +
+            Assert.Equal("{" +
+            "\"$type\":\"$transaction\"," +
+            "\"$user_id\":\"test_dotnet_transaction_event\"," +
+            "\"$session_id\":\"sessionId\"," +
+            "\"$transaction_type\":\"$sale\"," +
+
+            "\"$transaction_status\":\"$failure\"," +
+            "\"$amount\":1000000000000," +
+            "\"$currency_code\":\"USD\"," +
+            "" +
+            "\"$payment_method\":{" +
+            "\"$wallet_address\":\"ZplYVmchAoywfMvC8jCiKlBLfKSBiFtHU6\"," +
+            "\"$wallet_type\":\"$crypto\"" +
+            "}," +
+            "\"$digital_orders\":[" +
+            "{" +
+            "\"$digital_asset\":\"BTC\"," +
+            "\"$pair\":\"BTC_USD\"," +
+            "\"$asset_type\":\"$crypto\"," +
+            "\"$order_type\":\"$market\"," +
+            "\"$volume\":\"6.0\"" +
+            "}" +
+            "]," +
+            "\"$receiver_wallet_address\":\"jx17gVqSyo9m4MrhuhuYEUXdCicdof85Bl\"," +
+            "\"$receiver_external_address\":true," +
+            "\"foo\":\"bar\"" +
             "}", transaction.ToJson());
 
             EventRequest eventRequest = new EventRequest
@@ -546,21 +545,22 @@ namespace Test
             createOrder.AddField("foo", "bar");
             Assert.Equal("{\"$type\":\"$create_order\",\"$user_id\":\"test_dotnet_merchant_profile_field\",\"$session_id\":\"sessionId\"," +
             "\"$order_id\":\"12345\"," +
-            "\"$payment_methods\": [\n" +
-            "    {\n" +
-            "      \"$wallet_address\": \"ZplYVmchAoywfMvC8jCiKlBLfKSBiFtHU6\",\n" +
-            "      \"$wallet_type\": \"$crypto\",\n" +
-            "    }\n" +
-            "  ],\n" +
-            "  \"$digital_orders\" : [\n" +
-            "    {\n" +
-            "      \"$digital_asset\" : \"BTC\",\n" +
-            "      \"$pair\"          : \"BTC_USD\",\n" +
-            "      \"$asset_type\"    : \"$crypto\",\n" +
-            "      \"$order_type\"    : \"$market\",\n" +
-            "      \"$volume\"        : \"6.0\",\n" +
-            "    }\n" +
-            "  ],\n",  
+            "\"$payment_methods\":[" +
+            "{" +
+            "\"$wallet_address\":\"ZplYVmchAoywfMvC8jCiKlBLfKSBiFtHU6\"," +
+            "\"$wallet_type\":\"$crypto\"" +
+            "}" +
+            "]," +
+            "\"$digital_orders\":[" +
+            "{" +
+            "\"$digital_asset\":\"BTC\"," +
+            "\"$pair\":\"BTC_USD\"," +
+            "\"$asset_type\":\"$crypto\"," +
+            "\"$order_type\":\"$market\"," +
+            "\"$volume\":\"6.0\"" +
+            "}" +
+            "]," +
+            "\"foo\":\"bar\"}",
             createOrder.ToJson());
 
             EventRequest eventRequest = new EventRequest
@@ -617,21 +617,22 @@ namespace Test
             updateOrder.AddField("foo", "bar");
             Assert.Equal("{\"$type\":\"$update_order\",\"$user_id\":\"test_dotnet_merchant_profile_field\",\"$session_id\":\"sessionId\"," +
             "\"$order_id\":\"12345\"," +
-            "\"$payment_methods\": [\n" +
-            "    {\n" +
-            "      \"$wallet_address\": \"ZplYVmchAoywfMvC8jCiKlBLfKSBiFtHU6\",\n" +
-            "      \"$wallet_type\": \"$crypto\",\n" +
-            "    }\n" +
-            "  ],\n" +
-            "  \"$digital_orders\" : [\n" +
-            "    {\n" +
-            "      \"$digital_asset\" : \"BTC\",\n" +
-            "      \"$pair\"          : \"BTC_USD\",\n" +
-            "      \"$asset_type\"    : \"$crypto\",\n" +
-            "      \"$order_type\"    : \"$market\",\n" +
-            "      \"$volume\"        : \"6.0\",\n" +
-            "    }\n" +
-            "  ],\n",
+            "\"$payment_methods\":[" +
+            "{" +
+            "\"$wallet_address\":\"ZplYVmchAoywfMvC8jCiKlBLfKSBiFtHU6\"," +
+            "\"$wallet_type\":\"$crypto\"" +
+            "}" +
+            "]," +
+            "\"$digital_orders\":[" +
+            "{" +
+            "\"$digital_asset\":\"BTC\"," +
+            "\"$pair\":\"BTC_USD\"," +
+            "\"$asset_type\":\"$crypto\"," +
+            "\"$order_type\":\"$market\"," +
+            "\"$volume\":\"6.0\"" +
+            "}" +
+            "]," +
+            "\"foo\":\"bar\"}",
             updateOrder.ToJson());
 
             EventRequest eventRequest = new EventRequest
@@ -804,7 +805,7 @@ namespace Test
             var apiKey = "key";
             var verificationCheckRequest = new VerificationCheckRequest
             {
-                
+
                 ApiKey = apiKey,
                 Code = 655543,
                 UserId = "vineethk@exalture.com"
@@ -885,15 +886,15 @@ namespace Test
         {
             //Please provide the valid secret key in place of 'key'
             String secretKey = "key";
-            String requestBody = "{\n" +
-                "  \"entity\": {\n" +
-                "    \"type\": \"user\",\n" +
-                "    \"id\": \"USER123\"\n" +
-                "  },\n" +
-                "  \"decision\": {\n" +
-                "    \"id\": \"block_user_payment_abuse\"\n" +
-                "  },\n" +
-                "  \"time\": 1461963439151\n" +
+            String requestBody = "{" +
+                "\"entity\": {" +
+                "\"type\": \"user\"," +
+                "\"id\": \"USER123\"" +
+                "}," +
+                "\"decision\": {" +
+                "\"id\": \"block_user_payment_abuse\"" +
+                "}," +
+                "\"time\": 1461963439151" +
                 "}";
             byte[] key = Encoding.ASCII.GetBytes(secretKey);
             HMACSHA1 myhmacsha1 = new HMACSHA1(key);
@@ -911,15 +912,15 @@ namespace Test
         {
             //Please provide the secret api key in place of 'key'
             String secretKey = "key";
-            String requestBody = "{\n" +
-                "  \"entity\": {\n" +
-                "    \"type\": \"user\",\n" +
-                "    \"id\": \"USER123\"\n" +
-                "  },\n" +
-                "  \"decision\": {\n" +
-                "    \"id\": \"block_user_payment_abuse\"\n" +
-                "  },\n" +
-                "  \"time\": 1461963439151\n" +
+            String requestBody = "{" +
+                "\"entity\": {" +
+                "\"type\": \"user\"," +
+                "\"id\": \"USER123\"" +
+                "}," +
+                "\"decision\": {" +
+                "\"id\": \"block_user_payment_abuse\"" +
+                "}," +
+                "\"time\": 1461963439151" +
                 "}";
 
             WebhookValidator webhook = new WebhookValidator();
@@ -941,7 +942,7 @@ namespace Test
             };
             getMerchantRequest.ApiKey = apiKey;
 
-            Assert.Equal("https://api.sift.com/v3/accounts/"+accountId+"/psp_management/merchants",
+            Assert.Equal("https://api.sift.com/v3/accounts/" + accountId + "/psp_management/merchants",
                          getMerchantRequest.Request.RequestUri.ToString());
 
         }
@@ -988,7 +989,7 @@ namespace Test
                 createMerchantRequest.Request.Headers.Authorization.Parameter);
 
 
-            Assert.Equal("https://api.sift.com/v3/accounts/"+accountId+"/psp_management/merchants",
+            Assert.Equal("https://api.sift.com/v3/accounts/" + accountId + "/psp_management/merchants",
                          createMerchantRequest.Request.RequestUri.ToString());
         }
 
@@ -1033,7 +1034,7 @@ namespace Test
             Assert.Equal(Convert.ToBase64String(Encoding.Default.GetBytes(apiKey)),
                 updateMerchantRequest.Request.Headers.Authorization.Parameter);
 
-            Assert.Equal("https://api.sift.com/v3/accounts/"+accountId+"/psp_management/merchants/test2",
+            Assert.Equal("https://api.sift.com/v3/accounts/" + accountId + "/psp_management/merchants/test2",
                          updateMerchantRequest.Request.RequestUri.ToString());
 
 
@@ -1073,7 +1074,7 @@ namespace Test
             Assert.Equal(Convert.ToBase64String(Encoding.Default.GetBytes(apiKey)),
                 getMerchantDetailRequest.Request.Headers.Authorization.Parameter);
 
-            Assert.Equal("https://api.sift.com/v3/accounts/"+accountId+"/psp_management/merchants/test-merchat-id",
+            Assert.Equal("https://api.sift.com/v3/accounts/" + accountId + "/psp_management/merchants/test-merchat-id",
              getMerchantDetailRequest.Request.RequestUri.ToString());
         }
 
@@ -1108,7 +1109,7 @@ namespace Test
                         zipcode = "03257"
                     }
                 },
-                ach_return_code= "B02"
+                ach_return_code = "B02"
             };
 
             // Augment with custom fields
@@ -1117,8 +1118,8 @@ namespace Test
                                  "\"$order_id\":\"ORDER-123124124\",\"$transaction_id\":\"719637215\",\"$chargeback_state\":\"$lost\",\"$chargeback_reason\":\"$duplicate\"," +
                                  "\"$merchant_profile\":{\"$merchant_id\":\"123\",\"$merchant_category_code\":\"9876\",\"$merchant_name\":\"ABC Merchant\",\"$merchant_address\":" +
                                  "{\"$name\":\"Bill Jones\",\"$address_1\":\"2100 Main Street\",\"$address_2\":\"Apt 3B\",\"$city\":\"New London\",\"$region\":\"New Hampshire\"," +
-                                 "\"$country\":\"US\",\"$zipcode\":\"03257\",\"$phone\":\"1-415-555-6040\"}},\"foo\":\"bar\"}\","+
-                                 "\"$ach_return_code\": \"B02\",",
+                                 "\"$country\":\"US\",\"$zipcode\":\"03257\",\"$phone\":\"1-415-555-6040\"}}," +
+                                 "\"$ach_return_code\":\"B02\",\"foo\":\"bar\"}",
                                  chargeback.ToJson());
 
             EventRequest eventRequest = new EventRequest
@@ -1296,7 +1297,7 @@ namespace Test
                                  "\"$social_sign_on_type\":\"$facebook\",\"$username\":\"test_user_name\",\"$ip\":\"128.148.1.135\",\"$browser\":" +
                                  "{\"$user_agent\":\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) " +
                                  "Chrome/56.0.2924.87 Safari/537.36\",\"$accept_language\":\"en-US\",\"$content_language\":\"en-GB\"},\"$brand_name\":" +
-                                 "\"sift\",\"$site_country\":\"US\",\"$site_domain\":\"sift.com\",\"$account_types\":[\"merchant\",\"premium\"],"+ "\"$keyless_user_id\":\"keylessId\"" +"}",
+                                 "\"sift\",\"$site_country\":\"US\",\"$site_domain\":\"sift.com\",\"$account_types\":[\"merchant\",\"premium\"]," + "\"$keyless_user_id\":\"keylessId\"" + "}",
                                  login.ToJson());
 
             EventRequest eventRequest = new EventRequest
