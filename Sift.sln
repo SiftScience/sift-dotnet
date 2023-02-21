@@ -1,9 +1,30 @@
-
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sift", "Sift\Sift.csproj", "{88D258CD-7698-434D-A575-44018205B811}"
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29509.3
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sift", "Sift\Sift.csproj", "{88D258CD-7698-434D-A575-44018205B811}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", "{E34BBAD1-9AAC-4120-92C9-3574CCFAF01D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Test", "Test\Test.csproj", "{E34BBAD1-9AAC-4120-92C9-3574CCFAF01D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test_Support_Files", "Test_Support_Files", "{C73F20A7-3E0F-4200-B824-4ECCE96C1049}"
+	ProjectSection(SolutionItems) = preProject
+		Test_Support_Files\TestChargebackEvent_Chargeback.json = Test_Support_Files\TestChargebackEvent_Chargeback.json
+		Test_Support_Files\TestCreateAccountEvent_CreateAccount.json = Test_Support_Files\TestCreateAccountEvent_CreateAccount.json
+		Test_Support_Files\TestCreateOrderEventWithCryptoFields_CreateOrder.json = Test_Support_Files\TestCreateOrderEventWithCryptoFields_CreateOrder.json
+		Test_Support_Files\TestCreateOrderEventWithMerchantProfileField_CreateOrder.json = Test_Support_Files\TestCreateOrderEventWithMerchantProfileField_CreateOrder.json
+		Test_Support_Files\TestCreateOrderEventWithSepaPaymentMethodFields_CreateOrder.json = Test_Support_Files\TestCreateOrderEventWithSepaPaymentMethodFields_CreateOrder.json
+		Test_Support_Files\TestCreateOrderEventWithWirePaymentMethod_CreateOrder.json = Test_Support_Files\TestCreateOrderEventWithWirePaymentMethod_CreateOrder.json
+		Test_Support_Files\TestCustomEventRequest_CustomEvent.json = Test_Support_Files\TestCustomEventRequest_CustomEvent.json
+		Test_Support_Files\TestEventRequest_CreateOrder.json = Test_Support_Files\TestEventRequest_CreateOrder.json
+		Test_Support_Files\TestEventWithBrowser_CreateOrder.json = Test_Support_Files\TestEventWithBrowser_CreateOrder.json
+		Test_Support_Files\TestLoginEvent_Login.json = Test_Support_Files\TestLoginEvent_Login.json
+		Test_Support_Files\TestTransactionEvent_Transaction.json = Test_Support_Files\TestTransactionEvent_Transaction.json
+		Test_Support_Files\TestTransactionEventWithCryptoFields_ObservableCollection.json = Test_Support_Files\TestTransactionEventWithCryptoFields_ObservableCollection.json
+		Test_Support_Files\TestTransactionEventWithFintechFields_Transaction.json = Test_Support_Files\TestTransactionEventWithFintechFields_Transaction.json
+		Test_Support_Files\TestUpdateAccountEvent_UpdateAccount.json = Test_Support_Files\TestUpdateAccountEvent_UpdateAccount.json
+		Test_Support_Files\TestUpdateMerchantRequest_UpdateMerchantRequest.json = Test_Support_Files\TestUpdateMerchantRequest_UpdateMerchantRequest.json
+		Test_Support_Files\TestUpdateOrderEventWithCryptoFields_UpdateOrder.json = Test_Support_Files\TestUpdateOrderEventWithCryptoFields_UpdateOrder.json
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,9 +40,11 @@ Global
 		{E34BBAD1-9AAC-4120-92C9-3574CCFAF01D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E34BBAD1-9AAC-4120-92C9-3574CCFAF01D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E34BBAD1-9AAC-4120-92C9-3574CCFAF01D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{876F2264-6885-4EF8-A6F7-B72FF5970BE7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{876F2264-6885-4EF8-A6F7-B72FF5970BE7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{876F2264-6885-4EF8-A6F7-B72FF5970BE7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{876F2264-6885-4EF8-A6F7-B72FF5970BE7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6ECAD09A-45E5-4AA9-8C08-45F6971C45C2}
 	EndGlobalSection
 EndGlobal

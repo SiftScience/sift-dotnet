@@ -1,0 +1,1 @@
+{"$type":"$create_order","$user_id":"test_dotnet_merchant_profile_field","$session_id":"sessionId","$order_id":"12345","$payment_methods":[{"$wallet_address":"ZplYVmchAoywfMvC8jCiKlBLfKSBiFtHU6","$wallet_type":"$crypto"}],"$digital_orders":[{"$digital_asset":"BTC","$pair":"BTC_USD","$asset_type":"$crypto","$order_type":"$market","$volume":"6.0"}],"foo":"bar"}

@@ -1,0 +1,1 @@
+{"$type":"$transaction","$user_id":"test_dotnet_transaction_event","$session_id":"sessionId","$transaction_type":"$sale","$transaction_status":"$failure","$amount":1000000000000,"$currency_code":"USD","$decline_category":"$invalid","foo":"bar"}

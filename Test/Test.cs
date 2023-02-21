@@ -13,6 +13,8 @@ namespace Test
 {
     public class Test
     {
+        private string TestSupportFilesPath = new DirectoryInfo(Environment.CurrentDirectory).Parent.Parent.Parent.Parent.FullName +
+            "\\Test_Support_Files\\";
         [Fact]
         public void TestApplyDecisionRequest()
         {
@@ -161,26 +163,8 @@ namespace Test
 
             // Augment with custom fields
             createOrder.AddField("foo", "bar");
-            Assert.Equal("{\"$type\":\"$create_order\",\"$user_id\":\"test_dotnet_booking_with_all_fields\"," +
-                         "\"$session_id\":\"sessionId\",\"$order_id\":\"oid\",\"$user_email\":\"bill@gmail.com\"," +
-                         "\"$amount\":1000000000000,\"$currency_code\":\"USD\",\"$billing_address\":{\"$name\":\"gary\",\"$city\":\"san francisco\"}," +
-                         "\"$bookings\":[{\"$booking_type\":\"$flight\",\"$title\":\"SFO - LAS, 2 Adults\",\"$start_time\":2038412903," +
-                         "\"$end_time\":2038412903,\"$price\":49900000,\"$currency_code\":\"USD\",\"$quantity\":1,\"$guests\":[{\"$name\":\"John Doe\"," +
-                         "\"$email\":\"jdoe@domain.com\",\"$phone\":\"1-415-555-6040\",\"$loyalty_program\":\"skymiles\",\"$loyalty_program_id\":\"PSOV34DF\"," +
-                         "\"$birth_date\":\"1985-01-19\"},{\"$name\":\"John Doe\"}],\"$segments\":[{\"$start_time\":203841290300,\"$end_time\":2038412903," +
-                         "\"$vessel_number\":\"LH454\",\"$departure_airport_code\":\"SFO\",\"$arrival_airport_code\":\"LAS\",\"$fare_class\":\"Premium Economy\"," +
-                         "\"$departure_address\":{\"$name\":\"Bill Jones\",\"$address_1\":\"2100 Main Street\",\"$address_2\":\"Apt 3B\",\"$city\":\"New London\"," +
-                         "\"$region\":\"New Hampshire\",\"$country\":\"US\",\"$zipcode\":\"03257\",\"$phone\":\"1-415-555-6040\"}," +
-                         "\"$arrival_address\":{\"$name\":\"Bill Jones\",\"$address_1\":\"2100 Main Street\",\"$address_2\":\"Apt 3B\",\"$city\":\"New London\"," +
-                         "\"$region\":\"New Hampshire\",\"$country\":\"US\",\"$zipcode\":\"03257\",\"$phone\":\"1-415-555-6040\"}}],\"$room_type\":\"deluxe\"," +
-                         "\"$event_id\":\"event-123\",\"$venue_id\":\"venue-123\",\"$location\":{\"$name\":\"Bill Jones\",\"$address_1\":\"2100 Main Street\"," +
-                         "\"$address_2\":\"Apt 3B\",\"$city\":\"New London\",\"$region\":\"New Hampshire\",\"$country\":\"US\",\"$zipcode\":\"03257\"," +
-                         "\"$phone\":\"1-415-555-6040\"},\"$category\":\"pop\",\"$tags\":[\"tag-123\",\"tag-321\"]}],\"$app\":{\"$app_name\":\"my app\"," +
-                         "\"$app_version\":\"1.0\",\"$client_language\":\"en-US\"},\"$brand_name\":\"sift\",\"$site_country\":\"US\",\"$site_domain\":\"sift.com\"," +
-                         "\"$ordered_from\":{\"$store_id\":\"123\",\"$store_address\":{\"$name\":\"Bill Jones\",\"$address_1\":\"2100 Main Street\"," +
-                         "\"$address_2\":\"Apt 3B\",\"$city\":\"New London\",\"$region\":\"New Hampshire\",\"$country\":\"US\",\"$zipcode\":\"03257\"," +
-                         "\"$phone\":\"1-415-555-6040\"}},\"$keyless_user_id\":\"keylessId\",\"foo\":\"bar\"}",
-                         createOrder.ToJson());
+            string inputJson = File.ReadAllText(TestSupportFilesPath + "TestEventRequest_CreateOrder.json");
+            Assert.Equal(inputJson, createOrder.ToJson());
 
 
             EventRequest eventRequest = new EventRequest
@@ -218,10 +202,8 @@ namespace Test
                 ["foo"] = "bar",
                 ["payment_status"] = "$success"
             });
-
-            Assert.Equal("{\"$type\":\"make_call\",\"$user_id\":\"gary\",\"foo\":" +
-                              "\"bar\",\"payment_status\":\"$success\"}",
-                              makeCall.ToJson());
+            string inputJson = File.ReadAllText(TestSupportFilesPath + "TestCustomEventRequest_CustomEvent.json");
+            Assert.Equal(inputJson, makeCall.ToJson());
         }
 
         [Fact]
@@ -247,11 +229,8 @@ namespace Test
 
             // Augment with custom fields
             createOrder.AddField("foo", "bar");
-            Assert.Equal("{\"$type\":\"$create_order\",\"$user_id\":\"test_dotnet_browser_field\",\"$session_id\":\"sessionId\"," +
-                         "\"$order_id\":\"oid\",\"$user_email\":\"bill@gmail.com\",\"$amount\":1000000000000,\"$currency_code\":\"USD\"," +
-                         "\"$browser\":{\"$user_agent\":\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36\"," +
-                         "\"$accept_language\":\"en-US\",\"$content_language\":\"en-GB\"},\"foo\":\"bar\"}",
-                         createOrder.ToJson());
+            string inputJson = File.ReadAllText(TestSupportFilesPath + "TestEventWithBrowser_CreateOrder.json");
+            Assert.Equal(inputJson, createOrder.ToJson());
 
 
             EventRequest eventRequest = new EventRequest
@@ -290,9 +269,8 @@ namespace Test
 
             // Augment with custom fields
             transaction.AddField("foo", "bar");
-            Assert.Equal("{\"$type\":\"$transaction\",\"$user_id\":\"test_dotnet_transaction_event\",\"$session_id\":\"sessionId\"," +
-                                 "\"$transaction_type\":\"$sale\",\"$transaction_status\":\"$failure\",\"$amount\":1000000000000,\"$currency_code\":\"USD\"," +
-                                 "\"$decline_category\":\"$invalid\",\"foo\":\"bar\"}", transaction.ToJson());
+            string inputJson = File.ReadAllText(TestSupportFilesPath + "TestTransactionEvent_Transaction.json");
+            Assert.Equal(inputJson, transaction.ToJson());
 
             EventRequest eventRequest = new EventRequest
             {
@@ -349,33 +327,8 @@ namespace Test
 
             // Augment with custom fields
             transaction.AddField("foo", "bar");
-            Assert.Equal("{" +
-            "\"$type\":\"$transaction\"," +
-            "\"$user_id\":\"test_dotnet_transaction_event\"," +
-            "\"$session_id\":\"sessionId\"," +
-            "\"$transaction_type\":\"$sale\"," +
-
-            "\"$transaction_status\":\"$failure\"," +
-            "\"$amount\":1000000000000," +
-            "\"$currency_code\":\"USD\"," +
-            "" +
-            "\"$payment_method\":{" +
-            "\"$wallet_address\":\"ZplYVmchAoywfMvC8jCiKlBLfKSBiFtHU6\"," +
-            "\"$wallet_type\":\"$crypto\"" +
-            "}," +
-            "\"$digital_orders\":[" +
-            "{" +
-            "\"$digital_asset\":\"BTC\"," +
-            "\"$pair\":\"BTC_USD\"," +
-            "\"$asset_type\":\"$crypto\"," +
-            "\"$order_type\":\"$market\"," +
-            "\"$volume\":\"6.0\"" +
-            "}" +
-            "]," +
-            "\"$receiver_wallet_address\":\"jx17gVqSyo9m4MrhuhuYEUXdCicdof85Bl\"," +
-            "\"$receiver_external_address\":true," +
-            "\"foo\":\"bar\"" +
-            "}", transaction.ToJson());
+            string inputJson = File.ReadAllText(TestSupportFilesPath + "TestTransactionEventWithCryptoFields_ObservableCollection.json");
+            Assert.Equal(inputJson, transaction.ToJson());
 
             EventRequest eventRequest = new EventRequest
             {
@@ -419,10 +372,8 @@ namespace Test
 
             // Augment with custom fields
             createOrder.AddField("foo", "bar");
-            Assert.Equal("{\"$type\":\"$create_order\",\"$user_id\":\"test_dotnet_sepa_payment_method_fields\",\"$session_id\":\"sessionId\"," +
-                                 "\"$order_id\":\"12345\",\"$payment_methods\":[{\"$payment_type\":\"$sepa_instant_credit\",\"$shortened_iban_first6\":\"FR7630\"," +
-                                 "\"$shortened_iban_last4\":\"1234\",\"$sepa_direct_debit_mandate\":true}],\"foo\":\"bar\"}",
-                                 createOrder.ToJson());
+            string inputJson = File.ReadAllText(TestSupportFilesPath + "TestCreateOrderEventWithSepaPaymentMethodFields_CreateOrder.json");
+            Assert.Equal(inputJson, createOrder.ToJson());
 
             EventRequest eventRequest = new EventRequest
             {
@@ -483,13 +434,8 @@ namespace Test
 
             // Augment with custom fields
             createOrder.AddField("foo", "bar");
-            Assert.Equal("{\"$type\":\"$create_order\",\"$user_id\":\"test_dotnet_merchant_profile_field\",\"$session_id\":\"sessionId\"," +
-                                 "\"$order_id\":\"12345\",\"$payment_methods\":[{\"$payment_type\":\"$sepa_instant_credit\",\"$shortened_iban_first6\":\"FR7630\"," +
-                                 "\"$shortened_iban_last4\":\"1234\",\"$sepa_direct_debit_mandate\":true}],\"$merchant_profile\":{\"$merchant_id\":\"123\"," +
-                                 "\"$merchant_category_code\":\"9876\",\"$merchant_name\":\"ABC Merchant\",\"$merchant_address\":{\"$name\":\"Bill Jones\"," +
-                                 "\"$address_1\":\"2100 Main Street\",\"$address_2\":\"Apt 3B\",\"$city\":\"New London\",\"$region\":\"New Hampshire\"," +
-                                 "\"$country\":\"US\",\"$zipcode\":\"03257\",\"$phone\":\"1-415-555-6040\"}},\"foo\":\"bar\"}",
-                                 createOrder.ToJson());
+            string inputJson = File.ReadAllText(TestSupportFilesPath + "TestCreateOrderEventWithMerchantProfileField_CreateOrder.json");
+            Assert.Equal(inputJson, createOrder.ToJson());
 
             EventRequest eventRequest = new EventRequest
             {
@@ -543,25 +489,8 @@ namespace Test
 
             // Augment with custom fields
             createOrder.AddField("foo", "bar");
-            Assert.Equal("{\"$type\":\"$create_order\",\"$user_id\":\"test_dotnet_merchant_profile_field\",\"$session_id\":\"sessionId\"," +
-            "\"$order_id\":\"12345\"," +
-            "\"$payment_methods\":[" +
-            "{" +
-            "\"$wallet_address\":\"ZplYVmchAoywfMvC8jCiKlBLfKSBiFtHU6\"," +
-            "\"$wallet_type\":\"$crypto\"" +
-            "}" +
-            "]," +
-            "\"$digital_orders\":[" +
-            "{" +
-            "\"$digital_asset\":\"BTC\"," +
-            "\"$pair\":\"BTC_USD\"," +
-            "\"$asset_type\":\"$crypto\"," +
-            "\"$order_type\":\"$market\"," +
-            "\"$volume\":\"6.0\"" +
-            "}" +
-            "]," +
-            "\"foo\":\"bar\"}",
-            createOrder.ToJson());
+            string inputJson = File.ReadAllText(TestSupportFilesPath + "TestCreateOrderEventWithCryptoFields_CreateOrder.json");
+            Assert.Equal(inputJson, createOrder.ToJson());
 
             EventRequest eventRequest = new EventRequest
             {
@@ -615,25 +544,8 @@ namespace Test
 
             // Augment with custom fields
             updateOrder.AddField("foo", "bar");
-            Assert.Equal("{\"$type\":\"$update_order\",\"$user_id\":\"test_dotnet_merchant_profile_field\",\"$session_id\":\"sessionId\"," +
-            "\"$order_id\":\"12345\"," +
-            "\"$payment_methods\":[" +
-            "{" +
-            "\"$wallet_address\":\"ZplYVmchAoywfMvC8jCiKlBLfKSBiFtHU6\"," +
-            "\"$wallet_type\":\"$crypto\"" +
-            "}" +
-            "]," +
-            "\"$digital_orders\":[" +
-            "{" +
-            "\"$digital_asset\":\"BTC\"," +
-            "\"$pair\":\"BTC_USD\"," +
-            "\"$asset_type\":\"$crypto\"," +
-            "\"$order_type\":\"$market\"," +
-            "\"$volume\":\"6.0\"" +
-            "}" +
-            "]," +
-            "\"foo\":\"bar\"}",
-            updateOrder.ToJson());
+            string inputJson = File.ReadAllText(TestSupportFilesPath + "TestUpdateOrderEventWithCryptoFields_UpdateOrder.json");
+            Assert.Equal(inputJson, updateOrder.ToJson());
 
             EventRequest eventRequest = new EventRequest
             {
@@ -717,19 +629,8 @@ namespace Test
                 triggered_3ds = "$processor",
                 merchant_initiated_transaction = true
             };
-            Assert.Equal("{\"$type\":\"$transaction\",\"$user_id\":\"test_dotnet_transaction_event\",\"$session_id\":\"sessionId\"," +
-                                 "\"$transaction_type\":\"$sale\",\"$transaction_status\":\"$failure\",\"$amount\":1000000000000,\"$currency_code\":\"USD\"," +
-                                 "\"$payment_method\":{\"$payment_type\":\"$sepa_instant_credit\",\"$shortened_iban_first6\":\"FR7630\"," +
-                                 "\"$shortened_iban_last4\":\"1234\",\"$sepa_direct_debit_mandate\":true},\"$decline_category\":\"$invalid\"," +
-                                 "\"$sent_address\":{\"$name\":\"Bill Jones\",\"$address_1\":\"2100 Main Street\",\"$address_2\":\"Apt 3B\"," +
-                                 "\"$city\":\"New London\",\"$region\":\"New Hampshire\",\"$country\":\"US\",\"$zipcode\":\"03257\",\"$phone\":\"1-415-555-6040\"}," +
-                                 "\"$received_address\":{\"$name\":\"Bill Jones\",\"$address_1\":\"2100 Main Street\",\"$address_2\":\"Apt 3B\"," +
-                                 "\"$city\":\"New London\",\"$region\":\"New Hampshire\",\"$country\":\"US\",\"$zipcode\":\"03257\",\"$phone\":\"1-415-555-6040\"}," +
-                                 "\"$status_3ds\":\"$successful\",\"$triggered_3ds\":\"$processor\",\"$merchant_initiated_transaction\":true," +
-                                 "\"$merchant_profile\":{\"$merchant_id\":\"123\",\"$merchant_category_code\":\"9876\",\"$merchant_name\":\"ABC Merchant\"," +
-                                 "\"$merchant_address\":{\"$name\":\"Bill Jones\",\"$address_1\":\"2100 Main Street\",\"$address_2\":\"Apt 3B\"," +
-                                 "\"$city\":\"New London\",\"$region\":\"New Hampshire\",\"$country\":\"US\",\"$zipcode\":\"03257\",\"$phone\":\"1-415-555-6040\"}}}",
-                                 transaction.ToJson());
+            string inputJson = File.ReadAllText(TestSupportFilesPath + "TestTransactionEventWithFintechFields_Transaction.json");
+            Assert.Equal(inputJson, transaction.ToJson());
 
             EventRequest eventRequest = new EventRequest
             {
@@ -775,10 +676,8 @@ namespace Test
 
             // Augment with custom fields
             createOrder.AddField("foo", "bar");
-            Assert.Equal("{\"$type\":\"$create_order\",\"$user_id\":\"test_dotnet_wire_payment_methods\",\"$session_id\":\"sessionId\"," +
-                                 "\"$order_id\":\"12345\",\"$payment_methods\":[{\"$payment_type\":\"$wire_credit\",\"$routing_number\":\"CHASUS33XX\"," +
-                                 "\"$account_number_last5\":\"12345\",\"$account_holder_name\":\"John Doe\",\"$bank_name\":\"Chase\",\"$bank_country\":\"US\"}],\"foo\":\"bar\"}",
-                                 createOrder.ToJson());
+            string inputJson = File.ReadAllText(TestSupportFilesPath + "TestCreateOrderEventWithWirePaymentMethod_CreateOrder.json");
+            Assert.Equal(inputJson, createOrder.ToJson());
 
             EventRequest eventRequest = new EventRequest
             {
@@ -1038,22 +937,8 @@ namespace Test
                          updateMerchantRequest.Request.RequestUri.ToString());
 
 
-            Assert.Equal("{\"id\":\"test-vineeth-5\"," +
-                "\"name\":\"Wonderful Payments Inc\"," +
-                "\"description\":\"Wonderful Payments payment provider\"," +
-                "\"address\":{\"name\":\"Alany\"," +
-                    "\"address_1\":\"Big Payment blvd, 22\"," +
-                    "\"address_2\":\"apt, 8\"," +
-                    "\"city\":\"New Orleans\"," +
-                    "\"region\":\"NA\"," +
-                    "\"country\":\"US\"," +
-                    "\"zipcode\":\"76830\"," +
-                    "\"phone\":\"0394888320\"}," +
-                "\"category\":\"1002\"," +
-                "\"service_level\":\"Platinum\"," +
-                "\"status\":\"active\"," +
-                "\"risk_profile\":{\"level\":\"low\",\"score\":10}}",
-                               Newtonsoft.Json.JsonConvert.SerializeObject(updateMerchantRequest));
+            string inputJson = File.ReadAllText(TestSupportFilesPath + "TestUpdateMerchantRequest_UpdateMerchantRequest.json");
+            Assert.Equal(inputJson, Newtonsoft.Json.JsonConvert.SerializeObject(updateMerchantRequest));
 
         }
 
@@ -1114,13 +999,8 @@ namespace Test
 
             // Augment with custom fields
             chargeback.AddField("foo", "bar");
-            Assert.Equal("{\"$type\":\"$chargeback\",\"$user_id\":\"test_dotnet_chargeback_event\",\"$session_id\":\"sessionId\"," +
-                                 "\"$order_id\":\"ORDER-123124124\",\"$transaction_id\":\"719637215\",\"$chargeback_state\":\"$lost\",\"$chargeback_reason\":\"$duplicate\"," +
-                                 "\"$merchant_profile\":{\"$merchant_id\":\"123\",\"$merchant_category_code\":\"9876\",\"$merchant_name\":\"ABC Merchant\",\"$merchant_address\":" +
-                                 "{\"$name\":\"Bill Jones\",\"$address_1\":\"2100 Main Street\",\"$address_2\":\"Apt 3B\",\"$city\":\"New London\",\"$region\":\"New Hampshire\"," +
-                                 "\"$country\":\"US\",\"$zipcode\":\"03257\",\"$phone\":\"1-415-555-6040\"}}," +
-                                 "\"$ach_return_code\":\"B02\",\"foo\":\"bar\"}",
-                                 chargeback.ToJson());
+            string inputJson = File.ReadAllText(TestSupportFilesPath + "TestChargebackEvent_Chargeback.json");
+            Assert.Equal(inputJson, chargeback.ToJson());
 
             EventRequest eventRequest = new EventRequest
             {
@@ -1176,13 +1056,8 @@ namespace Test
             // Augment with custom fields
             createAccount.AddField("foo", "bar");
 
-            Assert.Equal("{\"$type\":\"$create_account\",\"$user_id\":\"test_dotnet_create_account_event\",\"$session_id\":\"sessionId\"," +
-                                 "\"$user_email\":\"bill@gmail.com\",\"$name\":\"Bill Jones\",\"$referrer_user_id\":\"janejane101\",\"$social_sign_on_type\":" +
-                                 "\"$twitter\",\"$merchant_profile\":{\"$merchant_id\":\"123\",\"$merchant_category_code\":\"9876\",\"$merchant_name\":\"ABC Merchant\"," +
-                                 "\"$merchant_address\":{\"$name\":\"Bill Jones\",\"$address_1\":\"2100 Main Street\",\"$address_2\":\"Apt 3B\",\"$city\":\"New London\"," +
-                                 "\"$region\":\"New Hampshire\",\"$country\":\"US\",\"$zipcode\":\"03257\",\"$phone\":\"1-415-555-6040\"}},\"$account_types\":" +
-                                 "[\"merchant\",\"premium\"],\"foo\":\"bar\"}",
-                                 createAccount.ToJson());
+            string inputJson = File.ReadAllText(TestSupportFilesPath + "TestCreateAccountEvent_CreateAccount.json");
+            Assert.Equal(inputJson, createAccount.ToJson());
 
             EventRequest eventRequest = new EventRequest
             {
@@ -1238,13 +1113,8 @@ namespace Test
             // Augment with custom fields
             updateAccount.AddField("foo", "bar");
 
-            Assert.Equal("{\"$type\":\"$update_account\",\"$user_id\":\"test_dotnet_update_account_event\",\"$session_id\":\"sessionId\"," +
-                                 "\"$user_email\":\"bill@gmail.com\",\"$name\":\"Bill Jones\",\"$referrer_user_id\":\"janejane101\",\"$social_sign_on_type\":" +
-                                 "\"$twitter\",\"$merchant_profile\":{\"$merchant_id\":\"123\",\"$merchant_category_code\":\"9876\",\"$merchant_name\":\"ABC Merchant\"," +
-                                 "\"$merchant_address\":{\"$name\":\"Bill Jones\",\"$address_1\":\"2100 Main Street\",\"$address_2\":\"Apt 3B\",\"$city\":" +
-                                 "\"New London\",\"$region\":\"New Hampshire\",\"$country\":\"US\",\"$zipcode\":\"03257\",\"$phone\":\"1-415-555-6040\"}}," +
-                                 "\"$account_types\":[\"merchant\",\"premium\"],\"foo\":\"bar\"}",
-                                 updateAccount.ToJson());
+            string inputJson = File.ReadAllText(TestSupportFilesPath + "TestUpdateAccountEvent_UpdateAccount.json");
+            Assert.Equal(inputJson, updateAccount.ToJson());
 
             EventRequest eventRequest = new EventRequest
             {
@@ -1292,13 +1162,8 @@ namespace Test
                 account_types = new ObservableCollection<string>() { "merchant", "premium" }
             };
 
-            Assert.Equal("{\"$type\":\"$login\",\"$user_id\":\"test_dotnet_login_event\",\"$session_id\":\"sessionId\"," +
-                                 "\"$user_email\":\"bill@gmail.com\",\"$login_status\":\"$success\",\"$failure_reason\":\"$account_unknown\"," +
-                                 "\"$social_sign_on_type\":\"$facebook\",\"$username\":\"test_user_name\",\"$ip\":\"128.148.1.135\",\"$browser\":" +
-                                 "{\"$user_agent\":\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) " +
-                                 "Chrome/56.0.2924.87 Safari/537.36\",\"$accept_language\":\"en-US\",\"$content_language\":\"en-GB\"},\"$brand_name\":" +
-                                 "\"sift\",\"$site_country\":\"US\",\"$site_domain\":\"sift.com\",\"$account_types\":[\"merchant\",\"premium\"]," + "\"$keyless_user_id\":\"keylessId\"" + "}",
-                                 login.ToJson());
+            string inputJson = File.ReadAllText(TestSupportFilesPath + "TestLoginEvent_Login.json");
+            Assert.Equal(inputJson, login.ToJson());
 
             EventRequest eventRequest = new EventRequest
             {

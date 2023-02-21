@@ -1,0 +1,1 @@
+{"$type":"$create_order","$user_id":"test_dotnet_sepa_payment_method_fields","$session_id":"sessionId","$order_id":"12345","$payment_methods":[{"$payment_type":"$sepa_instant_credit","$shortened_iban_first6":"FR7630","$shortened_iban_last4":"1234","$sepa_direct_debit_mandate":true}],"foo":"bar"}

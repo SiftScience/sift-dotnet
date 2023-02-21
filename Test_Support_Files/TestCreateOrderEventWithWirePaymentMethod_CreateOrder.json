@@ -1,0 +1,1 @@
+{"$type":"$create_order","$user_id":"test_dotnet_wire_payment_methods","$session_id":"sessionId","$order_id":"12345","$payment_methods":[{"$payment_type":"$wire_credit","$routing_number":"CHASUS33XX","$account_number_last5":"12345","$account_holder_name":"John Doe","$bank_name":"Chase","$bank_country":"US"}],"foo":"bar"}
