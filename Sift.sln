@@ -1,6 +1,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29509.3
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33414.496
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sift", "Sift\Sift.csproj", "{88D258CD-7698-434D-A575-44018205B811}"
 EndProject
@@ -16,9 +16,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TestRequestBody", "TestRequ
 		TestRequestBody\TestEventRequest_CreateOrder.json = TestRequestBody\TestEventRequest_CreateOrder.json
 		TestRequestBody\TestEventWithBrowser_CreateOrder.json = TestRequestBody\TestEventWithBrowser_CreateOrder.json
 		TestRequestBody\TestLoginEvent_Login.json = TestRequestBody\TestLoginEvent_Login.json
-		TestRequestBody\TestTransactionEvent_Transaction.json = TestRequestBody\TestTransactionEvent_Transaction.json
 		TestRequestBody\TestTransactionEventWithCryptoFields_ObservableCollection.json = TestRequestBody\TestTransactionEventWithCryptoFields_ObservableCollection.json
 		TestRequestBody\TestTransactionEventWithFintechFields_Transaction.json = TestRequestBody\TestTransactionEventWithFintechFields_Transaction.json
+		TestRequestBody\TestTransactionEvent_Transaction.json = TestRequestBody\TestTransactionEvent_Transaction.json
 		TestRequestBody\TestUpdateAccountEvent_UpdateAccount.json = TestRequestBody\TestUpdateAccountEvent_UpdateAccount.json
 		TestRequestBody\TestUpdateMerchantRequest_UpdateMerchantRequest.json = TestRequestBody\TestUpdateMerchantRequest_UpdateMerchantRequest.json
 		TestRequestBody\TestUpdateOrderEventWithCryptoFields_UpdateOrder.json = TestRequestBody\TestUpdateOrderEventWithCryptoFields_UpdateOrder.json
@@ -27,6 +27,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sift.Test.Core2.1", "Sift.Test.Core2.1\Sift.Test.Core2.1.csproj", "{C41094B4-1158-4B0F-8478-052761C701CA}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sift.Test.Core3.1", "Sift.Test.Core3.1\Sift.Test.Core3.1.csproj", "{0E1D2169-1F1A-48DD-8A47-E64D4A9450E7}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sift.Test.Net6", "Sift.Test.Net6\Sift.Test.Net6.csproj", "{FD27DBB3-67BB-4D22-984D-359A570CB5CA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -46,6 +48,10 @@ Global
 		{0E1D2169-1F1A-48DD-8A47-E64D4A9450E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0E1D2169-1F1A-48DD-8A47-E64D4A9450E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0E1D2169-1F1A-48DD-8A47-E64D4A9450E7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FD27DBB3-67BB-4D22-984D-359A570CB5CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD27DBB3-67BB-4D22-984D-359A570CB5CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD27DBB3-67BB-4D22-984D-359A570CB5CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD27DBB3-67BB-4D22-984D-359A570CB5CA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
