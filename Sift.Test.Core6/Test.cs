@@ -1,4 +1,3 @@
-using Sift;
 using Sift.Core;
 using System;
 using System.Collections.Generic;
@@ -9,7 +8,7 @@ using System.Security.Cryptography;
 using System.Text;
 using Xunit;
 
-namespace Test
+namespace Sift.Test.Core6
 {
     public class Test
     {
