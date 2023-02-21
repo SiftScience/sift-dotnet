@@ -12,7 +12,7 @@ namespace Sift.Test.Core6
 {
     public class Test
     {
-        private string TestSupportFilesPath = new DirectoryInfo(Environment.CurrentDirectory).Parent.Parent.Parent.Parent.FullName +
+        private readonly string TestSupportFilesPath = new DirectoryInfo(Environment.CurrentDirectory).Parent.Parent.Parent.Parent.FullName +
             "\\TestRequestBody\\";
         [Fact]
         public void TestApplyDecisionRequest()
