@@ -46,3 +46,4 @@ Thumbs.db
 
 # dotCover
 *.dotCover
+/Visual Studio 2022/Visualizers
