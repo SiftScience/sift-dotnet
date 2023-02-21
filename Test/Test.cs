@@ -1,20 +1,20 @@
-using System;
-using Xunit;
 using Sift;
+using Sift.Core;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Text;
-using System.Security.Cryptography;
 using System.IO;
-using Sift.Core;
 using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
+using Xunit;
 
 namespace Test
 {
     public class Test
     {
         private string TestSupportFilesPath = new DirectoryInfo(Environment.CurrentDirectory).Parent.Parent.Parent.Parent.FullName +
-            "\\Test_Support_Files\\";
+            "\\TestRequestBody\\";
         [Fact]
         public void TestApplyDecisionRequest()
         {

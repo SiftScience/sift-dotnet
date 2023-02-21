@@ -6,24 +6,24 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sift", "Sift\Sift.csproj", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Test", "Test\Test.csproj", "{E34BBAD1-9AAC-4120-92C9-3574CCFAF01D}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test_Support_Files", "Test_Support_Files", "{C73F20A7-3E0F-4200-B824-4ECCE96C1049}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TestRequestBody", "TestRequestBody", "{C73F20A7-3E0F-4200-B824-4ECCE96C1049}"
 	ProjectSection(SolutionItems) = preProject
-		Test_Support_Files\TestChargebackEvent_Chargeback.json = Test_Support_Files\TestChargebackEvent_Chargeback.json
-		Test_Support_Files\TestCreateAccountEvent_CreateAccount.json = Test_Support_Files\TestCreateAccountEvent_CreateAccount.json
-		Test_Support_Files\TestCreateOrderEventWithCryptoFields_CreateOrder.json = Test_Support_Files\TestCreateOrderEventWithCryptoFields_CreateOrder.json
-		Test_Support_Files\TestCreateOrderEventWithMerchantProfileField_CreateOrder.json = Test_Support_Files\TestCreateOrderEventWithMerchantProfileField_CreateOrder.json
-		Test_Support_Files\TestCreateOrderEventWithSepaPaymentMethodFields_CreateOrder.json = Test_Support_Files\TestCreateOrderEventWithSepaPaymentMethodFields_CreateOrder.json
-		Test_Support_Files\TestCreateOrderEventWithWirePaymentMethod_CreateOrder.json = Test_Support_Files\TestCreateOrderEventWithWirePaymentMethod_CreateOrder.json
-		Test_Support_Files\TestCustomEventRequest_CustomEvent.json = Test_Support_Files\TestCustomEventRequest_CustomEvent.json
-		Test_Support_Files\TestEventRequest_CreateOrder.json = Test_Support_Files\TestEventRequest_CreateOrder.json
-		Test_Support_Files\TestEventWithBrowser_CreateOrder.json = Test_Support_Files\TestEventWithBrowser_CreateOrder.json
-		Test_Support_Files\TestLoginEvent_Login.json = Test_Support_Files\TestLoginEvent_Login.json
-		Test_Support_Files\TestTransactionEvent_Transaction.json = Test_Support_Files\TestTransactionEvent_Transaction.json
-		Test_Support_Files\TestTransactionEventWithCryptoFields_ObservableCollection.json = Test_Support_Files\TestTransactionEventWithCryptoFields_ObservableCollection.json
-		Test_Support_Files\TestTransactionEventWithFintechFields_Transaction.json = Test_Support_Files\TestTransactionEventWithFintechFields_Transaction.json
-		Test_Support_Files\TestUpdateAccountEvent_UpdateAccount.json = Test_Support_Files\TestUpdateAccountEvent_UpdateAccount.json
-		Test_Support_Files\TestUpdateMerchantRequest_UpdateMerchantRequest.json = Test_Support_Files\TestUpdateMerchantRequest_UpdateMerchantRequest.json
-		Test_Support_Files\TestUpdateOrderEventWithCryptoFields_UpdateOrder.json = Test_Support_Files\TestUpdateOrderEventWithCryptoFields_UpdateOrder.json
+		TestRequestBody\TestChargebackEvent_Chargeback.json = TestRequestBody\TestChargebackEvent_Chargeback.json
+		TestRequestBody\TestCreateAccountEvent_CreateAccount.json = TestRequestBody\TestCreateAccountEvent_CreateAccount.json
+		TestRequestBody\TestCreateOrderEventWithCryptoFields_CreateOrder.json = TestRequestBody\TestCreateOrderEventWithCryptoFields_CreateOrder.json
+		TestRequestBody\TestCreateOrderEventWithMerchantProfileField_CreateOrder.json = TestRequestBody\TestCreateOrderEventWithMerchantProfileField_CreateOrder.json
+		TestRequestBody\TestCreateOrderEventWithSepaPaymentMethodFields_CreateOrder.json = TestRequestBody\TestCreateOrderEventWithSepaPaymentMethodFields_CreateOrder.json
+		TestRequestBody\TestCreateOrderEventWithWirePaymentMethod_CreateOrder.json = TestRequestBody\TestCreateOrderEventWithWirePaymentMethod_CreateOrder.json
+		TestRequestBody\TestCustomEventRequest_CustomEvent.json = TestRequestBody\TestCustomEventRequest_CustomEvent.json
+		TestRequestBody\TestEventRequest_CreateOrder.json = TestRequestBody\TestEventRequest_CreateOrder.json
+		TestRequestBody\TestEventWithBrowser_CreateOrder.json = TestRequestBody\TestEventWithBrowser_CreateOrder.json
+		TestRequestBody\TestLoginEvent_Login.json = TestRequestBody\TestLoginEvent_Login.json
+		TestRequestBody\TestTransactionEvent_Transaction.json = TestRequestBody\TestTransactionEvent_Transaction.json
+		TestRequestBody\TestTransactionEventWithCryptoFields_ObservableCollection.json = TestRequestBody\TestTransactionEventWithCryptoFields_ObservableCollection.json
+		TestRequestBody\TestTransactionEventWithFintechFields_Transaction.json = TestRequestBody\TestTransactionEventWithFintechFields_Transaction.json
+		TestRequestBody\TestUpdateAccountEvent_UpdateAccount.json = TestRequestBody\TestUpdateAccountEvent_UpdateAccount.json
+		TestRequestBody\TestUpdateMerchantRequest_UpdateMerchantRequest.json = TestRequestBody\TestUpdateMerchantRequest_UpdateMerchantRequest.json
+		TestRequestBody\TestUpdateOrderEventWithCryptoFields_UpdateOrder.json = TestRequestBody\TestUpdateOrderEventWithCryptoFields_UpdateOrder.json
 	EndProjectSection
 EndProject
 Global
