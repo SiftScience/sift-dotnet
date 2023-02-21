@@ -8,7 +8,7 @@ using System.Security.Cryptography;
 using System.Text;
 using Xunit;
 
-namespace Sift.Test.Core6
+namespace Sift.Test.Core2_1
 {
     public class Test
     {
