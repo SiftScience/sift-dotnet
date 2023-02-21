@@ -30,6 +30,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sift.Test.Core3.1", "Sift.T
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sift.Test.Net6", "Sift.Test.Net6\Sift.Test.Net6.csproj", "{FD27DBB3-67BB-4D22-984D-359A570CB5CA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sift.Test.Framework4.8", "Sift.Test.Framework4.8\Sift.Test.Framework4.8.csproj", "{17FEFA07-E402-40A3-B95C-34A40F27193E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -52,6 +54,10 @@ Global
 		{FD27DBB3-67BB-4D22-984D-359A570CB5CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FD27DBB3-67BB-4D22-984D-359A570CB5CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FD27DBB3-67BB-4D22-984D-359A570CB5CA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{17FEFA07-E402-40A3-B95C-34A40F27193E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{17FEFA07-E402-40A3-B95C-34A40F27193E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{17FEFA07-E402-40A3-B95C-34A40F27193E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{17FEFA07-E402-40A3-B95C-34A40F27193E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
