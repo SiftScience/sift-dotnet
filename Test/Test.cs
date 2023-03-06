@@ -1317,5 +1317,75 @@ namespace Test
             Assert.Equal("https://api.sift.com/v205/events?abuse_types=legacy,payment_abuse&return_score=true",
                           Uri.UnescapeDataString(eventRequest.Request.RequestUri.ToString()));
         }
+    
+        [Fact]
+        public void TestVerificationEvent()
+        {
+            //Please provide the valid session id in place of 'sessionId'
+            var sessionId = "sessionId";
+            var verifiedValue = "14155551212";
+            var verifiedEvent = "$create_content";
+            var verifiedEntityId = "chekle212452";
+            var reason = "$user_setting";
+            var verification = new Verification
+            {
+                user_id = "billy_jones_301",
+                session_id = sessionId,
+                status= "$pending",
+                verification_type= "$sms",
+                verified_value= verifiedValue,
+                reason= reason,
+                verified_event = verifiedEvent,
+                verified_entity_id= verifiedEntityId,
+                app = new App
+                {
+                    os= "iOS",
+                    app_name = "Calculator",
+                    device_manufacture= "Apple",
+                    device_model= "iPhone 4,2",
+                    device_unique_id= "A3D261E4-DE0A-470B-9E4A-720F3D3D22E6",
+                    app_version = "3.2.7"
+                },
+            };
+            String expectedRequestBody = "{\n" +
+                "  \"$type\"         : \"$verification\",\n" +
+                "  \"$api_key\"      : \"YOUR_API_KEY\",\n" +
+                "  \"$user_id\"      : \"billy_jones_301\",\n" +
+                "  \"$session_id\"   : \"" + sessionId + "\",\n" +
+                "  \"$app\"          : {\n" +
+                "      \"$os\"       : \"iOS\",\n" +
+                "      \"$app_name\" : \"Calculator\",\n" +
+                "      \"$device_manufacturer\" : \"Apple\",\n" +
+                "      \"$device_model\" : \"iPhone 4,2\",\n" +
+                "      \"$device_unique_id\" : \"A3D261E4-DE0A-470B-9E4A-720F3D3D22E6\",\n" +
+                "      \"$app_version\" : \"3.2.7\",\n" +
+                "  },\n" +
+                "  \"$status\"       : \"$pending\",\n" +
+                "  \"$verification_type\" : \"$sms\",\n" +
+                "  \"$verified_value\" : \"" + verifiedValue + "\",\n" +
+                "  \"$verified_event\" : \"" + verifiedEvent + "\",\n" +
+                "  \"$verified_entity_id\" : \"" + verifiedEntityId + "\",\n" +
+                "  \"$reason\" : \"" + reason + "\",\n" +
+                "}";
+
+            Assert.Equal(expectedRequestBody, verification.ToJson());
+            EventRequest eventRequest = new EventRequest
+            {
+                Event = verification
+            };
+
+            Assert.Equal("https://api.sift.com/v205/events", eventRequest.Request.RequestUri.ToString());
+
+            eventRequest = new EventRequest
+            {
+                Event = verification,
+                AbuseTypes = { "legacy", "payment_abuse" },
+                ReturnScore = true
+            };
+
+            Assert.Equal("https://api.sift.com/v205/events?abuse_types=legacy,payment_abuse&return_score=true",
+                          Uri.UnescapeDataString(eventRequest.Request.RequestUri.ToString()));
+
+        }
     }
 }
