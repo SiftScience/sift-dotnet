@@ -1,5 +1,3 @@
-## Purpose:
-
 ## Summary:
 
 
