@@ -1,7 +1,8 @@
-## Summary:
+## Purpose
 
+## Summary
 
-## Checklist:
+## Checklist
 - [ ] The change was thoroughly tested manually
 - [ ] The change was covered with unit tests
 - [ ] The change was tested with real API calls (if applicable)
