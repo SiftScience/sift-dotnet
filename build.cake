@@ -32,13 +32,7 @@ Task("clean")
     });
 
 Task("restore")
-.Does(() => {
-    var nugetSourceList = new List<string> { "https://api.nuget.org/v3/index.json" };
-
-    NuGetRestore(solutionFile, new NuGetRestoreSettings {
-        Source = nugetSourceList
-    });
-});
+    .Does(() => DotNetCoreRestore(solutionFile));
 
 Task("generate")
     .IsDependentOn("clean")
