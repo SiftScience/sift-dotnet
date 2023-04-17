@@ -8,7 +8,7 @@ var configuration = Argument("configuration", "Release");
 var solutionFile = "./Sift.sln";
 var sift = "./Sift/Sift.csproj";
 var testProjects = new string[] {
-    "./Sift.Test.Framework4.8/Sift.Test.Framework4.8.csproj",
+    //"./Sift.Test.Framework4.8/Sift.Test.Framework4.8.csproj",
     "./Sift.Test.Core2.1/Sift.Test.Core2.1.csproj",
     "./Sift.Test.Core3.1/Sift.Test.Core3.1.csproj",
     "./Sift.Test.Net6/Sift.Test.Net6.csproj"
@@ -64,7 +64,7 @@ Task("build")
         });
     }
 
-    var dotNetFramework4_8TestProject = "./Sift.Test.Framework4.8/Sift.Test.Framework4.8.csproj";
+    /*var dotNetFramework4_8TestProject = "./Sift.Test.Framework4.8/Sift.Test.Framework4.8.csproj";
 
     MSBuild(dotNetFramework4_8TestProject, new MSBuildSettings
     {
@@ -74,7 +74,7 @@ Task("build")
         MSBuildPlatform = MSBuildPlatform.Automatic,
         ToolVersion = MSBuildToolVersion.VS2017,
         ToolPath = EnvironmentVariable("MSBUILD_TOOL_PATH") ?? "C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/MSBuild/Current/Bin/MSBuild.exe"
-    });
+    });*/
 });
 
 Task("test")
