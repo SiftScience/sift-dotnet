@@ -50,6 +50,22 @@ The official Sift .NET client, supporting .NET Standard 2.0+
         // Handle InnerException
     }
 
+#### Fields
+     public List<String> Fields { get; set; } = new List<string>();
+
+#### Url Construction
+     protected override Uri Url
+     {
+            get
+            {
+                var url = new Uri(EventsUrl);
+                if (Fields.Count > 0)
+                {
+                    url = url.AddQuery("fields", string.Join(",", Fields));
+                }
+            }
+     }
+
 ### Custom Events
 
     // Construct custom events with required fields
