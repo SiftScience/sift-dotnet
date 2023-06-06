@@ -27,6 +27,9 @@ namespace Sift
 
             [JsonProperty("time")]
             public long Time { get; set; }
+            
+            [JsonProperty("percentiles")]
+            public Dictionary<string, decimal> Percentiles { get; set; }
         }
 
         public class LabelJson
