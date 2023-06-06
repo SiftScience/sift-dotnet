@@ -169,6 +169,12 @@ The official Sift .NET client, supporting .NET Standard 2.0+
         // Handle InnerException
     }
 
+#### Percentile
+     [JsonProperty("percentiles")]
+    public Dictionary<string, decimal> Percentiles { get; set; }
+
+    It's a collection of type dictionary with string Key and a decimal Value
+
 ### Labels
 
     // Label
