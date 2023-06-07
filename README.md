@@ -50,8 +50,8 @@ The official Sift .NET client, supporting .NET Standard 2.0+
         // Handle InnerException
     }
 
-#### Fields
-     public List<String> Fields { get; set; } = new List<string>();
+#### IncludeScorePercentile
+     public bool IncludeScorePercentile { get; set; }
 
 #### Url Construction
      protected override Uri Url
@@ -59,9 +59,9 @@ The official Sift .NET client, supporting .NET Standard 2.0+
             get
             {
                 var url = new Uri(EventsUrl);
-                if (Fields.Count > 0)
+                if (IncludeScorePercentile)
                 {
-                    url = url.AddQuery("fields", string.Join(",", Fields));
+                    url = url.AddQuery("fields", "SCORE_PERCENTILES");
                 }
             }
      }
