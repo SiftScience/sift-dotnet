@@ -11,7 +11,7 @@ namespace Sift
 
         public SiftEvent Event { get; set; }
         public List<String> AbuseTypes { get; set; } = new List<string>();
-        public List<String> Fields { get; set; } = new List<string>();
+        public bool IncludeScorePercentile { get; set; }
         public bool ReturnScore { get; set; }
         public bool ReturnWorkflowStatus { get; set; }
         public bool ReturnRouteInfo { get; set; }
@@ -39,9 +39,9 @@ namespace Sift
                     url = url.AddQuery("abuse_types", string.Join(",", AbuseTypes));
                 }
                 
-                if (Fields.Count > 0)
+                if (IncludeScorePercentile)
                 {
-                    url = url.AddQuery("fields", string.Join(",", Fields));
+                    url = url.AddQuery("fields", "SCORE_PERCENTILES");
                 }
 
                 if (ReturnScore)

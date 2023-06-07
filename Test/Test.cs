@@ -1337,7 +1337,7 @@ namespace Test
             {
                 Event = transaction,
                 AbuseTypes = { "legacy", "payment_abuse" },
-                Fields = { "SCORE_PERCENTILES" },
+                IncludeScorePercentile = true,
                 ReturnScore = true
             };
 
