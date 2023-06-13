@@ -1316,6 +1316,33 @@ namespace Test
 
             Assert.Equal("https://api.sift.com/v205/events?abuse_types=legacy,payment_abuse&return_score=true",
                           Uri.UnescapeDataString(eventRequest.Request.RequestUri.ToString()));
+        } 
+
+        [Fact]
+        public void TestScorePercentile()
+        {
+            var sessionId = "sessionId";
+            var transaction = new Transaction
+            {
+                user_id = "vineethk@exalture.com",
+                amount = 1000000000000L,
+                currency_code = "USD",
+                session_id = sessionId,
+                transaction_type = "$sale",
+                transaction_status = "$failure",
+                decline_category = "$invalid"
+            };
+
+            EventRequest eventRequest = new EventRequest
+            {
+                Event = transaction,
+                AbuseTypes = { "legacy", "payment_abuse" },
+                IncludeScorePercentile = true,
+                ReturnScore = true
+            };
+
+            Assert.Equal("https://api.sift.com/v205/events?abuse_types=legacy,payment_abuse&fields=SCORE_PERCENTILES&return_score=true",
+                          Uri.UnescapeDataString(eventRequest.Request.RequestUri.ToString()));
         }
     }
 }
