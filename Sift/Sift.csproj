@@ -7,7 +7,7 @@
     <VersionPrefix>0.11.0</VersionPrefix>
     <VersionSuffix>beta</VersionSuffix>
     <PackageReleaseNotes>Beta release</PackageReleaseNotes>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>net7.0</TargetFramework>
     <PackageId>Sift</PackageId>
     <PackageTags>sift;siftscience;client;api;client;async</PackageTags>
     <PackageIconUrl>https://s3.amazonaws.com/sift-assets/email/sift_32h.png</PackageIconUrl>
