@@ -1,0 +1,57 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema",
+  "title": "Verification",
+  "type": "object",
+  "required": [ "$type" ],
+  "properties": {
+    "$type": {
+      "type": "string",
+      "default": "$verification"
+    },
+    "$user_id": {
+      "type": [ "string", "null" ]
+    },
+    "$session_id": {
+      "type": [ "string"]
+    },
+    "status": {
+      "type": [ "string", "null" ]
+    },
+    "verified_event": {
+      "type": [ "string", "null" ]
+    },
+    "verified_entity_id": {
+      "type": [ "string", "null" ]
+    },
+    "verification_type": {
+      "type": [ "string", "null" ]
+    },
+    "verified_value": {
+      "type": [ "string", "null" ]
+    },
+    "reason": {
+      "type": [ "string", "null" ]
+    },
+    "$app": {
+      "oneOf": [
+        { "$ref": "ComplexTypes/app.json" },
+        { "type": "null" }
+      ]
+    },
+    "$browser": {
+      "oneOf": [
+        { "$ref": "ComplexTypes/browser.json" },
+        { "type": "null" }
+      ]
+    },
+    "$brand_name": {
+      "type": [ "string", "null" ]
+    },
+    "$site_country": {
+      "type": [ "string", "null" ]
+    },
+    "$site_domain": {
+      "type": [ "string", "null" ]
+    }
+  }
+}
