@@ -12,35 +12,35 @@
       "type": [ "string", "null" ]
     },
     "$session_id": {
-      "type": [ "string"]
+      "type": [ "string" ]
     },
-    "status": {
+    "$status": {
       "type": [ "string", "null" ]
     },
-    "verified_event": {
+    "$browser": {
+      "oneOf": [
+        { "$ref": "ComplexTypes/browser.json" },
+        { "type": "null" }
+      ]
+    },
+    "$verified_event": {
       "type": [ "string", "null" ]
     },
-    "verified_entity_id": {
+    "$verified_entity_id": {
       "type": [ "string", "null" ]
     },
-    "verification_type": {
+    "$verification_type": {
       "type": [ "string", "null" ]
     },
-    "verified_value": {
+    "$verified_value": {
       "type": [ "string", "null" ]
     },
-    "reason": {
+    "$reason": {
       "type": [ "string", "null" ]
     },
     "$app": {
       "oneOf": [
         { "$ref": "ComplexTypes/app.json" },
-        { "type": "null" }
-      ]
-    },
-    "$browser": {
-      "oneOf": [
-        { "$ref": "ComplexTypes/browser.json" },
         { "type": "null" }
       ]
     },
