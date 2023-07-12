@@ -1344,5 +1344,73 @@ namespace Test
             Assert.Equal("https://api.sift.com/v205/events?abuse_types=legacy,payment_abuse&fields=SCORE_PERCENTILES&return_score=true",
                           Uri.UnescapeDataString(eventRequest.Request.RequestUri.ToString()));
         }
+
+
+        //UpdateContentComment
+
+
+        [Fact]
+        public void TestUpdateContentCommentEvent()
+        {
+            var sessionId = "sessionId";
+            var updateContent = new UpdateContentComment
+            {
+                user_id = "fyw3989sjpqr71",
+                content_id = "comment-23412",
+                session_id = "a234ksjfgn435sfg",
+                status = "$active",
+                ip = "255.255.255.0",
+                browser = new Browser
+                {
+                    user_agent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36",
+                    accept_language = "en-US",
+                    content_language = "en-GB"
+                },
+                comment = new Comment()
+                {
+                    body = "Congrats on the new role!",
+                    contact_email = "alex_301@domain.com",
+                    parent_comment_id = "comment-23407",
+                    root_content_id = "listing-12923213",
+                    images = new ObservableCollection<Image>()
+                    {
+                        new Image()
+                        {
+                            md5_hash = "0cc175b9c0f1b6a831c399e269772661",
+                            link = "https://www.example.com/file.png",
+                            description =   "Example picture"
+                        },
+                        new Image()
+                        {
+                            md5_hash = "0cc175b9c0f1b6a831c399e269772661"
+                        }
+                    }
+                },
+                brand_name = "sift",
+                site_country = "US",
+                site_domain = "sift.com",
+            };
+
+            Assert.Equal("{\"$type\":\"$verification\",\"$user_id\":\"billy_jones_301\",\"$session_id\":\"sessionId\",\"$status\":\"$pending\",\"$browser\":{\"$user_agent\":\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36\",\"$accept_language\":\"en-GB\",\"$content_language\":\"en-US\"},\"$verified_event\":\"$login\",\"$verified_entity_id\":\"123\",\"$verification_type\":\"$sms\",\"$verified_value\":\"14155551212\",\"$reason\":\"$user_setting\",\"$brand_name\":\"xyz\",\"$site_country\":\"AU\",\"$site_domain\":\"somehost.example.com\"}",
+                                 verification.ToJson());
+
+            EventRequest eventRequest = new EventRequest
+            {
+                Event = UpdateContentComment
+            };
+
+            Assert.Equal("https://api.sift.com/v205/events", eventRequest.Request.RequestUri.ToString());
+
+            eventRequest = new EventRequest
+            {
+                Event = UpdateContentComment,
+                AbuseTypes = { "legacy", "payment_abuse" },
+                ReturnScore = true
+            };
+
+            Assert.Equal("https://api.sift.com/v205/events?abuse_types=legacy,payment_abuse&return_score=true",
+                          Uri.UnescapeDataString(eventRequest.Request.RequestUri.ToString()));
+        }
+
     }
 }
