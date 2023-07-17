@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: mcr.microsoft.com/dotnet/sdk:5.0
+      - image: mcr.microsoft.com/dotnet/sdk:7.0
     environment:
       - DOTNET_CLI_TELEMETRY_OPTOUT: 1
     steps:
@@ -16,7 +16,7 @@ jobs:
           command: apt-get update && apt-get install -y openssh-client git
       - run:
           name: Install .NET
-          command: apt-get install dotnet-sdk-2.0
+          command: wget https://dot.net/v1/dotnet-install.sh -O dotnet-install.sh && chmod +x ./dotnet-install.sh && ./dotnet-install.sh --channel 2.0
       - checkout
       - run: ./build.sh --target=restore
       - run: ./build.sh --target=generate
