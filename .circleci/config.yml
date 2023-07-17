@@ -1,6 +1,7 @@
 version: 2
 jobs:
   build:
+    working_directory: /app
     docker:
       - image: mcr.microsoft.com/dotnet/sdk:7.0
     environment:
@@ -18,8 +19,6 @@ jobs:
           name: Install .NET
           command: | 
             wget https://dot.net/v1/dotnet-install.sh -O dotnet-install.sh && chmod +x ./dotnet-install.sh && ./dotnet-install.sh --channel 2.0
-            mkdir app
-            cd app
       - checkout
       - run: ./build.sh --target=restore
       - run: ./build.sh --target=generate
