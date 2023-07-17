@@ -19,10 +19,8 @@ jobs:
           command: | 
             wget https://dot.net/v1/dotnet-install.sh -O dotnet-install.sh && chmod +x ./dotnet-install.sh && ./dotnet-install.sh --channel 2.0
       - run:
-          name: App folder
-          command: |
-            mkdir /root/app
-            cd /root/app
+          name: Clean project folder
+          command: sudo rm -fR /root/project/*
       - checkout
       - run: ./build.sh --target=restore
       - run: ./build.sh --target=generate
