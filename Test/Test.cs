@@ -1779,7 +1779,9 @@ namespace Test
                           Uri.UnescapeDataString(eventRequest.Request.RequestUri.ToString()));
         }
 
-        //UpdateContentReview
+        /// <summary>
+        /// Unit test for UpdateContent.Review
+        /// </summary>
         [Fact]
         public void TestUpdateContentReview()
         {
