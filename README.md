@@ -105,8 +105,8 @@ The official Sift .NET client, supporting .NET Standard 2.0+
         }
 
 
-    // Construct reserved events with known fields for UpdateContent.Listing
-                var updateContent = new UpdateContent
+        // Construct reserved events with known fields for UpdateContent.Listing
+        var updateContent = new UpdateContent
             {
                 user_id = "fyw3989sjpqr71",
                 content_id = "listing-23412",
@@ -211,7 +211,7 @@ The official Sift .NET client, supporting .NET Standard 2.0+
         }
 
         // Construct reserved events with known fields for UpdateContent.Message
-    var updateContent = new UpdateContent
+        var updateContent = new UpdateContent
             {
                 user_id = "fyw3989sjpqr71",
                 content_id = "message-23412",
@@ -264,8 +264,8 @@ The official Sift .NET client, supporting .NET Standard 2.0+
         }
 
 
-    // Construct reserved events with known fields for UpdateContent.Post
-    var updateContent = new UpdateContent
+        // Construct reserved events with known fields for UpdateContent.Post
+        var updateContent = new UpdateContent
             {
                 user_id = "fyw3989sjpqr71",
                 content_id = "post-23412",
@@ -349,7 +349,7 @@ The official Sift .NET client, supporting .NET Standard 2.0+
         }
 
         // Construct reserved events with known fields for UpdateContent.Profile
-    var updateContent = new UpdateContent
+        var updateContent = new UpdateContent
             {
                 user_id = "fyw3989sjpqr71",
                 content_id = "listing-23412",
@@ -385,6 +385,96 @@ The official Sift .NET client, supporting .NET Standard 2.0+
                         }
                     },
                     categories = new ObservableCollection<string>() { "Friends", "Long-term dating" }
+                },
+                browser = new Browser
+                {
+                    user_agent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36",
+                    accept_language = "en-US",
+                    content_language = "en-GB"
+                },
+                brand_name = "sift",
+                site_country = "US",
+                site_domain = "sift.com",
+            };
+
+            EventRequest eventRequest = new EventRequest()
+            {
+                Event = updateContent
+            };
+            try
+            {
+                EventResponse res = sift.SendAsync(eventRequest).Result;
+            }
+            catch (AggregateException ae)
+            {
+                // Handle InnerException
+            }
+        }
+
+        // Construct reserved events with known fields for UpdateContent.Review
+        var updateContent = new UpdateContent
+            {
+                user_id = "fyw3989sjpqr71",
+                content_id = "review-23412",
+                session_id = "a234ksjfgn435sfg",
+                status = "$active",
+                ip = "255.255.255.0",
+                review = new Review()
+                {
+                    subject = "Amazing Tacos!",
+                    body = "I ate the tacos.",
+                    contact_email = "alex_301@domain.com",
+                    locations = new ObservableCollection<Address>()
+                    {
+                        new Address()
+                        {
+                            name = "Bill Jones",
+                            address_1 = "abc",
+                            address_2 = "xyz",
+                            city = "Seattle",
+                            region = "Washington",
+                            country = "US",
+                            zipcode = "98112",
+                            phone = "1-415-555-6041"
+                        },
+                        new Address()
+                        {
+                            name = "Bill Jones"
+                        }
+
+                    },
+                    item_reviewed = new Item()
+                    {
+                        item_id = "B004834GQO",
+                        product_title = "The Slanket Blanket-Texas Tea",
+                        price = 39990000,
+                        currency_code = "USD",
+                        upc = "6786211451001",
+                        sku = "004834GQ",
+                        isbn = "0446576220",
+                        brand = "Slanket",
+                        manufacturer = "Slanket",
+                        category = "Blankets & Throws",
+                        tags = new ObservableCollection<string>() { "Awesome", "Wintertime specials" },
+                        color = "Texas Tea",
+                        size = "6",
+                    },
+
+                    reviewed_content_id = "listing-234234",
+                    rating = 4.5,
+                    images = new ObservableCollection<Image>()
+                    {
+                        new Image()
+                        {
+                            md5_hash = "0cc175b9c0f1b6a831c399e269772661",
+                            link = "https://www.domain.com/file.png",
+                            description = "Calamari tacos."
+                        },
+                        new Image()
+                        {
+                            md5_hash = "0cc175b9c0f1b6a831c399e269772661"
+                        }
+                    },
                 },
                 browser = new Browser
                 {
