@@ -82,9 +82,6 @@
     },
     "$keyless_user_id": {
       "type": [ "string", "null" ]
-    },
-    "$verification_phone_number": {
-      "type": [ "string", "null" ]
     }
   }
 }
