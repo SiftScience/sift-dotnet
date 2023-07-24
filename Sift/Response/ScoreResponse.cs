@@ -41,6 +41,24 @@ namespace Sift
             public Dictionary<string, decimal> Percentiles { get; set; }
         }
 
+        public class DecisionJson
+        {
+            [JsonProperty("id")]
+            public string id { get; set; }
+
+            [JsonProperty("type")]
+            public string type { get; set; }
+
+            [JsonProperty("source")]
+            public string source { get; set; }
+
+            [JsonProperty("time")]
+            public long Time { get; set; }
+
+            [JsonProperty("description")]
+            public string description { get; set; }
+        }
+
         public class LabelJson
         {
             [JsonProperty("is_bad")]
