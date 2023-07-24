@@ -14,6 +14,9 @@ namespace Sift
         [JsonProperty("entity_type")]
         public Dictionary<string, ScoreJson> EntityType { get; set; }
 
+        [JsonProperty("entity_id")]
+        public Dictionary<string, ScoreJson> EntityId { get; set; }
+
         [JsonProperty("latest_labels")]
         public Dictionary<string, LabelJson> LatestLabels { get; set; }
 
