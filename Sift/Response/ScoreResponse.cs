@@ -69,6 +69,9 @@ namespace Sift
 
             [JsonProperty("time")]
             public long Time { get; set; }
+
+            [JsonProperty("is_fraud")]
+            public bool is_fraud { get; set; }
         }
 
         public class ReasonJson
