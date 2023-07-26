@@ -1344,5 +1344,85 @@ namespace Test
             Assert.Equal("https://api.sift.com/v205/events?abuse_types=legacy,payment_abuse&fields=SCORE_PERCENTILES&return_score=true",
                           Uri.UnescapeDataString(eventRequest.Request.RequestUri.ToString()));
         }
+
+        [Fact]
+        public void TestGetScoreResponse()
+        {
+            //Please provide the valid api key in place of 'key'
+            var apiKey = "key";
+
+            var test = new Dictionary<string, string>
+            {
+                { "qeqw", "qwrqr" },
+                { "dfsaf", "ada" }
+            };
+            var getScoreResponse = new ScoreResponse
+            {
+
+                Status = 0,
+                ErrorMessage = "OK",
+                UserId = "billy_jones_301",
+                Scores = new Dictionary<string, ScoreResponse.ScoreJson>()
+                {
+                    {
+                       "score",
+                        new ScoreResponse.ScoreJson()
+                            {Score=6, Time=84710383103092309,
+                            Reasons= new List<ScoreResponse.ReasonJson>()
+                            {
+                                new ScoreResponse.ReasonJson()
+                                {Name="UsersPerDevice", Value=4,
+                                    Details=new Dictionary<string, object>()
+                                    {
+                                        {
+                                            "users",
+                                            new List<string>()
+                                            {
+                                                "a","b","c","d"
+                                            }
+                                        }
+                                    }
+
+                                }
+                            }
+                        }
+                    }
+                },
+                EntityType = "user",
+                EntityId = "Id",
+                LatestDecisions = new Dictionary<string, ScoreResponse.DecisionJson>()
+                {
+                    {
+                        "Id", new ScoreResponse.DecisionJson()
+                        {
+                            id = "user_looks_bad_payment_abuse",
+                            type = "block",
+                            source = "AUTOMATED_RULE",
+                            Time  = 1352201880,
+                            description ="Bad Fraudster"
+                        }
+                    }
+                },
+                LatestLabels = new Dictionary<string, ScoreResponse.LabelJson>()
+                {
+                    {
+                        "is_fraud", new ScoreResponse.LabelJson()
+                        {
+                            is_fraud = true,
+                            Time = 1352201880,
+                            Description = "received a chargeback"
+                        }
+                    }
+                },
+
+            };
+
+
+
+
+            Assert.Equal("https://api.sift.com/v205/users/{UserId}/score?api_key={apiKey}&abuse_types=payment_abuse,promotion_abuse",
+                         getScoreResponse.Request.RequestUri.ToString());
+        }
+
     }
 }
