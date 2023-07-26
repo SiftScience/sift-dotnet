@@ -18,7 +18,7 @@ namespace Sift
         public string EntityId { get; set; }
 
         [JsonProperty("latest_decisions")]
-        public Dictionary<string, LabelJson> LatestDecisions { get; set; }
+        public Dictionary<string, DecisionJson> LatestDecisions { get; set; }
 
         [JsonProperty("latest_labels")]
         public Dictionary<string, LabelJson> LatestLabels { get; set; }
