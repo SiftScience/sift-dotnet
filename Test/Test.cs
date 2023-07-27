@@ -8,6 +8,7 @@ using System.Security.Cryptography;
 using System.IO;
 using Sift.Core;
 using System.Linq;
+using Newtonsoft.Json;
 
 namespace Test
 {
@@ -808,8 +809,9 @@ namespace Test
 
                 ApiKey = apiKey,
                 Code = 655543,
-                UserId = "vineethk@exalture.com"
-
+                UserId = "haneeshv@exalture.com",
+                VerifiedEntityId = "SOME_SESSION_ID",
+                VerifiedEvent = "$login"
             };
 
             verificationCheckRequest.ApiKey = apiKey;
@@ -817,7 +819,7 @@ namespace Test
             Assert.Equal(Convert.ToBase64String(Encoding.Default.GetBytes(apiKey)),
                 verificationCheckRequest.Request.Headers.Authorization.Parameter);
 
-            Assert.Equal("https://api.sift.com/v1.1/verification/check",
+            Assert.Equal("https://api.sift.com/v1/verification/check",
                          verificationCheckRequest.Request.RequestUri.ToString());
         }
 
@@ -830,22 +832,26 @@ namespace Test
             var sessionId = "sessionId";
             var verificationSendRequest = new VerificationSendRequest
             {
-                UserId = "vineethk@exalture.com",
+                UserId = "haneeshv@exalture.com",
                 ApiKey = apiKey,
                 BrandName = "all",
                 VerificationType = "$email",
-                SendTo = "vineethk@exalture.com",
+                SendTo = "haneeshv@exalture.com",
                 Language = "en",
+                SiteCountry = "IN",
                 Event = new VerificationSendEvent()
                 {
-                    Browser = new VerificationSendBrowser()
+                    Browser = new Browser()
                     {
-                        UserAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36"
+                        user_agent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36",
+                        content_language = "en-US",
+                        accept_language = "en-GB",
                     },
                     IP = "192.168.1.1",
                     Reason = "$automated_rule",
                     SessionId = sessionId,
-                    VerifiedEvent = "$login"
+                    VerifiedEvent = "$login",
+                    VerifiedEntityId = "SOME_SESSION_ID"
                 }
             };
 
@@ -854,7 +860,7 @@ namespace Test
             Assert.Equal(Convert.ToBase64String(Encoding.Default.GetBytes(apiKey)),
                 verificationSendRequest.Request.Headers.Authorization.Parameter);
 
-            Assert.Equal("https://api.sift.com/v1.1/verification/send",
+            Assert.Equal("https://api.sift.com/v1/verification/send",
                          verificationSendRequest.Request.RequestUri.ToString());
         }
 
@@ -865,18 +871,17 @@ namespace Test
             var apiKey = "key";
             var verificationResendRequest = new VerificationReSendRequest
             {
-                UserId = "vineethk@exalture.com",
-                ApiKey = apiKey
-
-
+                UserId = "haneeshv@exalture.com",
+                ApiKey = apiKey,
+                VerifiedEntityId = "SOME_SESSION_ID",
+                VerifiedEvent = "$login"
             };
             verificationResendRequest.ApiKey = apiKey;
 
             Assert.Equal(Convert.ToBase64String(Encoding.Default.GetBytes(apiKey)),
                 verificationResendRequest.Request.Headers.Authorization.Parameter);
 
-
-            Assert.Equal("https://api.sift.com/v1.1/verification/resend",
+            Assert.Equal("https://api.sift.com/v1/verification/resend",
                          verificationResendRequest.Request.RequestUri.ToString());
         }
 

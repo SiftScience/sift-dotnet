@@ -1,6 +1,5 @@
 ﻿using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
@@ -9,7 +8,7 @@ namespace Sift
 {
     public class VerificationCheckRequest : SiftRequest
     {
-        static readonly String VerificationCheckUrl = @"https://api.sift.com/v1.1/verification/check";
+        static readonly String VerificationCheckUrl = @"https://api.sift.com/v1/verification/check";
 
         [JsonIgnore]
         public override string ApiKey { get; set; }
@@ -50,14 +49,13 @@ namespace Sift
 
     public class VerificationSendRequest : SiftRequest
     {
-        static readonly String VerificationSendUrl = @"https://api.sift.com/v1.1/verification/send";
+        static readonly String VerificationSendUrl = @"https://api.sift.com/v1/verification/send";
 
         [JsonIgnore]
         public override string ApiKey { get; set; }
 
         [JsonProperty("$user_id", NullValueHandling = NullValueHandling.Ignore)]
         public string UserId { get; set; }
-
 
         [JsonProperty("$send_to", NullValueHandling = NullValueHandling.Ignore)]
         public string SendTo { get; set; }
@@ -67,6 +65,9 @@ namespace Sift
 
         [JsonProperty("$brand_name", NullValueHandling = NullValueHandling.Ignore)]
         public string BrandName { get; set; }
+
+        [JsonProperty("$site_country", NullValueHandling = NullValueHandling.Ignore)]
+        public string SiteCountry { get; set; }
 
         [JsonProperty("$language", NullValueHandling = NullValueHandling.Ignore)]
         public string Language { get; set; }
@@ -98,7 +99,7 @@ namespace Sift
 
     public class VerificationReSendRequest : SiftRequest
     {
-        static readonly String VerificationReSendUrl = @"https://api.sift.com/v1.1/verification/resend";
+        static readonly String VerificationReSendUrl = @"https://api.sift.com/v1/verification/resend";
 
         [JsonIgnore]
         public override string ApiKey { get; set; }
@@ -134,7 +135,6 @@ namespace Sift
         }
     }
 
-
     public class VerificationSendEvent
     {
         [JsonProperty("$session_id", NullValueHandling = NullValueHandling.Ignore)]
@@ -143,19 +143,19 @@ namespace Sift
         [JsonProperty("$verified_event", NullValueHandling = NullValueHandling.Ignore)]
         public string VerifiedEvent { get; set; }
 
+        [JsonProperty("$verified_entity_id", NullValueHandling = NullValueHandling.Ignore)]
+        public string VerifiedEntityId { get; set; }
+
         [JsonProperty("$reason", NullValueHandling = NullValueHandling.Ignore)]
         public string Reason { get; set; }
 
         [JsonProperty("$ip", NullValueHandling = NullValueHandling.Ignore)]
         public string IP { get; set; }
 
-        [JsonProperty("$browser")]
-        public VerificationSendBrowser Browser { get; set; }
-    }
+        [Newtonsoft.Json.JsonProperty("$browser", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public Browser Browser { get; set; }
 
-    public class VerificationSendBrowser
-    {
-        [JsonProperty("$user_agent", NullValueHandling = NullValueHandling.Ignore)]
-        public string UserAgent { get; set; }
+        [Newtonsoft.Json.JsonProperty("$app", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public App App { get; set; }
     }
 }
