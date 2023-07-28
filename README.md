@@ -215,3 +215,73 @@ The official Sift .NET client, supporting .NET Standard 2.0+
     {
         // Handle InnerException
     }
+
+### Verification
+
+    // send
+    try
+            {
+                VerificationSendResponse res = sift.SendAsync(new VerificationSendRequest
+                    {
+                        UserId = "USER_ID",
+                        BrandName = "MyTopBrand",
+                        VerificationType = "$email",
+                        SendTo = "SEND_TO",
+                        Language = "en",
+                        SiteCountry = "IN",
+                        Event = new VerificationSendEvent()
+                        {
+                            Browser = new Browser()
+                            {
+                                user_agent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36",
+                                content_language = "en-US",
+                                accept_language = "en-GB",
+                            },
+                            IP = "192.168.1.1",
+                            Reason = "$automated_rule",
+                            SessionId = "SOME_SESSION_ID",
+                            VerifiedEvent = "$login",
+                            VerifiedEntityId = "SOME_SESSION_ID",
+                        }
+                    }
+                ).Result;
+            }
+            catch (AggregateException ae)
+            {
+                // Handle InnerException
+            }
+
+    // resend
+        try
+            {
+                VerificationReSendResponse res = sift.SendAsync(new VerificationReSendRequest
+                    {
+                        UserId = "USER_ID",
+                        VerifiedEntityId = "SOME_SESSION_ID",
+                        VerifiedEvent = "$login"
+
+                    }
+                ).Result;
+            }
+            catch (AggregateException ae)
+            {
+                // Handle InnerException
+            }
+
+    // check
+         try
+            {
+                VerificationCheckResponse res = sift.SendAsync(new VerificationCheckRequest
+                    {
+                        Code = 147222,
+                        UserId = "USER_ID",
+                        VerifiedEvent = "$login",
+                        VerifiedEntityId = "SOME_SESSION_ID"
+
+                    }
+                ).Result;
+            }
+            catch (AggregateException ae)
+            {
+                // Handle InnerException
+            }
