@@ -1,3 +1,4 @@
+using Microsoft.VisualStudio.TestPlatform.ObjectModel.DataCollection;
 using Sift;
 using System.Collections.ObjectModel;
 using Xunit;
@@ -374,6 +375,30 @@ namespace Test.Integration.Net7
             }
         }
 
+        [Fact]
+        public void IntegrationTest_LinkSessionToUser()
+        {
+            var sift = new Client("ccd68efbe25809bc");
+            var sessionId = "sessionId";
+            var linkSessionToUser = new LinkSessionToUser
+            {
+                user_id = "billy_jones_301",
+                session_id = "gigtleqddo84l8cm15qe4il"
+            };
+
+            EventRequest eventRequest = new EventRequest()
+            {
+                Event = linkSessionToUser
+            };
+            try
+            {
+                EventResponse res = sift.SendAsync(eventRequest).Result;
+            }
+            catch (AggregateException ae)
+            {
+                // Handle InnerException
+            }
+        }
 
     }
 }
