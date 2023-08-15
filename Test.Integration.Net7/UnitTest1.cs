@@ -442,5 +442,44 @@ namespace Test.Integration.Net7
             }
         }
 
+        [Fact]
+        public void IntegrationTest_Logout()
+        {
+            var sift = new Client("ccd68efbe25809bc");
+            var sessionId = "sessionId";
+            var logout = new Logout
+            {
+                user_id = "billy_jones_301",
+                ip = "128.148.1.135",
+                account_types = new ObservableCollection<string>() { "merchant", "premium" },
+                brand_name = "sift",
+                site_domain = "sift.com",
+                site_country = "US",
+                browser = new Browser
+                {
+                    user_agent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36",
+                    accept_language = "en-US",
+                    content_language = "en-GB"
+                },
+                username = "billjones1@example.com",
+                failure_reason = "$account_unknown",
+                verification_phone_number = "+123456789012"
+
+            };
+
+            EventRequest eventRequest = new EventRequest()
+            {
+                Event = logout
+            };
+            try
+            {
+                EventResponse res = sift.SendAsync(eventRequest).Result;
+            }
+            catch (AggregateException ae)
+            {
+                // Handle InnerException
+            }
+        }
+
     }
 }
