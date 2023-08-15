@@ -339,6 +339,41 @@ namespace Test.Integration.Net7
             }
         }
 
+        [Fact]
+        public void IntegrationTest_FlagContent()
+        {
+            var sift = new Client("ccd68efbe25809bc");
+            var sessionId = "sessionId";
+            var flagContent = new FlagContent
+            {
+                user_id = "billy_jones_301",
+                session_id = "gigtleqddo84l8cm15qe4il",
+                content_id = "9671500641",
+                flagged_by = "jamieli89",
+                reason = "$toxic",
+                browser = new Browser
+                {
+                    user_agent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36",
+                    accept_language = "en-US",
+                    content_language = "en-GB"
+                },
+                verification_phone_number = "+123456789012"
+            };
+
+            EventRequest eventRequest = new EventRequest()
+            {
+                Event = flagContent
+            };
+            try
+            {
+                EventResponse res = sift.SendAsync(eventRequest).Result;
+            }
+            catch (AggregateException ae)
+            {
+                // Handle InnerException
+            }
+        }
+
 
     }
 }
