@@ -1,5 +1,4 @@
 using Sift;
-using System;
 using System.Collections.ObjectModel;
 using Xunit;
 
