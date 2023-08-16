@@ -1,46 +1,61 @@
 using Sift;
+using System;
+using System.Collections.ObjectModel;
 using Xunit;
 
 namespace Test
 {
-    public class Chargebacks
+    public class CreateContents
     {
         [Fact]
-        public void IntegrationTest_Chargeback()
+        public void IntegrationTest_CreateContentComment()
         {
             var sift = new Client("ccd68efbe25809bc");
             var sessionId = "sessionId";
-            var chargeback = new Chargeback
+            var createContent = new CreateContent
             {
-                user_id = "billy_jones_301",
-                order_id = "ORDER-123124124",
-                transaction_id = "719637215",
-                chargeback_state = "$lost",
-                chargeback_reason = "$duplicate",
-                merchant_profile = new MerchantProfile()
+                user_id = "fyw3989sjpqr71",
+                content_id = "comment-23412",
+                session_id = "a234ksjfgn435sfg",
+                status = "$active",
+                ip = "255.255.255.0",
+                comment = new Comment()
                 {
-                    merchant_id = "AX527123",
-                    merchant_category_code = "1234",
-                    merchant_name = "Dream Company",
-                    merchant_address = new Address()
+                    body = "Congrats on the new role!",
+                    contact_email = "alex_301@domain.com",
+                    parent_comment_id = "comment-23407",
+                    root_content_id = "listing-12923213",
+                    images = new ObservableCollection<Image>()
                     {
-                        phone = "1-415-555-6040",
-                        address_1 = "2100 Main Street",
-                        address_2 = "Apt 3B",
-                        city = "New London",
-                        region = "New Hampshire",
-                        country = "US",
-                        zipcode = "03257"
-
+                        new Image()
+                        {
+                            md5_hash = "0cc175b9c0f1b6a831c399e269772661",
+                            link = "https://www.domain.com/file.png",
+                            description =   "An old picture"
+                        },
+                        new Image()
+                        {
+                            md5_hash = "0cc175b9c0f1b6a831c399e269772661"
+                        }
                     }
-                }
+                },
+                browser = new Browser
+                {
+                    user_agent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36",
+                    accept_language = "en-US",
+                    content_language = "en-GB"
+                },
+                brand_name = "sift",
+                site_domain = "sift.com",
+                site_country = "US"
             };
             EventRequest eventRequest = new EventRequest()
             {
-                Event = chargeback
+                Event = createContent
             };
             EventResponse res = sift.SendAsync(eventRequest).Result;
             Assert.Equal("OK", res.ErrorMessage);
         }
+
     }
 }
