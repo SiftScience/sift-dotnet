@@ -50,6 +50,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Status.cs" />
     <Compile Include="Sessions.cs" />
     <Compile Include="Promotion.cs" />
     <Compile Include="Passwords.cs" />
