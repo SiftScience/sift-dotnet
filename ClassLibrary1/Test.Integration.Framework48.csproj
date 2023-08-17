@@ -50,6 +50,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Flags.cs" />
     <Compile Include="CreateContents.cs" />
     <Compile Include="Chargebacks.cs" />
     <Compile Include="Account.cs" />
