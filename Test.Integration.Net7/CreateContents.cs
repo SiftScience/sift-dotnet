@@ -348,5 +348,90 @@ namespace Test
             Assert.Equal("OK", res.ErrorMessage);
         }
 
+        [Fact]
+        public void IntegrationTest_CreateContentReview()
+        {
+            var sift = new Client("ccd68efbe25809bc");
+            var sessionId = "sessionId";
+            var createContent = new CreateContent
+            {
+                user_id = "fyw3989sjpqr71",
+                content_id = "review-23412",
+                session_id = "a234ksjfgn435sfg",
+                status = "$active",
+                ip = "255.255.255.0",
+                browser = new Browser
+                {
+                    user_agent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36",
+                    accept_language = "en-US",
+                    content_language = "en-GB"
+                },
+                review = new Review()
+                {                  
+                    subject = "Amazing Tacos!",
+                    body = "I ate the tacos.",
+                    contact_email = "alex_301@domain.com",
+                    locations = new ObservableCollection<Address>()
+                    {
+                        new Address()
+                        {
+                            name = "Bill Jones",
+                            address_1 = "abc",
+                            address_2 = "xyz",
+                            city = "Seattle",
+                            region = "Washington",
+                            country = "US",
+                            zipcode = "98112",
+                            phone = "1-415-555-6041"
+                        },
+                        new Address()
+                        {
+                            name = "Bill Jones"
+                        }
+                    },
+                    item_reviewed = new Item()
+                    {
+                        item_id = "B004834GQO",
+                        product_title = "The Slanket Blanket-Texas Tea",
+                        price = 39990000,
+                        currency_code = "USD",
+                        upc = "6786211451001",
+                        sku = "004834GQ",
+                        isbn = "0446576220",
+                        brand = "Slanket",
+                        manufacturer = "Slanket",
+                        category = "Blankets & Throws",
+                        tags = new ObservableCollection<string>() { "Awesome", "Wintertime specials" },
+                        color = "Texas Tea",
+                        size = "6",
+                    },
+                    reviewed_content_id = "listing-234234",
+                    rating = 4.5,
+                    images = new ObservableCollection<Image>()
+                    {
+                        new Image()
+                        {
+                            md5_hash = "0cc175b9c0f1b6a831c399e269772661",
+                            link = "https://www.domain.com/file.png",
+                            description = "Billy's picture"
+                        },
+                        new Image()
+                        {
+                            md5_hash = "0cc175b9c0f1b6a831c399e269772661"
+                        }
+                    }                                        
+                },
+                brand_name = "sift",
+                site_domain = "sift.com",
+                site_country = "US"
+            };
+            EventRequest eventRequest = new EventRequest()
+            {
+                Event = createContent
+            };
+            EventResponse res = sift.SendAsync(eventRequest).Result;
+            Assert.Equal("OK", res.ErrorMessage);
+        }
+
     }
 }
