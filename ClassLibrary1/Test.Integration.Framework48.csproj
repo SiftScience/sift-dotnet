@@ -50,6 +50,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Order.cs" />
     <Compile Include="Notifications.cs" />
     <Compile Include="Logging.cs" />
     <Compile Include="Flags.cs" />
