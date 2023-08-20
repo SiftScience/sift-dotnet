@@ -3,7 +3,7 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using Xunit;
 
-namespace Test
+namespace Test.Integration.Net7.ReservedEvents
 {
     public class Transactions
     {

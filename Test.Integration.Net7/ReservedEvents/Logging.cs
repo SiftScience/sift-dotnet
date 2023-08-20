@@ -2,7 +2,7 @@ using Sift;
 using System.Collections.ObjectModel;
 using Xunit;
 
-namespace Test
+namespace Test.Integration.Net7.ReservedEvents
 {
     public class Logging
     {
@@ -47,7 +47,7 @@ namespace Test
             var sessionId = "sessionId";
             var logout = new Logout
             {
-                user_id = "billy_jones_301",                
+                user_id = "billy_jones_301",
                 browser = new Browser
                 {
                     user_agent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36",

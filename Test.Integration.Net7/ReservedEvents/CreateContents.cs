@@ -2,7 +2,7 @@ using Sift;
 using System.Collections.ObjectModel;
 using Xunit;
 
-namespace Test
+namespace Test.Integration.Net7.ReservedEvents
 {
     public class CreateContents
     {
@@ -307,7 +307,7 @@ namespace Test
                     content_language = "en-GB"
                 },
                 profile = new Profile()
-                {                  
+                {
                     body = "Let’s meet at 5pm",
                     contact_email = "alex_301@domain.com",
                     contact_address = new Address()
@@ -334,7 +334,7 @@ namespace Test
                             md5_hash = "0cc175b9c0f1b6a831c399e269772661"
                         }
                     },
-                    categories = new ObservableCollection<string>() { "Photographer", "Weddings" }                    
+                    categories = new ObservableCollection<string>() { "Photographer", "Weddings" }
                 },
                 brand_name = "sift",
                 site_domain = "sift.com",
@@ -367,7 +367,7 @@ namespace Test
                     content_language = "en-GB"
                 },
                 review = new Review()
-                {                  
+                {
                     subject = "Amazing Tacos!",
                     body = "I ate the tacos.",
                     contact_email = "alex_301@domain.com",
@@ -419,7 +419,7 @@ namespace Test
                         {
                             md5_hash = "0cc175b9c0f1b6a831c399e269772661"
                         }
-                    }                                        
+                    }
                 },
                 brand_name = "sift",
                 site_domain = "sift.com",

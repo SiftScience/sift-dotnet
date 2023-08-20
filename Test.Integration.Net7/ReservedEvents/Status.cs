@@ -2,7 +2,7 @@ using Sift;
 using System;
 using Xunit;
 
-namespace Test
+namespace Test.Integration.Net7.ReservedEvents
 {
     public class Status
     {

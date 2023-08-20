@@ -1,7 +1,7 @@
 using Sift;
 using Xunit;
 
-namespace Test
+namespace Test.Integration.Net7.ReservedEvents
 {
     public class Chargebacks
     {
