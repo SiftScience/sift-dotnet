@@ -54,7 +54,7 @@
     <Compile Include="Transactions.cs" />
     <Compile Include="Status.cs" />
     <Compile Include="Sessions.cs" />
-    <Compile Include="Promotion.cs" />
+    <Compile Include="Promotions.cs" />
     <Compile Include="Passwords.cs" />
     <Compile Include="Order.cs" />
     <Compile Include="Notifications.cs" />

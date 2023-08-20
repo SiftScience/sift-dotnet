@@ -4,7 +4,7 @@ using Xunit;
 
 namespace Test
 {
-    public class Promotion
+    public class Promotions
     {
         [Fact]
         public void IntegrationTest_AddPromotion()
