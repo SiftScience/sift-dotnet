@@ -15,10 +15,6 @@ jobs:
           name: Install OpenSSH and Git
           command: apt-get update && apt-get install -y openssh-client git
       - checkout
-      - run:
-          name: Install .NET
-          command: |
-            wget https://dot.net/v1/dotnet-install.sh -O dotnet-install.sh && chmod +x ./dotnet-install.sh && ./dotnet-install.sh --channel 2.0
       - run: ./build.sh --target=restore
       - run: ./build.sh --target=generate
       - run: ./build.sh --target=build
