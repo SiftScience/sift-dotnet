@@ -1,13 +1,9 @@
-using System;
-using Xunit;
 using Sift;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Text;
-using System.Security.Cryptography;
-using System.IO;
 using Sift.Core;
-using System.Linq;
+using System.Collections.ObjectModel;
+using System.Security.Cryptography;
+using System.Text;
+using Xunit;
 
 namespace Test
 {
