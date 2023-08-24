@@ -50,6 +50,16 @@ The official Sift .NET client, supporting .NET Standard 2.0+
         // Handle InnerException
     }
 
+#### IncludeScorePercentile in EventRequest
+
+      EventRequest eventRequest = new EventRequest
+      {
+        Event = transaction,
+        AbuseTypes = { "legacy", "payment_abuse" },
+        IncludeScorePercentile = true, // this will include the relevant parameters in the url query string to get the SCORE_PERCENTILE
+        ReturnScore = true
+      };
+
 ### Custom Events
 
     // Construct custom events with required fields
@@ -168,6 +178,12 @@ The official Sift .NET client, supporting .NET Standard 2.0+
     {
         // Handle InnerException
     }
+
+#### Percentile
+     [JsonProperty("percentiles")]
+    public Dictionary<string, decimal> Percentiles { get; set; }
+
+    It's a collection of type dictionary with string Key and a decimal Value
 
 ### Labels
 

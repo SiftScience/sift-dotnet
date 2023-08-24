@@ -1,13 +1,9 @@
-using System;
-using Xunit;
 using Sift;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Text;
-using System.Security.Cryptography;
-using System.IO;
 using Sift.Core;
-using System.Linq;
+using System.Collections.ObjectModel;
+using System.Security.Cryptography;
+using System.Text;
+using Xunit;
 
 namespace Test
 {
@@ -1295,7 +1291,7 @@ namespace Test
                                  "\"$social_sign_on_type\":\"$facebook\",\"$username\":\"test_user_name\",\"$ip\":\"128.148.1.135\",\"$browser\":" +
                                  "{\"$user_agent\":\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) " +
                                  "Chrome/56.0.2924.87 Safari/537.36\",\"$accept_language\":\"en-US\",\"$content_language\":\"en-GB\"},\"$brand_name\":" +
-                                 "\"sift\",\"$site_country\":\"US\",\"$site_domain\":\"sift.com\",\"$account_types\":[\"merchant\",\"premium\"]}" ,
+                                 "\"sift\",\"$site_country\":\"US\",\"$site_domain\":\"sift.com\",\"$account_types\":[\"merchant\",\"premium\"]}",
                                  login.ToJson());
 
             EventRequest eventRequest = new EventRequest
@@ -1313,6 +1309,33 @@ namespace Test
             };
 
             Assert.Equal("https://api.sift.com/v205/events?abuse_types=legacy,payment_abuse&return_score=true",
+                          Uri.UnescapeDataString(eventRequest.Request.RequestUri.ToString()));
+        }
+
+        [Fact]
+        public void TestScorePercentile()
+        {
+            var sessionId = "sessionId";
+            var transaction = new Transaction
+            {
+                user_id = "vineethk@exalture.com",
+                amount = 1000000000000L,
+                currency_code = "USD",
+                session_id = sessionId,
+                transaction_type = "$sale",
+                transaction_status = "$failure",
+                decline_category = "$invalid"
+            };
+
+            EventRequest eventRequest = new EventRequest
+            {
+                Event = transaction,
+                AbuseTypes = { "legacy", "payment_abuse" },
+                IncludeScorePercentile = true,
+                ReturnScore = true
+            };
+
+            Assert.Equal("https://api.sift.com/v205/events?abuse_types=legacy,payment_abuse&fields=SCORE_PERCENTILES&return_score=true",
                           Uri.UnescapeDataString(eventRequest.Request.RequestUri.ToString()));
         }
     }
