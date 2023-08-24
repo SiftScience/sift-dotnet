@@ -50,6 +50,457 @@ The official Sift .NET client, supporting .NET Standard 2.0+
         // Handle InnerException
     }
 
+
+    // Construct reserved events with known fields for UpdateContent.Comment
+    var updateContent = new UpdateContent
+            {
+                user_id = "fyw3989sjpqr71",
+                content_id = "comment-23412",
+                session_id = "a234ksjfgn435sfg",
+                status = "$active",
+                ip = "255.255.255.0",
+                browser = new Browser
+                {
+                    user_agent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36",
+                    accept_language = "en-US",
+                    content_language = "en-GB"
+                },
+                comment = new Comment()
+                {
+                    body = "Congrats on the new role!",
+                    contact_email = "alex_301@domain.com",
+                    parent_comment_id = "comment-23407",
+                    root_content_id = "listing-12923213",
+                    images = new ObservableCollection<Image>()
+                    {
+                        new Image()
+                        {
+                            md5_hash = "0cc175b9c0f1b6a831c399e269772661",
+                            link = "https://www.domain.com/file.png",
+                            description =   "An old picture"
+                        },
+                        new Image()
+                        {
+                            md5_hash = "0cc175b9c0f1b6a831c399e269772661"
+                        }
+                    }
+                },
+                brand_name = "sift",
+                site_country = "US",
+                site_domain = "sift.com",
+            };
+
+            EventRequest eventRequest = new EventRequest()
+            {
+                Event = updateContent
+            };
+            try
+            {
+                EventResponse res = sift.SendAsync(eventRequest).Result;
+            }
+            catch (AggregateException ae)
+            {
+                // Handle InnerException
+            }
+        }
+
+
+        // Construct reserved events with known fields for UpdateContent.Listing
+        var updateContent = new UpdateContent
+            {
+                user_id = "fyw3989sjpqr71",
+                content_id = "listing-23412",
+                session_id = "a234ksjfgn435sfg",
+                status = "$active",
+                ip = "255.255.255.0",
+                browser = new Browser
+                {
+                    user_agent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36",
+                    accept_language = "en-US",
+                    content_language = "en-GB"
+                },
+                listing = new Listing()
+                {
+                    subject = "2 Bedroom Apartment for Rent",
+                    body = "Capitol Hill Seattle brand new condo. 2 bedrooms and 1 full bath.",
+                    contact_email = "alex_301@domain.com",
+                    contact_address = new Address()
+                    {
+                        name = "Bill Jones",
+                        address_1 = "abc",
+                        address_2 = "xyz",
+                        city = "New London",
+                        region = "New Hampshire",
+                        country = "US",
+                        zipcode = "03257",
+                        phone = "1-415-555-6041"
+
+
+                    },
+                    locations = new ObservableCollection<Address>()
+                    {
+                        new Address()
+                        {
+                            name = "Bill Jones",
+                            address_1 = "abc",
+                            address_2 = "xyz",
+                            city = "Seattle",
+                            region = "Washington",
+                            country = "US",
+                            zipcode = "98112",
+                            phone = "1-415-555-6041"
+                        },
+                        new Address()
+                        {
+                            name = "Bill Jones"
+                        }
+
+                    },
+                    listed_items = new ObservableCollection<Item>()
+                    {
+                        new Item()
+                        {
+                            item_id = "0cc175b9c0f1b6a831c399e269772661",
+                            product_title = "https://www.domain.com/file.png",
+                            price = 2950000000,
+                            currency_code = "USD",
+                            quantity = 1,
+                            upc = "6786211451001",
+                            sku = "abc",
+                            isbn = "0446576220",
+                            brand = "abc",
+                            manufacturer = "abc",
+                            category = "abc",
+                            tags = new ObservableCollection<string>() { "heat","washer/dryer" },
+                            color = "ab",
+                            size = "ab"
+                        }
+                    },
+                    images = new ObservableCollection<Image>()
+                    {
+                        new Image()
+                        {
+                            md5_hash = "0cc175b9c0f1b6a831c399e269772661",
+                            link = "https://www.domain.com/file.png",
+                            description =   "Billy's picture"
+                        },
+                        new Image()
+                        {
+                            md5_hash = "0cc175b9c0f1b6a831c399e269772661"
+                        }
+                    },
+                    expiration_time = 1549063157000
+                },
+                brand_name = "sift",
+                site_country = "US",
+                site_domain = "sift.com",
+            };
+
+            EventRequest eventRequest = new EventRequest()
+            {
+                Event = updateContent
+            };
+            try
+            {
+                EventResponse res = sift.SendAsync(eventRequest).Result;
+            }
+            catch (AggregateException ae)
+            {
+                // Handle InnerException
+            }
+        }
+
+        // Construct reserved events with known fields for UpdateContent.Message
+        var updateContent = new UpdateContent
+            {
+                user_id = "fyw3989sjpqr71",
+                content_id = "message-23412",
+                session_id = "a234ksjfgn435sfg",
+                status = "$active",
+                ip = "255.255.255.0",
+                message = new Message()
+                {
+                    body = "Let’s meet at 5pm",
+                    contact_email = "alex_301@domain.com",
+                    root_content_id = "listing-123",
+                    recipient_user_ids = new ObservableCollection<string>() { "fy9h989sjphh71" },
+                    images = new ObservableCollection<Image>()
+                    {
+                        new Image()
+                        {
+                            md5_hash = "0cc175b9c0f1b6a831c399e269772661",
+                            link = "https://www.domain.com/file.png",
+                            description =   "My hike today!"
+                        },
+                        new Image()
+                        {
+                            md5_hash = "0cc175b9c0f1b6a831c399e269772661"
+                        }
+                    },
+                },
+                browser = new Browser
+                {
+                    user_agent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36",
+                    accept_language = "en-US",
+                    content_language = "en-GB"
+                },
+                brand_name = "sift",
+                site_country = "US",
+                site_domain = "sift.com",
+            };
+
+            EventRequest eventRequest = new EventRequest()
+            {
+                Event = updateContent
+            };
+            try
+            {
+                EventResponse res = sift.SendAsync(eventRequest).Result;
+            }
+            catch (AggregateException ae)
+            {
+                // Handle InnerException
+            }
+        }
+
+
+        // Construct reserved events with known fields for UpdateContent.Post
+        var updateContent = new UpdateContent
+            {
+                user_id = "fyw3989sjpqr71",
+                content_id = "post-23412",
+                session_id = "a234ksjfgn435sfg",
+                status = "$active",
+                ip = "255.255.255.0",
+                browser = new Browser
+                {
+                    user_agent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36",
+                    accept_language = "en-US",
+                    content_language = "en-GB"
+                },
+                post = new Post()
+                {
+                    subject = "My new apartment!",
+                    body = "Moved into my new apartment yesterday.",
+                    contact_email = "alex_301@domain.com",
+                    contact_address = new Address()
+                    {
+                        name = "Bill Jones",
+                        address_1 = "abc",
+                        address_2 = "xyz",
+                        city = "New London",
+                        region = "New Hampshire",
+                        country = "US",
+                        zipcode = "03257",
+                        phone = "1-415-555-6041"
+                    },
+                    locations = new ObservableCollection<Address>()
+                    {
+                        new Address()
+                        {
+                            name = "Bill Jones",
+                            address_1 = "abc",
+                            address_2 = "xyz",
+                            city = "Seattle",
+                            region = "Washington",
+                            country = "US",
+                            zipcode = "98112",
+                            phone = "1-415-555-6041"
+                        },
+                        new Address()
+                        {
+                            name = "Bill Jones"
+                        }
+
+                    },
+                    categories = new ObservableCollection<string>() { "Personal" },
+                    images = new ObservableCollection<Image>()
+                    {
+                        new Image()
+                        {
+                            md5_hash = "0cc175b9c0f1b6a831c399e269772661",
+                            link = "https://www.domain.com/file.png",
+                            description =   "View from the window!"
+                        },
+                        new Image()
+                        {
+                            md5_hash = "0cc175b9c0f1b6a831c399e269772661"
+                        }
+                    },
+                    expiration_time = 1549063157000
+                },
+                brand_name = "sift",
+                site_country = "US",
+                site_domain = "sift.com",
+            };
+
+            EventRequest eventRequest = new EventRequest()
+            {
+                Event = updateContent
+            };
+            try
+            {
+                EventResponse res = sift.SendAsync(eventRequest).Result;
+            }
+            catch (AggregateException ae)
+            {
+                // Handle InnerException
+            }
+        }
+
+        // Construct reserved events with known fields for UpdateContent.Profile
+        var updateContent = new UpdateContent
+            {
+                user_id = "fyw3989sjpqr71",
+                content_id = "listing-23412",
+                session_id = "a234ksjfgn435sfg",
+                status = "$active",
+                ip = "255.255.255.0",
+                profile = new Profile()
+                {
+                    body = "Hi! My name is Alex and I just moved to New London!",
+                    contact_email = "alex_301@domain.com",
+                    contact_address = new Address()
+                    {
+                        name = "Alex Smith",
+                        address_1 = "abc",
+                        address_2 = "xyz",
+                        city = "New London",
+                        region = "New Hampshire",
+                        country = "US",
+                        zipcode = "03257",
+                        phone = "1-415-555-6041"
+                    },
+                    images = new ObservableCollection<Image>()
+                    {
+                        new Image()
+                        {
+                            md5_hash = "0cc175b9c0f1b6a831c399e269772661",
+                            link = "https://www.domain.com/file.png",
+                            description = "Alex’s picture"
+                        },
+                        new Image()
+                        {
+                            md5_hash = "0cc175b9c0f1b6a831c399e269772661"
+                        }
+                    },
+                    categories = new ObservableCollection<string>() { "Friends", "Long-term dating" }
+                },
+                browser = new Browser
+                {
+                    user_agent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36",
+                    accept_language = "en-US",
+                    content_language = "en-GB"
+                },
+                brand_name = "sift",
+                site_country = "US",
+                site_domain = "sift.com",
+            };
+
+            EventRequest eventRequest = new EventRequest()
+            {
+                Event = updateContent
+            };
+            try
+            {
+                EventResponse res = sift.SendAsync(eventRequest).Result;
+            }
+            catch (AggregateException ae)
+            {
+                // Handle InnerException
+            }
+        }
+
+        // Construct reserved events with known fields for UpdateContent.Review
+        var updateContent = new UpdateContent
+            {
+                user_id = "fyw3989sjpqr71",
+                content_id = "review-23412",
+                session_id = "a234ksjfgn435sfg",
+                status = "$active",
+                ip = "255.255.255.0",
+                review = new Review()
+                {
+                    subject = "Amazing Tacos!",
+                    body = "I ate the tacos.",
+                    contact_email = "alex_301@domain.com",
+                    locations = new ObservableCollection<Address>()
+                    {
+                        new Address()
+                        {
+                            name = "Bill Jones",
+                            address_1 = "abc",
+                            address_2 = "xyz",
+                            city = "Seattle",
+                            region = "Washington",
+                            country = "US",
+                            zipcode = "98112",
+                            phone = "1-415-555-6041"
+                        },
+                        new Address()
+                        {
+                            name = "Bill Jones"
+                        }
+
+                    },
+                    item_reviewed = new Item()
+                    {
+                        item_id = "B004834GQO",
+                        product_title = "The Slanket Blanket-Texas Tea",
+                        price = 39990000,
+                        currency_code = "USD",
+                        upc = "6786211451001",
+                        sku = "004834GQ",
+                        isbn = "0446576220",
+                        brand = "Slanket",
+                        manufacturer = "Slanket",
+                        category = "Blankets & Throws",
+                        tags = new ObservableCollection<string>() { "Awesome", "Wintertime specials" },
+                        color = "Texas Tea",
+                        size = "6",
+                    },
+
+                    reviewed_content_id = "listing-234234",
+                    rating = 4.5,
+                    images = new ObservableCollection<Image>()
+                    {
+                        new Image()
+                        {
+                            md5_hash = "0cc175b9c0f1b6a831c399e269772661",
+                            link = "https://www.domain.com/file.png",
+                            description = "Calamari tacos."
+                        },
+                        new Image()
+                        {
+                            md5_hash = "0cc175b9c0f1b6a831c399e269772661"
+                        }
+                    },
+                },
+                browser = new Browser
+                {
+                    user_agent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36",
+                    accept_language = "en-US",
+                    content_language = "en-GB"
+                },
+                brand_name = "sift",
+                site_country = "US",
+                site_domain = "sift.com",
+            };
+
+            EventRequest eventRequest = new EventRequest()
+            {
+                Event = updateContent
+            };
+            try
+            {
+                EventResponse res = sift.SendAsync(eventRequest).Result;
+            }
+            catch (AggregateException ae)
+            {
+                // Handle InnerException
+            }
+        }
+
 #### IncludeScorePercentile in EventRequest
 
       EventRequest eventRequest = new EventRequest

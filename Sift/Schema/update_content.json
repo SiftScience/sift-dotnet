@@ -1,0 +1,84 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema",
+  "title": "UpdateContent",
+  "type": "object",
+  "required": [ "$type" ],
+  "properties": {
+    "$type": {
+      "type": "string",
+      "default": "$update_content"
+    },
+    "$user_id": {
+      "type": [ "string", "null" ]
+    },
+    "$content_id": {
+      "type": [ "string", "null" ]
+    },
+    "$session_id": {
+      "type": [ "string", "null" ]
+    },
+    "$status": {
+      "type": [ "string", "null" ]
+    },
+    "$ip": {
+      "type": [ "string", "null" ]
+    },
+    "$comment": {
+      "oneOf": [
+        { "$ref": "ComplexTypes/comment.json" },
+        { "type": "null" }
+      ]
+    },
+    "$listing": {
+      "oneOf": [
+        { "$ref": "ComplexTypes/listing.json" },
+        { "type": "null" }
+      ]
+    },
+    "$message": {
+      "oneOf": [
+        { "$ref": "ComplexTypes/message.json" },
+        { "type": "null" }
+      ]
+    },
+    "$post": {
+      "oneOf": [
+        { "$ref": "ComplexTypes/post.json" },
+        { "type": "null" }
+      ]
+    },
+    "$profile": {
+      "oneOf": [
+        { "$ref": "ComplexTypes/profile.json" },
+        { "type": "null" }
+      ]
+    },
+    "$review": {
+      "oneOf": [
+        { "$ref": "ComplexTypes/review.json" },
+        { "type": "null" }
+      ]
+    },
+    "$app": {
+      "oneOf": [
+        { "$ref": "ComplexTypes/app.json" },
+        { "type": "null" }
+      ]
+    },
+    "$browser": {
+      "oneOf": [
+        { "$ref": "ComplexTypes/browser.json" },
+        { "type": "null" }
+      ]
+    },
+    "$brand_name": {
+      "type": [ "string", "null" ]
+    },
+    "$site_country": {
+      "type": [ "string", "null" ]
+    },
+    "$site_domain": {
+      "type": [ "string", "null" ]
+    }
+  }
+}
