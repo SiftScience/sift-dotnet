@@ -100,9 +100,6 @@
     "$digital_orders": {
       "type": [ "array", "null" ],
       "items": { "$ref": "ComplexTypes/digital_order.json" }
-    },
-    "$keyless_user_id": {
-      "type": [ "string", "null" ]
     }
   }
 }
