@@ -8,7 +8,7 @@ namespace TestProjectX.ReservedEvents
     public class Verifications
     {
         [Fact]
-        public void IntegrationTest_Transaction()
+        public void IntegrationTest_Verification()
         {
             var sift = new Client("ccd68efbe25809bc");
             var sessionId = "sessionId";
