@@ -101,9 +101,7 @@
       "type": [ "array", "null" ],
       "items": { "$ref": "ComplexTypes/digital_order.json" }
     },
-    "$keyless_user_id": {
-      "type": [ "string", "null" ]
-    },
+    
     "$verification_phone_number": {
       "type": [ "string", "null" ]
     },
