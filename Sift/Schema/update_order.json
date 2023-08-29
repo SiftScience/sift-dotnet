@@ -97,6 +97,21 @@
     "$digital_orders": {
       "type": [ "array", "null" ],
       "items": { "$ref": "ComplexTypes/digital_order.json" }
+    },
+    "$shipping_carrier": {
+      "type": [ "string", "null" ]
+    },
+    "$shipping_tracking_numbers": {
+      "type": [ "array", "null" ],
+      "items": { "type": "string" }
+    },
+    "$merchant_profile": {
+      "oneOf": [
+        { "$ref": "ComplexTypes/merchant_profile.json" },
+        { "type": "null" }
+      ]
     }
+
   }
+
 }
