@@ -2532,7 +2532,6 @@ namespace Test
         [Fact]
         public void TestUpdatePasswordEvent()
         {
-            var sessionId = "sessionId";
             var updatePassword = new UpdatePassword
             {
                 user_id = "billy_jones_301",
@@ -2562,7 +2561,7 @@ namespace Test
                 Event = updatePassword
             };
 
-            Assert.Equal("https://api.sift.com/v205/events", eventRequest.Request.RequestUri.ToString());
+            Assert.Equal("https://api.sift.com/v205/events", eventRequest.Request.RequestUri!.ToString());
 
             eventRequest = new EventRequest
             {
@@ -2572,7 +2571,7 @@ namespace Test
             };
 
             Assert.Equal("https://api.sift.com/v205/events?abuse_types=legacy,payment_abuse&return_score=true",
-                          Uri.UnescapeDataString(eventRequest.Request.RequestUri.ToString()));
+                          Uri.UnescapeDataString(eventRequest.Request.RequestUri!.ToString()));
         }
 
     }
