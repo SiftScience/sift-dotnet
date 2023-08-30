@@ -41,7 +41,7 @@
     "$site_domain": {
       "type": [ "string", "null" ]
     },
-    "$keyless_user_id": {
+    "$user_email": {
       "type": [ "string", "null" ]
     },
     "$verification_phone_number": {

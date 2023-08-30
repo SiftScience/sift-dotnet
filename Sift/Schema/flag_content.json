@@ -23,6 +23,9 @@
     "$reason": {
       "type": [ "string", "null" ]
     },
+    "$user_email": {
+      "type": [ "string", "null" ]
+    },
     "$app": {
       "oneOf": [
         { "$ref": "ComplexTypes/app.json" },
