@@ -28,10 +28,10 @@ namespace Test
             applyDecisionRequest.ApiKey = "key";
 
             Assert.Equal("https://api.sift.com/v3/accounts/123/users/gary/orders/1/decisions",
-                         applyDecisionRequest.Request.RequestUri.ToString());
+                         applyDecisionRequest.Request.RequestUri!.ToString());
 
             Assert.Equal(Convert.ToBase64String(Encoding.Default.GetBytes("key")),
-                         applyDecisionRequest.Request.Headers.Authorization.Parameter);
+                         applyDecisionRequest.Request.Headers.Authorization!.Parameter);
 
         }
 
@@ -187,7 +187,7 @@ namespace Test
                 Event = createOrder
             };
 
-            Assert.Equal("https://api.sift.com/v205/events", eventRequest.Request.RequestUri.ToString());
+            Assert.Equal("https://api.sift.com/v205/events", eventRequest.Request.RequestUri!.ToString());
 
             eventRequest = new EventRequest
             {
@@ -198,7 +198,7 @@ namespace Test
             };
 
             Assert.Equal("https://api.sift.com/v205/events?abuse_types=legacy,payment_abuse&return_score=true&return_route_info=true",
-                         Uri.UnescapeDataString(eventRequest.Request.RequestUri.ToString()));
+                         Uri.UnescapeDataString(eventRequest.Request.RequestUri!.ToString()));
         }
 
         [Fact]
@@ -258,7 +258,7 @@ namespace Test
                 Event = createOrder
             };
 
-            Assert.Equal("https://api.sift.com/v205/events", eventRequest.Request.RequestUri.ToString());
+            Assert.Equal("https://api.sift.com/v205/events", eventRequest.Request.RequestUri!.ToString());
 
             eventRequest = new EventRequest
             {
@@ -298,7 +298,7 @@ namespace Test
                 Event = transaction
             };
 
-            Assert.Equal("https://api.sift.com/v205/events", eventRequest.Request.RequestUri.ToString());
+            Assert.Equal("https://api.sift.com/v205/events", eventRequest.Request.RequestUri!.ToString());
 
             eventRequest = new EventRequest
             {
@@ -308,7 +308,7 @@ namespace Test
             };
 
             Assert.Equal("https://api.sift.com/v205/events?abuse_types=legacy,payment_abuse&return_score=true",
-                          Uri.UnescapeDataString(eventRequest.Request.RequestUri.ToString()));
+                          Uri.UnescapeDataString(eventRequest.Request.RequestUri!.ToString()));
         }
 
         [Fact]
@@ -381,7 +381,7 @@ namespace Test
                 Event = transaction
             };
 
-            Assert.Equal("https://api.sift.com/v205/events", eventRequest.Request.RequestUri.ToString());
+            Assert.Equal("https://api.sift.com/v205/events", eventRequest.Request.RequestUri!.ToString());
 
             eventRequest = new EventRequest
             {
@@ -391,7 +391,7 @@ namespace Test
             };
 
             Assert.Equal("https://api.sift.com/v205/events?abuse_types=legacy,payment_abuse&return_score=true",
-                          Uri.UnescapeDataString(eventRequest.Request.RequestUri.ToString()));
+                          Uri.UnescapeDataString(eventRequest.Request.RequestUri!.ToString()));
         }
 
         [Fact]
@@ -428,7 +428,7 @@ namespace Test
                 Event = createOrder
             };
 
-            Assert.Equal("https://api.sift.com/v205/events", eventRequest.Request.RequestUri.ToString());
+            Assert.Equal("https://api.sift.com/v205/events", eventRequest.Request.RequestUri!.ToString());
 
             eventRequest = new EventRequest
             {
@@ -438,7 +438,7 @@ namespace Test
             };
 
             Assert.Equal("https://api.sift.com/v205/events?abuse_types=legacy,payment_abuse&return_score=true",
-                          Uri.UnescapeDataString(eventRequest.Request.RequestUri.ToString()));
+                          Uri.UnescapeDataString(eventRequest.Request.RequestUri!.ToString()));
         }
 
         [Fact]
@@ -495,7 +495,7 @@ namespace Test
                 Event = createOrder
             };
 
-            Assert.Equal("https://api.sift.com/v205/events", eventRequest.Request.RequestUri.ToString());
+            Assert.Equal("https://api.sift.com/v205/events", eventRequest.Request.RequestUri!.ToString());
 
             eventRequest = new EventRequest
             {
@@ -505,7 +505,7 @@ namespace Test
             };
 
             Assert.Equal("https://api.sift.com/v205/events?abuse_types=legacy,payment_abuse&return_score=true",
-                          Uri.UnescapeDataString(eventRequest.Request.RequestUri.ToString()));
+                          Uri.UnescapeDataString(eventRequest.Request.RequestUri!.ToString()));
         }
 
         [Fact]
@@ -567,7 +567,7 @@ namespace Test
                 Event = createOrder
             };
 
-            Assert.Equal("https://api.sift.com/v205/events", eventRequest.Request.RequestUri.ToString());
+            Assert.Equal("https://api.sift.com/v205/events", eventRequest.Request.RequestUri!.ToString());
 
             eventRequest = new EventRequest
             {
@@ -577,7 +577,7 @@ namespace Test
             };
 
             Assert.Equal("https://api.sift.com/v205/events?abuse_types=legacy,payment_abuse&return_score=true",
-                          Uri.UnescapeDataString(eventRequest.Request.RequestUri.ToString()));
+                          Uri.UnescapeDataString(eventRequest.Request.RequestUri!.ToString()));
         }
 
         [Fact]
@@ -639,7 +639,7 @@ namespace Test
                 Event = updateOrder
             };
 
-            Assert.Equal("https://api.sift.com/v205/events", eventRequest.Request.RequestUri.ToString());
+            Assert.Equal("https://api.sift.com/v205/events", eventRequest.Request.RequestUri!.ToString());
 
             eventRequest = new EventRequest
             {
@@ -649,7 +649,7 @@ namespace Test
             };
 
             Assert.Equal("https://api.sift.com/v205/events?abuse_types=legacy,payment_abuse&return_score=true",
-                          Uri.UnescapeDataString(eventRequest.Request.RequestUri.ToString()));
+                          Uri.UnescapeDataString(eventRequest.Request.RequestUri!.ToString()));
         }
 
         [Fact]
@@ -735,7 +735,7 @@ namespace Test
                 Event = transaction
             };
 
-            Assert.Equal("https://api.sift.com/v205/events", eventRequest.Request.RequestUri.ToString());
+            Assert.Equal("https://api.sift.com/v205/events", eventRequest.Request.RequestUri!.ToString());
 
             eventRequest = new EventRequest
             {
@@ -745,7 +745,7 @@ namespace Test
             };
 
             Assert.Equal("https://api.sift.com/v205/events?abuse_types=legacy,payment_abuse&return_score=true",
-                          Uri.UnescapeDataString(eventRequest.Request.RequestUri.ToString()));
+                          Uri.UnescapeDataString(eventRequest.Request.RequestUri!.ToString()));
         }
 
         [Fact]
@@ -794,7 +794,7 @@ namespace Test
             };
 
             Assert.Equal("https://api.sift.com/v205/events?abuse_types=legacy,payment_abuse&return_score=true",
-                          Uri.UnescapeDataString(eventRequest.Request.RequestUri.ToString()));
+                          Uri.UnescapeDataString(eventRequest.Request.RequestUri!.ToString()));
         }
 
         [Fact]
@@ -814,10 +814,10 @@ namespace Test
             verificationCheckRequest.ApiKey = apiKey;
 
             Assert.Equal(Convert.ToBase64String(Encoding.Default.GetBytes(apiKey)),
-                verificationCheckRequest.Request.Headers.Authorization.Parameter);
+                verificationCheckRequest.Request.Headers.Authorization!.Parameter);
 
             Assert.Equal("https://api.sift.com/v1.1/verification/check",
-                         verificationCheckRequest.Request.RequestUri.ToString());
+                         verificationCheckRequest.Request.RequestUri!.ToString());
         }
 
         [Fact]
@@ -851,10 +851,10 @@ namespace Test
             verificationSendRequest.ApiKey = apiKey;
 
             Assert.Equal(Convert.ToBase64String(Encoding.Default.GetBytes(apiKey)),
-                verificationSendRequest.Request.Headers.Authorization.Parameter);
+                verificationSendRequest.Request.Headers.Authorization!.Parameter);
 
             Assert.Equal("https://api.sift.com/v1.1/verification/send",
-                         verificationSendRequest.Request.RequestUri.ToString());
+                         verificationSendRequest.Request.RequestUri!.ToString());
         }
 
         [Fact]
@@ -872,11 +872,11 @@ namespace Test
             verificationResendRequest.ApiKey = apiKey;
 
             Assert.Equal(Convert.ToBase64String(Encoding.Default.GetBytes(apiKey)),
-                verificationResendRequest.Request.Headers.Authorization.Parameter);
+                verificationResendRequest.Request.Headers.Authorization!.Parameter);
 
 
             Assert.Equal("https://api.sift.com/v1.1/verification/resend",
-                         verificationResendRequest.Request.RequestUri.ToString());
+                         verificationResendRequest.Request.RequestUri!.ToString());
         }
 
 
@@ -942,7 +942,7 @@ namespace Test
             getMerchantRequest.ApiKey = apiKey;
 
             Assert.Equal("https://api.sift.com/v3/accounts/" + accountId + "/psp_management/merchants",
-                         getMerchantRequest.Request.RequestUri.ToString());
+                         getMerchantRequest.Request.RequestUri!.ToString());
 
         }
 
@@ -985,11 +985,11 @@ namespace Test
             createMerchantRequest.ApiKey = apiKey;
 
             Assert.Equal(Convert.ToBase64String(Encoding.Default.GetBytes(apiKey)),
-                createMerchantRequest.Request.Headers.Authorization.Parameter);
+                createMerchantRequest.Request.Headers.Authorization!.Parameter);
 
 
             Assert.Equal("https://api.sift.com/v3/accounts/" + accountId + "/psp_management/merchants",
-                         createMerchantRequest.Request.RequestUri.ToString());
+                         createMerchantRequest.Request.RequestUri!.ToString());
         }
 
         [Fact]
@@ -1031,10 +1031,10 @@ namespace Test
             updateMerchantRequest.ApiKey = apiKey;
 
             Assert.Equal(Convert.ToBase64String(Encoding.Default.GetBytes(apiKey)),
-                updateMerchantRequest.Request.Headers.Authorization.Parameter);
+                updateMerchantRequest.Request.Headers.Authorization!.Parameter);
 
             Assert.Equal("https://api.sift.com/v3/accounts/" + accountId + "/psp_management/merchants/test2",
-                         updateMerchantRequest.Request.RequestUri.ToString());
+                         updateMerchantRequest.Request.RequestUri!.ToString());
 
 
             Assert.Equal("{\"id\":\"test-vineeth-5\"," +
@@ -1071,10 +1071,10 @@ namespace Test
             getMerchantDetailRequest.ApiKey = apiKey;
 
             Assert.Equal(Convert.ToBase64String(Encoding.Default.GetBytes(apiKey)),
-                getMerchantDetailRequest.Request.Headers.Authorization.Parameter);
+                getMerchantDetailRequest.Request.Headers.Authorization!.Parameter);
 
             Assert.Equal("https://api.sift.com/v3/accounts/" + accountId + "/psp_management/merchants/test-merchat-id",
-             getMerchantDetailRequest.Request.RequestUri.ToString());
+             getMerchantDetailRequest.Request.RequestUri!.ToString());
         }
 
         [Fact]
@@ -1126,7 +1126,7 @@ namespace Test
                 Event = chargeback
             };
 
-            Assert.Equal("https://api.sift.com/v205/events", eventRequest.Request.RequestUri.ToString());
+            Assert.Equal("https://api.sift.com/v205/events", eventRequest.Request.RequestUri!.ToString());
 
             eventRequest = new EventRequest
             {
@@ -1136,7 +1136,7 @@ namespace Test
             };
 
             Assert.Equal("https://api.sift.com/v205/events?abuse_types=legacy,payment_abuse&return_score=true",
-                          Uri.UnescapeDataString(eventRequest.Request.RequestUri.ToString()));
+                          Uri.UnescapeDataString(eventRequest.Request.RequestUri!.ToString()));
         }
 
         [Fact]
@@ -1188,7 +1188,7 @@ namespace Test
                 Event = createAccount
             };
 
-            Assert.Equal("https://api.sift.com/v205/events", eventRequest.Request.RequestUri.ToString());
+            Assert.Equal("https://api.sift.com/v205/events", eventRequest.Request.RequestUri!.ToString());
 
             eventRequest = new EventRequest
             {
@@ -1198,7 +1198,7 @@ namespace Test
             };
 
             Assert.Equal("https://api.sift.com/v205/events?abuse_types=legacy,payment_abuse&return_score=true",
-                          Uri.UnescapeDataString(eventRequest.Request.RequestUri.ToString()));
+                          Uri.UnescapeDataString(eventRequest.Request.RequestUri!.ToString()));
         }
 
         [Fact]
@@ -1250,7 +1250,7 @@ namespace Test
                 Event = updateAccount
             };
 
-            Assert.Equal("https://api.sift.com/v205/events", eventRequest.Request.RequestUri.ToString());
+            Assert.Equal("https://api.sift.com/v205/events", eventRequest.Request.RequestUri!.ToString());
 
             eventRequest = new EventRequest
             {
@@ -1260,7 +1260,7 @@ namespace Test
             };
 
             Assert.Equal("https://api.sift.com/v205/events?abuse_types=legacy,payment_abuse&return_score=true",
-                          Uri.UnescapeDataString(eventRequest.Request.RequestUri.ToString()));
+                          Uri.UnescapeDataString(eventRequest.Request.RequestUri!.ToString()));
         }
 
         [Fact]
@@ -1303,7 +1303,7 @@ namespace Test
                 Event = login
             };
 
-            Assert.Equal("https://api.sift.com/v205/events", eventRequest.Request.RequestUri.ToString());
+            Assert.Equal("https://api.sift.com/v205/events", eventRequest.Request.RequestUri!.ToString());
 
             eventRequest = new EventRequest
             {
@@ -1313,7 +1313,7 @@ namespace Test
             };
 
             Assert.Equal("https://api.sift.com/v205/events?abuse_types=legacy,payment_abuse&return_score=true",
-                          Uri.UnescapeDataString(eventRequest.Request.RequestUri.ToString()));
+                          Uri.UnescapeDataString(eventRequest.Request.RequestUri!.ToString()));
         }
 
         [Fact]
@@ -1340,7 +1340,7 @@ namespace Test
             };
 
             Assert.Equal("https://api.sift.com/v205/events?abuse_types=legacy,payment_abuse&fields=SCORE_PERCENTILES&return_score=true",
-                          Uri.UnescapeDataString(eventRequest.Request.RequestUri.ToString()));
+                          Uri.UnescapeDataString(eventRequest.Request.RequestUri!.ToString()));
         }
 
         //UpdateContentComment
@@ -1395,7 +1395,7 @@ namespace Test
                 Event = updateContent
             };
 
-            Assert.Equal("https://api.sift.com/v205/events", eventRequest.Request.RequestUri.ToString());
+            Assert.Equal("https://api.sift.com/v205/events", eventRequest.Request.RequestUri!.ToString());
 
             eventRequest = new EventRequest
             {
@@ -1405,7 +1405,7 @@ namespace Test
             };
 
             Assert.Equal("https://api.sift.com/v205/events?abuse_types=legacy,payment_abuse&return_score=true",
-                          Uri.UnescapeDataString(eventRequest.Request.RequestUri.ToString()));
+                          Uri.UnescapeDataString(eventRequest.Request.RequestUri!.ToString()));
         }
 
         //UpdateContentListing
@@ -1512,7 +1512,7 @@ namespace Test
                 Event = updateContent
             };
 
-            Assert.Equal("https://api.sift.com/v205/events", eventRequest.Request.RequestUri.ToString());
+            Assert.Equal("https://api.sift.com/v205/events", eventRequest.Request.RequestUri!.ToString());
 
             eventRequest = new EventRequest
             {
@@ -1522,7 +1522,7 @@ namespace Test
             };
 
             Assert.Equal("https://api.sift.com/v205/events?abuse_types=legacy,payment_abuse&return_score=true",
-                          Uri.UnescapeDataString(eventRequest.Request.RequestUri.ToString()));
+                          Uri.UnescapeDataString(eventRequest.Request.RequestUri!.ToString()));
         }
 
         //UpdateContentMessage
@@ -1577,7 +1577,7 @@ namespace Test
                 Event = updateContent
             };
 
-            Assert.Equal("https://api.sift.com/v205/events", eventRequest.Request.RequestUri.ToString());
+            Assert.Equal("https://api.sift.com/v205/events", eventRequest.Request.RequestUri!.ToString());
 
             eventRequest = new EventRequest
             {
@@ -1587,7 +1587,7 @@ namespace Test
             };
 
             Assert.Equal("https://api.sift.com/v205/events?abuse_types=legacy,payment_abuse&return_score=true",
-                          Uri.UnescapeDataString(eventRequest.Request.RequestUri.ToString()));
+                          Uri.UnescapeDataString(eventRequest.Request.RequestUri!.ToString()));
         }
 
         //UpdateContentPost
@@ -1673,7 +1673,7 @@ namespace Test
                 Event = updateContent
             };
 
-            Assert.Equal("https://api.sift.com/v205/events", eventRequest.Request.RequestUri.ToString());
+            Assert.Equal("https://api.sift.com/v205/events", eventRequest.Request.RequestUri!.ToString());
 
             eventRequest = new EventRequest
             {
@@ -1683,7 +1683,7 @@ namespace Test
             };
 
             Assert.Equal("https://api.sift.com/v205/events?abuse_types=legacy,payment_abuse&return_score=true",
-                          Uri.UnescapeDataString(eventRequest.Request.RequestUri.ToString()));
+                          Uri.UnescapeDataString(eventRequest.Request.RequestUri!.ToString()));
         }
 
         //UpdateContentProfile
@@ -1758,7 +1758,7 @@ namespace Test
             };
 
             Assert.Equal("https://api.sift.com/v205/events?abuse_types=legacy,payment_abuse&return_score=true",
-                          Uri.UnescapeDataString(eventRequest.Request.RequestUri.ToString()));
+                          Uri.UnescapeDataString(eventRequest.Request.RequestUri!.ToString()));
         }
                 
         //UpdateContent.Review
@@ -1850,7 +1850,7 @@ namespace Test
                 Event = updateContent
             };
 
-            Assert.Equal("https://api.sift.com/v205/events", eventRequest.Request.RequestUri.ToString());
+            Assert.Equal("https://api.sift.com/v205/events", eventRequest.Request.RequestUri!.ToString());
 
             eventRequest = new EventRequest
             {
@@ -1860,7 +1860,7 @@ namespace Test
             };
 
             Assert.Equal("https://api.sift.com/v205/events?abuse_types=legacy,payment_abuse&return_score=true",
-                          Uri.UnescapeDataString(eventRequest.Request.RequestUri.ToString()));
+                          Uri.UnescapeDataString(eventRequest.Request.RequestUri!.ToString()));
         }
 
 
@@ -1910,7 +1910,7 @@ namespace Test
                 Event = addItemToCart
             };
 
-            Assert.Equal("https://api.sift.com/v205/events", eventRequest.Request.RequestUri.ToString());
+            Assert.Equal("https://api.sift.com/v205/events", eventRequest.Request.RequestUri!.ToString());
 
             eventRequest = new EventRequest
             {
@@ -1920,7 +1920,7 @@ namespace Test
             };
 
             Assert.Equal("https://api.sift.com/v205/events?abuse_types=legacy,payment_abuse&return_score=true",
-                          Uri.UnescapeDataString(eventRequest.Request.RequestUri.ToString()));
+                          Uri.UnescapeDataString(eventRequest.Request.RequestUri!.ToString()));
         }
 
         [Fact]
@@ -1980,7 +1980,7 @@ namespace Test
                 Event = addPromotion
             };
 
-            Assert.Equal("https://api.sift.com/v205/events", eventRequest.Request.RequestUri.ToString());
+            Assert.Equal("https://api.sift.com/v205/events", eventRequest.Request.RequestUri!.ToString());
 
             eventRequest = new EventRequest
             {
@@ -1990,7 +1990,7 @@ namespace Test
             };
 
             Assert.Equal("https://api.sift.com/v205/events?abuse_types=legacy,payment_abuse&return_score=true",
-                          Uri.UnescapeDataString(eventRequest.Request.RequestUri.ToString()));
+                          Uri.UnescapeDataString(eventRequest.Request.RequestUri!.ToString()));
         }
 
         [Fact]
@@ -2025,7 +2025,7 @@ namespace Test
                 Event = contentStatus
             };
 
-            Assert.Equal("https://api.sift.com/v205/events", eventRequest.Request.RequestUri.ToString());
+            Assert.Equal("https://api.sift.com/v205/events", eventRequest.Request.RequestUri!.ToString());
 
             eventRequest = new EventRequest
             {
@@ -2035,7 +2035,7 @@ namespace Test
             };
 
             Assert.Equal("https://api.sift.com/v205/events?abuse_types=legacy,payment_abuse&return_score=true",
-                          Uri.UnescapeDataString(eventRequest.Request.RequestUri.ToString()));
+                          Uri.UnescapeDataString(eventRequest.Request.RequestUri!.ToString()));
         }
 
         [Fact]
@@ -2068,7 +2068,7 @@ namespace Test
                 Event = flagContent
             };
 
-            Assert.Equal("https://api.sift.com/v205/events", eventRequest.Request.RequestUri.ToString());
+            Assert.Equal("https://api.sift.com/v205/events", eventRequest.Request.RequestUri!.ToString());
 
             eventRequest = new EventRequest
             {
@@ -2078,7 +2078,7 @@ namespace Test
             };
 
             Assert.Equal("https://api.sift.com/v205/events?abuse_types=legacy,payment_abuse&return_score=true",
-                          Uri.UnescapeDataString(eventRequest.Request.RequestUri.ToString()));
+                          Uri.UnescapeDataString(eventRequest.Request.RequestUri!.ToString()));
         }
 
         [Fact]
@@ -2127,7 +2127,7 @@ namespace Test
                 Event = removeItemFromCart
             };
 
-            Assert.Equal("https://api.sift.com/v205/events", eventRequest.Request.RequestUri.ToString());
+            Assert.Equal("https://api.sift.com/v205/events", eventRequest.Request.RequestUri!.ToString());
 
             eventRequest = new EventRequest
             {
@@ -2137,7 +2137,7 @@ namespace Test
             };
 
             Assert.Equal("https://api.sift.com/v205/events?abuse_types=legacy,payment_abuse&return_score=true",
-                          Uri.UnescapeDataString(eventRequest.Request.RequestUri.ToString()));
+                          Uri.UnescapeDataString(eventRequest.Request.RequestUri!.ToString()));
         }
 
         [Fact]
@@ -2268,7 +2268,7 @@ namespace Test
                 Event = createOrder
             };
 
-            Assert.Equal("https://api.sift.com/v205/events", eventRequest.Request.RequestUri.ToString());
+            Assert.Equal("https://api.sift.com/v205/events", eventRequest.Request.RequestUri!.ToString());
 
             eventRequest = new EventRequest
             {
@@ -2278,7 +2278,7 @@ namespace Test
             };
 
             Assert.Equal("https://api.sift.com/v205/events?abuse_types=legacy,payment_abuse&return_score=true",
-                            Uri.UnescapeDataString(eventRequest.Request.RequestUri.ToString()));
+                            Uri.UnescapeDataString(eventRequest.Request.RequestUri!.ToString()));
         }
 
         [Fact]
@@ -2426,7 +2426,7 @@ namespace Test
                 Event = updateOrder
             };
 
-            Assert.Equal("https://api.sift.com/v205/events", eventRequest.Request.RequestUri.ToString());
+            Assert.Equal("https://api.sift.com/v205/events", eventRequest.Request.RequestUri!.ToString());
 
             eventRequest = new EventRequest
             {
@@ -2436,7 +2436,7 @@ namespace Test
             };
 
             Assert.Equal("https://api.sift.com/v205/events?abuse_types=legacy,payment_abuse&return_score=true",
-                            Uri.UnescapeDataString(eventRequest.Request.RequestUri.ToString()));
+                            Uri.UnescapeDataString(eventRequest.Request.RequestUri!.ToString()));
         }
 
 
@@ -2488,7 +2488,7 @@ namespace Test
                 Event = createContent
             };
 
-            Assert.Equal("https://api.sift.com/v205/events", eventRequest.Request.RequestUri.ToString());
+            Assert.Equal("https://api.sift.com/v205/events", eventRequest.Request.RequestUri!.ToString());
 
             eventRequest = new EventRequest
             {
@@ -2498,7 +2498,7 @@ namespace Test
             };
 
             Assert.Equal("https://api.sift.com/v205/events?abuse_types=legacy,payment_abuse&return_score=true",
-                          Uri.UnescapeDataString(eventRequest.Request.RequestUri.ToString()));
+                          Uri.UnescapeDataString(eventRequest.Request.RequestUri!.ToString()));
         }        
 
         [Fact]
@@ -2534,7 +2534,7 @@ namespace Test
                 Event = verification
             };
 
-            Assert.Equal("https://api.sift.com/v205/events", eventRequest.Request.RequestUri.ToString());
+            Assert.Equal("https://api.sift.com/v205/events", eventRequest.Request.RequestUri!.ToString());
 
             eventRequest = new EventRequest
             {
@@ -2544,7 +2544,7 @@ namespace Test
             };
 
             Assert.Equal("https://api.sift.com/v205/events?abuse_types=legacy,payment_abuse&return_score=true",
-                          Uri.UnescapeDataString(eventRequest.Request.RequestUri.ToString()));
+                          Uri.UnescapeDataString(eventRequest.Request.RequestUri!.ToString()));
         }
     }
 }
