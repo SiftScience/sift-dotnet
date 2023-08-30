@@ -15,7 +15,7 @@ The official Sift .NET client, supporting .NET Standard 2.0+
     
 ### Reserved Events
 
-    // Construct reserved events with known fields
+    // Construct reserved events with known fields for example Create Order
     var createOrder = new CreateOrder
     {
         user_id = "gary",
@@ -599,6 +599,44 @@ The official Sift .NET client, supporting .NET Standard 2.0+
             }
         }
 
+
+    // Construct reserved events with known fields for example Verification
+    var verification = new Verification
+    {
+        user_id = "billy_jones_301",
+        session_id = "wwqr",
+        status = "$pending",
+        browser = new Browser
+        {
+            user_agent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36",
+            accept_language = "en-GB",
+            content_language = "en-US"
+        },
+        verified_event = "$login",
+        verified_entity_id = "123",
+        verification_type = "$sms",
+        verified_value = "14155551212",
+        reason = "$user_setting",
+        brand_name = "xyz",
+        site_country = "AU",
+        site_domain = "somehost.example.com"
+    };
+    var sift = new Client("API_KEY");
+         
+
+    EventRequest eventRequest = new EventRequest
+    {
+        Event = verification
+    };
+
+    try
+    {
+        EventResponse res = sift.SendAsync(eventRequest).Result;
+    }
+    catch (AggregateException ae)
+    {
+        // Handle InnerException
+    }
 
 #### IncludeScorePercentile in EventRequest
 
