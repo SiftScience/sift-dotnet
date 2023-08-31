@@ -819,7 +819,7 @@ namespace Test
                 verificationCheckRequest.Request.Headers.Authorization!.Parameter);
 
             Assert.Equal("https://api.sift.com/v1/verification/check",
-                         verificationCheckRequest.Request.RequestUri.ToString());
+                         verificationCheckRequest.Request.RequestUri!.ToString());
         }
 
         [Fact]
@@ -860,7 +860,7 @@ namespace Test
                 verificationSendRequest.Request.Headers.Authorization!.Parameter);
 
             Assert.Equal("https://api.sift.com/v1/verification/send",
-                         verificationSendRequest.Request.RequestUri.ToString());
+                         verificationSendRequest.Request.RequestUri!.ToString());
         }
 
         [Fact]
@@ -881,7 +881,7 @@ namespace Test
                 verificationResendRequest.Request.Headers.Authorization!.Parameter);
 
             Assert.Equal("https://api.sift.com/v1/verification/resend",
-                         verificationResendRequest.Request.RequestUri.ToString());
+                         verificationResendRequest.Request.RequestUri!.ToString());
         }
 
 
