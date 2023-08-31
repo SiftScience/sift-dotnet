@@ -1,6 +1,10 @@
 using Sift;
 using Sift.Core;
+using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
+using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using Xunit;
@@ -2574,6 +2578,21 @@ namespace Test
                           Uri.UnescapeDataString(eventRequest.Request.RequestUri!.ToString()));
         }
 
+        [Fact]
+        public void TestGetScoreRequest()
+        {
+            ScoreRequest scoreRequest = new ScoreRequest
+            {
+                UserId = "123",
+                ApiKey = "345",
+                AbuseTypes = new List<string>() { "payment_abuse", "promotion_abuse" }
+            };
+
+            var url = scoreRequest.Request.RequestUri!.ToString();
+
+            Assert.Equal("https://api.sift.com/v205/users/123/score?api_key=345&abuse_types=payment_abuse,promotion_abuse",
+                        Uri.UnescapeDataString(scoreRequest.Request.RequestUri!.ToString()));
+        }
     }
 
 }
