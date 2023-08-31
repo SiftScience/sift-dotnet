@@ -2588,10 +2588,10 @@ namespace Test
                 AbuseTypes = new List<string>() { "payment_abuse", "promotion_abuse" }
             };
 
-            var url = scoreRequest.Request.RequestUri.ToString();
+            var url = scoreRequest.Request.RequestUri!.ToString();
 
             Assert.Equal("https://api.sift.com/v205/users/123/score?api_key=345&abuse_types=payment_abuse,promotion_abuse",
-                        Uri.UnescapeDataString(scoreRequest.Request.RequestUri.ToString()));
+                        Uri.UnescapeDataString(scoreRequest.Request.RequestUri!.ToString()));
         }
     }
 
