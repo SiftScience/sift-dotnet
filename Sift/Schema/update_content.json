@@ -1,12 +1,12 @@
-﻿{
+{
   "$schema": "http://json-schema.org/draft-04/schema",
-  "title": "CreateContent",
+  "title": "UpdateContent",
   "type": "object",
   "required": [ "$type" ],
   "properties": {
     "$type": {
       "type": "string",
-      "default": "$create_content"
+      "default": "$update_content"
     },
     "$user_id": {
       "type": [ "string", "null" ]
@@ -58,7 +58,7 @@
         { "$ref": "ComplexTypes/review.json" },
         { "type": "null" }
       ]
-    },   
+    },
     "$app": {
       "oneOf": [
         { "$ref": "ComplexTypes/app.json" },
@@ -78,9 +78,6 @@
       "type": [ "string", "null" ]
     },
     "$site_domain": {
-      "type": [ "string", "null" ]
-    },
-    "$verification_phone_number": {
       "type": [ "string", "null" ]
     }
   }
