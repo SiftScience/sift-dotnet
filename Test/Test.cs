@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
+using Newtonsoft.Json;
 using System.Security.Cryptography;
 using System.Text;
 using Xunit;
@@ -807,8 +808,9 @@ namespace Test
 
                 ApiKey = apiKey,
                 Code = 655543,
-                UserId = "vineethk@exalture.com"
-
+                UserId = "haneeshv@exalture.com",
+                VerifiedEntityId = "SOME_SESSION_ID",
+                VerifiedEvent = "$login"
             };
 
             verificationCheckRequest.ApiKey = apiKey;
@@ -816,7 +818,7 @@ namespace Test
             Assert.Equal(Convert.ToBase64String(Encoding.Default.GetBytes(apiKey)),
                 verificationCheckRequest.Request.Headers.Authorization!.Parameter);
 
-            Assert.Equal("https://api.sift.com/v1.1/verification/check",
+            Assert.Equal("https://api.sift.com/v1/verification/check",
                          verificationCheckRequest.Request.RequestUri!.ToString());
         }
 
@@ -829,22 +831,26 @@ namespace Test
             var sessionId = "sessionId";
             var verificationSendRequest = new VerificationSendRequest
             {
-                UserId = "vineethk@exalture.com",
+                UserId = "haneeshv@exalture.com",
                 ApiKey = apiKey,
                 BrandName = "all",
                 VerificationType = "$email",
-                SendTo = "vineethk@exalture.com",
+                SendTo = "haneeshv@exalture.com",
                 Language = "en",
+                SiteCountry = "IN",
                 Event = new VerificationSendEvent()
                 {
-                    Browser = new VerificationSendBrowser()
+                    Browser = new Browser()
                     {
-                        UserAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36"
+                        user_agent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36",
+                        content_language = "en-US",
+                        accept_language = "en-GB",
                     },
                     IP = "192.168.1.1",
                     Reason = "$automated_rule",
                     SessionId = sessionId,
-                    VerifiedEvent = "$login"
+                    VerifiedEvent = "$login",
+                    VerifiedEntityId = "SOME_SESSION_ID"
                 }
             };
 
@@ -853,7 +859,7 @@ namespace Test
             Assert.Equal(Convert.ToBase64String(Encoding.Default.GetBytes(apiKey)),
                 verificationSendRequest.Request.Headers.Authorization!.Parameter);
 
-            Assert.Equal("https://api.sift.com/v1.1/verification/send",
+            Assert.Equal("https://api.sift.com/v1/verification/send",
                          verificationSendRequest.Request.RequestUri!.ToString());
         }
 
@@ -864,18 +870,17 @@ namespace Test
             var apiKey = "key";
             var verificationResendRequest = new VerificationReSendRequest
             {
-                UserId = "vineethk@exalture.com",
-                ApiKey = apiKey
-
-
+                UserId = "haneeshv@exalture.com",
+                ApiKey = apiKey,
+                VerifiedEntityId = "SOME_SESSION_ID",
+                VerifiedEvent = "$login"
             };
             verificationResendRequest.ApiKey = apiKey;
 
             Assert.Equal(Convert.ToBase64String(Encoding.Default.GetBytes(apiKey)),
                 verificationResendRequest.Request.Headers.Authorization!.Parameter);
 
-
-            Assert.Equal("https://api.sift.com/v1.1/verification/resend",
+            Assert.Equal("https://api.sift.com/v1/verification/resend",
                          verificationResendRequest.Request.RequestUri!.ToString());
         }
 
@@ -1536,7 +1541,7 @@ namespace Test
                 ip = "255.255.255.0",
                 message = new Message()
                 {
-                    body = "Let’s meet at 5pm",
+                    body = "LetÂ’s meet at 5pm",
                     contact_email = "alex_301@domain.com",
                     root_content_id = "listing-123",
                     recipient_user_ids = new ObservableCollection<string>() { "fy9h989sjphh71" },
@@ -1565,7 +1570,7 @@ namespace Test
                 site_domain = "sift.com",
             };
 
-            string updateMessageBody = "{\"$type\":\"$update_content\",\"$user_id\":\"fyw3989sjpqr71\",\"$content_id\":\"message-23412\",\"$session_id\":\"a234ksjfgn435sfg\",\"$status\":\"$active\",\"$ip\":\"255.255.255.0\",\"$message\":{\"$body\":\"Let’s meet at 5pm\",\"$contact_email\":\"alex_301@domain.com\",\"$root_content_id\":\"listing-123\",\"$recipient_user_ids\":[\"fy9h989sjphh71\"],\"$images\":[{\"$md5_hash\":\"0cc175b9c0f1b6a831c399e269772661\",\"$link\":\"https://www.domain.com/file.png\",\"$description\":\"My hike today!\"},{\"$md5_hash\":\"0cc175b9c0f1b6a831c399e269772661\"}]},\"$browser\":{\"$user_agent\":\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36\",\"$accept_language\":\"en-US\",\"$content_language\":\"en-GB\"},\"$brand_name\":\"sift\",\"$site_country\":\"US\",\"$site_domain\":\"sift.com\"}";
+            string updateMessageBody = "{\"$type\":\"$update_content\",\"$user_id\":\"fyw3989sjpqr71\",\"$content_id\":\"message-23412\",\"$session_id\":\"a234ksjfgn435sfg\",\"$status\":\"$active\",\"$ip\":\"255.255.255.0\",\"$message\":{\"$body\":\"LetÂ’s meet at 5pm\",\"$contact_email\":\"alex_301@domain.com\",\"$root_content_id\":\"listing-123\",\"$recipient_user_ids\":[\"fy9h989sjphh71\"],\"$images\":[{\"$md5_hash\":\"0cc175b9c0f1b6a831c399e269772661\",\"$link\":\"https://www.domain.com/file.png\",\"$description\":\"My hike today!\"},{\"$md5_hash\":\"0cc175b9c0f1b6a831c399e269772661\"}]},\"$browser\":{\"$user_agent\":\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36\",\"$accept_language\":\"en-US\",\"$content_language\":\"en-GB\"},\"$brand_name\":\"sift\",\"$site_country\":\"US\",\"$site_domain\":\"sift.com\"}";
 
             Assert.Equal(updateMessageBody, updateContent.ToJson());
 
@@ -1714,7 +1719,7 @@ namespace Test
                         {
                             md5_hash = "0cc175b9c0f1b6a831c399e269772661",
                             link = "https://www.domain.com/file.png",
-                            description = "Alex’s picture"
+                            description = "AlexÂ’s picture"
                         },
                         new Image()
                         {
@@ -1734,7 +1739,7 @@ namespace Test
                 site_domain = "sift.com",
             };
 
-            string updateProfileBody = "{\"$type\":\"$update_content\",\"$user_id\":\"fyw3989sjpqr71\",\"$content_id\":\"listing-23412\",\"$session_id\":\"a234ksjfgn435sfg\",\"$status\":\"$active\",\"$ip\":\"255.255.255.0\",\"$profile\":{\"$body\":\"Hi! My name is Alex and I just moved to New London!\",\"$contact_email\":\"alex_301@domain.com\",\"$contact_address\":{\"$name\":\"Alex Smith\",\"$address_1\":\"abc\",\"$address_2\":\"xyz\",\"$city\":\"New London\",\"$region\":\"New Hampshire\",\"$country\":\"US\",\"$zipcode\":\"03257\",\"$phone\":\"1-415-555-6041\"},\"$images\":[{\"$md5_hash\":\"0cc175b9c0f1b6a831c399e269772661\",\"$link\":\"https://www.domain.com/file.png\",\"$description\":\"Alex’s picture\"},{\"$md5_hash\":\"0cc175b9c0f1b6a831c399e269772661\"}],\"$categories\":[\"Friends\",\"Long-term dating\"]},\"$browser\":{\"$user_agent\":\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36\",\"$accept_language\":\"en-US\",\"$content_language\":\"en-GB\"},\"$brand_name\":\"sift\",\"$site_country\":\"US\",\"$site_domain\":\"sift.com\"}";
+            string updateProfileBody = "{\"$type\":\"$update_content\",\"$user_id\":\"fyw3989sjpqr71\",\"$content_id\":\"listing-23412\",\"$session_id\":\"a234ksjfgn435sfg\",\"$status\":\"$active\",\"$ip\":\"255.255.255.0\",\"$profile\":{\"$body\":\"Hi! My name is Alex and I just moved to New London!\",\"$contact_email\":\"alex_301@domain.com\",\"$contact_address\":{\"$name\":\"Alex Smith\",\"$address_1\":\"abc\",\"$address_2\":\"xyz\",\"$city\":\"New London\",\"$region\":\"New Hampshire\",\"$country\":\"US\",\"$zipcode\":\"03257\",\"$phone\":\"1-415-555-6041\"},\"$images\":[{\"$md5_hash\":\"0cc175b9c0f1b6a831c399e269772661\",\"$link\":\"https://www.domain.com/file.png\",\"$description\":\"AlexÂ’s picture\"},{\"$md5_hash\":\"0cc175b9c0f1b6a831c399e269772661\"}],\"$categories\":[\"Friends\",\"Long-term dating\"]},\"$browser\":{\"$user_agent\":\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36\",\"$accept_language\":\"en-US\",\"$content_language\":\"en-GB\"},\"$brand_name\":\"sift\",\"$site_country\":\"US\",\"$site_domain\":\"sift.com\"}";
 
             Assert.Equal(updateProfileBody, updateContent.ToJson());
 
