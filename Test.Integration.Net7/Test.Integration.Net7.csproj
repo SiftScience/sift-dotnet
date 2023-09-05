@@ -18,8 +18,4 @@
   <ItemGroup>
     <ProjectReference Include="..\Sift\Sift.csproj" />
   </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="CustomEvents\" />
-  </ItemGroup>
 </Project>
