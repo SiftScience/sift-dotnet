@@ -11,44 +11,6 @@ namespace Test.Integration.Net7.CustomEvents
         public void IntegrationTest_GetScoreRequest()
         {
             var sift = new Client("ccd68efbe25809bc");
-            var sessionId = "sessionId";
-            //var scoreResponse = new ScoreResponse
-            //{
-            //    decision_id = "session_looks_fraud_account_takeover",
-            //    source = "MANUAL_REVIEW",
-
-            //};
-
-            ScoreRequest scoreRequest = new()
-            {
-                ApiKey = "ccd68efbe25809bc",
-                AbuseTypes = new List<string> { "payment_abuse", "promotion_abuse" },
-                UserId = "haneeshv@exalture.com",
-            };
-            ScoreResponse res = sift.SendAsync(scoreRequest).Result;
-            Assert.Equal("OK", res.ErrorMessage);
-        }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        [Fact]
-        public void TestGetScoreRequest()
-        {
-            var sift = new Client("ccd68efbe25809bc");
             ScoreRequest scoreRequest = new ScoreRequest
             {
                 UserId = "haneeshv@exalture.com",
@@ -60,6 +22,5 @@ namespace Test.Integration.Net7.CustomEvents
             ScoreResponse res = sift.SendAsync(scoreRequest).Result;
             Assert.Equal("OK", res.ErrorMessage);
         }
-
     }
 }
