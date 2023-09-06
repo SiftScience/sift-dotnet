@@ -14,13 +14,14 @@ namespace Test.Integration.Net7.CustomEvents
             {
                 UserId = "binishb@exalture.com",
                 SendTo = "binishb@exalture.com",
-                VerificationType = "$email",
+                VerificationType = "$email", 
                 BrandName = "MyTopBrand",
                 Language = "en",
                 Event = new VerificationSendEvent()
                 {
                     SessionId = "SOME_SESSION_ID",
                     VerifiedEvent = "$login",
+                    VerifiedEntityId = "SOME_SESSION_ID",
                     Reason = "$automated_rule",
                     IP = "192.168.1.1",
                     Browser = new Browser
@@ -41,7 +42,6 @@ namespace Test.Integration.Net7.CustomEvents
 
             }
         }
-
 
 
 
