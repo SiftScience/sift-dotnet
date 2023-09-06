@@ -43,7 +43,26 @@ namespace Test.Integration.Net7.CustomEvents
             }
         }
 
+        [Fact]
+        public void IntegrationTest_VerificationReSend()
+        {
+            var sift = new Client("ccd68efbe25809bc:");
+            VerificationReSendRequest verificationReSendRequest = new VerificationReSendRequest
+            {
+                UserId = "binishb@exalture.com",
+                VerifiedEvent = "$login",
+                VerifiedEntityId = "SOME_SESSION_ID"
+            };
+            try
+            {
+                VerificationReSendResponse res = sift.SendAsync(verificationReSendRequest).Result;
+                Assert.Equal("OK", res.ErrorMessage);
+            }
+            catch (Exception ex)
+            {
 
+            }
+        }
 
     }
 }
