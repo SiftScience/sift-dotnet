@@ -32,15 +32,8 @@ namespace Test.Integration.Net7.CustomEvents
                     }
                 }
             };
-            try
-            {
-                VerificationSendResponse res = sift.SendAsync(verificationSendRequest).Result;
-                Assert.Equal("OK", res.ErrorMessage);
-            }
-            catch (Exception ex)
-            {
-
-            }
+            VerificationSendResponse verificationSendResponse = sift.SendAsync(verificationSendRequest).Result;
+            Assert.Equal("OK", verificationSendResponse.ErrorMessage);            
         }
 
         [Fact]
@@ -82,6 +75,5 @@ namespace Test.Integration.Net7.CustomEvents
             VerificationReSendResponse verificationReSendResponse = sift.SendAsync(verificationReSendRequest).Result;
             Assert.Equal("OK", verificationReSendResponse.ErrorMessage);
         }
-
     }
 }
