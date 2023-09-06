@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace Sift
 {
@@ -10,6 +10,15 @@ namespace Sift
 
         [JsonProperty("scores")]
         public Dictionary<string, ScoreJson> Scores { get; set; }
+
+        [JsonProperty("entity_type")]
+        public string  EntityType { get; set; }
+
+        [JsonProperty("entity_id")]
+        public string EntityId { get; set; }
+
+        [JsonProperty("latest_decisions")]
+        public Dictionary<string, DecisionJson> LatestDecisions { get; set; }
 
         [JsonProperty("latest_labels")]
         public Dictionary<string, LabelJson> LatestLabels { get; set; }
@@ -32,6 +41,24 @@ namespace Sift
             public Dictionary<string, decimal> Percentiles { get; set; }
         }
 
+        public class DecisionJson
+        {
+            [JsonProperty("id")]
+            public string id { get; set; }
+
+            [JsonProperty("type")]
+            public string type { get; set; }
+
+            [JsonProperty("source")]
+            public string source { get; set; }
+
+            [JsonProperty("time")]
+            public long Time { get; set; }
+
+            [JsonProperty("description")]
+            public string description { get; set; }
+        }
+
         public class LabelJson
         {
             [JsonProperty("is_bad")]
@@ -42,6 +69,9 @@ namespace Sift
 
             [JsonProperty("time")]
             public long Time { get; set; }
+
+            [JsonProperty("is_fraud")]
+            public bool is_fraud { get; set; }
         }
 
         public class ReasonJson

@@ -1,12 +1,12 @@
-﻿{
+{
   "$schema": "http://json-schema.org/draft-04/schema",
-  "title": "RemoveItemFromCart",
+  "title": "Verification",
   "type": "object",
   "required": [ "$type" ],
   "properties": {
     "$type": {
       "type": "string",
-      "default": "$remove_item_from_cart"
+      "default": "$verification"
     },
     "$user_id": {
       "type": [ "string", "null" ]
@@ -14,21 +14,33 @@
     "$session_id": {
       "type": [ "string", "null" ]
     },
-    "$item": {
-      "oneOf": [
-        { "$ref": "ComplexTypes/item.json" },
-        { "type": "null" }
-      ]
-    },
-    "$app": {
-      "oneOf": [
-        { "$ref": "ComplexTypes/app.json" },
-        { "type": "null" }
-      ]
+    "$status": {
+      "type": [ "string", "null" ]
     },
     "$browser": {
       "oneOf": [
         { "$ref": "ComplexTypes/browser.json" },
+        { "type": "null" }
+      ]
+    },
+    "$verified_event": {
+      "type": [ "string", "null" ]
+    },
+    "$verified_entity_id": {
+      "type": [ "string", "null" ]
+    },
+    "$verification_type": {
+      "type": [ "string", "null" ]
+    },
+    "$verified_value": {
+      "type": [ "string", "null" ]
+    },
+    "$reason": {
+      "type": [ "string", "null" ]
+    },
+    "$app": {
+      "oneOf": [
+        { "$ref": "ComplexTypes/app.json" },
         { "type": "null" }
       ]
     },
@@ -39,13 +51,6 @@
       "type": [ "string", "null" ]
     },
     "$site_domain": {
-      "type": [ "string", "null" ]
-    },
-    "$user_email": {
-      "type": [ "string", "null" ]
-    },
-    
-    "$verification_phone_number": {
       "type": [ "string", "null" ]
     }
   }

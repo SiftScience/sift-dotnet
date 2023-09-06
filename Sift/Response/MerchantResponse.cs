@@ -1,7 +1,4 @@
 ﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Sift
 {
@@ -25,9 +22,6 @@ namespace Sift
         [JsonProperty("last_updated_by")]
         public string UpdatedBy { get; set; }
 
-        [JsonProperty("description")]
-        public string Description { get; set; }
-
         [JsonProperty("address")]
         public MerchantAddressJson Address { get; set; }
 
@@ -36,9 +30,6 @@ namespace Sift
 
         [JsonProperty("service_level")]
         public string ServiceLevel { get; set; }
-
-        [JsonProperty("status")]
-        public bool Status { get; set; }
 
         [JsonProperty("risk_profile")]
         public MerchantRiskProfile RiskProfile { get; set; }
@@ -64,9 +55,6 @@ namespace Sift
         [JsonProperty("last_updated_by")]
         public string UpdatedBy { get; set; }
 
-        [JsonProperty("description")]
-        public string Description { get; set; }
-
         [JsonProperty("address")]
         public MerchantAddressJson Address { get; set; }
 
@@ -75,9 +63,6 @@ namespace Sift
 
         [JsonProperty("service_level")]
         public string ServiceLevel { get; set; }
-
-        [JsonProperty("status")]
-        public bool Status { get; set; }
 
         [JsonProperty("risk_profile")]
         public MerchantRiskProfile RiskProfile { get; set; }
