@@ -23,9 +23,11 @@ namespace Test.Integration.Net7.CustomEvents
                     VerifiedEvent = "$login",
                     Reason = "$automated_rule",
                     IP = "192.168.1.1",
-                    Browser = new VerificationSendBrowser()
+                    Browser = new Browser
                     {
-                        UserAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36",
+                        user_agent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36",
+                        accept_language = "en-US",
+                        content_language = "en-GB"
                     }
                 }
             };
