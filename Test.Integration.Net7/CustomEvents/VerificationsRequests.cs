@@ -75,5 +75,20 @@ namespace Test.Integration.Net7.CustomEvents
             VerificationReSendResponse verificationReSendResponse = sift.SendAsync(verificationReSendRequest).Result;
             Assert.Equal("OK", verificationReSendResponse.ErrorMessage);
         }
+
+        [Theory]
+        [InlineData(990941)]
+        public void IntegrationTest_VerificationCheck(int code)
+        {
+            var sift = new Client("ccd68efbe25809bc:");
+            VerificationCheckRequest verificationCheckRequest = new VerificationCheckRequest
+            {
+                UserId = "binishb@exalture.com",
+                Code = code,
+                VerifiedEvent = "$login"
+            };
+            VerificationCheckResponse verificationCheckResponse = sift.SendAsync(verificationCheckRequest).Result;
+            Assert.Equal("OK", verificationCheckResponse.ErrorMessage);
+        }
     }
 }
