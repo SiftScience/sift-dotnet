@@ -6,6 +6,6 @@ namespace Test.Integration.Net7.CustomEvents
 {
     public class DecisionsRequests
     {
-               
+        
     }
 }
