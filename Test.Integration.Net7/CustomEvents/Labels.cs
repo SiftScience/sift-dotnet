@@ -1,11 +1,10 @@
 using Sift;
-using System.Collections.Generic;
-using System;
 using Xunit;
+
 
 namespace Test.Integration.Net7.CustomEvents
 {
-    public class LabelRequest
+    public class Labels
     {
         [Fact]
         public void IntegrationTest_LabelRequest()
@@ -13,13 +12,17 @@ namespace Test.Integration.Net7.CustomEvents
             var sift = new Client("ccd68efbe25809bc");
             LabelRequest labelRequest = new LabelRequest
             {
-                ApiKey = "ccd68efbe25809bc",                
                 UserId = "haneeshv@exalture.com",
-                AbuseTypes = new List<string>() { "payment_abuse", "promotion_abuse" }
+                ApiKey = "ccd68efbe25809bc",
+                IsBad = true,
+                AbuseType = "payment_abuse",
+                Description = "The user was testing cards repeatedly for a valid card",
+                Source = "manual review",
+                Analyst = "someone@your-site.com"
             };
 
-            LabelRequest labelrequestResponse = sift.SendAsync(labelResponse).Result;
-            Assert.Equal("OK", labelrequestResponse.ErrorMessage);
+            SiftResponse labelResponse = sift.SendAsync(labelRequest).Result;
+            Assert.Equal("OK", labelResponse.ErrorMessage);
         }
     }
 }
