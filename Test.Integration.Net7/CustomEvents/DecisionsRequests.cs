@@ -16,9 +16,28 @@ namespace Test.Integration.Net7.CustomEvents
                 AccountId = "5f053f004025ca08a187fad3",
                 UserId = "haneeshv@exalture.com"
             };
-
             GetDecisionStatusResponse res = sift.SendAsync(getDecisionStatusRequest).Result;
             Assert.Equal("OK", res.ErrorMessage);
         }
+
+        [Fact]
+        public void IntegrationTest_ApplyDecisionRequest()
+        {
+            var sift = new Client("ccd68efbe25809bc");
+            ApplyDecisionRequest applyDecisionRequest = new ApplyDecisionRequest
+            {
+                ApiKey = "ccd68efbe25809bc",
+                DecisionId = "block_user_payment_abuse",
+                Source = "MANUAL_REVIEW",
+                Analyst = "analyst@example.com",
+                Time = 1231234123,
+                Description = "compromised account reported to customer service",
+                AccountId = "5f053f004025ca08a187fad3",
+                UserId = "haneeshv@exalture.com"
+            };
+            ApplyDecisionResponse res = sift.SendAsync(applyDecisionRequest).Result;
+            Assert.Equal("OK", res.ErrorMessage);
+        }
+
     }
 }
