@@ -1,6 +1,7 @@
 using Sift;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using Xunit;
 
 namespace Test.Integration.Net7.CustomEvents
@@ -36,6 +37,22 @@ namespace Test.Integration.Net7.CustomEvents
                 UserId = "haneeshv@exalture.com"
             };
             ApplyDecisionResponse res = sift.SendAsync(applyDecisionRequest).Result;
+            Assert.Equal("OK", res.ErrorMessage);
+        }
+
+        [Fact]
+        public void IntegrationTest_GetDecisionRequest()
+        {
+            var sift = new Client("ccd68efbe25809bc");
+            GetDecisionsRequest getDecisionsRequest = new GetDecisionsRequest
+            {
+                ApiKey = "ccd68efbe25809bc",
+                AccountId = "5f053f004025ca08a187fad3",
+                EntityType = "user",
+                Limit = 10,
+                From = 0
+            };
+            GetDecisionsResponse res = sift.SendAsync(getDecisionsRequest).Result;
             Assert.Equal("OK", res.ErrorMessage);
         }
 
