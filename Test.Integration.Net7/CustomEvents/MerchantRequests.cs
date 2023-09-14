@@ -90,5 +90,19 @@ namespace Test.Integration.Net7.CustomEvents
             Assert.Equal("OK", createMerchantResponse.ErrorMessage);
         }
 
+        [Fact]
+        public void IntegrationTest_GetMerchantDetailsRequest()
+        {
+            var sift = new Client("ccd68efbe25809bc:");
+            GetMerchantDetailsRequest getMerchantDetailsRequest = new GetMerchantDetailsRequest
+            {
+                AccountId = "cf51f0ec-6078-46e9-a796-700af25e668c",
+                ApiKey = "ccd68efbe25809bc",
+                MerchantId = "cf51f0ec-6078-46e9-a796-700af25e668c"
+            };
+            SiftResponse getMerchantDetailsResponse = sift.SendAsync(getMerchantDetailsRequest).Result;
+            Assert.Equal("OK", getMerchantDetailsResponse.ErrorMessage);
+        }
+
     }
 }
