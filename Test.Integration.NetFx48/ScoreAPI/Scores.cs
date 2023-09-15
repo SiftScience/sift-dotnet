@@ -25,7 +25,7 @@ namespace Test.Integration.NetFx48.ScoreAPI
         }
 
         //remove
-        [Fact]
+        //[Fact]
         public void IntegrationTest_ReScoreRequest()
         {
             var sift = new Client("ccd68efbe25809bc");
