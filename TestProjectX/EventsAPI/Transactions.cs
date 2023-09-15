@@ -2,7 +2,7 @@
 using System.Collections.ObjectModel;
 using Xunit;
 
-namespace TestProjectX.ReservedEvents
+namespace EventsAPI
 {
     public class Transactions
     {

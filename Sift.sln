@@ -10,7 +10,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Test.Integration.Net7", "Te
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test.Integration.Framework48", "Test.Integration.Framework48\Test.Integration.Framework48.csproj", "{DF7B3E95-3B5B-4304-89DD-5A87E1BCE4FD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestProjectX", "TestProjectX\TestProjectX.csproj", "{33374307-59D9-41D9-AF3C-58F094BCADEB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Test.Integration.Net4.8", "TestProjectX\Test.Integration.Net4.8.csproj", "{33374307-59D9-41D9-AF3C-58F094BCADEB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

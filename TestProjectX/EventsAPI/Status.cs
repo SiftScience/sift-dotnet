@@ -1,36 +1,21 @@
 ﻿using Sift;
-using System.Collections.ObjectModel;
 using Xunit;
 
-namespace TestProjectX.ReservedEvents
+namespace EventsAPI
 {
-    public class Cart
+    public class Status
     {
         [Fact]
-        public void AddItemToCartEvent()
+        public void IntegrationTest_ContentStatus()
         {
             var sift = new Client("ccd68efbe25809bc");
             var sessionId = "sessionId";
-            var addItemToCart = new AddItemToCart
+            var contentStatus = new ContentStatus
             {
                 user_id = "billy_jones_301",
                 session_id = "gigtleqddo84l8cm15qe4il",
-                item = new Item()
-                {
-                    item_id = "B004834GQO",
-                    product_title = "The Slanket Blanket-Texas Tea",
-                    price = 39990000,
-                    currency_code = "USD",
-                    upc = "6786211451001",
-                    sku = "004834GQ",
-                    isbn = "0446576220",
-                    brand = "Slanket",
-                    manufacturer = "Slanket",
-                    category = "Blankets & Throws",
-                    tags = new ObservableCollection<string>() { "Awesome", "Wintertime specials" },
-                    color = "Texas Tea",
-                    quantity = 16,
-                },
+                content_id = "9671500641",
+                status = "$paused",
                 browser = new Browser
                 {
                     user_agent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36",
@@ -45,39 +30,28 @@ namespace TestProjectX.ReservedEvents
 
             EventRequest eventRequest = new EventRequest()
             {
-                Event = addItemToCart
+                Event = contentStatus
             };
-
             EventResponse res = sift.SendAsync(eventRequest).Result;
             Assert.Equal("OK", res.ErrorMessage);
             Assert.Equal("0", res.Status.ToString());
         }
 
         [Fact]
-        public void RemoveItemFromCart()
+        public void IntegrationTest_OrderStatus()
         {
             var sift = new Client("ccd68efbe25809bc");
             var sessionId = "sessionId";
-            var removeItemFromCart = new RemoveItemFromCart
+            var orderStatus = new OrderStatus
             {
                 user_id = "billy_jones_301",
-                session_id = "gigtleqddo84l8cm15qe4il",
-                item = new Item()
-                {
-                    item_id = "B004834GQO",
-                    product_title = "The Slanket Blanket-Texas Tea",
-                    price = 39990000,
-                    currency_code = "USD",
-                    upc = "6786211451001",
-                    sku = "004834GQ",
-                    isbn = "0446576220",
-                    brand = "Slanket",
-                    manufacturer = "Slanket",
-                    category = "Blankets & Throws",
-                    tags = new ObservableCollection<string>() { "Awesome", "Wintertime specials" },
-                    color = "Texas Tea",
-                    quantity = 2
-                },
+                order_id = "ORDER-28168441",
+                order_status = "$canceled",
+                reason = "$payment_risk",
+                source = "$manual_review",
+                analyst = "someone@your-site.com",
+                webhook_id = "3ff1082a4aea8d0c58e3643ddb7a5bb87ffffeb2492dca33",
+                description = "Canceling because multiple fraudulent users on device",
                 browser = new Browser
                 {
                     user_agent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36",
@@ -86,13 +60,11 @@ namespace TestProjectX.ReservedEvents
                 },
                 brand_name = "sift",
                 site_country = "US",
-                site_domain = "sift.com",
-                verification_phone_number = "+123456789012"
+                site_domain = "sift.com"
             };
-
             EventRequest eventRequest = new EventRequest()
             {
-                Event = removeItemFromCart
+                Event = orderStatus
             };
             EventResponse res = sift.SendAsync(eventRequest).Result;
             Assert.Equal("OK", res.ErrorMessage);
