@@ -3,26 +3,28 @@ using System.Collections.Generic;
 using System;
 using Xunit;
 
-namespace Test.Integration.Net7.CustomEvents
+namespace Test.Integration.Net7.ScoreAPI
 {
     public class VerificationsRequests
     {
         [Fact]
         public void IntegrationTest_GetScoreRequest()
         {
-            var sift = new Client("ccd68efbe25809bc");
+            //var sift = new Client("ccd68efbe25809bc");
+            var sift = new Client("febabe52c8887d8b");//configuration only
             ScoreRequest scoreRequest = new ScoreRequest
             {
-                UserId = "haneeshv@exalture.com",
+                //UserId = "haneeshv@exalture.com",
+                UserId = "billy_jones_301",//configuration
                 //ApiKey = "345",
-                AbuseTypes = new List<string>() { "payment_abuse", "promotion_abuse" }
+                AbuseTypes = new List<string>() { "payment_abuse" }
             };
 
             ScoreResponse res = sift.SendAsync(scoreRequest).Result;
             Assert.Equal("OK", res.ErrorMessage);
         }
 
-
+        //remove
         [Fact]
         public void IntegrationTest_ReScoreRequest()
         {

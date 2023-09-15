@@ -1,7 +1,7 @@
 using Sift;
 using Xunit;
 
-namespace Test.Integration.Net7.ReservedEvents
+namespace Test.Integration.Net7.EventsAPI
 {
     public class Verifications
     {

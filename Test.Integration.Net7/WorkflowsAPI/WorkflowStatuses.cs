@@ -2,7 +2,7 @@ using Sift;
 using Xunit;
 
 
-namespace Test.Integration.Net7.CustomEvents
+namespace Test.Integration.Net7.WorkflowsAPI
 {
     public class WorkflowStatuses
     {
@@ -18,7 +18,7 @@ namespace Test.Integration.Net7.CustomEvents
             };
             WorkflowStatusResponse workFlowStatusResponse = sift.SendAsync(workflowStatusRequest).Result;
             Assert.Equal("OK", workFlowStatusResponse.ErrorMessage);
-        }        
+        }
 
     }
 }

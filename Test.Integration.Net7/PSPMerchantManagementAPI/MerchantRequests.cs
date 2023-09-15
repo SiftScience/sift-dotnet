@@ -2,7 +2,7 @@ using Sift;
 using System;
 using Xunit;
 
-namespace Test.Integration.Net7.CustomEvents
+namespace Test.Integration.Net7.PSPMerchantManagementAPI
 {
     public class MerchantRequests
     {
@@ -12,10 +12,10 @@ namespace Test.Integration.Net7.CustomEvents
             var sift = new Client("ccd68efbe25809bc:");
             GetMerchantsRequest getMerchantRequest = new GetMerchantsRequest
             {
-                AccountId = "cf51f0ec-6078-46e9-a796-700af25e668c",
+                AccountId = "5f053f004025ca08a187fad3",
                 ApiKey = "ccd68efbe25809bc",
                 BatchSize = 10,
-                BatchToken = null                               
+                BatchToken = null,
             };
             GetMerchantsResponse getMerchantResponse = sift.SendAsync(getMerchantRequest).Result;
             Assert.Equal("OK", getMerchantResponse.ErrorMessage);
@@ -27,7 +27,7 @@ namespace Test.Integration.Net7.CustomEvents
             var sift = new Client("ccd68efbe25809bc:");
             UpdateMerchantRequest updateMerchantRequest = new UpdateMerchantRequest
             {
-                AccountId = "cf51f0ec-6078-46e9-a796-700af25e668c",
+                AccountId = "5f053f004025ca08a187fad3",
                 MerchantId = "cf51f0ec-6078-46e9-a796-700af25e668c",
                 Name = "Watson and Holmes",
                 ApiKey = "ccd68efbe25809bc",

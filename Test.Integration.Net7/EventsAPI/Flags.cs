@@ -2,7 +2,7 @@ using Sift;
 using System.Collections.ObjectModel;
 using Xunit;
 
-namespace Test.Integration.Net7.ReservedEvents
+namespace Test.Integration.Net7.EventsAPI
 {
     public class Flags
     {

@@ -2,7 +2,7 @@ using Sift;
 using Xunit;
 
 
-namespace Test.Integration.Net7.CustomEvents
+namespace Test.Integration.Net7.LabelsAPI
 {
     public class Labels
     {

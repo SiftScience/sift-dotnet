@@ -4,8 +4,9 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Xunit;
 
-namespace Test.Integration.Net7.CustomEvents
+namespace Test.Integration.Net7.DecisionsAPI
 {
+    //Ignore
     public class DecisionsRequests
     {
         [Fact]

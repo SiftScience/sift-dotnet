@@ -1,22 +1,22 @@
 using Sift;
 using Xunit;
 
-namespace Test.Integration.Net7.ReservedEvents
+namespace Test.Integration.Net7.EventsAPI
 {
-    public class Passwords
+    public class Notifications
     {
         [Fact]
-        public void IntegrationTest_UpdatePassword()
+        public void IntegrationTest_SecurityNotification()
         {
             var sift = new Client("ccd68efbe25809bc");
             var sessionId = "sessionId";
-            var updatePassword = new UpdatePassword
+            var securityNotification = new SecurityNotification
             {
                 user_id = "billy_jones_301",
                 session_id = "gigtleqddo84l8cm15qe4il",
-                status = "$success",
-                reason = "$forced_reset",
-                ip = "128.148.1.135",
+                notification_type = "$email",
+                notified_value = "billy123@domain.com",
+                notification_status = "$sent",
                 browser = new Browser
                 {
                     user_agent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36",
@@ -25,16 +25,15 @@ namespace Test.Integration.Net7.ReservedEvents
                 },
                 brand_name = "sift",
                 site_domain = "sift.com",
-                site_country = "US",
-                user_email = "billjones1@example.com",
-                verification_phone_number = "+123456789012"
+                site_country = "US"
             };
             EventRequest eventRequest = new EventRequest()
             {
-                Event = updatePassword
+                Event = securityNotification
             };
             EventResponse res = sift.SendAsync(eventRequest).Result;
             Assert.Equal("OK", res.ErrorMessage);
+
         }
     }
 }

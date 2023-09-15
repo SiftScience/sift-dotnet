@@ -2,7 +2,7 @@ using Sift;
 using System;
 using Xunit;
 
-namespace Test.Integration.Net7.CustomEvents
+namespace Test.Integration.Net7.VerificationAPI
 {
     public class VerificationRequests
     {
@@ -33,7 +33,7 @@ namespace Test.Integration.Net7.CustomEvents
                 }
             };
             VerificationSendResponse verificationSendResponse = sift.SendAsync(verificationSendRequest).Result;
-            Assert.Equal("OK", verificationSendResponse.ErrorMessage);            
+            Assert.Equal("OK", verificationSendResponse.ErrorMessage);
         }
 
         [Fact]
