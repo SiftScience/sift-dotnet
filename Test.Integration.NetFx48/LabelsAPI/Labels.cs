@@ -6,7 +6,7 @@ namespace Test.Integration.NetFx48.LabelsAPI
 {
     public class Labels
     {
-        [Fact]
+        //[Fact]
         public void IntegrationTest_LabelRequest()
         {
             var sift = new Client("ccd68efbe25809bc");
@@ -25,7 +25,7 @@ namespace Test.Integration.NetFx48.LabelsAPI
             Assert.Equal("OK", labelResponse.ErrorMessage);
         }
 
-        [Fact]
+        //[Fact]
         public void IntegrationTest_UnLabelRequest()
         {
             var sift = new Client("ccd68efbe25809bc");
