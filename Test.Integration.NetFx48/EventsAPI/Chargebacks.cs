@@ -1,7 +1,7 @@
 ﻿using Sift;
 using Xunit;
 
-namespace EventsAPI
+namespace Test.Integration.NetFx48.EventsAPI
 {
     public class Chargebacks
     {

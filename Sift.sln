@@ -10,7 +10,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Test.Integration.Net7", "Te
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test.Integration.Framework48", "Test.Integration.Framework48\Test.Integration.Framework48.csproj", "{DF7B3E95-3B5B-4304-89DD-5A87E1BCE4FD}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Test.Integration.Net4.8", "TestProjectX\Test.Integration.Net4.8.csproj", "{33374307-59D9-41D9-AF3C-58F094BCADEB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Test.Integration.NetFx48", "Test.Integration.NetFx48\Test.Integration.NetFx48.csproj", "{B5A60307-AAE2-4D1B-B3B6-95440A0F6381}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -34,10 +34,10 @@ Global
 		{DF7B3E95-3B5B-4304-89DD-5A87E1BCE4FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DF7B3E95-3B5B-4304-89DD-5A87E1BCE4FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DF7B3E95-3B5B-4304-89DD-5A87E1BCE4FD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{33374307-59D9-41D9-AF3C-58F094BCADEB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{33374307-59D9-41D9-AF3C-58F094BCADEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{33374307-59D9-41D9-AF3C-58F094BCADEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{33374307-59D9-41D9-AF3C-58F094BCADEB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B5A60307-AAE2-4D1B-B3B6-95440A0F6381}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B5A60307-AAE2-4D1B-B3B6-95440A0F6381}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B5A60307-AAE2-4D1B-B3B6-95440A0F6381}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B5A60307-AAE2-4D1B-B3B6-95440A0F6381}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

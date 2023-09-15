@@ -2,7 +2,7 @@
 using System.Collections.ObjectModel;
 using Xunit;
 
-namespace EventsAPI
+namespace Test.Integration.NetFx48.EventsAPI
 {
     public class Flags
     {

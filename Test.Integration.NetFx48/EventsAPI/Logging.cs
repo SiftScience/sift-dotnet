@@ -1,36 +1,40 @@
 ﻿using Sift;
+using System.Collections.ObjectModel;
 using Xunit;
 
-namespace EventsAPI
+namespace Test.Integration.NetFx48.EventsAPI
 {
-    public class Status
+    public class Logging
     {
         [Fact]
-        public void IntegrationTest_ContentStatus()
+        public void IntegrationTest_Login()
         {
             var sift = new Client("ccd68efbe25809bc");
             var sessionId = "sessionId";
-            var contentStatus = new ContentStatus
+            var login = new Login
             {
                 user_id = "billy_jones_301",
                 session_id = "gigtleqddo84l8cm15qe4il",
-                content_id = "9671500641",
-                status = "$paused",
+                login_status = "$success",
+                user_email = "billjones1@example.com",
+                verification_phone_number = "+123456789012",
+                ip = "128.148.1.135",
                 browser = new Browser
                 {
                     user_agent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36",
                     accept_language = "en-US",
                     content_language = "en-GB"
                 },
+                username = "billjones1@example.com",
+                social_sign_on_type = "$linkedin",
+                account_types = new ObservableCollection<string>() { "merchant", "premium" },
                 brand_name = "sift",
-                site_country = "US",
                 site_domain = "sift.com",
-                verification_phone_number = "+123456789012"
+                site_country = "US"
             };
-
             EventRequest eventRequest = new EventRequest()
             {
-                Event = contentStatus
+                Event = login
             };
             EventResponse res = sift.SendAsync(eventRequest).Result;
             Assert.Equal("OK", res.ErrorMessage);
@@ -38,20 +42,13 @@ namespace EventsAPI
         }
 
         [Fact]
-        public void IntegrationTest_OrderStatus()
+        public void IntegrationTest_Logout()
         {
             var sift = new Client("ccd68efbe25809bc");
             var sessionId = "sessionId";
-            var orderStatus = new OrderStatus
+            var logout = new Logout
             {
                 user_id = "billy_jones_301",
-                order_id = "ORDER-28168441",
-                order_status = "$canceled",
-                reason = "$payment_risk",
-                source = "$manual_review",
-                analyst = "someone@your-site.com",
-                webhook_id = "3ff1082a4aea8d0c58e3643ddb7a5bb87ffffeb2492dca33",
-                description = "Canceling because multiple fraudulent users on device",
                 browser = new Browser
                 {
                     user_agent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36",
@@ -59,12 +56,12 @@ namespace EventsAPI
                     content_language = "en-GB"
                 },
                 brand_name = "sift",
-                site_country = "US",
-                site_domain = "sift.com"
+                site_domain = "sift.com",
+                site_country = "US"
             };
             EventRequest eventRequest = new EventRequest()
             {
-                Event = orderStatus
+                Event = logout
             };
             EventResponse res = sift.SendAsync(eventRequest).Result;
             Assert.Equal("OK", res.ErrorMessage);
