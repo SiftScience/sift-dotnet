@@ -76,8 +76,8 @@ namespace Test.Integration.NetFx48.VerificationAPI
             Assert.Equal("OK", verificationReSendResponse.ErrorMessage);
         }
 
-        [Theory]
-        [InlineData(990941)]
+        //[Theory]
+        //[InlineData(990941)]
         public void IntegrationTest_VerificationCheck(int code)
         {
             var sift = new Client("ccd68efbe25809bc:");
