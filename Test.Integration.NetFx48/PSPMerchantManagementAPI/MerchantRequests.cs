@@ -1,5 +1,4 @@
 using Sift;
-using System;
 using Xunit;
 
 namespace Test.Integration.NetFx48.PSPMerchantManagementAPI
