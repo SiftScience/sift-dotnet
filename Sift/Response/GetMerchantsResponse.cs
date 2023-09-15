@@ -21,7 +21,7 @@ namespace Sift
             public long CreatedAt { get; set; }
 
             [JsonProperty("created_by")]
-            public long CreatedBy { get; set; }
+            public string CreatedBy { get; set; }
 
             [JsonProperty("last_updated_at")]
             public long UpdatedAt { get; set; }
@@ -42,7 +42,7 @@ namespace Sift
             public string ServiceLevel { get; set; }
 
             [JsonProperty("status")]
-            public bool Status { get; set; }
+            public string Status { get; set; }
 
             [JsonProperty("risk_profile")]
             public MerchantRiskProfile RiskProfile { get; set; }
