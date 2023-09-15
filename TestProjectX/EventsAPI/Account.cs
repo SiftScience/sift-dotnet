@@ -2,7 +2,7 @@ using Sift;
 using System.Collections.ObjectModel;
 using Xunit;
 
-namespace TestProjectX
+namespace EventsAPI
 {
     public class Account
     {

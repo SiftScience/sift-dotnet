@@ -1,7 +1,7 @@
 ﻿using Sift;
 using Xunit;
 
-namespace TestProjectX.ReservedEvents
+namespace EventsAPI
 {
     public class Chargebacks
     {
