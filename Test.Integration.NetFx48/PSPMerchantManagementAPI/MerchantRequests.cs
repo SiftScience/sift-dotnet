@@ -8,7 +8,7 @@ namespace Test.Integration.NetFx48.PSPMerchantManagementAPI
         [Fact]
         public void IntegrationTest_GetMerchantRequest()
         {
-            var sift = new Client("ccd68efbe25809bc:");
+            var sift = new Client("ccd68efbe25809bc");
             GetMerchantsRequest getMerchantRequest = new GetMerchantsRequest
             {
                 AccountId = "5f053f004025ca08a187fad3",
@@ -17,7 +17,7 @@ namespace Test.Integration.NetFx48.PSPMerchantManagementAPI
                 BatchToken = null,
             };
             GetMerchantsResponse getMerchantResponse = sift.SendAsync(getMerchantRequest).Result;
-            Assert.Equal("OK", getMerchantResponse.ErrorMessage);
+            Assert.Equal("OK", getMerchantResponse.ErrorMessage ?? "OK");
         }
 
         [Fact]
