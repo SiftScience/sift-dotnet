@@ -12,7 +12,6 @@ namespace Test.Integration.NetFx48.PSPMerchantManagementAPI
             GetMerchantsRequest getMerchantRequest = new GetMerchantsRequest
             {
                 AccountId = "5f053f004025ca08a187fad3",
-                ApiKey = "ccd68efbe25809bc",
                 BatchSize = 10,
                 BatchToken = null,
             };
