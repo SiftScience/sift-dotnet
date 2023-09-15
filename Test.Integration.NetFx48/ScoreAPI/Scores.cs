@@ -1,6 +1,5 @@
 using Sift;
 using System.Collections.Generic;
-using System;
 using Xunit;
 
 namespace Test.Integration.NetFx48.ScoreAPI
