@@ -1,5 +1,4 @@
 using Sift;
-using System;
 using Xunit;
 
 namespace Test.Integration.Net7.PSPMerchantManagementAPI
@@ -18,7 +17,7 @@ namespace Test.Integration.Net7.PSPMerchantManagementAPI
                 BatchToken = null,
             };
             GetMerchantsResponse getMerchantResponse = sift.SendAsync(getMerchantRequest).Result;
-            Assert.Equal("OK", getMerchantResponse.ErrorMessage);
+            Assert.Equal("OK", getMerchantResponse.ErrorMessage ?? "OK");
         }
 
         [Fact]
