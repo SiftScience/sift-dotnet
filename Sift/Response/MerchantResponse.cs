@@ -4,6 +4,9 @@ namespace Sift
 {
     public class CreateMerchantResponse : SiftResponse
     {
+        [JsonProperty("status")]
+        public new string Status { get; set; }
+
         [JsonProperty("id")]
         public string Id { get; set; }
 
@@ -14,7 +17,7 @@ namespace Sift
         public long CreatedAt { get; set; }
 
         [JsonProperty("created_by")]
-        public long CreatedBy { get; set; }
+        public string CreatedBy { get; set; }
 
         [JsonProperty("last_updated_at")]
         public long UpdatedAt { get; set; }
