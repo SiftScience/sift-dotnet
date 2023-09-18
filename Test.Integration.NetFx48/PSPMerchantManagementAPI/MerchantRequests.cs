@@ -60,7 +60,7 @@ namespace Test.Integration.NetFx48.PSPMerchantManagementAPI
             var sift = new Client("ccd68efbe25809bc:");
             CreateMerchantRequest createMerchantRequest = new CreateMerchantRequest
             {
-                AccountId = "cf51f0ec-6078-46e9-a796-700af25e668c",
+                AccountId = "5f053f004025ca08a187fad3",
                 Name = "Watson and Holmes",
                 ApiKey = "ccd68efbe25809bc",
                 Description = "An example of a PSP Merchant. Illustrative.",
