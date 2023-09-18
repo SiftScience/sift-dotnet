@@ -8,7 +8,7 @@ namespace Test.Integration.Net7.PSPMerchantManagementAPI
         [Fact]
         public void IntegrationTest_GetMerchantRequest()
         {
-            var sift = new Client("ccd68efbe25809bc:");
+            var sift = new Client("ccd68efbe25809bc");
             GetMerchantsRequest getMerchantRequest = new GetMerchantsRequest
             {
                 AccountId = "5f053f004025ca08a187fad3",
@@ -23,12 +23,13 @@ namespace Test.Integration.Net7.PSPMerchantManagementAPI
         [Fact]
         public void IntegrationTest_UpdateMerchantRequest()
         {
-            var sift = new Client("ccd68efbe25809bc:");
+            var sift = new Client("ccd68efbe25809bc");
             UpdateMerchantRequest updateMerchantRequest = new UpdateMerchantRequest
             {
                 AccountId = "5f053f004025ca08a187fad3",
                 MerchantId = "cf51f0ec-6078-46e9-a796-700af25e668c",
                 Name = "Watson and Holmes",
+                Id = "cf51f0ec-6078-46e9-a796-700af25e668c",
                 ApiKey = "ccd68efbe25809bc",
                 Description = "An example of a PSP Merchant. Illustrative.",
                 Address = new MerchantAddress()
@@ -52,16 +53,16 @@ namespace Test.Integration.Net7.PSPMerchantManagementAPI
                 }
             };
             UpdateMerchantResponse updateMerchantResponse = sift.SendAsync(updateMerchantRequest).Result;
-            Assert.Equal("OK", updateMerchantResponse.ErrorMessage);
+            Assert.Equal("OK", updateMerchantResponse.ErrorMessage ?? "OK");
         }
 
         [Fact]
         public void IntegrationTest_CreateMerchantRequest()
         {
-            var sift = new Client("ccd68efbe25809bc:");
+            var sift = new Client("ccd68efbe25809bc");
             CreateMerchantRequest createMerchantRequest = new CreateMerchantRequest
             {
-                AccountId = "cf51f0ec-6078-46e9-a796-700af25e668c",
+                AccountId = "5f053f004025ca08a187fad3",
                 Name = "Watson and Holmes",
                 ApiKey = "ccd68efbe25809bc",
                 Description = "An example of a PSP Merchant. Illustrative.",
@@ -92,7 +93,7 @@ namespace Test.Integration.Net7.PSPMerchantManagementAPI
         [Fact]
         public void IntegrationTest_GetMerchantDetailsRequest()
         {
-            var sift = new Client("ccd68efbe25809bc:");
+            var sift = new Client("ccd68efbe25809bc");
             GetMerchantDetailsRequest getMerchantDetailsRequest = new GetMerchantDetailsRequest
             {
                 AccountId = "5f053f004025ca08a187fad3",
