@@ -23,14 +23,13 @@ namespace Test.Integration.NetFx48.ScoreAPI
         }
 
         //remove
-        //[Fact]
+        [Fact]
         public void IntegrationTest_ReScoreRequest()
         {
-            var sift = new Client("ccd68efbe25809bc");
+            var sift = new Client(environmentVariable.ApiKey);
             RescoreRequest rescoreRequest = new RescoreRequest
             {
-                UserId = "haneeshv@exalture.com",
-                //ApiKey = "345",
+                UserId = environmentVariable.UserId,
                 AbuseTypes = new List<string>() { "payment_abuse", "promotion_abuse" }
             };
 
