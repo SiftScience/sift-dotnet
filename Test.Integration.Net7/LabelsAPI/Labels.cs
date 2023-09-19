@@ -1,4 +1,5 @@
 using Sift;
+using Test.Integration.Net7.Uitlities;
 using Xunit;
 
 
@@ -6,14 +7,16 @@ namespace Test.Integration.Net7.LabelsAPI
 {
     public class Labels
     {
+        private readonly EnvironmentVariable environmentVariable = new();
+
         [Fact]
         public void IntegrationTest_LabelRequest()
         {
-            var sift = new Client("ccd68efbe25809bc");
+            var sift = new Client(environmentVariable.ApiKey);
             LabelRequest labelRequest = new LabelRequest
             {
-                UserId = "haneeshv@exalture.com",
-                ApiKey = "ccd68efbe25809bc",
+                UserId = environmentVariable.UserId,
+                ApiKey = environmentVariable.ApiKey,
                 IsBad = true,
                 AbuseType = "payment_abuse",
                 Description = "The user was testing cards repeatedly for a valid card",
