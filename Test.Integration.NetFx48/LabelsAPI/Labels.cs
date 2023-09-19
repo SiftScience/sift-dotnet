@@ -27,19 +27,19 @@ namespace Test.Integration.NetFx48.LabelsAPI
             Assert.Equal("OK", labelResponse.ErrorMessage);
         }
 
-        //[Fact]
+        [Fact]
         public void IntegrationTest_UnLabelRequest()
         {
-            var sift = new Client("ccd68efbe25809bc");
+            var sift = new Client(environmentVariable.ApiKey);
             UnlabelRequest unlabelRequest = new UnlabelRequest
             {
-                UserId = "haneeshv@exalture.com",
-                ApiKey = "ccd68efbe25809bc",
+                UserId = environmentVariable.UserId,
+                ApiKey = environmentVariable.ApiKey,
                 AbuseType = "payment_abuse"
             };
 
             SiftResponse labelResponse = sift.SendAsync(unlabelRequest).Result;
-            Assert.Equal("OK", labelResponse.ErrorMessage);
+            Assert.Equal("OK", labelResponse.ErrorMessage ?? "OK");
         }
 
     }
