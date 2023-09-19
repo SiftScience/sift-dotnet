@@ -5,6 +5,7 @@
     "MerchantId": "cf51f0ec-6078-46e9-a796-700af25e668c",
     "Id": "cf51f0ec-6078-46e9-a796-700af25e668c",
     "UserId": "haneeshv@exalture.com",
-    "WorkflowRunId": "6dbq76qbaaaaa"
+    "WorkflowRunId": "6dbq76qbaaaaa",
+    "SendTo": "binishb@exalture.com"
   }
 }

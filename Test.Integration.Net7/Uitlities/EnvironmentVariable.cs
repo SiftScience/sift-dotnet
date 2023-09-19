@@ -59,5 +59,13 @@ namespace Test.Integration.Net7.Uitlities
                 return configuration["Values:WorkflowRunId"];
             }
         }
+
+        public string SendTo
+        {
+            get
+            {
+                return configuration["Values:SendTo"];
+            }
+        }
     }
 }
