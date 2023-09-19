@@ -1,21 +1,20 @@
 using Sift;
 using System.Collections.Generic;
+using Test.Integration.NetFx48.Uitlities;
 using Xunit;
 
 namespace Test.Integration.NetFx48.ScoreAPI
 {
     public class VerificationsRequests
     {
+        private readonly EnvironmentVariable environmentVariable = new EnvironmentVariable();
         [Fact]
         public void IntegrationTest_GetScoreRequest()
         {
-            //var sift = new Client("ccd68efbe25809bc");
-            var sift = new Client("febabe52c8887d8b");//configuration only
+            var sift = new Client(environmentVariable.ApiKey);
             ScoreRequest scoreRequest = new ScoreRequest
-            {
-                //UserId = "haneeshv@exalture.com",
-                UserId = "billy_jones_301",//configuration
-                //ApiKey = "345",
+            {                
+                UserId = environmentVariable.UserId,
                 AbuseTypes = new List<string>() { "payment_abuse" }
             };
 
