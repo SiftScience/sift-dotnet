@@ -2,24 +2,24 @@ using Sift;
 using System.Collections.Generic;
 using System;
 using Xunit;
+using Test.Integration.Net7.Uitlities;
 
 namespace Test.Integration.Net7.ScoreAPI
 {
     public class VerificationsRequests
     {
+        private readonly EnvironmentVariable environmentVariable = new();
+
         [Fact]
         public void IntegrationTest_GetScoreRequest()
         {
-            //var sift = new Client("ccd68efbe25809bc");
-            var sift = new Client("febabe52c8887d8b");//configuration only
+            var sift = new Client(environmentVariable.ApiKey);//configuration only
             ScoreRequest scoreRequest = new ScoreRequest
             {
                 //UserId = "haneeshv@exalture.com",
-                UserId = "billy_jones_301",//configuration
-                //ApiKey = "345",
+                UserId = environmentVariable.UserId,
                 AbuseTypes = new List<string>() { "payment_abuse" }
             };
-
             ScoreResponse res = sift.SendAsync(scoreRequest).Result;
             Assert.Equal("OK", res.ErrorMessage);
         }
@@ -28,14 +28,12 @@ namespace Test.Integration.Net7.ScoreAPI
         [Fact]
         public void IntegrationTest_ReScoreRequest()
         {
-            var sift = new Client("ccd68efbe25809bc");
+            var sift = new Client("febabe52c8887d8b");
             RescoreRequest rescoreRequest = new RescoreRequest
             {
-                UserId = "haneeshv@exalture.com",
-                //ApiKey = "345",
+                UserId = "billy_jones_301",
                 AbuseTypes = new List<string>() { "payment_abuse", "promotion_abuse" }
             };
-
             ScoreResponse res = sift.SendAsync(rescoreRequest).Result;
             Assert.Equal("OK", res.ErrorMessage);
         }
