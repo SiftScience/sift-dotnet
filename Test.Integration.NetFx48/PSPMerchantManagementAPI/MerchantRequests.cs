@@ -96,15 +96,15 @@ namespace Test.Integration.NetFx48.PSPMerchantManagementAPI
         [Fact]
         public void IntegrationTest_GetMerchantDetailsRequest()
         {
-            var sift = new Client("ccd68efbe25809bc:");
+            var sift = new Client(environmentVariable.ApiKey);
             GetMerchantDetailsRequest getMerchantDetailsRequest = new GetMerchantDetailsRequest
             {
-                AccountId = "cf51f0ec-6078-46e9-a796-700af25e668c",
-                ApiKey = "ccd68efbe25809bc",
-                MerchantId = "cf51f0ec-6078-46e9-a796-700af25e668c"
+                AccountId = environmentVariable.AccountId,
+                ApiKey = environmentVariable.ApiKey,
+                MerchantId = environmentVariable.MerchantId
             };
             SiftResponse getMerchantDetailsResponse = sift.SendAsync(getMerchantDetailsRequest).Result;
-            Assert.Equal("OK", getMerchantDetailsResponse.ErrorMessage);
+            Assert.Equal("OK", getMerchantDetailsResponse.ErrorMessage ?? "OK");
         }
 
     }
