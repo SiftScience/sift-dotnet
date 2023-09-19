@@ -13,10 +13,9 @@ namespace Test.Integration.Net7.ScoreAPI
         [Fact]
         public void IntegrationTest_GetScoreRequest()
         {
-            var sift = new Client(environmentVariable.ApiKey);//configuration only
+            var sift = new Client(environmentVariable.ApiKey);
             ScoreRequest scoreRequest = new ScoreRequest
             {
-                //UserId = "haneeshv@exalture.com",
                 UserId = environmentVariable.UserId,
                 AbuseTypes = new List<string>() { "payment_abuse" }
             };
@@ -28,10 +27,10 @@ namespace Test.Integration.Net7.ScoreAPI
         [Fact]
         public void IntegrationTest_ReScoreRequest()
         {
-            var sift = new Client("febabe52c8887d8b");
+            var sift = new Client(environmentVariable.ApiKey);
             RescoreRequest rescoreRequest = new RescoreRequest
             {
-                UserId = "billy_jones_301",
+                UserId = environmentVariable.UserId,
                 AbuseTypes = new List<string>() { "payment_abuse", "promotion_abuse" }
             };
             ScoreResponse res = sift.SendAsync(rescoreRequest).Result;
