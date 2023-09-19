@@ -1,17 +1,19 @@
 using Sift;
+using Test.Integration.NetFx48.Uitlities;
 using Xunit;
 
 namespace Test.Integration.NetFx48.PSPMerchantManagementAPI
 {
     public class MerchantRequests
     {
+        private readonly EnvironmentVariable environmentVariable = new EnvironmentVariable();
         [Fact]
         public void IntegrationTest_GetMerchantRequest()
         {
-            var sift = new Client("ccd68efbe25809bc");
+            var sift = new Client(environmentVariable.ApiKey);
             GetMerchantsRequest getMerchantRequest = new GetMerchantsRequest
             {
-                AccountId = "5f053f004025ca08a187fad3",
+                AccountId = environmentVariable.AccountId,
                 BatchSize = 10,
                 BatchToken = null,
             };
