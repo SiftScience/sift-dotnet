@@ -1,14 +1,26 @@
+using Microsoft.Extensions.Configuration;
 using Sift;
 using System;
+using System.IO;
 using Xunit;
 
 namespace Test.Integration.Net7.PSPMerchantManagementAPI
 {
     public class MerchantRequests
     {
+        private readonly IConfiguration _configuration;
+        public MerchantRequests()
+        {
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("local.settings.json", optional: true, reloadOnChange: true);
+            _configuration = builder.Build();
+        }
+
         [Fact]
         public void IntegrationTest_GetMerchantRequest()
         {
+            var t = _configuration["Values:Test"];
             var sift = new Client("ccd68efbe25809bc");
             GetMerchantsRequest getMerchantRequest = new GetMerchantsRequest
             {
