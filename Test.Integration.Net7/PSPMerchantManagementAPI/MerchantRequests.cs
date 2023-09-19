@@ -12,13 +12,12 @@ namespace Test.Integration.Net7.PSPMerchantManagementAPI
 
         [Fact]
         public void IntegrationTest_GetMerchantRequest()
-        {
-            var t = environmentVariable.MyProperty;
-            var sift = new Client("ccd68efbe25809bc");
+        {            
+            var sift = new Client(environmentVariable.ApiKey);
             GetMerchantsRequest getMerchantRequest = new GetMerchantsRequest
             {
-                AccountId = "5f053f004025ca08a187fad3",
-                ApiKey = "ccd68efbe25809bc",
+                AccountId = environmentVariable.AccountId,
+                ApiKey = environmentVariable.ApiKey,
                 BatchSize = 10,
                 BatchToken = null,
             };

@@ -1,5 +1,8 @@
 {
   "Values": {
-    "Test": "123"
+    "ApiKey": "ccd68efbe25809bc",
+    "AccountId": "5f053f004025ca08a187fad3",
+    "MerchantId": "cf51f0ec-6078-46e9-a796-700af25e668c",
+    "Id": "cf51f0ec-6078-46e9-a796-700af25e668c"
   }
 }

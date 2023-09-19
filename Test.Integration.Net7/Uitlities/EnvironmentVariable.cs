@@ -15,11 +15,18 @@ namespace Test.Integration.Net7.Uitlities
             configuration = builder.Build();
         }
 
-        public string MyProperty
+        public string ApiKey
         {
             get
             {
-                return configuration["Values:Test"];
+                return configuration["Values:ApiKey"];
+            }
+        }
+        public string AccountId
+        {
+            get
+            {
+                return configuration["Values:AccountId"];
             }
         }
     }
