@@ -2,6 +2,7 @@ using Sift;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using Test.Integration.Net7.Uitlities;
 using Xunit;
 
 namespace Test.Integration.Net7.DecisionsAPI
@@ -9,6 +10,8 @@ namespace Test.Integration.Net7.DecisionsAPI
     //Ignore
     public class DecisionsRequests
     {
+        private readonly EnvironmentVariable environmentVariable = new();
+
         [Fact]
         public void IntegrationTest_GetDecisionStatusRequest()
         {
