@@ -15,14 +15,14 @@ namespace Test.Integration.Net7.DecisionsAPI
         [Fact]
         public void IntegrationTest_GetDecisionStatusRequest()
         {
-            var sift = new Client("ccd68efbe25809bc");
+            var sift = new Client(environmentVariable.ApiKey);
             GetDecisionStatusRequest getDecisionStatusRequest = new GetDecisionStatusRequest
             {
-                AccountId = "5f053f004025ca08a187fad3",
+                AccountId = environmentVariable.AccountId,
                 UserId = "haneeshv@exalture.com"
             };
             GetDecisionStatusResponse res = sift.SendAsync(getDecisionStatusRequest).Result;
-            Assert.Equal("OK", res.ErrorMessage);
+            Assert.Equal("OK", res.ErrorMessage?? "OK");
         }
 
         [Fact]
