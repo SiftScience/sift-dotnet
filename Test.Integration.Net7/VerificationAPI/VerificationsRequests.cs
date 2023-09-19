@@ -42,12 +42,12 @@ namespace Test.Integration.Net7.VerificationAPI
         [Fact]
         public void IntegrationTest_VerificationReSend()
         {
-            var sift = new Client("ccd68efbe25809bc:");
+            var sift = new Client(environmentVariable.ApiKey + ":");
             var sessionId = "SOME_SESSION_ID";
             VerificationSendRequest verificationSendRequest = new VerificationSendRequest
             {
-                UserId = "binishb@exalture.com",
-                SendTo = "binishb@exalture.com",
+                UserId = environmentVariable.UserId,
+                SendTo = environmentVariable.SendTo,
                 VerificationType = "$email",
                 BrandName = "MyTopBrand",
                 Language = "en",
@@ -71,7 +71,7 @@ namespace Test.Integration.Net7.VerificationAPI
 
             VerificationReSendRequest verificationReSendRequest = new VerificationReSendRequest
             {
-                UserId = "binishb@exalture.com",
+                UserId = environmentVariable.UserId,
                 VerifiedEvent = "$login",
                 VerifiedEntityId = sessionId
             };
