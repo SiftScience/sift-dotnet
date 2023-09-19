@@ -43,5 +43,13 @@ namespace Test.Integration.NetFx48.Uitlities
                 return ConfigurationManager.AppSettings["UserId"];
             }
         }
+
+        public string WorkflowRunId
+        {
+            get
+            {
+                return ConfigurationManager.AppSettings["WorkflowRunId"];
+            }
+        }
     }
 }
