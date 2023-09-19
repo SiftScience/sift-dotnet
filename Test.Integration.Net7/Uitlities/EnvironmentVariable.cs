@@ -43,5 +43,13 @@ namespace Test.Integration.Net7.Uitlities
                 return configuration["Values:Id"];
             }
         }
+
+        public string UserId
+        {
+            get
+            {
+                return configuration["Values:UserId"];
+            }
+        }
     }
 }
