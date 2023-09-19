@@ -19,5 +19,21 @@ namespace Test.Integration.NetFx48.Uitlities
                 return ConfigurationManager.AppSettings["AccountId"];
             }
         }
+        
+        public string MerchantId
+        {
+            get
+            {
+                return ConfigurationManager.AppSettings["MerchantId"];
+            }
+        }
+        
+        public string Id
+        {
+            get
+            {
+                return ConfigurationManager.AppSettings["Id"];
+            }
+        }
     }
 }
