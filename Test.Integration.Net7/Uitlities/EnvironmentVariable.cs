@@ -29,5 +29,19 @@ namespace Test.Integration.Net7.Uitlities
                 return configuration["Values:AccountId"];
             }
         }
+        public string MerchantId
+        {
+            get
+            {
+                return configuration["Values:MerchantId"];
+            }
+        }
+        public string Id
+        {
+            get
+            {
+                return configuration["Values:Id"];
+            }
+        }
     }
 }
