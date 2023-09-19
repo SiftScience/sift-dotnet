@@ -51,5 +51,13 @@ namespace Test.Integration.NetFx48.Uitlities
                 return ConfigurationManager.AppSettings["WorkflowRunId"];
             }
         }
+
+        public string SendTo
+        {
+            get
+            {
+                return ConfigurationManager.AppSettings["SendTo"];
+            }
+        }
     }
 }

@@ -1,19 +1,21 @@
 using Sift;
 using System;
+using Test.Integration.NetFx48.Uitlities;
 using Xunit;
 
 namespace Test.Integration.NetFx48.VerificationAPI
 {
     public class VerificationRequests
     {
+        private readonly EnvironmentVariable environmentVariable = new EnvironmentVariable();
         [Fact]
         public void IntegrationTest_VerificationSend()
         {
-            var sift = new Client("ccd68efbe25809bc:");
+            var sift = new Client(environmentVariable.ApiKey + ":");
             VerificationSendRequest verificationSendRequest = new VerificationSendRequest
             {
-                UserId = "binishb@exalture.com",
-                SendTo = "binishb@exalture.com",
+                UserId = environmentVariable.UserId,
+                SendTo = environmentVariable.SendTo,
                 VerificationType = "$email",
                 BrandName = "MyTopBrand",
                 Language = "en",
