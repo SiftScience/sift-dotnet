@@ -1,4 +1,5 @@
 using Sift;
+using Test.Integration.Net7.Uitlities;
 using Xunit;
 
 
@@ -6,15 +7,17 @@ namespace Test.Integration.Net7.WorkflowsAPI
 {
     public class WorkflowStatuses
     {
+        private readonly EnvironmentVariable environmentVariable = new();
+
         [Fact]
         public void IntegrationTest_WorkflowStatuses()
         {
-            var sift = new Client("ccd68efbe25809bc");
+            var sift = new Client(environmentVariable.ApiKey);
             WorkflowStatusRequest workflowStatusRequest = new WorkflowStatusRequest
             {
-                ApiKey = "ccd68efbe25809bc",
-                AccountId = "5f053f004025ca08a187fad3",
-                WorkflowRunId = "6dbq76qbaaaaa"
+                ApiKey = environmentVariable.ApiKey,
+                AccountId = environmentVariable.AccountId,
+                WorkflowRunId = environmentVariable.WorkflowRunId
             };
             WorkflowStatusResponse workFlowStatusResponse = sift.SendAsync(workflowStatusRequest).Result;
             Assert.Equal("OK", workFlowStatusResponse.ErrorMessage);
