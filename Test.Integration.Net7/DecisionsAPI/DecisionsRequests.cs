@@ -47,11 +47,11 @@ namespace Test.Integration.Net7.DecisionsAPI
         [Fact]
         public void IntegrationTest_GetDecisionRequest()
         {
-            var sift = new Client("ccd68efbe25809bc");
+            var sift = new Client(environmentVariable.ApiKey);
             GetDecisionsRequest getDecisionsRequest = new GetDecisionsRequest
             {
-                ApiKey = "ccd68efbe25809bc",
-                AccountId = "5f053f004025ca08a187fad3",
+                ApiKey = environmentVariable.ApiKey,
+                AccountId = environmentVariable.AccountId,
                 EntityType = "user",
                 Limit = 10,
                 From = 0
