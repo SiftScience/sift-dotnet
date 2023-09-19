@@ -1,4 +1,5 @@
 using Sift;
+using System;
 using Test.Integration.NetFx48.Uitlities;
 using Xunit;
 
@@ -60,12 +61,13 @@ namespace Test.Integration.NetFx48.PSPMerchantManagementAPI
         [Fact]
         public void IntegrationTest_CreateMerchantRequest()
         {
-            var sift = new Client("ccd68efbe25809bc:");
+            var sift = new Client(environmentVariable.ApiKey);
             CreateMerchantRequest createMerchantRequest = new CreateMerchantRequest
             {
-                AccountId = "5f053f004025ca08a187fad3",
+                AccountId = environmentVariable.AccountId,
                 Name = "Watson and Holmes",
-                ApiKey = "ccd68efbe25809bc",
+                ApiKey = environmentVariable.ApiKey,
+                Id = Guid.NewGuid().ToString(),
                 Description = "An example of a PSP Merchant. Illustrative.",
                 Address = new MerchantAddress()
                 {
@@ -88,7 +90,7 @@ namespace Test.Integration.NetFx48.PSPMerchantManagementAPI
                 }
             };
             CreateMerchantResponse createMerchantResponse = sift.SendAsync(createMerchantRequest).Result;
-            Assert.Equal("OK", createMerchantResponse.ErrorMessage);
+            Assert.Equal("OK", createMerchantResponse.ErrorMessage ?? "OK");
         }
 
         [Fact]
