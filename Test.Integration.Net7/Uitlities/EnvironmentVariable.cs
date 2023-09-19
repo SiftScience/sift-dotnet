@@ -66,6 +66,7 @@ namespace Test.Integration.Net7.Uitlities
             {
                 return configuration["Values:SendTo"];
             }
-        
+
+        }
     }
 }
