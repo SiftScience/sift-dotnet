@@ -19,7 +19,7 @@ namespace Test.Integration.Net7.DecisionsAPI
             GetDecisionStatusRequest getDecisionStatusRequest = new GetDecisionStatusRequest
             {
                 AccountId = environmentVariable.AccountId,
-                UserId = "haneeshv@exalture.com"
+                UserId = environmentVariable.UserId
             };
             GetDecisionStatusResponse res = sift.SendAsync(getDecisionStatusRequest).Result;
             Assert.Equal("OK", res.ErrorMessage?? "OK");
