@@ -1,25 +1,25 @@
 using Sift;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+using Test.Integration.NetFx48.Uitlities;
 using Xunit;
 
 namespace Test.Integration.NetFx48.DecisionsAPI
 {
     //Ignore
+
     public class DecisionsRequests
     {
+        private readonly EnvironmentVariable environmentVariable = new EnvironmentVariable();
         [Fact]
         public void IntegrationTest_GetDecisionStatusRequest()
         {
-            var sift = new Client("ccd68efbe25809bc");
+            var sift = new Client(environmentVariable.ApiKey);
             GetDecisionStatusRequest getDecisionStatusRequest = new GetDecisionStatusRequest
             {
-                AccountId = "5f053f004025ca08a187fad3",
-                UserId = "haneeshv@exalture.com"
+                AccountId = environmentVariable.AccountId,
+                UserId = environmentVariable.UserId
             };
             GetDecisionStatusResponse res = sift.SendAsync(getDecisionStatusRequest).Result;
-            Assert.Equal("OK", res.ErrorMessage);
+            Assert.Equal("OK", res.ErrorMessage ?? "OK");
         }
 
         [Fact]

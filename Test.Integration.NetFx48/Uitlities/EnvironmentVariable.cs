@@ -35,5 +35,13 @@ namespace Test.Integration.NetFx48.Uitlities
                 return ConfigurationManager.AppSettings["Id"];
             }
         }
+        
+        public string UserId
+        {
+            get
+            {
+                return ConfigurationManager.AppSettings["UserId"];
+            }
+        }
     }
 }
