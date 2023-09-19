@@ -51,5 +51,13 @@ namespace Test.Integration.Net7.Uitlities
                 return configuration["Values:UserId"];
             }
         }
+
+        public string WorkflowRunId
+        {
+            get
+            {
+                return configuration["Values:WorkflowRunId"];
+            }
+        }
     }
 }
