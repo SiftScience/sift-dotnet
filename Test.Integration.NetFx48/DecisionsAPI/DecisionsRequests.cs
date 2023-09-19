@@ -25,17 +25,17 @@ namespace Test.Integration.NetFx48.DecisionsAPI
         [Fact]
         public void IntegrationTest_ApplyDecisionRequest()
         {
-            var sift = new Client("ccd68efbe25809bc");
+            var sift = new Client(environmentVariable.ApiKey);
             ApplyDecisionRequest applyDecisionRequest = new ApplyDecisionRequest
             {
-                ApiKey = "ccd68efbe25809bc",
+                ApiKey = environmentVariable.ApiKey,
                 DecisionId = "block_user_payment_abuse",
                 Source = "MANUAL_REVIEW",
                 Analyst = "analyst@example.com",
                 Time = 1231234123,
                 Description = "compromised account reported to customer service",
-                AccountId = "5f053f004025ca08a187fad3",
-                UserId = "haneeshv@exalture.com"
+                AccountId = environmentVariable.AccountId,
+                UserId = environmentVariable.UserId
             };
             ApplyDecisionResponse res = sift.SendAsync(applyDecisionRequest).Result;
             Assert.Equal("OK", res.ErrorMessage);
