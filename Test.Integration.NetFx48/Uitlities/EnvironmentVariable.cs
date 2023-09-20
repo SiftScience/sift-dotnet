@@ -162,5 +162,13 @@ namespace Test.Integration.NetFx48.Uitlities
                 return ConfigurationManager.AppSettings["contact_email"];
             }
         }
+
+        public string flagged_by
+        {
+            get
+            {
+                return ConfigurationManager.AppSettings["flagged_by"];
+            }
+        }
     }
 }

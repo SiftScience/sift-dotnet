@@ -1,22 +1,23 @@
 ﻿using Sift;
 using System.Collections.ObjectModel;
+using Test.Integration.NetFx48.Uitlities;
 using Xunit;
 
 namespace Test.Integration.NetFx48.EventsAPI
 {
     public class Flags
     {
+        private readonly EnvironmentVariable environmentVariable = new EnvironmentVariable();
         [Fact]
         public void IntegrationTest_FlagContent()
         {
-            var sift = new Client("ccd68efbe25809bc");
-            var sessionId = "sessionId";
+            var sift = new Client(environmentVariable.ApiKey);
             var flagContent = new FlagContent
             {
-                user_id = "billy_jones_301",
-                session_id = "gigtleqddo84l8cm15qe4il",
-                content_id = "9671500641",
-                flagged_by = "jamieli89",
+                user_id = environmentVariable.user_id,
+                session_id = environmentVariable.session_id,
+                content_id = environmentVariable.content_id,
+                flagged_by = environmentVariable.flagged_by,
                 reason = "$toxic",
                 verification_phone_number = "+123456789012"
             };
