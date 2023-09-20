@@ -212,13 +212,12 @@ namespace Test.Integration.NetFx48.EventsAPI
         [Fact]
         public void IntegrationTest_CreateContentPost()
         {
-            var sift = new Client("ccd68efbe25809bc");
-            var sessionId = "sessionId";
+            var sift = new Client(environmentVariable.ApiKey);
             var createContent = new CreateContent
             {
-                user_id = "fyw3989sjpqr71",
-                content_id = "post-23412",
-                session_id = "a234ksjfgn435sfg",
+                user_id = environmentVariable.user_id,
+                content_id = environmentVariable.content_id,
+                session_id = environmentVariable.session_id,
                 status = "$active",
                 ip = "255.255.255.0",
                 browser = new Browser
@@ -231,7 +230,7 @@ namespace Test.Integration.NetFx48.EventsAPI
                 {
                     subject = "2 Bedroom Apartment for Rent",
                     body = "Let’s meet at 5pm",
-                    contact_email = "alex_301@domain.com",
+                    contact_email = environmentVariable.contact_email,
                     contact_address = new Address()
                     {
                         name = "Alex Smith",
@@ -267,13 +266,13 @@ namespace Test.Integration.NetFx48.EventsAPI
                     {
                         new Image()
                         {
-                            md5_hash = "0cc175b9c0f1b6a831c399e269772661",
+                            md5_hash = environmentVariable.md5_hash,
                             link = "https://www.domain.com/file.png",
                             description = "Billy's picture"
                         },
                         new Image()
                         {
-                            md5_hash = "0cc175b9c0f1b6a831c399e269772661"
+                            md5_hash = environmentVariable.md5_hash
                         }
                     },
                     expiration_time = 1549063157000
