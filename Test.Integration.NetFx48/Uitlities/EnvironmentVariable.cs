@@ -114,5 +114,21 @@ namespace Test.Integration.NetFx48.Uitlities
                 return ConfigurationManager.AppSettings["item_id"];
             }
         }
+
+        public string order_id
+        {
+            get
+            {
+                return ConfigurationManager.AppSettings["order_id"];
+            }
+        }
+
+        public string transaction_id
+        {
+            get
+            {
+                return ConfigurationManager.AppSettings["transaction_id"];
+            }
+        }
     }
 }
