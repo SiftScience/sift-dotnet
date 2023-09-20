@@ -59,5 +59,52 @@ namespace Test.Integration.NetFx48.Uitlities
                 return ConfigurationManager.AppSettings["SendTo"];
             }
         }
+
+        public string user_id
+        {
+            get
+            {
+                return ConfigurationManager.AppSettings["user_id"];
+            }
+        }
+
+        public string session_id
+        {
+            get
+            {
+                return ConfigurationManager.AppSettings["session_id"];
+            }
+        }
+        public string user_email
+        {
+            get
+            {
+                return ConfigurationManager.AppSettings["user_email"];
+            }
+        }
+        
+        public string referrer_user_id
+        {
+            get
+            {
+                return ConfigurationManager.AppSettings["referrer_user_id"];
+            }
+        }
+
+        public string promotion_id
+        {
+            get
+            {
+                return ConfigurationManager.AppSettings["promotion_id"];
+            }
+        }
+
+        public string merchant_id
+        {
+            get
+            {
+                return ConfigurationManager.AppSettings["merchant_id"];
+            }
+        }
     }
 }
