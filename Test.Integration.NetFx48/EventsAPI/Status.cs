@@ -1,20 +1,21 @@
 ﻿using Sift;
+using Test.Integration.NetFx48.Uitlities;
 using Xunit;
 
 namespace Test.Integration.NetFx48.EventsAPI
 {
     public class Status
     {
+        private readonly EnvironmentVariable environmentVariable = new EnvironmentVariable();
         [Fact]
         public void IntegrationTest_ContentStatus()
         {
-            var sift = new Client("ccd68efbe25809bc");
-            var sessionId = "sessionId";
+            var sift = new Client(environmentVariable.ApiKey);
             var contentStatus = new ContentStatus
             {
-                user_id = "billy_jones_301",
-                session_id = "gigtleqddo84l8cm15qe4il",
-                content_id = "9671500641",
+                user_id = environmentVariable.user_id,
+                session_id = environmentVariable.session_id,
+                content_id = environmentVariable.content_id,
                 status = "$paused",
                 browser = new Browser
                 {
