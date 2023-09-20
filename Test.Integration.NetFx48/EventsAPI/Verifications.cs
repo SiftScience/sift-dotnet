@@ -1,21 +1,21 @@
-﻿using Microsoft.Win32;
-using Sift;
-using System.Collections.ObjectModel;
+﻿using Sift;
+using Test.Integration.NetFx48.Uitlities;
 using Xunit;
 
 namespace Test.Integration.NetFx48.EventsAPI
 {
     public class Verifications
     {
+        private readonly EnvironmentVariable environmentVariable = new EnvironmentVariable();
         [Fact]
         public void IntegrationTest_Verification()
         {
-            var sift = new Client("ccd68efbe25809bc");
+            var sift = new Client(environmentVariable.ApiKey);
             var sessionId = "sessionId";
             var verification = new Verification
             {
-                user_id = "billy_jones_301",
-                session_id = "gigtleqddo84l8cm15qe4il",
+                user_id = environmentVariable.user_id,
+                session_id = environmentVariable.session_id,
                 status = "$pending",
                 browser = new Browser
                 {
