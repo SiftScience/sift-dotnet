@@ -1,21 +1,22 @@
 using Sift;
+using Test.Integration.Net7.Uitlities;
 using Xunit;
 
 namespace Test.Integration.Net7.EventsAPI
 {
     public class Notifications
     {
+        private readonly EnvironmentVariable environmentVariable = new();
         [Fact]
         public void IntegrationTest_SecurityNotification()
         {
-            var sift = new Client("ccd68efbe25809bc");
-            var sessionId = "sessionId";
+            var sift = new Client(environmentVariable.ApiKey);
             var securityNotification = new SecurityNotification
             {
-                user_id = "billy_jones_301",
-                session_id = "gigtleqddo84l8cm15qe4il",
+                user_id = environmentVariable.user_id,
+                session_id = environmentVariable.session_id,
                 notification_type = "$email",
-                notified_value = "billy123@domain.com",
+                notified_value = environmentVariable.notified_value,
                 notification_status = "$sent",
                 browser = new Browser
                 {

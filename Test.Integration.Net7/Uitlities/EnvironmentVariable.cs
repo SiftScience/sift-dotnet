@@ -203,5 +203,14 @@ namespace Test.Integration.Net7.Uitlities
             }
 
         }
+
+        public string notified_value
+        {
+            get
+            {
+                return configuration["Values:notified_value"];
+            }
+
+        }
     }
 }
