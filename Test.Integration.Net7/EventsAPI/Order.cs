@@ -135,14 +135,13 @@ namespace Test.Integration.Net7.EventsAPI
         [Fact]
         public void IntegrationTest_UpdateOrder()
         {
-            var sift = new Client("ccd68efbe25809bc");
-            var sessionId = "sessionId";
+            var sift = new Client(environmentVariable.ApiKey);
             var updateOrder = new UpdateOrder
             {
-                user_id = "billy_jones_301",
-                session_id = "gigtleqddo84l8cm15qe4il",
-                order_id = "ORDER-28168441",
-                user_email = "billjones1@example.com",
+                user_id = environmentVariable.user_id,
+                session_id = environmentVariable.session_id,
+                order_id = environmentVariable.order_id,
+                user_email = environmentVariable.user_email,
                 verification_phone_number = "+123456789012",
                 amount = 115940000,
                 currency_code = "USD",
@@ -208,7 +207,7 @@ namespace Test.Integration.Net7.EventsAPI
                 {
                     new Item()
                     {
-                        item_id = "12344321",
+                        item_id = environmentVariable.item_id,
                         product_title = "Microwavable Kettle Corn: Original Flavor",
                         price = 4990000,
                         currency_code = "USD",
@@ -224,7 +223,7 @@ namespace Test.Integration.Net7.EventsAPI
                     },
                     new Item()
                     {
-                        item_id = "12344321"
+                        item_id = environmentVariable.item_id
                     }
                 },
                 seller_user_id = "slinkys_emporium",
@@ -257,6 +256,5 @@ namespace Test.Integration.Net7.EventsAPI
             EventResponse res = sift.SendAsync(eventRequest).Result;
             Assert.Equal("OK", res.ErrorMessage);
         }
-
     }
 }
