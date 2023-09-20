@@ -60,20 +60,19 @@ namespace Test.Integration.Net7.EventsAPI
         [Fact]
         public void IntegrationTest_CreateContentListing()
         {
-            var sift = new Client("ccd68efbe25809bc");
-            var sessionId = "sessionId";
+            var sift = new Client(environmentVariable.ApiKey);
             var createContent = new CreateContent
             {
-                user_id = "fyw3989sjpqr71",
-                content_id = "listing-23412",
-                session_id = "a234ksjfgn435sfg",
+                user_id = environmentVariable.user_id,
+                content_id = environmentVariable.content_id,
+                session_id = environmentVariable.session_id,
                 status = "$active",
                 ip = "255.255.255.0",
                 listing = new Listing()
                 {
                     subject = "2 Bedroom Apartment for Rent",
                     body = "Capitol Hill Seattle brand new condo. 2 bedrooms and 1 full bath.",
-                    contact_email = "alex_301@domain.com",
+                    contact_email = environmentVariable.contact_email,
                     contact_address = new Address()
                     {
                         name = "Alex Smith",
@@ -108,7 +107,7 @@ namespace Test.Integration.Net7.EventsAPI
                     {
                         new Item()
                         {
-                            item_id = "0cc175b9c0f1b6a831c399e269772661",
+                            item_id = environmentVariable.item_id,
                             product_title = "https://www.domain.com/file.png",
                             price = 2950000000,
                             currency_code = "USD",
@@ -128,13 +127,13 @@ namespace Test.Integration.Net7.EventsAPI
                     {
                         new Image()
                         {
-                            md5_hash = "0cc175b9c0f1b6a831c399e269772661",
+                            md5_hash = environmentVariable.md5_hash,
                             link = "https://www.domain.com/file.png",
                             description =   "Billy's picture"
                         },
                         new Image()
                         {
-                            md5_hash = "0cc175b9c0f1b6a831c399e269772661"
+                            md5_hash = environmentVariable.md5_hash
                         }
                     },
                     expiration_time = 1549063157000
