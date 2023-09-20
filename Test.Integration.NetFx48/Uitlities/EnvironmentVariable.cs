@@ -178,5 +178,13 @@ namespace Test.Integration.NetFx48.Uitlities
                 return ConfigurationManager.AppSettings["seller_user_id"];
             }
         }
+
+        public string webhook_id
+        {
+            get
+            {
+                return ConfigurationManager.AppSettings["webhook_id"];
+            }
+        }
     }
 }
