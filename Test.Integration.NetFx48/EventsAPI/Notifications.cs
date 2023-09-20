@@ -1,5 +1,4 @@
 ﻿using Sift;
-using System.Collections.ObjectModel;
 using Test.Integration.NetFx48.Uitlities;
 using Xunit;
 
