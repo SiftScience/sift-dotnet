@@ -12,7 +12,6 @@ namespace Test.Integration.Net7.EventsAPI
         public void IntegrationTest_CreateAccount()
         {
             var sift = new Client(environmentVariable.ApiKey);
-            var sessionId = "sessionId";
             var createAccount = new CreateAccount
             {
                 user_id = environmentVariable.user_id,
@@ -114,7 +113,6 @@ namespace Test.Integration.Net7.EventsAPI
         public void IntegrationTest_UpdateAccount()
         {
             var sift = new Client(environmentVariable.ApiKey);
-            var sessionId = "sessionId";
             var updateAccount = new UpdateAccount
             {
                 user_id = environmentVariable.user_id,
