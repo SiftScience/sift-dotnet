@@ -130,5 +130,29 @@ namespace Test.Integration.NetFx48.Uitlities
                 return ConfigurationManager.AppSettings["transaction_id"];
             }
         }
+
+        public string content_id
+        {
+            get
+            {
+                return ConfigurationManager.AppSettings["content_id"];
+            }
+        }
+
+        public string root_content_id
+        {
+            get
+            {
+                return ConfigurationManager.AppSettings["root_content_id"];
+            }
+        }
+
+        public string md5_hash
+        {
+            get
+            {
+                return ConfigurationManager.AppSettings["md5_hash"];
+            }
+        }
     }
 }
