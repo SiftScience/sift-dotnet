@@ -170,5 +170,13 @@ namespace Test.Integration.NetFx48.Uitlities
                 return ConfigurationManager.AppSettings["flagged_by"];
             }
         }
+
+        public string seller_user_id
+        {
+            get
+            {
+                return ConfigurationManager.AppSettings["seller_user_id"];
+            }
+        }
     }
 }
