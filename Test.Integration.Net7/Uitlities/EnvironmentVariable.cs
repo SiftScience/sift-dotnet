@@ -113,5 +113,14 @@ namespace Test.Integration.Net7.Uitlities
             }
 
         }
+        
+        public string item_id
+        {
+            get
+            {
+                return configuration["Values:item_id"];
+            }
+
+        }
     }
 }
