@@ -1,29 +1,30 @@
 using Sift;
 using System.Collections.ObjectModel;
+using Test.Integration.Net7.Uitlities;
 using Xunit;
 
 namespace Test.Integration.Net7.EventsAPI
 {
     public class Promotions
     {
+        private readonly EnvironmentVariable environmentVariable = new();
         [Fact]
         public void IntegrationTest_AddPromotion()
         {
-            var sift = new Client("ccd68efbe25809bc");
-            var sessionId = "sessionId";
+            var sift = new Client(environmentVariable.ApiKey);
             var addPromotion = new AddPromotion
             {
-                user_id = "billy_jones_301",
-                session_id = "gigtleqddo84l8cm15qe4il",
+                user_id = environmentVariable.user_id,
+                session_id = environmentVariable.session_id,
                 promotions = new ObservableCollection<Promotion>()
                 {
                     new Promotion()
                     {
-                          promotion_id = "NewCustomerReferral2016",
+                          promotion_id = environmentVariable.promotion_id,
                           status = "$success",
                           failure_reason = "$already_used",
                           description =   "$5 off your first 5 rides",
-                          referrer_user_id = "elon-m93903",
+                          referrer_user_id = environmentVariable.referrer_user_id,
                           discount = new Discount()
                           {
                                   percentage_off = 0.2,
@@ -39,7 +40,7 @@ namespace Test.Integration.Net7.EventsAPI
                     },
                     new Promotion()
                     {
-                        promotion_id = "NewCustomerReferral2016"
+                        promotion_id = environmentVariable.promotion_id
                     }
                 },
                 browser = new Browser
