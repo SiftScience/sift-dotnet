@@ -140,5 +140,50 @@ namespace Test.Integration.Net7.Uitlities
             }
 
         }
+
+        public string content_id
+        {
+            get
+            {
+                return configuration["Values:content_id"];
+            }
+
+        }
+
+        public string contact_email
+        {
+            get
+            {
+                return configuration["Values:contact_email"];
+            }
+
+        }
+
+        public string parent_comment_id
+        {
+            get
+            {
+                return configuration["Values:parent_comment_id"];
+            }
+
+        }
+
+        public string root_content_id
+        {
+            get
+            {
+                return configuration["Values:root_content_id"];
+            }
+
+        }
+
+        public string md5_hash
+        {
+            get
+            {
+                return configuration["Values:md5_hash"];
+            }
+
+        }
     }
 }

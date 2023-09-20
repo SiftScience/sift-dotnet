@@ -14,6 +14,11 @@
     "merchant_id": "AX527123",
     "item_id": "B004834GQO",
     "order_id": "ORDER-123124124",
-    "transaction_id": "719637215"
+    "transaction_id": "719637215",
+    "content_id": "comment-23412",
+    "contact_email": "alex_301@domain.com",
+    "parent_comment_id": "comment-23407",
+    "root_content_id": "listing-12923213",
+    "md5_hash": "0cc175b9c0f1b6a831c399e269772661"
   }
 }

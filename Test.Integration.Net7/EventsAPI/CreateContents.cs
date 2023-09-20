@@ -1,40 +1,41 @@
 using Sift;
 using System.Collections.ObjectModel;
+using Test.Integration.Net7.Uitlities;
 using Xunit;
 
 namespace Test.Integration.Net7.EventsAPI
 {
     public class CreateContents
     {
+        private readonly EnvironmentVariable environmentVariable = new();
         [Fact]
         public void IntegrationTest_CreateContentComment()
         {
-            var sift = new Client("ccd68efbe25809bc");
-            var sessionId = "sessionId";
+            var sift = new Client(environmentVariable.ApiKey);
             var createContent = new CreateContent
             {
-                user_id = "fyw3989sjpqr71",
-                content_id = "comment-23412",
-                session_id = "a234ksjfgn435sfg",
+                user_id = environmentVariable.user_id,
+                content_id = environmentVariable.content_id,
+                session_id = environmentVariable.session_id,
                 status = "$active",
                 ip = "255.255.255.0",
                 comment = new Comment()
                 {
                     body = "Congrats on the new role!",
-                    contact_email = "alex_301@domain.com",
-                    parent_comment_id = "comment-23407",
-                    root_content_id = "listing-12923213",
+                    contact_email = environmentVariable.contact_email,
+                    parent_comment_id = environmentVariable.root_content_id,
+                    root_content_id = environmentVariable.root_content_id,
                     images = new ObservableCollection<Image>()
                     {
                         new Image()
                         {
-                            md5_hash = "0cc175b9c0f1b6a831c399e269772661",
+                            md5_hash = environmentVariable.md5_hash,
                             link = "https://www.domain.com/file.png",
                             description =   "An old picture"
                         },
                         new Image()
                         {
-                            md5_hash = "0cc175b9c0f1b6a831c399e269772661"
+                            md5_hash = environmentVariable.md5_hash
                         }
                     }
                 },
