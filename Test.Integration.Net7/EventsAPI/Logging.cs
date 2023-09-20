@@ -70,14 +70,13 @@ namespace Test.Integration.Net7.EventsAPI
         [Fact]
         public void IntegrationTest_Login_Response()
         {
-            var sift = new Client("ccd68efbe25809bc");
-            var sessionId = "sessionId";
+            var sift = new Client(environmentVariable.ApiKey);
             var login = new Login
             {
-                user_id = "billy_jones_301",
-                session_id = "gigtleqddo84l8cm15qe4il",
+                user_id = environmentVariable.user_id,
+                session_id = environmentVariable.session_id,
                 login_status = "$success",
-                user_email = "billjones1@example.com",
+                user_email = environmentVariable.user_email,
                 verification_phone_number = "+123456789012",
                 ip = "128.148.1.135",
                 browser = new Browser
@@ -86,7 +85,7 @@ namespace Test.Integration.Net7.EventsAPI
                     accept_language = "en-US",
                     content_language = "en-GB"
                 },
-                username = "billjones1@example.com",
+                username = environmentVariable.username,
                 social_sign_on_type = "$linkedin",
                 account_types = new ObservableCollection<string>() { "merchant", "premium" },
                 brand_name = "sift",
