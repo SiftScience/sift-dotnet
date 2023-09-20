@@ -353,13 +353,12 @@ namespace Test.Integration.NetFx48.EventsAPI
         [Fact]
         public void IntegrationTest_CreateContentReview()
         {
-            var sift = new Client("ccd68efbe25809bc");
-            var sessionId = "sessionId";
+            var sift = new Client(environmentVariable.ApiKey);
             var createContent = new CreateContent
             {
-                user_id = "fyw3989sjpqr71",
-                content_id = "review-23412",
-                session_id = "a234ksjfgn435sfg",
+                user_id = environmentVariable.user_id,
+                content_id = environmentVariable.content_id,
+                session_id = environmentVariable.session_id,
                 status = "$active",
                 ip = "255.255.255.0",
                 browser = new Browser
@@ -372,7 +371,7 @@ namespace Test.Integration.NetFx48.EventsAPI
                 {
                     subject = "Amazing Tacos!",
                     body = "I ate the tacos.",
-                    contact_email = "alex_301@domain.com",
+                    contact_email = environmentVariable.contact_email,
                     locations = new ObservableCollection<Address>()
                     {
                         new Address()
@@ -393,7 +392,7 @@ namespace Test.Integration.NetFx48.EventsAPI
                     },
                     item_reviewed = new Item()
                     {
-                        item_id = "B004834GQO",
+                        item_id = environmentVariable.item_id,
                         product_title = "The Slanket Blanket-Texas Tea",
                         price = 39990000,
                         currency_code = "USD",
@@ -413,13 +412,13 @@ namespace Test.Integration.NetFx48.EventsAPI
                     {
                         new Image()
                         {
-                            md5_hash = "0cc175b9c0f1b6a831c399e269772661",
+                            md5_hash = environmentVariable.md5_hash,
                             link = "https://www.domain.com/file.png",
                             description = "Billy's picture"
                         },
                         new Image()
                         {
-                            md5_hash = "0cc175b9c0f1b6a831c399e269772661"
+                            md5_hash = environmentVariable.md5_hash
                         }
                     }
                 },
