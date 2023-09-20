@@ -239,5 +239,14 @@ namespace Test.Integration.Net7.Uitlities
             }
 
         }
+
+        public string verified_value
+        {
+            get
+            {
+                return configuration["Values:verified_value"];
+            }
+
+        }
     }
 }

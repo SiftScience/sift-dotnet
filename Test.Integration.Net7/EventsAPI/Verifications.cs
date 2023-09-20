@@ -26,7 +26,7 @@ namespace Test.Integration.Net7.EventsAPI
                 verified_event = "$login",
                 verified_entity_id = sessionId,
                 verification_type = "$sms",
-                verified_value = "14155551212",
+                verified_value = environmentVariable.verified_value,
                 reason = "$user_setting",
                 brand_name = "sift",
                 site_domain = "sift.com",
