@@ -154,5 +154,13 @@ namespace Test.Integration.NetFx48.Uitlities
                 return ConfigurationManager.AppSettings["md5_hash"];
             }
         }
+
+        public string contact_email
+        {
+            get
+            {
+                return ConfigurationManager.AppSettings["contact_email"];
+            }
+        }
     }
 }
