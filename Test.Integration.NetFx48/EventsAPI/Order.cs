@@ -232,7 +232,7 @@ namespace Test.Integration.NetFx48.EventsAPI
                 {
                     new Promotion()
                     {
-                        promotion_id = "FirstTimeBuyer",
+                        promotion_id = environmentVariable.promotion_id,
                         status = "$success",
                         description = "$5 off",
                         discount = new Discount()
