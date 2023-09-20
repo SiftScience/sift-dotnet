@@ -1,24 +1,26 @@
 using Sift;
 using System.Collections.ObjectModel;
+using Test.Integration.Net7.Uitlities;
 using Xunit;
 
 namespace Test.Integration.Net7.EventsAPI
 {
     public class Account
     {
+        private readonly EnvironmentVariable environmentVariable = new();
         [Fact]
         public void IntegrationTest_CreateAccount()
         {
-            var sift = new Client("ccd68efbe25809bc");
+            var sift = new Client(environmentVariable.ApiKey);
             var sessionId = "sessionId";
             var createAccount = new CreateAccount
             {
-                user_id = "billy_jones_301",
-                session_id = "gigtleqddo84l8cm15qe4il",
+                user_id = environmentVariable.user_id,
+                session_id = environmentVariable.session_id,
                 user_email = "billjones1@example.com",
                 name = "Bill Jones",
                 phone = "1-415-555-6040",
-                referrer_user_id = "janejane101",
+                referrer_user_id = environmentVariable.referrer_user_id,
                 payment_methods = new ObservableCollection<PaymentMethod>()
                 {
                     new PaymentMethod()
@@ -84,7 +86,7 @@ namespace Test.Integration.Net7.EventsAPI
                 site_domain = "sift.com",
                 merchant_profile = new MerchantProfile()
                 {
-                    merchant_id = "AX527123",
+                    merchant_id = environmentVariable.merchant_id,
                     merchant_category_code = "1234",
                     merchant_name = "Dream Company",
                     merchant_address = new Address()

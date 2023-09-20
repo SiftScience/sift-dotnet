@@ -68,5 +68,41 @@ namespace Test.Integration.Net7.Uitlities
             }
 
         }
+
+        public string user_id
+        {
+            get
+            {
+                return configuration["Values:user_id"];
+            }
+
+        }
+
+        public string session_id
+        {
+            get
+            {
+                return configuration["Values:session_id"];
+            }
+
+        }
+
+        public string referrer_user_id
+        {
+            get
+            {
+                return configuration["Values:referrer_user_id"];
+            }
+
+        }
+
+        public string merchant_id
+        {
+            get
+            {
+                return configuration["Values:merchant_id"];
+            }
+
+        }
     }
 }
