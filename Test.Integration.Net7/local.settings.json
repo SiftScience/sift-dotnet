@@ -22,6 +22,8 @@
     "md5_hash": "0cc175b9c0f1b6a831c399e269772661",
     "flagged_by": "jamieli89",
     "username": "billjones1@example.com",
-    "notified_value": "billy123@domain.com"
+    "notified_value": "billy123@domain.com",
+    "seller_user_id": "slinkys_emporium",
+    "promotion_id": "FirstTimeBuyer"
   }
 }

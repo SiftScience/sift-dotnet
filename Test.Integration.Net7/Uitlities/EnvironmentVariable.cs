@@ -212,5 +212,23 @@ namespace Test.Integration.Net7.Uitlities
             }
 
         }
+
+        public string seller_user_id
+        {
+            get
+            {
+                return configuration["Values:seller_user_id"];
+            }
+
+        }
+
+        public string promotion_id
+        {
+            get
+            {
+                return configuration["Values:promotion_id"];
+            }
+
+        }
     }
 }

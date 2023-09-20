@@ -1,22 +1,23 @@
 using Sift;
 using System.Collections.ObjectModel;
+using Test.Integration.Net7.Uitlities;
 using Xunit;
 
 namespace Test.Integration.Net7.EventsAPI
 {
     public class Order
     {
+        private readonly EnvironmentVariable environmentVariable = new();
         [Fact]
         public void IntegrationTest_CreateOrder()
         {
-            var sift = new Client("ccd68efbe25809bc");
-            var sessionId = "sessionId";
+            var sift = new Client(environmentVariable.ApiKey);
             var createOrder = new CreateOrder
             {
-                user_id = "billy_jones_301",
-                session_id = "gigtleqddo84l8cm15qe4il",
-                order_id = "ORDER-28168441",
-                user_email = "billjones1@example.com",
+                user_id = environmentVariable.user_id,
+                session_id = environmentVariable.session_id,
+                order_id = environmentVariable.order_id,
+                user_email = environmentVariable.user_email,
                 amount = 115940000,
                 currency_code = "USD",
                 billing_address = new Address()
@@ -81,7 +82,7 @@ namespace Test.Integration.Net7.EventsAPI
                 {
                     new Item()
                     {
-                        item_id = "12344321",
+                        item_id = environmentVariable.item_id,
                         product_title = "Microwavable Kettle Corn: Original Flavor",
                         price = 4990000,
                         currency_code = "USD",
@@ -97,15 +98,15 @@ namespace Test.Integration.Net7.EventsAPI
                     },
                     new Item()
                     {
-                        item_id = "12344321"
+                        item_id = environmentVariable.item_id
                     }
                 },
-                seller_user_id = "slinkys_emporium",
+                seller_user_id = environmentVariable.seller_user_id,
                 promotions = new ObservableCollection<Promotion>()
                 {
                     new Promotion()
                     {
-                        promotion_id = "FirstTimeBuyer",
+                        promotion_id = environmentVariable.promotion_id,
                         status = "$success",
                         description = "$5 off",
                         discount = new Discount()
