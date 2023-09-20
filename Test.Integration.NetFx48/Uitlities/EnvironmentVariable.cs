@@ -106,5 +106,13 @@ namespace Test.Integration.NetFx48.Uitlities
                 return ConfigurationManager.AppSettings["merchant_id"];
             }
         }
+
+        public string item_id
+        {
+            get
+            {
+                return ConfigurationManager.AppSettings["item_id"];
+            }
+        }
     }
 }

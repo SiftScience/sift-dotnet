@@ -1,23 +1,24 @@
 ﻿using Sift;
 using System.Collections.ObjectModel;
+using Test.Integration.NetFx48.Uitlities;
 using Xunit;
 
 namespace Test.Integration.NetFx48.EventsAPI
 {
     public class Cart
     {
+        private readonly EnvironmentVariable environmentVariable = new EnvironmentVariable();
         [Fact]
         public void AddItemToCartEvent()
         {
             var sift = new Client("ccd68efbe25809bc");
-            var sessionId = "sessionId";
             var addItemToCart = new AddItemToCart
             {
-                user_id = "billy_jones_301",
-                session_id = "gigtleqddo84l8cm15qe4il",
+                user_id = environmentVariable.user_id,
+                session_id = environmentVariable.session_id,
                 item = new Item()
                 {
-                    item_id = "B004834GQO",
+                    item_id = environmentVariable.item_id,
                     product_title = "The Slanket Blanket-Texas Tea",
                     price = 39990000,
                     currency_code = "USD",
