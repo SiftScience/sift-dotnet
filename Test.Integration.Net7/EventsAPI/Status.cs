@@ -41,17 +41,16 @@ namespace Test.Integration.Net7.EventsAPI
         [Fact]
         public void IntegrationTest_OrderStatus()
         {
-            var sift = new Client("ccd68efbe25809bc");
-            var sessionId = "sessionId";
+            var sift = new Client(environmentVariable.ApiKey);
             var orderStatus = new OrderStatus
             {
-                user_id = "billy_jones_301",
-                order_id = "ORDER-28168441",
+                user_id = environmentVariable.user_id,
+                order_id = environmentVariable.order_id,
                 order_status = "$canceled",
                 reason = "$payment_risk",
                 source = "$manual_review",
                 analyst = "someone@your-site.com",
-                webhook_id = "3ff1082a4aea8d0c58e3643ddb7a5bb87ffffeb2492dca33",
+                webhook_id = environmentVariable.webhook_id,
                 description = "Canceling because multiple fraudulent users on device",
                 browser = new Browser
                 {

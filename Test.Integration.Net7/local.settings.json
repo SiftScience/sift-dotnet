@@ -24,6 +24,7 @@
     "username": "billjones1@example.com",
     "notified_value": "billy123@domain.com",
     "seller_user_id": "slinkys_emporium",
-    "promotion_id": "FirstTimeBuyer"
+    "promotion_id": "FirstTimeBuyer",
+    "webhook_id": "3ff1082a4aea8d0c58e3643ddb7a5bb87ffffeb2492dca33"
   }
 }

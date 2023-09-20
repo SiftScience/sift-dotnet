@@ -230,5 +230,14 @@ namespace Test.Integration.Net7.Uitlities
             }
 
         }
+
+        public string webhook_id
+        {
+            get
+            {
+                return configuration["Values:webhook_id"];
+            }
+
+        }
     }
 }
