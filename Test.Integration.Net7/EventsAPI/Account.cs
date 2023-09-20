@@ -17,7 +17,7 @@ namespace Test.Integration.Net7.EventsAPI
             {
                 user_id = environmentVariable.user_id,
                 session_id = environmentVariable.session_id,
-                user_email = "billjones1@example.com",
+                user_email = environmentVariable.user_email,
                 name = "Bill Jones",
                 phone = "1-415-555-6040",
                 referrer_user_id = environmentVariable.referrer_user_id,

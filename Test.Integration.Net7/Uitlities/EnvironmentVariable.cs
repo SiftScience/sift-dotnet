@@ -104,5 +104,14 @@ namespace Test.Integration.Net7.Uitlities
             }
 
         }
+
+        public string user_email
+        {
+            get
+            {
+                return configuration["Values:user_email"];
+            }
+
+        }
     }
 }
