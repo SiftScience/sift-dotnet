@@ -194,5 +194,14 @@ namespace Test.Integration.Net7.Uitlities
             }
 
         }
+
+        public string username
+        {
+            get
+            {
+                return configuration["Values:username"];
+            }
+
+        }
     }
 }
