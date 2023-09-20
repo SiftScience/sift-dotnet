@@ -44,11 +44,10 @@ namespace Test.Integration.Net7.EventsAPI
         [Fact]
         public void IntegrationTest_Logout()
         {
-            var sift = new Client("ccd68efbe25809bc");
-            var sessionId = "sessionId";
+            var sift = new Client(environmentVariable.ApiKey);
             var logout = new Logout
             {
-                user_id = "billy_jones_301",
+                user_id = environmentVariable.user_id,
                 browser = new Browser
                 {
                     user_agent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36",
