@@ -113,18 +113,17 @@ namespace Test.Integration.NetFx48.EventsAPI
         [Fact]
         public void IntegrationTest_UpdateAccount()
         {
-            var sift = new Client("ccd68efbe25809bc");
-            var sessionId = "sessionId";
+            var sift = new Client(environmentVariable.ApiKey);
             var updateAccount = new UpdateAccount
             {
-                user_id = "billy_jones_301",
-                session_id = "gigtleqddo84l8cm15qe4il",
+                user_id = environmentVariable.user_id,
+                session_id = environmentVariable.session_id,
                 changed_password = true,
-                user_email = "billjones1@example.com",
+                user_email = environmentVariable.user_email,
                 verification_phone_number = "+123456789012",
                 name = "Bill Jones",
                 phone = "1-415-555-6040",
-                referrer_user_id = "janejane101",
+                referrer_user_id = environmentVariable.referrer_user_id,
                 payment_methods = new ObservableCollection<PaymentMethod>()
                 {
                     new PaymentMethod()
@@ -174,7 +173,7 @@ namespace Test.Integration.NetFx48.EventsAPI
                 site_domain = "sift.com",
                 merchant_profile = new MerchantProfile()
                 {
-                    merchant_id = "AX527123",
+                    merchant_id = environmentVariable.merchant_id,
                     merchant_category_code = "1234",
                     merchant_name = "Dream Company",
                     merchant_address = new Address()
