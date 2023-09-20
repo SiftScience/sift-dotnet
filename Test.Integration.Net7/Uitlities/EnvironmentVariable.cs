@@ -122,5 +122,23 @@ namespace Test.Integration.Net7.Uitlities
             }
 
         }
+
+        public string order_id
+        {
+            get
+            {
+                return configuration["Values:order_id"];
+            }
+
+        }
+
+        public string transaction_id
+        {
+            get
+            {
+                return configuration["Values:transaction_id"];
+            }
+
+        }
     }
 }
