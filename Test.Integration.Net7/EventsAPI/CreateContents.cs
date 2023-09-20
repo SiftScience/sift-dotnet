@@ -306,7 +306,7 @@ namespace Test.Integration.Net7.EventsAPI
                 profile = new Profile()
                 {
                     body = "Let’s meet at 5pm",
-                    contact_email = "alex_301@domain.com",
+                    contact_email = environmentVariable.contact_email,
                     contact_address = new Address()
                     {
                         name = "Alex Smith",
