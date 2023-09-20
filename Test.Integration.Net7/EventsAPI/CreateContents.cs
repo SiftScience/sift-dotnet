@@ -159,13 +159,12 @@ namespace Test.Integration.Net7.EventsAPI
         [Fact]
         public void IntegrationTest_CreateContentMessage()
         {
-            var sift = new Client("ccd68efbe25809bc");
-            var sessionId = "sessionId";
+            var sift = new Client(environmentVariable.ApiKey);
             var createContent = new CreateContent
             {
-                user_id = "fyw3989sjpqr71",
-                content_id = "listing-23412",
-                session_id = "a234ksjfgn435sfg",
+                user_id = environmentVariable.user_id,
+                content_id = environmentVariable.content_id,
+                session_id = environmentVariable.session_id,
                 status = "$active",
                 ip = "255.255.255.0",
                 browser = new Browser
@@ -181,20 +180,20 @@ namespace Test.Integration.Net7.EventsAPI
                 {
                     subject = "2 Bedroom Apartment for Rent",
                     body = "Let’s meet at 5pm",
-                    contact_email = "alex_301@domain.com",
-                    root_content_id = "listing-123",
+                    contact_email = environmentVariable.contact_email,
+                    root_content_id = environmentVariable.root_content_id,
                     recipient_user_ids = new ObservableCollection<string>() { "fy9h989sjphh71" },
                     images = new ObservableCollection<Image>()
                     {
                         new Image()
                         {
-                            md5_hash = "0cc175b9c0f1b6a831c399e269772661",
+                            md5_hash = environmentVariable.md5_hash,
                             link = "https://www.domain.com/file.png",
                             description = "Billy's picture"
                         },
                         new Image()
                         {
-                            md5_hash = "0cc175b9c0f1b6a831c399e269772661"
+                            md5_hash = environmentVariable.md5_hash
                         }
                     }
                 }
