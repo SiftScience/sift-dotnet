@@ -185,5 +185,14 @@ namespace Test.Integration.Net7.Uitlities
             }
 
         }
+
+        public string flagged_by
+        {
+            get
+            {
+                return configuration["Values:flagged_by"];
+            }
+
+        }
     }
 }
