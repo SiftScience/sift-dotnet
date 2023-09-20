@@ -1,27 +1,28 @@
 ﻿using Sift;
 using System.Collections.ObjectModel;
+using Test.Integration.NetFx48.Uitlities;
 using Xunit;
 
 namespace Test.Integration.NetFx48.EventsAPI
 {
     public class Transactions
     {
+        private readonly EnvironmentVariable environmentVariable = new EnvironmentVariable();
         [Fact]
         public void IntegrationTest_Transaction()
         {
-            var sift = new Client("ccd68efbe25809bc");
-            var sessionId = "sessionId";
+            var sift = new Client(environmentVariable.ApiKey);
             var transaction = new Transaction
             {
-                user_id = "billy_jones_301",
-                user_email = "billjones1@example.com",
+                user_id = environmentVariable.user_id,
+                user_email = environmentVariable.user_email,
                 verification_phone_number = "+123456789012",
                 transaction_type = "$sale",
                 transaction_status = "$failure",
                 amount = 506790000,
                 currency_code = "USD",
-                order_id = "ORDER-123124124",
-                transaction_id = "719637215",
+                order_id = environmentVariable.order_id,
+                transaction_id = environmentVariable.transaction_id,
                 billing_address = new Address()
                 {
                     name = "Bill Jones",
@@ -62,8 +63,8 @@ namespace Test.Integration.NetFx48.EventsAPI
                     country = "US",
                     zipcode = "03257"
                 },
-                session_id = "a234ksjfgn435sfg",
-                seller_user_id = "slinkys_emporium",
+                session_id = environmentVariable.session_id,
+                seller_user_id = environmentVariable.seller_user_id,
                 decline_category = "$fraud",
                 ordered_from = new OrderedFrom()
                 {
@@ -94,7 +95,7 @@ namespace Test.Integration.NetFx48.EventsAPI
                 merchant_initiated_transaction = false,
                 merchant_profile = new MerchantProfile()
                 {
-                    merchant_id = "AX527123",
+                    merchant_id = environmentVariable.merchant_id,
                     merchant_category_code = "1234",
                     merchant_name = "Dream Company",
                     merchant_address = new Address()
