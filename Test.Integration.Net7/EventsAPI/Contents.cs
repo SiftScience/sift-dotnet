@@ -5,7 +5,7 @@ using Xunit;
 
 namespace Test.Integration.Net7.EventsAPI
 {
-    public class CreateContents
+    public class Contents
     {
         private readonly EnvironmentVariable environmentVariable = new();
         [Fact]
@@ -429,5 +429,25 @@ namespace Test.Integration.Net7.EventsAPI
             Assert.Equal("OK", res.ErrorMessage);
         }
 
+        [Fact]
+        public void IntegrationTest_FlagContent()
+        {
+            var sift = new Client(environmentVariable.ApiKey);
+            var flagContent = new FlagContent
+            {
+                user_id = environmentVariable.user_id,
+                session_id = environmentVariable.session_id,
+                content_id = environmentVariable.content_id,
+                flagged_by = environmentVariable.flagged_by,
+                reason = "$toxic",
+                verification_phone_number = "+123456789012"
+            };
+            EventRequest eventRequest = new EventRequest()
+            {
+                Event = flagContent
+            };
+            EventResponse res = sift.SendAsync(eventRequest).Result;
+            Assert.Equal("OK", res.ErrorMessage);
+        }
     }
 }
