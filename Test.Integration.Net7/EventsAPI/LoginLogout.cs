@@ -5,7 +5,7 @@ using Xunit;
 
 namespace Test.Integration.Net7.EventsAPI
 {
-    public class Logging
+    public class LoginLogout
     {
         private readonly EnvironmentVariable environmentVariable = new();
         [Fact]
