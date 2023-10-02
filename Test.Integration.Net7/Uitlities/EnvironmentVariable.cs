@@ -21,7 +21,11 @@ namespace Test.Integration.Net7.Uitlities
             get
             {
                 var envAPI_KEY = Environment.GetEnvironmentVariable("SIFT_API_KEY");
-                return envAPI_KEY??configuration["Values:ApiKey"];                
+                if (configuration["Values:ApiKey"] == "API_KEY")
+                {
+                    throw new Exception("Specify API Key");
+                }
+                return envAPI_KEY ?? configuration["Values:ApiKey"];
             }
         }
         public string AccountId
@@ -29,7 +33,11 @@ namespace Test.Integration.Net7.Uitlities
             get
             {
                 var envACCOUNT_ID = Environment.GetEnvironmentVariable("SIFT_ACCOUNT_ID");
-                return envACCOUNT_ID??configuration["Values:AccountId"];
+                if (configuration["Values:AccountId"] == "ACCOUNT_ID")
+                {
+                    throw new Exception("Specify ACCOUNT ID");
+                }
+                return envACCOUNT_ID ?? configuration["Values:AccountId"];
             }
         }
         public string MerchantId
@@ -116,7 +124,7 @@ namespace Test.Integration.Net7.Uitlities
             }
 
         }
-        
+
         public string item_id
         {
             get

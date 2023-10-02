@@ -11,6 +11,10 @@ namespace Test.Integration.NetFx48.Uitlities
             get
             {
                 var envAPI_KEY = Environment.GetEnvironmentVariable("SIFT_API_KEY");
+                if (ConfigurationManager.AppSettings["ApiKey"] == "API_KEY")
+                {
+                    throw new Exception("Specify API Key");
+                }
                 return envAPI_KEY ?? ConfigurationManager.AppSettings["ApiKey"];
             }
         }
@@ -19,10 +23,14 @@ namespace Test.Integration.NetFx48.Uitlities
             get
             {
                 var envACCOUNT_ID = Environment.GetEnvironmentVariable("SIFT_ACCOUNT_ID");
+                if (ConfigurationManager.AppSettings["AccountId"] == "ACCOUNT_ID")
+                {
+                    throw new Exception("Specify ACCOUNT ID");
+                }
                 return envACCOUNT_ID ?? ConfigurationManager.AppSettings["AccountId"];
             }
         }
-        
+
         public string MerchantId
         {
             get
@@ -30,7 +38,7 @@ namespace Test.Integration.NetFx48.Uitlities
                 return ConfigurationManager.AppSettings["MerchantId"];
             }
         }
-        
+
         public string Id
         {
             get
@@ -38,7 +46,7 @@ namespace Test.Integration.NetFx48.Uitlities
                 return ConfigurationManager.AppSettings["Id"];
             }
         }
-        
+
         public string UserId
         {
             get
@@ -85,7 +93,7 @@ namespace Test.Integration.NetFx48.Uitlities
                 return ConfigurationManager.AppSettings["user_email"];
             }
         }
-        
+
         public string referrer_user_id
         {
             get
