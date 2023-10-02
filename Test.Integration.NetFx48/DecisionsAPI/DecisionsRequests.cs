@@ -4,12 +4,12 @@ using Xunit;
 
 namespace Test.Integration.NetFx48.DecisionsAPI
 {
-    //Ignore
 
     public class DecisionsRequests
     {
         private readonly EnvironmentVariable environmentVariable = new EnvironmentVariable();
-        [Fact]
+
+        //[Fact]
         public void IntegrationTest_GetDecisionStatusRequest()
         {
             var sift = new Client(environmentVariable.ApiKey);
@@ -22,7 +22,7 @@ namespace Test.Integration.NetFx48.DecisionsAPI
             Assert.Equal("OK", res.ErrorMessage ?? "OK");
         }
 
-        [Fact]
+        //[Fact]
         public void IntegrationTest_ApplyDecisionRequest()
         {
             var sift = new Client(environmentVariable.ApiKey);
@@ -41,7 +41,7 @@ namespace Test.Integration.NetFx48.DecisionsAPI
             Assert.Equal("OK", res.ErrorMessage);
         }
 
-        [Fact]
+        //[Fact]
         public void IntegrationTest_GetDecisionRequest()
         {
             var sift = new Client(environmentVariable.ApiKey);

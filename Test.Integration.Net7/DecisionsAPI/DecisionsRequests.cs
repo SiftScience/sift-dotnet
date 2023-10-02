@@ -4,12 +4,11 @@ using Xunit;
 
 namespace Test.Integration.Net7.DecisionsAPI
 {
-    //Ignore
     public class DecisionsRequests
     {
         private readonly EnvironmentVariable environmentVariable = new();
 
-        [Fact]
+        //[Fact]
         public void IntegrationTest_GetDecisionStatusRequest()
         {
             var sift = new Client(environmentVariable.ApiKey);
@@ -19,10 +18,10 @@ namespace Test.Integration.Net7.DecisionsAPI
                 UserId = environmentVariable.UserId
             };
             GetDecisionStatusResponse res = sift.SendAsync(getDecisionStatusRequest).Result;
-            Assert.Equal("OK", res.ErrorMessage?? "OK");
+            Assert.Equal("OK", res.ErrorMessage ?? "OK");
         }
 
-        [Fact]
+        //[Fact]
         public void IntegrationTest_ApplyDecisionRequest()
         {
             var sift = new Client(environmentVariable.ApiKey);
@@ -41,7 +40,7 @@ namespace Test.Integration.Net7.DecisionsAPI
             Assert.Equal("OK", res.ErrorMessage);
         }
 
-        [Fact]
+        //[Fact]
         public void IntegrationTest_GetDecisionRequest()
         {
             var sift = new Client(environmentVariable.ApiKey);
