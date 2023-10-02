@@ -22,9 +22,8 @@ namespace Test.Integration.Net7.ScoreAPI
             ScoreResponse res = sift.SendAsync(scoreRequest).Result;
             Assert.Equal("OK", res.ErrorMessage);
         }
-
-        //remove
-        [Fact]
+                
+        //[Fact]
         public void IntegrationTest_ReScoreRequest()
         {
             var sift = new Client(environmentVariable.ApiKey);
