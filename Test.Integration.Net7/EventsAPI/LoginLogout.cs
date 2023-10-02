@@ -9,7 +9,7 @@ namespace Test.Integration.Net7.EventsAPI
     {
         private readonly EnvironmentVariable environmentVariable = new();
         [Fact]
-        public void IntegrationTest_Login()
+        public void Login()
         {
             var sift = new Client(environmentVariable.ApiKey);
             var login = new Login
@@ -42,7 +42,7 @@ namespace Test.Integration.Net7.EventsAPI
         }
 
         [Fact]
-        public void IntegrationTest_Logout()
+        public void Logout()
         {
             var sift = new Client(environmentVariable.ApiKey);
             var logout = new Logout
@@ -68,7 +68,7 @@ namespace Test.Integration.Net7.EventsAPI
 
 
         [Fact]
-        public void IntegrationTest_Login_Response()
+        public void Login_Response()
         {
             var sift = new Client(environmentVariable.ApiKey);
             var login = new Login

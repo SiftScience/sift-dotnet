@@ -11,7 +11,7 @@ namespace Test.Integration.Net7.PSPMerchantManagementAPI
       
 
         [Fact]
-        public void IntegrationTest_GetMerchantRequest()
+        public void GetMerchantRequest()
         {            
             var sift = new Client(environmentVariable.ApiKey);
             GetMerchantsRequest getMerchantRequest = new GetMerchantsRequest
@@ -26,7 +26,7 @@ namespace Test.Integration.Net7.PSPMerchantManagementAPI
         }
 
         [Fact]
-        public void IntegrationTest_UpdateMerchantRequest()
+        public void UpdateMerchantRequest()
         {
             var sift = new Client(environmentVariable.ApiKey);
             UpdateMerchantRequest updateMerchantRequest = new UpdateMerchantRequest
@@ -62,7 +62,7 @@ namespace Test.Integration.Net7.PSPMerchantManagementAPI
         }
 
         [Fact]
-        public void IntegrationTest_CreateMerchantRequest()
+        public void CreateMerchantRequest()
         {
             var sift = new Client(environmentVariable.ApiKey);
             CreateMerchantRequest createMerchantRequest = new CreateMerchantRequest
@@ -97,7 +97,7 @@ namespace Test.Integration.Net7.PSPMerchantManagementAPI
         }
 
         [Fact]
-        public void IntegrationTest_GetMerchantDetailsRequest()
+        public void GetMerchantDetailsRequest()
         {
             var sift = new Client(environmentVariable.ApiKey);
             GetMerchantDetailsRequest getMerchantDetailsRequest = new GetMerchantDetailsRequest

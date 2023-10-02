@@ -8,7 +8,7 @@ namespace Test.Integration.Net7.EventsAPI
     {
         private readonly EnvironmentVariable environmentVariable = new();
         [Fact]
-        public void IntegrationTest_LinkSessionToUser()
+        public void LinkSessionToUser()
         {
             var sift = new Client(environmentVariable.ApiKey);
             var linkSessionToUser = new LinkSessionToUser

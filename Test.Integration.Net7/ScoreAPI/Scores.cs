@@ -11,7 +11,7 @@ namespace Test.Integration.Net7.ScoreAPI
         private readonly EnvironmentVariable environmentVariable = new();
 
         [Fact]
-        public void IntegrationTest_GetScoreRequest()
+        public void GetScoreRequest()
         {
             var sift = new Client(environmentVariable.ApiKey);
             ScoreRequest scoreRequest = new ScoreRequest
@@ -24,7 +24,7 @@ namespace Test.Integration.Net7.ScoreAPI
         }
                 
         //[Fact]
-        public void IntegrationTest_ReScoreRequest()
+        public void ReScoreRequest()
         {
             var sift = new Client(environmentVariable.ApiKey);
             RescoreRequest rescoreRequest = new RescoreRequest

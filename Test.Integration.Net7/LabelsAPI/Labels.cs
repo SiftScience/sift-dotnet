@@ -10,7 +10,7 @@ namespace Test.Integration.Net7.LabelsAPI
         private readonly EnvironmentVariable environmentVariable = new();
 
         //[Fact]
-        public void IntegrationTest_LabelRequest()
+        public void LabelRequest()
         {
             var sift = new Client(environmentVariable.ApiKey);
             LabelRequest labelRequest = new LabelRequest
@@ -29,7 +29,7 @@ namespace Test.Integration.Net7.LabelsAPI
         }
 
         //[Fact]
-        public void IntegrationTest_UnLabelRequest()
+        public void UnLabelRequest()
         {
             var sift = new Client(environmentVariable.ApiKey);
             UnlabelRequest unlabelRequest = new UnlabelRequest

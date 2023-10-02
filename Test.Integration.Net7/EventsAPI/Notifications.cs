@@ -8,7 +8,7 @@ namespace Test.Integration.Net7.EventsAPI
     {
         private readonly EnvironmentVariable environmentVariable = new();
         [Fact]
-        public void IntegrationTest_SecurityNotification()
+        public void SecurityNotification()
         {
             var sift = new Client(environmentVariable.ApiKey);
             var securityNotification = new SecurityNotification

@@ -9,7 +9,7 @@ namespace Test.Integration.Net7.EventsAPI
     {
         private readonly EnvironmentVariable environmentVariable = new();
         [Fact]
-        public void IntegrationTest_CreateOrder()
+        public void CreateOrder()
         {
             var sift = new Client(environmentVariable.ApiKey);
             var createOrder = new CreateOrder
@@ -133,7 +133,7 @@ namespace Test.Integration.Net7.EventsAPI
         }
 
         [Fact]
-        public void IntegrationTest_UpdateOrder()
+        public void UpdateOrder()
         {
             var sift = new Client(environmentVariable.ApiKey);
             var updateOrder = new UpdateOrder
@@ -258,7 +258,7 @@ namespace Test.Integration.Net7.EventsAPI
         }
 
         [Fact]
-        public void IntegrationTest_OrderStatus()
+        public void OrderStatus()
         {
             var sift = new Client(environmentVariable.ApiKey);
             var orderStatus = new OrderStatus

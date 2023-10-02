@@ -8,7 +8,7 @@ namespace Test.Integration.Net7.EventsAPI
     {
         private readonly EnvironmentVariable environmentVariable = new();
         [Fact]
-        public void IntegrationTest_Verification()
+        public void Verification()
         {
             var sift = new Client(environmentVariable.ApiKey);
             var sessionId = "sessionId";

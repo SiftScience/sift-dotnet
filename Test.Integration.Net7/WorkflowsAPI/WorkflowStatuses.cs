@@ -10,7 +10,7 @@ namespace Test.Integration.Net7.WorkflowsAPI
         private readonly EnvironmentVariable environmentVariable = new();
 
         [Fact]
-        public void IntegrationTest_WorkflowStatuses()
+        public void WorkflowStatusesTest()
         {
             var sift = new Client(environmentVariable.ApiKey);
             WorkflowStatusRequest workflowStatusRequest = new WorkflowStatusRequest
