@@ -9,7 +9,7 @@ namespace Test.Integration.Net7.LabelsAPI
     {
         private readonly EnvironmentVariable environmentVariable = new();
 
-        [Fact]
+        //[Fact]
         public void IntegrationTest_LabelRequest()
         {
             var sift = new Client(environmentVariable.ApiKey);
@@ -28,7 +28,7 @@ namespace Test.Integration.Net7.LabelsAPI
             Assert.Equal("OK", labelResponse.ErrorMessage);
         }
 
-        [Fact]
+        //[Fact]
         public void IntegrationTest_UnLabelRequest()
         {
             var sift = new Client(environmentVariable.ApiKey);

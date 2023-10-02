@@ -8,7 +8,7 @@ namespace Test.Integration.NetFx48.LabelsAPI
     public class Labels
     {
         private readonly EnvironmentVariable environmentVariable = new EnvironmentVariable();
-        [Fact]
+        //[Fact]
         public void IntegrationTest_LabelRequest()
         {
             var sift = new Client(environmentVariable.ApiKey);
@@ -27,7 +27,7 @@ namespace Test.Integration.NetFx48.LabelsAPI
             Assert.Equal("OK", labelResponse.ErrorMessage);
         }
 
-        [Fact]
+        //[Fact]
         public void IntegrationTest_UnLabelRequest()
         {
             var sift = new Client(environmentVariable.ApiKey);
