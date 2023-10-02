@@ -9,7 +9,7 @@ namespace Test.Integration.NetFx48.VerificationAPI
     {
         private readonly EnvironmentVariable environmentVariable = new EnvironmentVariable();
         [Fact]
-        public void IntegrationTest_VerificationSend()
+        public void VerificationSend()
         {
             var sift = new Client(environmentVariable.ApiKey + ":");
             VerificationSendRequest verificationSendRequest = new VerificationSendRequest
@@ -39,7 +39,7 @@ namespace Test.Integration.NetFx48.VerificationAPI
         }
 
         [Fact]
-        public void IntegrationTest_VerificationReSend()
+        public void VerificationReSend()
         {
             var sift = new Client(environmentVariable.ApiKey + ":");
             var sessionId = "SOME_SESSION_ID";
@@ -80,7 +80,7 @@ namespace Test.Integration.NetFx48.VerificationAPI
 
         [Theory]
         [InlineData(990941)]
-        public void IntegrationTest_VerificationCheck(int code)
+        public void VerificationCheck(int code)
         {
             var sift = new Client(environmentVariable.ApiKey + ":");
             VerificationCheckRequest verificationCheckRequest = new VerificationCheckRequest

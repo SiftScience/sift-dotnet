@@ -10,7 +10,7 @@ namespace Test.Integration.NetFx48.DecisionsAPI
         private readonly EnvironmentVariable environmentVariable = new EnvironmentVariable();
 
         //[Fact]
-        public void IntegrationTest_GetDecisionStatusRequest()
+        public void GetDecisionStatusRequest()
         {
             var sift = new Client(environmentVariable.ApiKey);
             GetDecisionStatusRequest getDecisionStatusRequest = new GetDecisionStatusRequest
@@ -23,7 +23,7 @@ namespace Test.Integration.NetFx48.DecisionsAPI
         }
 
         //[Fact]
-        public void IntegrationTest_ApplyDecisionRequest()
+        public void ApplyDecisionRequest()
         {
             var sift = new Client(environmentVariable.ApiKey);
             ApplyDecisionRequest applyDecisionRequest = new ApplyDecisionRequest
@@ -42,7 +42,7 @@ namespace Test.Integration.NetFx48.DecisionsAPI
         }
 
         //[Fact]
-        public void IntegrationTest_GetDecisionRequest()
+        public void GetDecisionRequest()
         {
             var sift = new Client(environmentVariable.ApiKey);
             GetDecisionsRequest getDecisionsRequest = new GetDecisionsRequest

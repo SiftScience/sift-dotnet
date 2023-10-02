@@ -9,7 +9,7 @@ namespace Test.Integration.NetFx48.EventsAPI
     {
         private readonly EnvironmentVariable environmentVariable = new EnvironmentVariable();
         [Fact]
-        public void IntegrationTest_CreateOrder()
+        public void CreateOrder()
         {
             var sift = new Client(environmentVariable.ApiKey);
             var createOrder = new CreateOrder
@@ -134,7 +134,7 @@ namespace Test.Integration.NetFx48.EventsAPI
         }
 
         [Fact]
-        public void IntegrationTest_UpdateOrder()
+        public void UpdateOrder()
         {
             var sift = new Client(environmentVariable.ApiKey);
             var updateOrder = new UpdateOrder

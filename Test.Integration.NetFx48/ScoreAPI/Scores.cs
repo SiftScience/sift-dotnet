@@ -9,7 +9,7 @@ namespace Test.Integration.NetFx48.ScoreAPI
     {
         private readonly EnvironmentVariable environmentVariable = new EnvironmentVariable();
         [Fact]
-        public void IntegrationTest_GetScoreRequest()
+        public void GetScoreRequest()
         {
             var sift = new Client(environmentVariable.ApiKey);
             ScoreRequest scoreRequest = new ScoreRequest
@@ -23,7 +23,7 @@ namespace Test.Integration.NetFx48.ScoreAPI
         }
         
         //[Fact]
-        public void IntegrationTest_ReScoreRequest()
+        public void ReScoreRequest()
         {
             var sift = new Client(environmentVariable.ApiKey);
             RescoreRequest rescoreRequest = new RescoreRequest

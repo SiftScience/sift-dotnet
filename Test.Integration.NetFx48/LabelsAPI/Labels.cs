@@ -9,7 +9,7 @@ namespace Test.Integration.NetFx48.LabelsAPI
     {
         private readonly EnvironmentVariable environmentVariable = new EnvironmentVariable();
         //[Fact]
-        public void IntegrationTest_LabelRequest()
+        public void LabelRequest()
         {
             var sift = new Client(environmentVariable.ApiKey);
             LabelRequest labelRequest = new LabelRequest
@@ -28,7 +28,7 @@ namespace Test.Integration.NetFx48.LabelsAPI
         }
 
         //[Fact]
-        public void IntegrationTest_UnLabelRequest()
+        public void UnLabelRequest()
         {
             var sift = new Client(environmentVariable.ApiKey);
             UnlabelRequest unlabelRequest = new UnlabelRequest

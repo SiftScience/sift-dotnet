@@ -9,7 +9,7 @@ namespace Test.Integration.NetFx48.WorkflowsAPI
     {
         private readonly EnvironmentVariable environmentVariable = new EnvironmentVariable();
         [Fact]
-        public void IntegrationTest_WorkflowStatuses()
+        public void WorkflowStatusesTest()
         {
             var sift = new Client(environmentVariable.ApiKey);
             WorkflowStatusRequest workflowStatusRequest = new WorkflowStatusRequest

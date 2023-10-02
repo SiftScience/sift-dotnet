@@ -9,7 +9,7 @@ namespace Test.Integration.NetFx48.EventsAPI
     {
         private readonly EnvironmentVariable environmentVariable = new EnvironmentVariable();
         [Fact]
-        public void IntegrationTest_CreateAccount()
+        public void CreateAccount()
         {
             var sift = new Client(environmentVariable.ApiKey);
             var createAccount = new CreateAccount
@@ -111,7 +111,7 @@ namespace Test.Integration.NetFx48.EventsAPI
         }
 
         [Fact]
-        public void IntegrationTest_UpdateAccount()
+        public void UpdateAccount()
         {
             var sift = new Client(environmentVariable.ApiKey);
             var updateAccount = new UpdateAccount

@@ -8,7 +8,7 @@ namespace Test.Integration.NetFx48.EventsAPI
     {
         private readonly EnvironmentVariable environmentVariable = new EnvironmentVariable();
         [Fact]
-        public void IntegrationTest_Verification()
+        public void VerificationTest()
         {
             var sift = new Client(environmentVariable.ApiKey);
             var sessionId = "sessionId";

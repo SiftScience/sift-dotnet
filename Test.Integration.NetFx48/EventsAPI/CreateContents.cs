@@ -9,7 +9,7 @@ namespace Test.Integration.NetFx48.EventsAPI
     {
         private readonly EnvironmentVariable environmentVariable = new EnvironmentVariable();
         [Fact]
-        public void IntegrationTest_CreateContentComment()
+        public void CreateContentComment()
         {
             var sift = new Client(environmentVariable.ApiKey);
             var createContent = new CreateContent
@@ -59,7 +59,7 @@ namespace Test.Integration.NetFx48.EventsAPI
         }
 
         [Fact]
-        public void IntegrationTest_CreateContentListing()
+        public void CreateContentListing()
         {
             var sift = new Client(environmentVariable.ApiKey);
             var createContent = new CreateContent
@@ -159,7 +159,7 @@ namespace Test.Integration.NetFx48.EventsAPI
         }
 
         [Fact]
-        public void IntegrationTest_CreateContentMessage()
+        public void CreateContentMessage()
         {
             var sift = new Client(environmentVariable.ApiKey);
             var createContent = new CreateContent
@@ -210,7 +210,7 @@ namespace Test.Integration.NetFx48.EventsAPI
         }
 
         [Fact]
-        public void IntegrationTest_CreateContentPost()
+        public void CreateContentPost()
         {
             var sift = new Client(environmentVariable.ApiKey);
             var createContent = new CreateContent
@@ -291,7 +291,7 @@ namespace Test.Integration.NetFx48.EventsAPI
         }
 
         [Fact]
-        public void IntegrationTest_CreateContentProfile()
+        public void CreateContentProfile()
         {
             var sift = new Client(environmentVariable.ApiKey);
             var createContent = new CreateContent
@@ -351,7 +351,7 @@ namespace Test.Integration.NetFx48.EventsAPI
         }
 
         [Fact]
-        public void IntegrationTest_CreateContentReview()
+        public void CreateContentReview()
         {
             var sift = new Client(environmentVariable.ApiKey);
             var createContent = new CreateContent

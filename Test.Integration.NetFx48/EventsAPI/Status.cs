@@ -8,7 +8,7 @@ namespace Test.Integration.NetFx48.EventsAPI
     {
         private readonly EnvironmentVariable environmentVariable = new EnvironmentVariable();
         [Fact]
-        public void IntegrationTest_ContentStatus()
+        public void ContentStatus()
         {
             var sift = new Client(environmentVariable.ApiKey);
             var contentStatus = new ContentStatus
@@ -39,7 +39,7 @@ namespace Test.Integration.NetFx48.EventsAPI
         }
 
         [Fact]
-        public void IntegrationTest_OrderStatus()
+        public void OrderStatus()
         {
             var sift = new Client(environmentVariable.ApiKey);
             var orderStatus = new OrderStatus

@@ -8,7 +8,7 @@ namespace Test.Integration.NetFx48.EventsAPI
     {
         private readonly EnvironmentVariable environmentVariable = new EnvironmentVariable();
         [Fact]
-        public void IntegrationTest_LinkSessionToUser()
+        public void LinkSessionToUserTest()
         {
             var sift = new Client(environmentVariable.ApiKey);
             var linkSessionToUser = new LinkSessionToUser

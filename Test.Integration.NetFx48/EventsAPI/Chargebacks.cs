@@ -8,7 +8,7 @@ namespace Test.Integration.NetFx48.EventsAPI
     {
         private readonly EnvironmentVariable environmentVariable = new EnvironmentVariable();
         [Fact]
-        public void IntegrationTest_Chargeback()
+        public void ChargebackTest()
         {
             var sift = new Client(environmentVariable.ApiKey);
             var chargeback = new Chargeback

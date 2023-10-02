@@ -8,7 +8,7 @@ namespace Test.Integration.NetFx48.EventsAPI
     {
         private readonly EnvironmentVariable environmentVariable = new EnvironmentVariable();
         [Fact]
-        public void IntegrationTest_FlagContent()
+        public void FlagContentTest()
         {
             var sift = new Client(environmentVariable.ApiKey);
             var flagContent = new FlagContent

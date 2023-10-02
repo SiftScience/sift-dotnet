@@ -5,11 +5,11 @@ using Xunit;
 
 namespace Test.Integration.NetFx48.EventsAPI
 {
-    public class Logging
+    public class LoginLogout
     {
         private readonly EnvironmentVariable environmentVariable = new EnvironmentVariable();
         [Fact]
-        public void IntegrationTest_Login()
+        public void Login()
         {
             var sift = new Client(environmentVariable.ApiKey);
             var login = new Login
@@ -43,7 +43,7 @@ namespace Test.Integration.NetFx48.EventsAPI
         }
 
         [Fact]
-        public void IntegrationTest_Logout()
+        public void Logout()
         {
             var sift = new Client(environmentVariable.ApiKey);
             var logout = new Logout

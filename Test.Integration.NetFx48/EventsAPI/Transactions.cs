@@ -9,7 +9,7 @@ namespace Test.Integration.NetFx48.EventsAPI
     {
         private readonly EnvironmentVariable environmentVariable = new EnvironmentVariable();
         [Fact]
-        public void IntegrationTest_Transaction()
+        public void TransactionTest()
         {
             var sift = new Client(environmentVariable.ApiKey);
             var transaction = new Transaction
