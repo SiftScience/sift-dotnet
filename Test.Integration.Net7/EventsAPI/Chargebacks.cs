@@ -8,7 +8,7 @@ namespace Test.Integration.Net7.EventsAPI
     {
         private readonly EnvironmentVariable environmentVariable = new();
         [Fact]
-        public void Chargeback()
+        public void ChargebackTest()
         {
             var sift = new Client(environmentVariable.ApiKey);
             var chargeback = new Chargeback

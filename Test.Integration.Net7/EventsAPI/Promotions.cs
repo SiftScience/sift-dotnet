@@ -9,7 +9,7 @@ namespace Test.Integration.Net7.EventsAPI
     {
         private readonly EnvironmentVariable environmentVariable = new();
         [Fact]
-        public void AddPromotion()
+        public void AddPromotionTest()
         {
             var sift = new Client(environmentVariable.ApiKey);
             var addPromotion = new AddPromotion

@@ -8,7 +8,7 @@ namespace Test.Integration.Net7.EventsAPI
     {
         private readonly EnvironmentVariable environmentVariable = new();
         [Fact]
-        public void UpdatePassword()
+        public void UpdatePasswordTest()
         {
             var sift = new Client(environmentVariable.ApiKey);
             var updatePassword = new UpdatePassword
