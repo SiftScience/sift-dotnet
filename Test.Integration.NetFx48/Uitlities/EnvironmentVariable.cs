@@ -1,4 +1,5 @@
-﻿using System.Configuration;
+﻿using System;
+using System.Configuration;
 
 namespace Test.Integration.NetFx48.Uitlities
 {
@@ -9,14 +10,16 @@ namespace Test.Integration.NetFx48.Uitlities
         {
             get
             {
-                return ConfigurationManager.AppSettings["ApiKey"];
+                var envAPI_KEY = Environment.GetEnvironmentVariable("SIFT_API_KEY");
+                return envAPI_KEY ?? ConfigurationManager.AppSettings["ApiKey"];
             }
         }
         public string AccountId
         {
             get
             {
-                return ConfigurationManager.AppSettings["AccountId"];
+                var envACCOUNT_ID = Environment.GetEnvironmentVariable("SIFT_ACCOUNT_ID");
+                return envACCOUNT_ID ?? ConfigurationManager.AppSettings["AccountId"];
             }
         }
         

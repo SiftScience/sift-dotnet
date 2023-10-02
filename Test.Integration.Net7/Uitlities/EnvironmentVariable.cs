@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Configuration;
+using System;
 using System.IO;
 
 namespace Test.Integration.Net7.Uitlities
@@ -19,14 +20,16 @@ namespace Test.Integration.Net7.Uitlities
         {
             get
             {
-                return configuration["Values:ApiKey"];
+                var envAPI_KEY = Environment.GetEnvironmentVariable("SIFT_API_KEY");
+                return envAPI_KEY??configuration["Values:ApiKey"];                
             }
         }
         public string AccountId
         {
             get
             {
-                return configuration["Values:AccountId"];
+                var envACCOUNT_ID = Environment.GetEnvironmentVariable("SIFT_ACCOUNT_ID");
+                return envACCOUNT_ID??configuration["Values:AccountId"];
             }
         }
         public string MerchantId
