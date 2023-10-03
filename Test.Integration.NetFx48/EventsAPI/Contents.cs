@@ -436,7 +436,7 @@ namespace Test.Integration.NetFx48.EventsAPI
         }
 
         [Fact]
-        public void ContentStatus()
+        public void ContentStatusTest()
         {
             var sift = new Client(environmentVariable.ApiKey);
             var contentStatus = new ContentStatus
