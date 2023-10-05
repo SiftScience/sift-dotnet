@@ -1,8 +1,7 @@
 using Sift;
 using System.Collections.Generic;
-using System;
-using Xunit;
 using Test.Integration.Net7.Uitlities;
+using Xunit;
 
 namespace Test.Integration.Net7.ScoreAPI
 {
