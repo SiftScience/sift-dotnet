@@ -10,6 +10,7 @@ namespace Sift
 
         public string UserId { get; set; }
         public List<String> AbuseTypes { get; set; } = new List<string>();
+        public bool IncludeScorePercentile { get; set; }
 
         public override HttpRequestMessage Request {
             get
@@ -29,6 +30,11 @@ namespace Sift
                 if (AbuseTypes.Count > 0)
                 {
                     url = url.AddQuery("abuse_types", string.Join(",", AbuseTypes));
+                }
+
+                if (IncludeScorePercentile)
+                {
+                    url = url.AddQuery("fields", "SCORE_PERCENTILES");
                 }
 
                 return url;
