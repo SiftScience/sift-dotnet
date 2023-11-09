@@ -8,18 +8,33 @@ namespace Test.Integration.Net7.EventsAPI
     public class Account
     {
         private readonly EnvironmentVariable environmentVariable = new();
+        private readonly string ApiKey;
+        private readonly string UserId;
+        private readonly string SessionId;
+        private readonly string UserEmail;
+        private readonly string ReferrerUserId;
+        private readonly string MerchantId;
+        public Account()
+        {
+            ApiKey = environmentVariable.ApiKey;
+            UserId = environmentVariable.user_id;
+            SessionId = environmentVariable.session_id;
+            UserEmail = environmentVariable.user_email;
+            ReferrerUserId = environmentVariable.referrer_user_id;
+            MerchantId = environmentVariable.merchant_id;
+        }
         [Fact]
         public void CreateAccount()
         {
-            var sift = new Client(environmentVariable.ApiKey);
+            var sift = new Client(ApiKey);
             var createAccount = new CreateAccount
             {
-                user_id = environmentVariable.user_id,
-                session_id = environmentVariable.session_id,
-                user_email = environmentVariable.user_email,
+                user_id = UserId,
+                session_id = SessionId,
+                user_email = UserEmail,
                 name = "Bill Jones",
                 phone = "1-415-555-6040",
-                referrer_user_id = environmentVariable.referrer_user_id,
+                referrer_user_id = ReferrerUserId,
                 payment_methods = new ObservableCollection<PaymentMethod>()
                 {
                     new PaymentMethod()
@@ -85,7 +100,7 @@ namespace Test.Integration.Net7.EventsAPI
                 site_domain = "sift.com",
                 merchant_profile = new MerchantProfile()
                 {
-                    merchant_id = environmentVariable.merchant_id,
+                    merchant_id = MerchantId,
                     merchant_category_code = "1234",
                     merchant_name = "Dream Company",
                     merchant_address = new Address()
@@ -115,14 +130,14 @@ namespace Test.Integration.Net7.EventsAPI
             var sift = new Client(environmentVariable.ApiKey);
             var updateAccount = new UpdateAccount
             {
-                user_id = environmentVariable.user_id,
-                session_id = environmentVariable.session_id,
+                user_id = UserId,
+                session_id = SessionId,
                 changed_password = true,
-                user_email = environmentVariable.user_email,
+                user_email = UserEmail,
                 verification_phone_number = "+123456789012",
                 name = "Bill Jones",
                 phone = "1-415-555-6040",
-                referrer_user_id = environmentVariable.referrer_user_id,
+                referrer_user_id = ReferrerUserId,
                 payment_methods = new ObservableCollection<PaymentMethod>()
                 {
                     new PaymentMethod()
@@ -172,7 +187,7 @@ namespace Test.Integration.Net7.EventsAPI
                 site_domain = "sift.com",
                 merchant_profile = new MerchantProfile()
                 {
-                    merchant_id = environmentVariable.merchant_id,
+                    merchant_id = MerchantId,
                     merchant_category_code = "1234",
                     merchant_name = "Dream Company",
                     merchant_address = new Address()
