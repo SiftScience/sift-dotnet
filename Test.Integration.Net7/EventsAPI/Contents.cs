@@ -8,34 +8,56 @@ namespace Test.Integration.Net7.EventsAPI
     public class Contents
     {
         private readonly EnvironmentVariable environmentVariable = new();
+        private readonly string ApiKey;
+        private readonly string UserId;
+        private readonly string ContentId;
+        private readonly string SessionId;
+        private readonly string ContactEmail;
+        private readonly string RootContentId;
+        private readonly string Md5Hash;
+        private readonly string ItemId;
+        private readonly string FlaggedBy;
+        public Contents()
+        {
+                ApiKey = environmentVariable.ApiKey; 
+                UserId = environmentVariable.UserId;
+                ContentId = environmentVariable.content_id;
+                SessionId = environmentVariable.session_id;
+                ContactEmail = environmentVariable.contact_email;
+                RootContentId = environmentVariable.root_content_id;
+                Md5Hash = environmentVariable.md5_hash;
+                ItemId = environmentVariable.item_id;
+                FlaggedBy = environmentVariable.flagged_by;
+
+        }
         [Fact]
         public void CreateContentComment()
         {
-            var sift = new Client(environmentVariable.ApiKey);
+            var sift = new Client(ApiKey);
             var createContent = new CreateContent
             {
-                user_id = environmentVariable.user_id,
-                content_id = environmentVariable.content_id,
-                session_id = environmentVariable.session_id,
+                user_id = UserId,
+                content_id = ContentId,
+                session_id = SessionId,
                 status = "$active",
                 ip = "255.255.255.0",
                 comment = new Comment()
                 {
                     body = "Congrats on the new role!",
-                    contact_email = environmentVariable.contact_email,
-                    parent_comment_id = environmentVariable.root_content_id,
-                    root_content_id = environmentVariable.root_content_id,
+                    contact_email = ContactEmail,
+                    parent_comment_id = RootContentId,
+                    root_content_id = RootContentId,
                     images = new ObservableCollection<Image>()
                     {
                         new Image()
                         {
-                            md5_hash = environmentVariable.md5_hash,
+                            md5_hash = Md5Hash,
                             link = "https://www.domain.com/file.png",
                             description =   "An old picture"
                         },
                         new Image()
                         {
-                            md5_hash = environmentVariable.md5_hash
+                            md5_hash = Md5Hash
                         }
                     }
                 },
@@ -60,19 +82,19 @@ namespace Test.Integration.Net7.EventsAPI
         [Fact]
         public void CreateContentListing()
         {
-            var sift = new Client(environmentVariable.ApiKey);
+            var sift = new Client(ApiKey);
             var createContent = new CreateContent
             {
-                user_id = environmentVariable.user_id,
-                content_id = environmentVariable.content_id,
-                session_id = environmentVariable.session_id,
+                user_id = UserId,
+                content_id = ContentId,
+                session_id = SessionId,
                 status = "$active",
                 ip = "255.255.255.0",
                 listing = new Listing()
                 {
                     subject = "2 Bedroom Apartment for Rent",
                     body = "Capitol Hill Seattle brand new condo. 2 bedrooms and 1 full bath.",
-                    contact_email = environmentVariable.contact_email,
+                    contact_email = ContactEmail,
                     contact_address = new Address()
                     {
                         name = "Alex Smith",
@@ -107,7 +129,7 @@ namespace Test.Integration.Net7.EventsAPI
                     {
                         new Item()
                         {
-                            item_id = environmentVariable.item_id,
+                            item_id = ItemId,
                             product_title = "https://www.domain.com/file.png",
                             price = 2950000000,
                             currency_code = "USD",
@@ -127,13 +149,13 @@ namespace Test.Integration.Net7.EventsAPI
                     {
                         new Image()
                         {
-                            md5_hash = environmentVariable.md5_hash,
+                            md5_hash = Md5Hash,
                             link = "https://www.domain.com/file.png",
                             description =   "Billy's picture"
                         },
                         new Image()
                         {
-                            md5_hash = environmentVariable.md5_hash
+                            md5_hash = Md5Hash
                         }
                     },
                     expiration_time = 1549063157000
@@ -159,12 +181,12 @@ namespace Test.Integration.Net7.EventsAPI
         [Fact]
         public void CreateContentMessage()
         {
-            var sift = new Client(environmentVariable.ApiKey);
+            var sift = new Client(ApiKey);
             var createContent = new CreateContent
             {
-                user_id = environmentVariable.user_id,
-                content_id = environmentVariable.content_id,
-                session_id = environmentVariable.session_id,
+                user_id = UserId,
+                content_id = ContentId,
+                session_id = SessionId,
                 status = "$active",
                 ip = "255.255.255.0",
                 browser = new Browser
@@ -180,20 +202,20 @@ namespace Test.Integration.Net7.EventsAPI
                 {
                     subject = "2 Bedroom Apartment for Rent",
                     body = "Let’s meet at 5pm",
-                    contact_email = environmentVariable.contact_email,
-                    root_content_id = environmentVariable.root_content_id,
+                    contact_email = ContactEmail,
+                    root_content_id = RootContentId,
                     recipient_user_ids = new ObservableCollection<string>() { "fy9h989sjphh71" },
                     images = new ObservableCollection<Image>()
                     {
                         new Image()
                         {
-                            md5_hash = environmentVariable.md5_hash,
+                            md5_hash = Md5Hash,
                             link = "https://www.domain.com/file.png",
                             description = "Billy's picture"
                         },
                         new Image()
                         {
-                            md5_hash = environmentVariable.md5_hash
+                            md5_hash = Md5Hash
                         }
                     }
                 }
@@ -209,12 +231,12 @@ namespace Test.Integration.Net7.EventsAPI
         [Fact]
         public void CreateContentPost()
         {
-            var sift = new Client(environmentVariable.ApiKey);
+            var sift = new Client(ApiKey);
             var createContent = new CreateContent
             {
-                user_id = environmentVariable.user_id,
-                content_id = environmentVariable.content_id,
-                session_id = environmentVariable.session_id,
+                user_id = UserId,
+                content_id = ContentId,
+                session_id = SessionId,
                 status = "$active",
                 ip = "255.255.255.0",
                 browser = new Browser
@@ -227,7 +249,7 @@ namespace Test.Integration.Net7.EventsAPI
                 {
                     subject = "2 Bedroom Apartment for Rent",
                     body = "Let’s meet at 5pm",
-                    contact_email = environmentVariable.contact_email,
+                    contact_email = ContactEmail,
                     contact_address = new Address()
                     {
                         name = "Alex Smith",
@@ -263,13 +285,13 @@ namespace Test.Integration.Net7.EventsAPI
                     {
                         new Image()
                         {
-                            md5_hash = environmentVariable.md5_hash,
+                            md5_hash = Md5Hash,
                             link = "https://www.domain.com/file.png",
                             description = "Billy's picture"
                         },
                         new Image()
                         {
-                            md5_hash = environmentVariable.md5_hash
+                            md5_hash = Md5Hash
                         }
                     },
                     expiration_time = 1549063157000
@@ -289,12 +311,12 @@ namespace Test.Integration.Net7.EventsAPI
         [Fact]
         public void CreateContentProfile()
         {
-            var sift = new Client(environmentVariable.ApiKey);
+            var sift = new Client(ApiKey);
             var createContent = new CreateContent
             {
-                user_id = environmentVariable.user_id,
-                content_id = environmentVariable.content_id,
-                session_id = environmentVariable.session_id,
+                user_id = UserId,
+                content_id = ContentId,
+                session_id = SessionId,
                 status = "$active",
                 ip = "255.255.255.0",
                 browser = new Browser
@@ -306,7 +328,7 @@ namespace Test.Integration.Net7.EventsAPI
                 profile = new Profile()
                 {
                     body = "Let’s meet at 5pm",
-                    contact_email = environmentVariable.contact_email,
+                    contact_email = ContactEmail,
                     contact_address = new Address()
                     {
                         name = "Alex Smith",
@@ -322,13 +344,13 @@ namespace Test.Integration.Net7.EventsAPI
                     {
                         new Image()
                         {
-                            md5_hash = environmentVariable.md5_hash,
+                            md5_hash = Md5Hash,
                             link = "https://www.domain.com/file.png",
                             description = "Billy's picture"
                         },
                         new Image()
                         {
-                            md5_hash = environmentVariable.md5_hash
+                            md5_hash = Md5Hash
                         }
                     },
                     categories = new ObservableCollection<string>() { "Photographer", "Weddings" }
@@ -348,12 +370,12 @@ namespace Test.Integration.Net7.EventsAPI
         [Fact]
         public void CreateContentReview()
         {
-            var sift = new Client(environmentVariable.ApiKey);
+            var sift = new Client(ApiKey);
             var createContent = new CreateContent
             {
-                user_id = environmentVariable.user_id,
-                content_id = environmentVariable.content_id,
-                session_id = environmentVariable.session_id,
+                user_id = UserId,
+                content_id = ContentId,
+                session_id = SessionId,
                 status = "$active",
                 ip = "255.255.255.0",
                 browser = new Browser
@@ -366,7 +388,7 @@ namespace Test.Integration.Net7.EventsAPI
                 {
                     subject = "Amazing Tacos!",
                     body = "I ate the tacos.",
-                    contact_email = environmentVariable.contact_email,
+                    contact_email = ContactEmail,
                     locations = new ObservableCollection<Address>()
                     {
                         new Address()
@@ -387,7 +409,7 @@ namespace Test.Integration.Net7.EventsAPI
                     },
                     item_reviewed = new Item()
                     {
-                        item_id = environmentVariable.item_id,
+                        item_id = ItemId,
                         product_title = "The Slanket Blanket-Texas Tea",
                         price = 39990000,
                         currency_code = "USD",
@@ -407,13 +429,13 @@ namespace Test.Integration.Net7.EventsAPI
                     {
                         new Image()
                         {
-                            md5_hash = environmentVariable.md5_hash ,
+                            md5_hash = Md5Hash,
                             link = "https://www.domain.com/file.png",
                             description = "Billy's picture"
                         },
                         new Image()
                         {
-                            md5_hash = environmentVariable.md5_hash
+                            md5_hash = Md5Hash
                         }
                     }
                 },
@@ -432,13 +454,13 @@ namespace Test.Integration.Net7.EventsAPI
         [Fact]
         public void FlagContent()
         {
-            var sift = new Client(environmentVariable.ApiKey);
+            var sift = new Client(ApiKey);
             var flagContent = new FlagContent
             {
-                user_id = environmentVariable.user_id,
-                session_id = environmentVariable.session_id,
-                content_id = environmentVariable.content_id,
-                flagged_by = environmentVariable.flagged_by,
+                user_id = UserId,
+                session_id = SessionId,
+                content_id = ContentId,
+                flagged_by = FlaggedBy,
                 reason = "$toxic",
                 verification_phone_number = "+123456789012"
             };
@@ -453,12 +475,12 @@ namespace Test.Integration.Net7.EventsAPI
         [Fact]
         public void ContentStatus()
         {
-            var sift = new Client(environmentVariable.ApiKey);
+            var sift = new Client(ApiKey);
             var contentStatus = new ContentStatus
             {
-                user_id = environmentVariable.user_id,
-                session_id = environmentVariable.session_id,
-                content_id = environmentVariable.content_id,
+                user_id = UserId,
+                session_id = SessionId,
+                content_id = ContentId,
                 status = "$paused",
                 browser = new Browser
                 {
