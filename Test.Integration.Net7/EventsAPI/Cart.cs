@@ -8,17 +8,27 @@ namespace Test.Integration.Net7.EventsAPI
     public class Cart
     {
         private readonly EnvironmentVariable environmentVariable = new();
+        private readonly string UserId;
+        private readonly string SessionId;
+        private readonly string ItemId;
+        public Cart()
+        {
+            UserId = environmentVariable.user_id;
+            SessionId = environmentVariable.session_id;
+            ItemId = environmentVariable.item_id;
+        }
+
         [Fact]
         public void AddItemToCartEvent()
         {
             var sift = new Client(environmentVariable.ApiKey);
             var addItemToCart = new AddItemToCart
             {
-                user_id = environmentVariable.user_id,
-                session_id = environmentVariable.session_id,
+                user_id = UserId,
+                session_id = SessionId,
                 item = new Item()
                 {
-                    item_id = environmentVariable.item_id,
+                    item_id = ItemId,
                     product_title = "The Slanket Blanket-Texas Tea",
                     price = 39990000,
                     currency_code = "USD",
@@ -60,11 +70,11 @@ namespace Test.Integration.Net7.EventsAPI
             var sift = new Client(environmentVariable.ApiKey);
             var removeItemFromCart = new RemoveItemFromCart
             {
-                user_id = environmentVariable.user_id,
-                session_id = environmentVariable.session_id,
+                user_id = UserId,
+                session_id = SessionId,
                 item = new Item()
                 {
-                    item_id = environmentVariable.item_id,
+                    item_id = ItemId,
                     product_title = "The Slanket Blanket-Texas Tea",
                     price = 39990000,
                     currency_code = "USD",
