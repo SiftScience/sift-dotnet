@@ -2585,14 +2585,13 @@ namespace Test
             {
                 UserId = "123",
                 ApiKey = "345",
-                AbuseTypes = new List<string>() { "payment_abuse", "promotion_abuse" }
+                AbuseTypes = new List<string>() { "payment_abuse", "promotion_abuse" },
+                IncludeScorePercentile = true
             };
 
-            var url = scoreRequest.Request.RequestUri!.ToString();
-
-            Assert.Equal("https://api.sift.com/v205/users/123/score?api_key=345&abuse_types=payment_abuse,promotion_abuse",
+            Assert.Equal("https://api.sift.com/v205/users/123/score?api_key=345&abuse_types=payment_abuse,promotion_abuse&fields=SCORE_PERCENTILES",
                         Uri.UnescapeDataString(scoreRequest.Request.RequestUri!.ToString()));
-        }
+        }   
     }
 
 }

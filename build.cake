@@ -4,6 +4,7 @@ var ARTIFACTS_DIR = "./artifacts/";
 var SOLUTION = "./Sift.sln";
 var SIFT = "./Sift/Sift.csproj";
 var TEST = "./Test/Test.csproj";
+var TEST_NET7 = "./Test.Integration.Net7/Test.Integration.Net7.csproj";
 
 Task("clean")
     .Does(() =>
@@ -34,6 +35,9 @@ Task("build")
 
 Task("test")
     .Does(() => DotNetCoreTest(TEST));
+
+Task("testNet7")
+    .Does(() => DotNetCoreTest(TEST_NET7));
 
 Task("default")
     .IsDependentOn("clean")
