@@ -7,6 +7,19 @@ namespace Test.Integration.Net7.EventsAPI
     public class Chargebacks
     {
         private readonly EnvironmentVariable environmentVariable = new();
+        private readonly string ApiKey;
+        private readonly string UserId;
+        private readonly string OrderId;
+        private readonly string TransactionId;
+        private readonly string MerchantId;
+        public Chargebacks()
+        {
+            ApiKey = environmentVariable.ApiKey;
+            UserId = environmentVariable.user_id;
+            OrderId = environmentVariable.order_id;
+            TransactionId = environmentVariable.transaction_id;
+            MerchantId = environmentVariable.merchant_id;
+        }
         [Fact]
         public void ChargebackTest()
         {
