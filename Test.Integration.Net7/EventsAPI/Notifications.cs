@@ -7,16 +7,27 @@ namespace Test.Integration.Net7.EventsAPI
     public class Notifications
     {
         private readonly EnvironmentVariable environmentVariable = new();
+        private readonly string ApiKey;
+        private readonly string UserId;
+        private readonly string SessionId;
+        private readonly string NotifiedValue;
+        public Notifications()
+        {
+            ApiKey = environmentVariable.ApiKey;
+            UserId = environmentVariable.user_id;
+            SessionId = environmentVariable.session_id;
+            NotifiedValue = environmentVariable.notified_value;
+        }
         [Fact]
         public void SecurityNotificationTest()
         {
-            var sift = new Client(environmentVariable.ApiKey);
+            var sift = new Client(ApiKey);
             var securityNotification = new SecurityNotification
             {
-                user_id = environmentVariable.user_id,
-                session_id = environmentVariable.session_id,
+                user_id = UserId,
+                session_id = SessionId,
                 notification_type = "$email",
-                notified_value = environmentVariable.notified_value,
+                notified_value = NotifiedValue,
                 notification_status = "$sent",
                 browser = new Browser
                 {
