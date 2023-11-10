@@ -8,14 +8,23 @@ namespace Test.Integration.NetFx48.VerificationAPI
     public class VerificationRequests
     {
         private readonly EnvironmentVariable environmentVariable = new EnvironmentVariable();
+        private readonly string ApiKey;
+        private readonly string UserId;
+        private readonly string SendTo;
+        public VerificationRequests()
+        {
+            ApiKey = environmentVariable.ApiKey;
+            UserId = environmentVariable.UserId;
+            SendTo = environmentVariable.SendTo;
+        }
         [Fact]
         public void VerificationSend()
         {
-            var sift = new Client(environmentVariable.ApiKey + ":");
+            var sift = new Client(ApiKey + ":");
             VerificationSendRequest verificationSendRequest = new VerificationSendRequest
             {
-                UserId = environmentVariable.UserId,
-                SendTo = environmentVariable.SendTo,
+                UserId = UserId,
+                SendTo = SendTo,
                 VerificationType = "$email",
                 BrandName = "MyTopBrand",
                 Language = "en",
@@ -41,12 +50,12 @@ namespace Test.Integration.NetFx48.VerificationAPI
         [Fact]
         public void VerificationReSend()
         {
-            var sift = new Client(environmentVariable.ApiKey + ":");
+            var sift = new Client(ApiKey + ":");
             var sessionId = "SOME_SESSION_ID";
             VerificationSendRequest verificationSendRequest = new VerificationSendRequest
             {
-                UserId = environmentVariable.UserId,
-                SendTo = environmentVariable.SendTo,
+                UserId = UserId,
+                SendTo = SendTo,
                 VerificationType = "$email",
                 BrandName = "MyTopBrand",
                 Language = "en",
@@ -70,7 +79,7 @@ namespace Test.Integration.NetFx48.VerificationAPI
 
             VerificationReSendRequest verificationReSendRequest = new VerificationReSendRequest
             {
-                UserId = environmentVariable.UserId,
+                UserId = UserId,
                 VerifiedEvent = "$login",
                 VerifiedEntityId = sessionId
             };
@@ -82,10 +91,10 @@ namespace Test.Integration.NetFx48.VerificationAPI
         [InlineData(990941)]
         public void VerificationCheck(int code)
         {
-            var sift = new Client(environmentVariable.ApiKey + ":");
+            var sift = new Client(ApiKey + ":");
             VerificationCheckRequest verificationCheckRequest = new VerificationCheckRequest
             {
-                UserId = environmentVariable.UserId,
+                UserId = UserId,
                 Code = code,
                 VerifiedEvent = "$login"
             };
