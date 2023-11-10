@@ -45,7 +45,7 @@ namespace Test.Integration.Net7.VerificationAPI
                 }
             };
             VerificationSendResponse verificationSendResponse = sift.SendAsync(verificationSendRequest).Result;
-            Assert.Equal("OK", verificationSendResponse.ErrorMessage);
+            Assert.Equal("0", verificationSendResponse.Status.ToString());
         }
 
         [Fact]
@@ -85,7 +85,7 @@ namespace Test.Integration.Net7.VerificationAPI
                 VerifiedEntityId = sessionId
             };
             VerificationReSendResponse verificationReSendResponse = sift.SendAsync(verificationReSendRequest).Result;
-            Assert.Equal("OK", verificationReSendResponse.ErrorMessage);
+            Assert.Equal("0", verificationReSendResponse.Status.ToString());
         }
 
         [Theory]
