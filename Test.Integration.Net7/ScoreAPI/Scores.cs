@@ -26,7 +26,7 @@ namespace Test.Integration.Net7.ScoreAPI
                 AbuseTypes = new List<string>() { "payment_abuse" }
             };
             ScoreResponse res = sift.SendAsync(scoreRequest).Result;
-            Assert.Equal("OK", res.ErrorMessage);
+            Assert.Equal("0", res.Status.ToString());
         }
                 
         //[Fact]
@@ -39,7 +39,7 @@ namespace Test.Integration.Net7.ScoreAPI
                 AbuseTypes = new List<string>() { "payment_abuse", "promotion_abuse" }
             };
             ScoreResponse res = sift.SendAsync(rescoreRequest).Result;
-            Assert.Equal("OK", res.ErrorMessage);
+            Assert.Equal("0", res.Status.ToString());
         }
     }
 }
