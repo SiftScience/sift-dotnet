@@ -7,15 +7,24 @@ namespace Test.Integration.NetFx48.EventsAPI
     public class Verifications
     {
         private readonly EnvironmentVariable environmentVariable = new EnvironmentVariable();
+        private readonly string ApiKey;
+        private readonly string SessionId;
+        private readonly string UserId;
+        public Verifications()
+        {
+            ApiKey = environmentVariable.ApiKey;
+            SessionId = environmentVariable.session_id;
+            UserId = environmentVariable.user_id;
+        }
         [Fact]
         public void VerificationTest()
         {
-            var sift = new Client(environmentVariable.ApiKey);
+            var sift = new Client(ApiKey);
             var sessionId = "sessionId";
             var verification = new Verification
             {
-                user_id = environmentVariable.user_id,
-                session_id = environmentVariable.session_id,
+                user_id = UserId,
+                session_id = SessionId,
                 status = "$pending",
                 browser = new Browser
                 {
