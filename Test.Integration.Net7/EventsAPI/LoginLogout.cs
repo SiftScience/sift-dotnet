@@ -51,7 +51,7 @@ namespace Test.Integration.Net7.EventsAPI
                 Event = login
             };
             EventResponse res = sift.SendAsync(eventRequest).Result;
-            Assert.Equal("OK", res.ErrorMessage);
+            Assert.Equal("0", res.Status.ToString());
         }
 
         [Fact]
@@ -76,7 +76,7 @@ namespace Test.Integration.Net7.EventsAPI
                 Event = logout
             };
             EventResponse res = sift.SendAsync(eventRequest).Result;
-            Assert.Equal("OK", res.ErrorMessage);
+            Assert.Equal("0", res.Status.ToString());
         }
 
 
