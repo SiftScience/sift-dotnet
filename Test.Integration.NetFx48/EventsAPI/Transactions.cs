@@ -8,21 +8,40 @@ namespace Test.Integration.NetFx48.EventsAPI
     public class Transactions
     {
         private readonly EnvironmentVariable environmentVariable = new EnvironmentVariable();
+        private readonly string ApiKey;
+        private readonly string UserId;
+        private readonly string UserEmail;
+        private readonly string OrderId;
+        private readonly string TransactionId;
+        private readonly string SessionId;
+        private readonly string SellerUserId;
+        private readonly string MerchantId;
+        public Transactions()
+        {
+            ApiKey = environmentVariable.ApiKey;
+            UserId = environmentVariable.user_id;
+            UserEmail = environmentVariable.user_email;
+            OrderId = environmentVariable.order_id;
+            TransactionId = environmentVariable.transaction_id;
+            SessionId = environmentVariable.session_id;
+            SellerUserId = environmentVariable.seller_user_id;
+            MerchantId = environmentVariable.merchant_id;
+        }
         [Fact]
         public void TransactionTest()
         {
-            var sift = new Client(environmentVariable.ApiKey);
+            var sift = new Client(ApiKey);
             var transaction = new Transaction
             {
-                user_id = environmentVariable.user_id,
-                user_email = environmentVariable.user_email,
+                user_id = UserId,
+                user_email = UserEmail,
                 verification_phone_number = "+123456789012",
                 transaction_type = "$sale",
                 transaction_status = "$failure",
                 amount = 506790000,
                 currency_code = "USD",
-                order_id = environmentVariable.order_id,
-                transaction_id = environmentVariable.transaction_id,
+                order_id = OrderId,
+                transaction_id = TransactionId,
                 billing_address = new Address()
                 {
                     name = "Bill Jones",
@@ -63,8 +82,8 @@ namespace Test.Integration.NetFx48.EventsAPI
                     country = "US",
                     zipcode = "03257"
                 },
-                session_id = environmentVariable.session_id,
-                seller_user_id = environmentVariable.seller_user_id,
+                session_id = SessionId,
+                seller_user_id = SellerUserId,
                 decline_category = "$fraud",
                 ordered_from = new OrderedFrom()
                 {
@@ -95,7 +114,7 @@ namespace Test.Integration.NetFx48.EventsAPI
                 merchant_initiated_transaction = false,
                 merchant_profile = new MerchantProfile()
                 {
-                    merchant_id = environmentVariable.merchant_id,
+                    merchant_id = MerchantId,
                     merchant_category_code = "1234",
                     merchant_name = "Dream Company",
                     merchant_address = new Address()
