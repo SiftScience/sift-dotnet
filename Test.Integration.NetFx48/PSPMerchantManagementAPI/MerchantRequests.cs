@@ -8,13 +8,24 @@ namespace Test.Integration.NetFx48.PSPMerchantManagementAPI
     public class MerchantRequests
     {
         private readonly EnvironmentVariable environmentVariable = new EnvironmentVariable();
+        private readonly string ApiKey;
+        private readonly string AccountId;
+        private readonly string MerchantId;
+        private readonly string Id;
+        public MerchantRequests()
+        {
+            ApiKey = environmentVariable.ApiKey;
+            AccountId = environmentVariable.AccountId;
+            MerchantId = environmentVariable.MerchantId;
+            Id = environmentVariable.Id;
+        }
         [Fact]
         public void GetMerchantRequest()
         {
-            var sift = new Client(environmentVariable.ApiKey);
+            var sift = new Client(ApiKey);
             GetMerchantsRequest getMerchantRequest = new GetMerchantsRequest
             {
-                AccountId = environmentVariable.AccountId,
+                AccountId = AccountId,
                 BatchSize = 10,
                 BatchToken = null,
             };
@@ -25,14 +36,14 @@ namespace Test.Integration.NetFx48.PSPMerchantManagementAPI
         [Fact]
         public void UpdateMerchantRequest()
         {
-            var sift = new Client(environmentVariable.ApiKey);
+            var sift = new Client(ApiKey);
             UpdateMerchantRequest updateMerchantRequest = new UpdateMerchantRequest
             {
-                AccountId = environmentVariable.AccountId,
-                MerchantId = environmentVariable.MerchantId,
+                AccountId = AccountId,
+                MerchantId = MerchantId,
                 Name = "Watson and Holmes",
-                Id = environmentVariable.Id,
-                ApiKey = environmentVariable.ApiKey,
+                Id = Id,
+                ApiKey = ApiKey,
                 Description = "An example of a PSP Merchant. Illustrative.",
                 Address = new MerchantAddress()
                 {
@@ -61,12 +72,12 @@ namespace Test.Integration.NetFx48.PSPMerchantManagementAPI
         [Fact]
         public void CreateMerchantRequest()
         {
-            var sift = new Client(environmentVariable.ApiKey);
+            var sift = new Client(ApiKey);
             CreateMerchantRequest createMerchantRequest = new CreateMerchantRequest
             {
-                AccountId = environmentVariable.AccountId,
+                AccountId = AccountId,
                 Name = "Watson and Holmes",
-                ApiKey = environmentVariable.ApiKey,
+                ApiKey = ApiKey,
                 Id = Guid.NewGuid().ToString(),
                 Description = "An example of a PSP Merchant. Illustrative.",
                 Address = new MerchantAddress()
@@ -96,12 +107,12 @@ namespace Test.Integration.NetFx48.PSPMerchantManagementAPI
         [Fact]
         public void GetMerchantDetailsRequest()
         {
-            var sift = new Client(environmentVariable.ApiKey);
+            var sift = new Client(ApiKey);
             GetMerchantDetailsRequest getMerchantDetailsRequest = new GetMerchantDetailsRequest
             {
-                AccountId = environmentVariable.AccountId,
-                ApiKey = environmentVariable.ApiKey,
-                MerchantId = environmentVariable.MerchantId
+                AccountId = AccountId,
+                ApiKey = ApiKey,
+                MerchantId = MerchantId
             };
             SiftResponse getMerchantDetailsResponse = sift.SendAsync(getMerchantDetailsRequest).Result;
             Assert.Equal("OK", getMerchantDetailsResponse.ErrorMessage ?? "OK");
