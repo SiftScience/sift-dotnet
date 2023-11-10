@@ -100,7 +100,7 @@ namespace Test.Integration.Net7.VerificationAPI
                 VerifiedEvent = "$login"
             };
             VerificationCheckResponse verificationCheckResponse = sift.SendAsync(verificationCheckRequest).Result;
-            Assert.Equal("OK", verificationCheckResponse.ErrorMessage);
+            Assert.Equal("0", verificationCheckResponse.Status.ToString());
         }
     }
 }
