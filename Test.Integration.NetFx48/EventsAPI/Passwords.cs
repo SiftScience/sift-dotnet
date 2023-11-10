@@ -8,14 +8,25 @@ namespace Test.Integration.NetFx48.EventsAPI
     public class Passwords
     {
         private readonly EnvironmentVariable environmentVariable = new EnvironmentVariable();
+        private readonly string ApiKey;
+        private readonly string UserId;
+        private readonly string SessionId;
+        private readonly string UserEmail;
+        public Passwords()
+        {
+            ApiKey = environmentVariable.ApiKey;
+            UserId = environmentVariable.user_id;
+            SessionId = environmentVariable.session_id;
+            UserEmail = environmentVariable.user_email;
+        }
         [Fact]
         public void UpdatePassword()
         {
-            var sift = new Client(environmentVariable.ApiKey);
+            var sift = new Client(ApiKey);
             var updatePassword = new UpdatePassword
             {
-                user_id = environmentVariable.user_id,
-                session_id = environmentVariable.session_id,
+                user_id = UserId,
+                session_id = SessionId,
                 status = "$success",
                 reason = "$forced_reset",
                 ip = "128.148.1.135",
@@ -28,7 +39,7 @@ namespace Test.Integration.NetFx48.EventsAPI
                 brand_name = "sift",
                 site_domain = "sift.com",
                 site_country = "US",
-                user_email = environmentVariable.user_email,
+                user_email = UserEmail,
                 verification_phone_number = "+123456789012"
             };
             EventRequest eventRequest = new EventRequest()
