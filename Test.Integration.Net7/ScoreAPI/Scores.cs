@@ -5,17 +5,24 @@ using Xunit;
 
 namespace Test.Integration.Net7.ScoreAPI
 {
-    public class VerificationsRequests
+    public class ScoresRequests
     {
         private readonly EnvironmentVariable environmentVariable = new();
+        private readonly string ApiKey;
+        private readonly string UserId;
+        public ScoresRequests()
+        {
+            ApiKey = environmentVariable.ApiKey;
+            UserId = environmentVariable.UserId;
+        }
 
         [Fact]
         public void GetScoreRequest()
         {
-            var sift = new Client(environmentVariable.ApiKey);
+            var sift = new Client(ApiKey);
             ScoreRequest scoreRequest = new ScoreRequest
             {
-                UserId = environmentVariable.UserId,
+                UserId = UserId,
                 AbuseTypes = new List<string>() { "payment_abuse" }
             };
             ScoreResponse res = sift.SendAsync(scoreRequest).Result;
@@ -25,10 +32,10 @@ namespace Test.Integration.Net7.ScoreAPI
         //[Fact]
         public void ReScoreRequest()
         {
-            var sift = new Client(environmentVariable.ApiKey);
+            var sift = new Client(ApiKey);
             RescoreRequest rescoreRequest = new RescoreRequest
             {
-                UserId = environmentVariable.UserId,
+                UserId = UserId,
                 AbuseTypes = new List<string>() { "payment_abuse", "promotion_abuse" }
             };
             ScoreResponse res = sift.SendAsync(rescoreRequest).Result;
