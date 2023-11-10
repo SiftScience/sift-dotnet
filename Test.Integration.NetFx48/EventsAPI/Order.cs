@@ -8,16 +8,37 @@ namespace Test.Integration.NetFx48.EventsAPI
     public class Order
     {
         private readonly EnvironmentVariable environmentVariable = new EnvironmentVariable();
+        private readonly string ApiKey;
+        private readonly string UserId;
+        private readonly string SessionId;
+        private readonly string OrderId;
+        private readonly string UserEmail;
+        private readonly string ItemId;
+        private readonly string SellerUserId;
+        private readonly string PromotionId;
+        private readonly string WebhookId;
+        public Order()
+        {
+            ApiKey = environmentVariable.ApiKey;
+            UserId = environmentVariable.user_id;
+            SessionId = environmentVariable.session_id;
+            OrderId = environmentVariable.order_id;
+            UserEmail = environmentVariable.user_email;
+            ItemId = environmentVariable.item_id;
+            SellerUserId = environmentVariable.seller_user_id;
+            PromotionId = environmentVariable.promotion_id;
+            WebhookId = environmentVariable.webhook_id;
+        }
         [Fact]
         public void CreateOrder()
         {
-            var sift = new Client(environmentVariable.ApiKey);
+            var sift = new Client(ApiKey);
             var createOrder = new CreateOrder
             {
-                user_id = environmentVariable.user_id,
-                session_id = environmentVariable.session_id,
-                order_id = environmentVariable.order_id,
-                user_email = environmentVariable.user_email,
+                user_id = UserId,
+                session_id = SessionId,
+                order_id = OrderId,
+                user_email = UserEmail,
                 amount = 115940000,
                 currency_code = "USD",
                 billing_address = new Address()
@@ -82,7 +103,7 @@ namespace Test.Integration.NetFx48.EventsAPI
                 {
                     new Item()
                     {
-                        item_id = environmentVariable.item_id,
+                        item_id = ItemId,
                         product_title = "Microwavable Kettle Corn: Original Flavor",
                         price = 4990000,
                         currency_code = "USD",
@@ -98,15 +119,15 @@ namespace Test.Integration.NetFx48.EventsAPI
                     },
                     new Item()
                     {
-                        item_id = environmentVariable.item_id
+                        item_id = ItemId
                     }
                 },
-                seller_user_id = environmentVariable.seller_user_id,
+                seller_user_id = SellerUserId,
                 promotions = new ObservableCollection<Promotion>()
                 {
                     new Promotion()
                     {
-                        promotion_id = environmentVariable.promotion_id,
+                        promotion_id = PromotionId,
                         status = "$success",
                         description = "$5 off",
                         discount = new Discount()
@@ -136,13 +157,13 @@ namespace Test.Integration.NetFx48.EventsAPI
         [Fact]
         public void UpdateOrder()
         {
-            var sift = new Client(environmentVariable.ApiKey);
+            var sift = new Client(ApiKey);
             var updateOrder = new UpdateOrder
             {
-                user_id = environmentVariable.user_id,
-                session_id = environmentVariable.session_id,
-                order_id = environmentVariable.order_id,
-                user_email = environmentVariable.user_email,
+                user_id = UserId,
+                session_id = SessionId,
+                order_id = OrderId,
+                user_email = UserEmail,
                 verification_phone_number = "+123456789012",
                 amount = 115940000,
                 currency_code = "USD",
@@ -208,7 +229,7 @@ namespace Test.Integration.NetFx48.EventsAPI
                 {
                     new Item()
                     {
-                        item_id = environmentVariable.item_id,
+                        item_id = ItemId,
                         product_title = "Microwavable Kettle Corn: Original Flavor",
                         price = 4990000,
                         currency_code = "USD",
@@ -224,15 +245,15 @@ namespace Test.Integration.NetFx48.EventsAPI
                     },
                     new Item()
                     {
-                        item_id = environmentVariable.item_id
+                        item_id = ItemId
                     }
                 },
-                seller_user_id = environmentVariable.seller_user_id,
+                seller_user_id = SellerUserId,
                 promotions = new ObservableCollection<Promotion>()
                 {
                     new Promotion()
                     {
-                        promotion_id = environmentVariable.promotion_id,
+                        promotion_id = PromotionId,
                         status = "$success",
                         description = "$5 off",
                         discount = new Discount()
@@ -262,16 +283,16 @@ namespace Test.Integration.NetFx48.EventsAPI
         [Fact]
         public void OrderStatus()
         {
-            var sift = new Client(environmentVariable.ApiKey);
+            var sift = new Client(ApiKey);
             var orderStatus = new OrderStatus
             {
-                user_id = environmentVariable.user_id,
-                order_id = environmentVariable.order_id,
+                user_id = UserId,
+                order_id = OrderId,
                 order_status = "$canceled",
                 reason = "$payment_risk",
                 source = "$manual_review",
                 analyst = "someone@your-site.com",
-                webhook_id = environmentVariable.webhook_id,
+                webhook_id = WebhookId,
                 description = "Canceling because multiple fraudulent users on device",
                 browser = new Browser
                 {
