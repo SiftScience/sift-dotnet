@@ -76,7 +76,7 @@ namespace Test.Integration.Net7.EventsAPI
                 Event = createContent
             };
             EventResponse res = sift.SendAsync(eventRequest).Result;
-            Assert.Equal("OK", res.ErrorMessage);
+            Assert.Equal("0", res.Status.ToString());
         }
 
         [Fact]
@@ -175,7 +175,7 @@ namespace Test.Integration.Net7.EventsAPI
                 Event = createContent
             };
             EventResponse res = sift.SendAsync(eventRequest).Result;
-            Assert.Equal("OK", res.ErrorMessage);
+            Assert.Equal("0", res.Status.ToString());
         }
 
         [Fact]
@@ -225,7 +225,7 @@ namespace Test.Integration.Net7.EventsAPI
                 Event = createContent
             };
             EventResponse res = sift.SendAsync(eventRequest).Result;
-            Assert.Equal("OK", res.ErrorMessage);
+            Assert.Equal("0", res.Status.ToString());
         }
 
         [Fact]
@@ -305,7 +305,7 @@ namespace Test.Integration.Net7.EventsAPI
                 Event = createContent
             };
             EventResponse res = sift.SendAsync(eventRequest).Result;
-            Assert.Equal("OK", res.ErrorMessage);
+            Assert.Equal("0", res.Status.ToString());
         }
 
         [Fact]
@@ -364,7 +364,7 @@ namespace Test.Integration.Net7.EventsAPI
                 Event = createContent
             };
             EventResponse res = sift.SendAsync(eventRequest).Result;
-            Assert.Equal("OK", res.ErrorMessage);
+            Assert.Equal("0", res.Status.ToString());
         }
 
         [Fact]
@@ -448,7 +448,7 @@ namespace Test.Integration.Net7.EventsAPI
                 Event = createContent
             };
             EventResponse res = sift.SendAsync(eventRequest).Result;
-            Assert.Equal("OK", res.ErrorMessage);
+            Assert.Equal("0", res.Status.ToString());
         }
 
         [Fact]
@@ -469,7 +469,7 @@ namespace Test.Integration.Net7.EventsAPI
                 Event = flagContent
             };
             EventResponse res = sift.SendAsync(eventRequest).Result;
-            Assert.Equal("OK", res.ErrorMessage);
+            Assert.Equal("0", res.Status.ToString());
         }
 
         [Fact]
@@ -499,7 +499,7 @@ namespace Test.Integration.Net7.EventsAPI
                 Event = contentStatus
             };
             EventResponse res = sift.SendAsync(eventRequest).Result;
-            Assert.Equal("OK", res.ErrorMessage);
+            Assert.Equal("0", res.Status.ToString());
         }
     }
 }
