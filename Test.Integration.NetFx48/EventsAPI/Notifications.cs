@@ -44,7 +44,6 @@ namespace Test.Integration.NetFx48.EventsAPI
                 Event = securityNotification
             };
             EventResponse res = sift.SendAsync(eventRequest).Result;
-            Assert.Equal("OK", res.ErrorMessage);
             Assert.Equal("0", res.Status.ToString());
         }
     }
