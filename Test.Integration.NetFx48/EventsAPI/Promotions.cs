@@ -8,23 +8,36 @@ namespace Test.Integration.NetFx48.EventsAPI
     public class Promotions
     {
         private readonly EnvironmentVariable environmentVariable = new EnvironmentVariable();
+        private readonly string ApiKey;
+        private readonly string UserId;
+        private readonly string SessionId;
+        private readonly string PromotionId;
+        private readonly string ReferrerUserId;
+        public Promotions()
+        {
+            ApiKey = environmentVariable.ApiKey;
+            UserId = environmentVariable.user_id;
+            SessionId = environmentVariable.session_id;
+            PromotionId = environmentVariable.promotion_id;
+            ReferrerUserId = environmentVariable.referrer_user_id;
+        }
         [Fact]
         public void AddPromotionTest()
         {
-            var sift = new Client(environmentVariable.ApiKey);
+            var sift = new Client(ApiKey);
             var addPromotion = new AddPromotion
             {
-                user_id = environmentVariable.user_id,
-                session_id = environmentVariable.session_id,
+                user_id = UserId,
+                session_id = SessionId,
                 promotions = new ObservableCollection<Promotion>()
                 {
                     new Promotion()
                     {
-                          promotion_id = environmentVariable.promotion_id,
+                          promotion_id = PromotionId,
                           status = "$success",
                           failure_reason = "$already_used",
                           description =   "$5 off your first 5 rides",
-                          referrer_user_id = environmentVariable.referrer_user_id,
+                          referrer_user_id = ReferrerUserId,
                           discount = new Discount()
                           {
                                   percentage_off = 0.2,
@@ -40,7 +53,7 @@ namespace Test.Integration.NetFx48.EventsAPI
                     },
                     new Promotion()
                     {
-                        promotion_id = environmentVariable.promotion_id
+                        promotion_id = PromotionId
                     }
                 },
                 browser = new Browser
