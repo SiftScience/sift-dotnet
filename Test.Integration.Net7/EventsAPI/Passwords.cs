@@ -46,7 +46,7 @@ namespace Test.Integration.Net7.EventsAPI
                 Event = updatePassword
             };
             EventResponse res = sift.SendAsync(eventRequest).Result;
-            Assert.Equal("OK", res.ErrorMessage);
+            Assert.Equal("0", res.Status.ToString());
         }
     }
 }
