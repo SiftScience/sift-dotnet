@@ -127,7 +127,7 @@ namespace Test.Integration.Net7.EventsAPI
         [Fact]
         public void UpdateAccount()
         {
-            var sift = new Client(environmentVariable.ApiKey);
+            var sift = new Client(ApiKey);
             var updateAccount = new UpdateAccount
             {
                 user_id = UserId,
