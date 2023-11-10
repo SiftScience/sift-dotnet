@@ -7,15 +7,26 @@ namespace Test.Integration.Net7.EventsAPI
     public class Verifications
     {
         private readonly EnvironmentVariable environmentVariable = new();
+        private readonly string ApiKey;
+        private readonly string SessionId;
+        private readonly string UserId;
+        private readonly string VerifiedValue;
+        public Verifications()
+        {
+            ApiKey = environmentVariable.ApiKey;
+            SessionId = environmentVariable.session_id;
+            UserId = environmentVariable.user_id;
+            VerifiedValue = environmentVariable.verified_value;
+        }
         [Fact]
         public void VerificationTest()
         {
-            var sift = new Client(environmentVariable.ApiKey);
+            var sift = new Client(ApiKey);
             var sessionId = "sessionId";
             var verification = new Verification
             {
-                user_id = environmentVariable.user_id,
-                session_id = environmentVariable.session_id,
+                user_id = UserId,
+                session_id = SessionId,
                 status = "$pending",
                 browser = new Browser
                 {
@@ -26,7 +37,7 @@ namespace Test.Integration.Net7.EventsAPI
                 verified_event = "$login",
                 verified_entity_id = sessionId,
                 verification_type = "$sms",
-                verified_value = environmentVariable.verified_value,
+                verified_value = VerifiedValue,
                 reason = "$user_setting",
                 brand_name = "sift",
                 site_domain = "sift.com",
