@@ -32,7 +32,7 @@ namespace Test.Integration.Net7.LabelsAPI
             };
 
             SiftResponse labelResponse = sift.SendAsync(labelRequest).Result;
-            Assert.Equal("OK", labelResponse.ErrorMessage);
+            Assert.Equal("0", labelResponse.Status.ToString());
         }
 
         //[Fact]
@@ -47,7 +47,7 @@ namespace Test.Integration.Net7.LabelsAPI
             };
 
             SiftResponse labelResponse = sift.SendAsync(unlabelRequest).Result;
-            Assert.Equal("OK", labelResponse.ErrorMessage ?? "OK");
+            Assert.Equal("0", labelResponse.Status.ToString());
         }
     }
 }
