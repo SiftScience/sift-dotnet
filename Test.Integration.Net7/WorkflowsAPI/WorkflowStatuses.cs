@@ -29,8 +29,7 @@ namespace Test.Integration.Net7.WorkflowsAPI
                 WorkflowRunId = WorkflowRunId
             };
             WorkflowStatusResponse workFlowStatusResponse = sift.SendAsync(workflowStatusRequest).Result;
-            Assert.Equal("OK", workFlowStatusResponse.ErrorMessage);
+            Assert.Equal("0", workFlowStatusResponse.Status.ToString());
         }
-
     }
 }
