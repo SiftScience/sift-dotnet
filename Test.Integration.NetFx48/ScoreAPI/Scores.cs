@@ -8,13 +8,20 @@ namespace Test.Integration.NetFx48.ScoreAPI
     public class VerificationsRequests
     {
         private readonly EnvironmentVariable environmentVariable = new EnvironmentVariable();
+        private readonly string ApiKey;
+        private readonly string UserId;
+        public VerificationsRequests()
+        {
+            ApiKey = environmentVariable.ApiKey;
+            UserId = environmentVariable.UserId;
+        }
         [Fact]
         public void GetScoreRequest()
         {
-            var sift = new Client(environmentVariable.ApiKey);
+            var sift = new Client(ApiKey);
             ScoreRequest scoreRequest = new ScoreRequest
             {                
-                UserId = environmentVariable.UserId,
+                UserId = UserId,
                 AbuseTypes = new List<string>() { "payment_abuse" }
             };
 
@@ -25,10 +32,10 @@ namespace Test.Integration.NetFx48.ScoreAPI
         //[Fact]
         public void ReScoreRequest()
         {
-            var sift = new Client(environmentVariable.ApiKey);
+            var sift = new Client(ApiKey);
             RescoreRequest rescoreRequest = new RescoreRequest
             {
-                UserId = environmentVariable.UserId,
+                UserId = UserId,
                 AbuseTypes = new List<string>() { "payment_abuse", "promotion_abuse" }
             };
 
