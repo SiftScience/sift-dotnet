@@ -8,11 +8,13 @@ namespace Test.Integration.Net7.EventsAPI
     public class Cart
     {
         private readonly EnvironmentVariable environmentVariable = new();
+        private readonly string ApiKey;
         private readonly string UserId;
         private readonly string SessionId;
         private readonly string ItemId;
         public Cart()
         {
+            ApiKey = environmentVariable.ApiKey;
             UserId = environmentVariable.user_id;
             SessionId = environmentVariable.session_id;
             ItemId = environmentVariable.item_id;
@@ -21,7 +23,7 @@ namespace Test.Integration.Net7.EventsAPI
         [Fact]
         public void AddItemToCartEvent()
         {
-            var sift = new Client(environmentVariable.ApiKey);
+            var sift = new Client(ApiKey);
             var addItemToCart = new AddItemToCart
             {
                 user_id = UserId,
@@ -67,7 +69,7 @@ namespace Test.Integration.Net7.EventsAPI
         [Fact]
         public void RemoveItemFromCart()
         {
-            var sift = new Client(environmentVariable.ApiKey);
+            var sift = new Client(ApiKey);
             var removeItemFromCart = new RemoveItemFromCart
             {
                 user_id = UserId,
