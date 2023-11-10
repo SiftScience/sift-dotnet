@@ -8,16 +8,27 @@ namespace Test.Integration.NetFx48.EventsAPI
     public class LoginLogout
     {
         private readonly EnvironmentVariable environmentVariable = new EnvironmentVariable();
+        private readonly string ApiKey;
+        private readonly string UserId;
+        private readonly string SessionId;
+        private readonly string UserEmail;
+        public LoginLogout()
+        {
+            ApiKey = environmentVariable.ApiKey;
+            UserId = environmentVariable.user_id;
+            SessionId = environmentVariable.session_id;
+            UserEmail = environmentVariable.user_email;
+        }
         [Fact]
         public void Login()
         {
-            var sift = new Client(environmentVariable.ApiKey);
+            var sift = new Client(ApiKey);
             var login = new Login
             {
-                user_id = environmentVariable.user_id,
-                session_id = environmentVariable.session_id,
+                user_id = UserId,
+                session_id = SessionId,
                 login_status = "$success",
-                user_email = environmentVariable.user_email,
+                user_email = UserEmail,
                 verification_phone_number = "+123456789012",
                 ip = "128.148.1.135",
                 browser = new Browser
@@ -26,7 +37,7 @@ namespace Test.Integration.NetFx48.EventsAPI
                     accept_language = "en-US",
                     content_language = "en-GB"
                 },
-                username = environmentVariable.user_email,
+                username = UserEmail,
                 social_sign_on_type = "$linkedin",
                 account_types = new ObservableCollection<string>() { "merchant", "premium" },
                 brand_name = "sift",
@@ -45,10 +56,10 @@ namespace Test.Integration.NetFx48.EventsAPI
         [Fact]
         public void Logout()
         {
-            var sift = new Client(environmentVariable.ApiKey);
+            var sift = new Client(ApiKey);
             var logout = new Logout
             {
-                user_id = environmentVariable.user_id,
+                user_id = UserId,
                 browser = new Browser
                 {
                     user_agent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36",
