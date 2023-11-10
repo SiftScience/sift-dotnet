@@ -62,7 +62,7 @@ namespace Test.Integration.Net7.EventsAPI
             };
 
             EventResponse res = sift.SendAsync(eventRequest).Result;
-            Assert.Equal("OK", res.ErrorMessage);
+            Assert.Equal("0", res.Status.ToString());
         }
 
 
@@ -107,7 +107,7 @@ namespace Test.Integration.Net7.EventsAPI
                 Event = removeItemFromCart
             };
             EventResponse res = sift.SendAsync(eventRequest).Result;
-            Assert.Equal("OK", res.ErrorMessage);
+            Assert.Equal("0", res.Status.ToString());
         }
     }
 }
