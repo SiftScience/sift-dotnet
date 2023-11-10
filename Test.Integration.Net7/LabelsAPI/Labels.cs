@@ -8,6 +8,13 @@ namespace Test.Integration.Net7.LabelsAPI
     public class Labels
     {
         private readonly EnvironmentVariable environmentVariable = new();
+        private readonly string ApiKey;
+        private readonly string UserId;
+        public Labels()
+        {
+            ApiKey = environmentVariable.ApiKey;
+            UserId = environmentVariable.user_id;
+        }
 
         //[Fact]
         public void LabelRequest()
