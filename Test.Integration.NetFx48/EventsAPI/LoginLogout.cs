@@ -75,6 +75,6 @@ namespace Test.Integration.NetFx48.EventsAPI
             };
             EventResponse res = sift.SendAsync(eventRequest).Result;
             Assert.Equal("0", res.Status.ToString());
-        }
+        }        
     }
 }
