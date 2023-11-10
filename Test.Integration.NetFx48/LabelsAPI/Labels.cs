@@ -8,14 +8,21 @@ namespace Test.Integration.NetFx48.LabelsAPI
     public class Labels
     {
         private readonly EnvironmentVariable environmentVariable = new EnvironmentVariable();
+        private readonly string ApiKey;
+        private readonly string UserId;
+        public Labels()
+        {
+            ApiKey = environmentVariable.ApiKey;
+            UserId = environmentVariable.UserId;
+        }
         //[Fact]
         public void LabelRequest()
         {
-            var sift = new Client(environmentVariable.ApiKey);
+            var sift = new Client(ApiKey);
             LabelRequest labelRequest = new LabelRequest
             {
-                UserId = environmentVariable.UserId,
-                ApiKey = environmentVariable.ApiKey,
+                UserId = UserId,
+                ApiKey = ApiKey,
                 IsBad = true,
                 AbuseType = "payment_abuse",
                 Description = "The user was testing cards repeatedly for a valid card",
@@ -30,11 +37,11 @@ namespace Test.Integration.NetFx48.LabelsAPI
         //[Fact]
         public void UnLabelRequest()
         {
-            var sift = new Client(environmentVariable.ApiKey);
+            var sift = new Client(ApiKey);
             UnlabelRequest unlabelRequest = new UnlabelRequest
             {
-                UserId = environmentVariable.UserId,
-                ApiKey = environmentVariable.ApiKey,
+                UserId = UserId,
+                ApiKey = ApiKey,
                 AbuseType = "payment_abuse"
             };
 
