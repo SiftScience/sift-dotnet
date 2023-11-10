@@ -5,12 +5,12 @@ using Xunit;
 
 namespace Test.Integration.NetFx48.ScoreAPI
 {
-    public class VerificationsRequests
+    public class Scores
     {
         private readonly EnvironmentVariable environmentVariable = new EnvironmentVariable();
         private readonly string ApiKey;
         private readonly string UserId;
-        public VerificationsRequests()
+        public Scores()
         {
             ApiKey = environmentVariable.ApiKey;
             UserId = environmentVariable.UserId;
