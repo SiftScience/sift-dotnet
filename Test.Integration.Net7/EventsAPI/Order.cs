@@ -36,7 +36,6 @@ namespace Test.Integration.Net7.EventsAPI
         [Fact]
         public void OrderTest()
         {
-            Console.WriteLine("Order - OrderTest - start");
             var sift = new Client(ApiKey);
             EventResponse createOrderResp = CreateOrder(sift);
             Assert.Equal("0", createOrderResp.Status.ToString());
@@ -46,7 +45,6 @@ namespace Test.Integration.Net7.EventsAPI
 
             EventResponse orderStatusResp = OrderStatus(sift);
             Assert.Equal("0", orderStatusResp.Status.ToString());
-            Console.WriteLine("Order - OrderTest - end");
         }
 
         private EventResponse CreateOrder(Client sift)

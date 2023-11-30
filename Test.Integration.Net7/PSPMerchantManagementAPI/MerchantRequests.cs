@@ -24,7 +24,6 @@ namespace Test.Integration.Net7.PSPMerchantManagementAPI
         [Fact]
         public void GetMerchantRequest()
         {
-            Console.WriteLine("Merchants - first");
             var sift = new Client(ApiKey);
             GetMerchantsRequest getMerchantRequest = new GetMerchantsRequest
             {
@@ -40,7 +39,6 @@ namespace Test.Integration.Net7.PSPMerchantManagementAPI
         [Fact]
         public void MerchantOperationsTest()
         {
-            Console.WriteLine("Merchants - second");
             var sift = new Client(ApiKey);
             CreateMerchantResponse createMerchantResponse = CreateMerchant(sift);
             Assert.Equal("active", createMerchantResponse.Status);

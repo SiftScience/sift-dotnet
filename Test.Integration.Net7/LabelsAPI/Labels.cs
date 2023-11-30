@@ -1,5 +1,4 @@
 using Sift;
-using System;
 using Test.Integration.Net7.Uitlities;
 using Xunit;
 
@@ -19,7 +18,6 @@ namespace Test.Integration.Net7.LabelsAPI
         [Fact]
         public void LabelRequest()
         {
-            Console.WriteLine("Labels - LabelRequest - start");
             var sift = new Client(ApiKey);
             LabelRequest labelRequest = new LabelRequest
             {
@@ -34,13 +32,11 @@ namespace Test.Integration.Net7.LabelsAPI
 
             SiftResponse labelResponse = sift.SendAsync(labelRequest).Result;
             Assert.Equal("0", labelResponse.Status.ToString());
-            Console.WriteLine("Labels - LabelRequest - end");
         }
 
         [Fact]
         public void UnLabelRequest()
         {
-            Console.WriteLine("Labels - UnLabelRequest - start");
             var sift = new Client(ApiKey);
             UnlabelRequest unlabelRequest = new UnlabelRequest
             {
@@ -51,7 +47,6 @@ namespace Test.Integration.Net7.LabelsAPI
 
             SiftResponse labelResponse = sift.SendAsync(unlabelRequest).Result;
             Assert.Equal("0", labelResponse.Status.ToString());
-            Console.WriteLine("Labels - UnLabelRequest - end");
         }
     }
 }

@@ -1,5 +1,4 @@
 using Sift;
-using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using Test.Integration.Net7.Uitlities;
@@ -33,7 +32,6 @@ namespace Test.Integration.Net7.EventsAPI
         [Fact]
         public void TransactionTest()
         {
-            Console.WriteLine("Transactions - TransactionTest - start");
             var sift = new Client(ApiKey);
             var transaction = new Transaction
             {
@@ -178,7 +176,6 @@ namespace Test.Integration.Net7.EventsAPI
             };
             EventResponse res = sift.SendAsync(eventRequest).Result;
             Assert.Equal("0", res.Status.ToString());
-            Console.WriteLine("Transactions - TransactionTest - end");
         }
     }
 }

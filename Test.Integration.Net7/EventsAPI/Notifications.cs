@@ -1,5 +1,4 @@
 using Sift;
-using System;
 using Test.Integration.Net7.Uitlities;
 using Xunit;
 
@@ -22,7 +21,6 @@ namespace Test.Integration.Net7.EventsAPI
         [Fact]
         public void SecurityNotificationTest()
         {
-            Console.WriteLine("Notifications - SecurityNotificationTest - start");
             var sift = new Client(ApiKey);
             var securityNotification = new SecurityNotification
             {
@@ -47,7 +45,6 @@ namespace Test.Integration.Net7.EventsAPI
             };
             EventResponse res = sift.SendAsync(eventRequest).Result;
             Assert.Equal("0", res.Status.ToString());
-            Console.WriteLine("Notifications - SecurityNotificationTest - end");
         }
     }
 }

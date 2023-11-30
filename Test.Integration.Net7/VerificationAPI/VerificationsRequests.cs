@@ -21,7 +21,6 @@ namespace Test.Integration.Net7.VerificationAPI
         [Fact]
         public void VerificationSend()
         {
-            Console.WriteLine("VerificationRequests - VerificationSend - start");
             var sift = new Client(ApiKey + ":");
             VerificationSendRequest verificationSendRequest = new VerificationSendRequest
             {
@@ -47,13 +46,11 @@ namespace Test.Integration.Net7.VerificationAPI
             };
             VerificationSendResponse verificationSendResponse = sift.SendAsync(verificationSendRequest).Result;
             Assert.Equal(0, verificationSendResponse.Status);
-            Console.WriteLine("VerificationRequests - VerificationSend - end");
         }
 
         [Fact]
         public void VerificationCheck()
         {
-            Console.WriteLine("VerificationRequests - VerificationCheck - start");
             var sift = new Client(ApiKey + ":");
             VerificationCheckRequest verificationCheckRequest = new VerificationCheckRequest
             {
@@ -68,10 +65,6 @@ namespace Test.Integration.Net7.VerificationAPI
             }
             catch (Exception exception)
             {
-            }
-            finally
-            {
-                Console.WriteLine("VerificationRequests - VerificationCheck - end");
             }
         }
     }

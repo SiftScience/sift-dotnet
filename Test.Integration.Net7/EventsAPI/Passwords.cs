@@ -1,5 +1,4 @@
 using Sift;
-using System;
 using Test.Integration.Net7.Uitlities;
 using Xunit;
 
@@ -22,7 +21,6 @@ namespace Test.Integration.Net7.EventsAPI
         [Fact]
         public void UpdatePasswordTest()
         {
-            Console.WriteLine("Passwords - UpdatePasswordTest - start");
             var sift = new Client(ApiKey);
             var updatePassword = new UpdatePassword
             {
@@ -49,7 +47,6 @@ namespace Test.Integration.Net7.EventsAPI
             };
             EventResponse res = sift.SendAsync(eventRequest).Result;
             Assert.Equal("0", res.Status.ToString());
-            Console.WriteLine("Passwords - UpdatePasswordTest - end");
         }
     }
 }

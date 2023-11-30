@@ -36,7 +36,6 @@ namespace Test.Integration.Net7.EventsAPI
         [Fact]
         public void ContentCommentOperations()
         {
-            Console.WriteLine("Contents - ContentCommentOperations - start");
             var sift = new Client(ApiKey);
 
             EventResponse resCreate = CreateContentComment(sift);
@@ -50,13 +49,11 @@ namespace Test.Integration.Net7.EventsAPI
 
             EventResponse resStatus = ContentStatus(sift);
             Assert.Equal("0", resStatus.Status.ToString());
-            Console.WriteLine("Contents - ContentCommentOperations - end");
         }
 
         [Fact]
         public void CreateContentListing()
         {
-            Console.WriteLine("Contents - CreateContentListing - start");
             var sift = new Client(ApiKey);
             var createContent = new CreateContent
             {
@@ -151,13 +148,11 @@ namespace Test.Integration.Net7.EventsAPI
             };
             EventResponse res = sift.SendAsync(eventRequest).Result;
             Assert.Equal("0", res.Status.ToString());
-            Console.WriteLine("Contents - CreateContentListing - end");
         }
 
         [Fact]
         public void CreateContentMessage()
         {
-            Console.WriteLine("Contents - CreateContentMessage - start");
             var sift = new Client(ApiKey);
             var createContent = new CreateContent
             {
@@ -203,13 +198,11 @@ namespace Test.Integration.Net7.EventsAPI
             };
             EventResponse res = sift.SendAsync(eventRequest).Result;
             Assert.Equal("0", res.Status.ToString());
-            Console.WriteLine("Contents - CreateContentMessage - end");
         }
 
         [Fact]
         public void CreateContentPost()
         {
-            Console.WriteLine("Contents - CreateContentPost -start");
             var sift = new Client(ApiKey);
             var createContent = new CreateContent
             {
@@ -285,13 +278,11 @@ namespace Test.Integration.Net7.EventsAPI
             };
             EventResponse res = sift.SendAsync(eventRequest).Result;
             Assert.Equal("0", res.Status.ToString());
-            Console.WriteLine("Contents - CreateContentPost - end");
         }
 
         [Fact]
         public void CreateContentProfile()
         {
-            Console.WriteLine("Contents - CreateContentProfile - start");
             var sift = new Client(ApiKey);
             var createContent = new CreateContent
             {
@@ -346,13 +337,11 @@ namespace Test.Integration.Net7.EventsAPI
             };
             EventResponse res = sift.SendAsync(eventRequest).Result;
             Assert.Equal("0", res.Status.ToString());
-            Console.WriteLine("Contents - CreateContentProfile - end");
         }
 
         [Fact]
         public void CreateContentReview()
         {
-            Console.WriteLine("Contents - CreateContentReview - start");
             var sift = new Client(ApiKey);
             var createContent = new CreateContent
             {
@@ -432,7 +421,6 @@ namespace Test.Integration.Net7.EventsAPI
             };
             EventResponse res = sift.SendAsync(eventRequest).Result;
             Assert.Equal("0", res.Status.ToString());
-            Console.WriteLine("Contents - CreateContentReview - end");
         }
 
         private EventResponse CreateContentComment(Client sift)

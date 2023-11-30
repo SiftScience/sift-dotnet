@@ -1,5 +1,4 @@
 using Sift;
-using System;
 using Test.Integration.Net7.Uitlities;
 using Xunit;
 
@@ -24,7 +23,6 @@ namespace Test.Integration.Net7.EventsAPI
         [Fact]
         public void ChargebackTest()
         {
-            Console.WriteLine("Chargebacks - ChargebackTest - start");
             var sift = new Client(ApiKey);
             var chargeback = new Chargeback
             {
@@ -57,7 +55,6 @@ namespace Test.Integration.Net7.EventsAPI
             };
             EventResponse res = sift.SendAsync(eventRequest).Result;
             Assert.Equal("0", res.Status.ToString());
-            Console.WriteLine("Chargebacks - ChargebackTest - end");
         }
     }
 }
