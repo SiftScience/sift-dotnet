@@ -39,7 +39,19 @@ jobs:
       - run: ./build.sh --target=restore
       - run: ./build.sh --target=generate
       - run: ./build.sh --target=build
-      - run: ./build.sh --target=testNet7
+      # running each group of tests separately
+      - run: ./build.sh --target=testNet7 --filter=Account
+      - run: ./build.sh --target=testNet7 --filter=Cart
+      - run: ./build.sh --target=testNet7 --filter=Chargebacks
+      - run: ./build.sh --target=testNet7 --filter=Contents
+      - run: ./build.sh --target=testNet7 --filter=LoginLogout
+      - run: ./build.sh --target=testNet7 --filter=Notifications
+      - run: ./build.sh --target=testNet7 --filter=Order
+      - run: ./build.sh --target=testNet7 --filter=Passwords
+      - run: ./build.sh --target=testNet7 --filter=Promotions
+      - run: ./build.sh --target=testNet7 --filter=Sessions
+      - run: ./build.sh --target=testNet7 --filter=Transactions
+      - run: ./build.sh --target=testNet7 --filter=Verifications
 
 workflows:
   build-and-test:
