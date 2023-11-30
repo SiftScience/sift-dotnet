@@ -35,7 +35,7 @@ namespace Sift
         public string ServiceLevel { get; set; }
 
         [JsonProperty("status", NullValueHandling = NullValueHandling.Ignore)]
-        public string Status { get; set; }
+        public new string Status { get; set; }
 
         [JsonProperty("risk_profile")]
         public MerchantRiskProfile RiskProfile { get; set; }

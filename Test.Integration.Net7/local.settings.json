@@ -1,0 +1,31 @@
+{
+  "Values": {
+    "ApiKey": "Api_Key",
+    "AccountId": "ACCOUNT_ID",
+    "MerchantId": "cf51f0ec-6078-46e9-a796-700af25e668c",
+    "Id": "cf51f0ec-6078-46e9-a796-700af25e668c",
+    "UserId": "billjones1@example.com",
+    "WorkflowRunId": "6dbq76qbaaaaa",
+    "SendTo": "billjones1@example.com",
+    "user_id": "billy_jones_301",
+    "user_email": "billjones1@example.com",
+    "session_id": "gigtleqddo84l8cm15qe4il",
+    "referrer_user_id": "janejane101",
+    "merchant_id": "AX527123",
+    "item_id": "B004834GQO",
+    "order_id": "ORDER-123124124",
+    "transaction_id": "719637215",
+    "content_id": "comment-23412",
+    "contact_email": "alex_301@domain.com",
+    "parent_comment_id": "comment-23407",
+    "root_content_id": "listing-12923213",
+    "md5_hash": "0cc175b9c0f1b6a831c399e269772661",
+    "flagged_by": "jamieli89",
+    "username": "billjones1@example.com",
+    "notified_value": "billy123@domain.com",
+    "seller_user_id": "slinkys_emporium",
+    "promotion_id": "FirstTimeBuyer",
+    "webhook_id": "3ff1082a4aea8d0c58e3643ddb7a5bb87ffffeb2492dca33",
+    "verified_value": "14155551212"
+  }
+}
