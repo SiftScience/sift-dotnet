@@ -1,4 +1,5 @@
 using Sift;
+using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using Test.Integration.Net7.Uitlities;
@@ -19,15 +20,16 @@ namespace Test.Integration.Net7.EventsAPI
         private readonly string MerchantId;
         public Transactions()
         {
-            long nowMills = DateTimeOffset.Now.ToUnixTimeMilliseconds();
             ApiKey = environmentVariable.ApiKey;
             UserId = environmentVariable.user_id;
             UserEmail = environmentVariable.user_email;
-            OrderId = environmentVariable.order_id + nowMills;
-            TransactionId = environmentVariable.transaction_id + nowMills;
             SessionId = environmentVariable.session_id;
             SellerUserId = environmentVariable.seller_user_id;
             MerchantId = environmentVariable.merchant_id;
+
+            long nowMills = DateTimeOffset.Now.ToUnixTimeMilliseconds();
+            OrderId = environmentVariable.order_id + nowMills;
+            TransactionId = environmentVariable.transaction_id + nowMills;
         }
         [Fact]
         public void TransactionTest()

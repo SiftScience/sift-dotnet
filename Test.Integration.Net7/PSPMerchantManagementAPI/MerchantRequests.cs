@@ -11,7 +11,6 @@ namespace Test.Integration.Net7.PSPMerchantManagementAPI
         private readonly string ApiKey;
         private readonly string AccountId;
         private readonly string MerchantId;
-        private readonly string Id;
         public MerchantRequests()
         {
             ApiKey = environmentVariable.ApiKey;
