@@ -16,14 +16,15 @@ namespace Test.Integration.Net7.PSPMerchantManagementAPI
         {
             ApiKey = environmentVariable.ApiKey;
             AccountId = environmentVariable.AccountId;
-            MerchantId = environmentVariable.MerchantId;
-            Id = environmentVariable.Id;
-        }
 
+            long nowMills = DateTimeOffset.Now.ToUnixTimeMilliseconds();
+            MerchantId = environmentVariable.MerchantId + nowMills;
+        }
 
         [Fact]
         public void GetMerchantRequest()
-        {            
+        {
+            Console.WriteLine("Merchants - first");
             var sift = new Client(ApiKey);
             GetMerchantsRequest getMerchantRequest = new GetMerchantsRequest
             {
@@ -32,57 +33,37 @@ namespace Test.Integration.Net7.PSPMerchantManagementAPI
                 BatchSize = 10,
                 BatchToken = null,
             };
-            GetMerchantsResponse getMerchantResponse = sift.SendAsync(getMerchantRequest).Result;
-            Assert.Equal("OK", getMerchantResponse.ErrorMessage ?? "OK");
+            GetMerchantsResponse resp = sift.SendAsync(getMerchantRequest).Result;
+            Assert.True(resp.Merchants.Count > 0);
         }
 
         [Fact]
-        public void UpdateMerchantRequest()
+        public void MerchantOperationsTest()
         {
+            Console.WriteLine("Merchants - second");
             var sift = new Client(ApiKey);
-            UpdateMerchantRequest updateMerchantRequest = new UpdateMerchantRequest
-            {
-                AccountId = AccountId,
-                MerchantId = MerchantId,
-                Name = "Watson and Holmes",
-                Id = Id,
-                ApiKey = ApiKey,
-                Description = "An example of a PSP Merchant. Illustrative.",
-                Address = new MerchantAddress()
-                {
-                    Name = "Dr Watson",
-                    Address1 = "221B, Baker street",
-                    Address2 = "apt., 1",
-                    City = "London",
-                    Region = "London",
-                    Country = "GB",
-                    ZipCode = "000001",
-                    Phone = "0122334455"
-                },
-                Category = "1002",
-                ServiceLevel = "Platinum",
-                Status = "active",
-                RiskProfile = new MerchantRiskProfile()
-                {
-                    Level = "low",
-                    Score = 10
-                }
-            };
-            UpdateMerchantResponse updateMerchantResponse = sift.SendAsync(updateMerchantRequest).Result;
-            Assert.Equal("OK", updateMerchantResponse.ErrorMessage ?? "OK");
+            CreateMerchantResponse createMerchantResponse = CreateMerchant(sift);
+            Assert.Equal("active", createMerchantResponse.Status);
+            Assert.Equal(MerchantId, createMerchantResponse.Id);
+
+            UpdateMerchantResponse updateMerchantResponse = UpdateMerchant(sift);
+            Assert.Equal(MerchantId, updateMerchantResponse.Id);
+            Assert.Equal("Watson and Holmes updated", updateMerchantResponse.Name);
+
+            GetMerchantDetailsResponse getMerchantDetailsResponse = MerchantDetails(sift);
+            Assert.Equal(MerchantId, getMerchantDetailsResponse.Id);
+            Assert.Equal("Watson and Holmes updated", getMerchantDetailsResponse.Name);
         }
 
-        [Fact]
-        public void CreateMerchantRequest()
+        private CreateMerchantResponse CreateMerchant(Client sift)
         {
-            var sift = new Client(ApiKey);
             CreateMerchantRequest createMerchantRequest = new CreateMerchantRequest
             {
                 AccountId = AccountId,
-                Name = "Watson and Holmes",
+                Name = "Watson and Holmes - 111",
                 ApiKey = ApiKey,
-                Id = Guid.NewGuid().ToString(),
-                Description = "An example of a PSP Merchant. Illustrative.",
+                Id = MerchantId,
+                Description = "Create Merchant Test (sift-dotnet)",
                 Address = new MerchantAddress()
                 {
                     Name = "Dr Watson",
@@ -104,13 +85,45 @@ namespace Test.Integration.Net7.PSPMerchantManagementAPI
                 }
             };
             CreateMerchantResponse createMerchantResponse = sift.SendAsync(createMerchantRequest).Result;
-            Assert.Equal("OK", createMerchantResponse.ErrorMessage ?? "OK");
+            return createMerchantResponse;
         }
 
-        [Fact]
-        public void GetMerchantDetailsRequest()
+        private UpdateMerchantResponse UpdateMerchant(Client sift)
         {
-            var sift = new Client(ApiKey);
+            UpdateMerchantRequest updateMerchantRequest = new UpdateMerchantRequest
+            {
+                AccountId = AccountId,
+                MerchantId = MerchantId,
+                Name = "Watson and Holmes updated",
+                Id = MerchantId,
+                ApiKey = ApiKey,
+                Description = "Update Merchant Test (sift-dotnet)",
+                Address = new MerchantAddress()
+                {
+                    Name = "Dr Watson",
+                    Address1 = "221B, Baker street",
+                    Address2 = "apt., 1",
+                    City = "London",
+                    Region = "London",
+                    Country = "GB",
+                    ZipCode = "000001",
+                    Phone = "0122334455"
+                },
+                Category = "1002",
+                ServiceLevel = "Platinum",
+                Status = "active",
+                RiskProfile = new MerchantRiskProfile()
+                {
+                    Level = "low",
+                    Score = 10
+                }
+            };
+            UpdateMerchantResponse updateMerchantResponse = sift.SendAsync(updateMerchantRequest).Result;
+            return updateMerchantResponse;
+        }
+
+        private GetMerchantDetailsResponse MerchantDetails(Client sift)
+        {
             GetMerchantDetailsRequest getMerchantDetailsRequest = new GetMerchantDetailsRequest
             {
                 AccountId = AccountId,
@@ -118,7 +131,7 @@ namespace Test.Integration.Net7.PSPMerchantManagementAPI
                 MerchantId = MerchantId
             };
             GetMerchantDetailsResponse getMerchantDetailsResponse = sift.SendAsync(getMerchantDetailsRequest).Result;
-            Assert.Equal("OK", getMerchantDetailsResponse.ErrorMessage ?? "OK");
+            return getMerchantDetailsResponse;
         }
     }
 }

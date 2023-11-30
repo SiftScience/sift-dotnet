@@ -1,4 +1,5 @@
 using Sift;
+using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using Test.Integration.Net7.Uitlities;
@@ -19,11 +20,12 @@ namespace Test.Integration.Net7.EventsAPI
         private readonly string MerchantId;
         public Transactions()
         {
+            long nowMills = DateTimeOffset.Now.ToUnixTimeMilliseconds();
             ApiKey = environmentVariable.ApiKey;
             UserId = environmentVariable.user_id;
             UserEmail = environmentVariable.user_email;
-            OrderId = environmentVariable.order_id;
-            TransactionId = environmentVariable.transaction_id;
+            OrderId = environmentVariable.order_id + nowMills;
+            TransactionId = environmentVariable.transaction_id + nowMills;
             SessionId = environmentVariable.session_id;
             SellerUserId = environmentVariable.seller_user_id;
             MerchantId = environmentVariable.merchant_id;
@@ -31,6 +33,7 @@ namespace Test.Integration.Net7.EventsAPI
         [Fact]
         public void TransactionTest()
         {
+            Console.WriteLine("Transactions - TransactionTest - start");
             var sift = new Client(ApiKey);
             var transaction = new Transaction
             {
@@ -175,6 +178,7 @@ namespace Test.Integration.Net7.EventsAPI
             };
             EventResponse res = sift.SendAsync(eventRequest).Result;
             Assert.Equal("0", res.Status.ToString());
+            Console.WriteLine("Transactions - TransactionTest - end");
         }
     }
 }

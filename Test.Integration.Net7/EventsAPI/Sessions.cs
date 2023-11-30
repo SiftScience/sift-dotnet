@@ -1,4 +1,5 @@
 using Sift;
+using System;
 using Test.Integration.Net7.Uitlities;
 using Xunit;
 
@@ -19,6 +20,7 @@ namespace Test.Integration.Net7.EventsAPI
         [Fact]
         public void LinkSessionToUserTest()
         {
+            Console.WriteLine("Sessions - LinkSessionToUserTest - start");
             var sift = new Client(ApiKey);
             var linkSessionToUser = new LinkSessionToUser
             {
@@ -31,6 +33,7 @@ namespace Test.Integration.Net7.EventsAPI
             };
             EventResponse res = sift.SendAsync(eventRequest).Result;
             Assert.Equal("0", res.Status.ToString());
+            Console.WriteLine("Sessions - LinkSessionToUserTest - end");
         }
     }
 }

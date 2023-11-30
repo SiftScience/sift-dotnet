@@ -1,4 +1,5 @@
 version: 2
+
 jobs:
   build:
     docker:
@@ -19,3 +20,32 @@ jobs:
       - run: ./build.sh --target=generate
       - run: ./build.sh --target=build
       - run: ./build.sh --target=test
+
+  run-integration-tests-net7:
+    docker:
+      - image: mcr.microsoft.com/dotnet/sdk:7.0
+    environment:
+      - DOTNET_CLI_TELEMETRY_OPTOUT: 1
+    steps:
+      - run:
+          name: Install unzip
+          command: |
+            apt-get update
+            apt-get install -y unzip
+      - run:
+          name: Install OpenSSH and Git
+          command: apt-get update && apt-get install -y openssh-client git
+      - checkout
+      - run: ./build.sh --target=restore
+      - run: ./build.sh --target=generate
+      - run: ./build.sh --target=build
+      - run: ./run_integration_tests.sh
+
+workflows:
+  build-and-test:
+    jobs:
+      - build
+      - run-integration-tests-net7:
+          filters:
+            branches:
+              only: API-7367-integration-app-in-ci

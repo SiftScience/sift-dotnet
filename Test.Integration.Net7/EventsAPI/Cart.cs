@@ -1,4 +1,5 @@
 using Sift;
+using System;
 using System.Collections.ObjectModel;
 using Test.Integration.Net7.Uitlities;
 using Xunit;
@@ -23,6 +24,7 @@ namespace Test.Integration.Net7.EventsAPI
         [Fact]
         public void AddItemToCartEvent()
         {
+            Console.WriteLine("Cart - AddItemToCartEvent - start");
             var sift = new Client(ApiKey);
             var addItemToCart = new AddItemToCart
             {
@@ -63,12 +65,14 @@ namespace Test.Integration.Net7.EventsAPI
 
             EventResponse res = sift.SendAsync(eventRequest).Result;
             Assert.Equal("0", res.Status.ToString());
+            Console.WriteLine("Cart - AddItemToCartEvent - end");
         }
 
 
         [Fact]
         public void RemoveItemFromCart()
         {
+            Console.WriteLine("Cart - RemoveItemFromCart - start");
             var sift = new Client(ApiKey);
             var removeItemFromCart = new RemoveItemFromCart
             {
@@ -108,6 +112,7 @@ namespace Test.Integration.Net7.EventsAPI
             };
             EventResponse res = sift.SendAsync(eventRequest).Result;
             Assert.Equal("0", res.Status.ToString());
+            Console.WriteLine("Cart - RemoveItemFromCart - end");
         }
     }
 }

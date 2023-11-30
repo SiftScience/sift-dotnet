@@ -1,4 +1,5 @@
 using Sift;
+using System;
 using System.Collections.ObjectModel;
 using Test.Integration.Net7.Uitlities;
 using Xunit;
@@ -26,6 +27,7 @@ namespace Test.Integration.Net7.EventsAPI
         [Fact]
         public void CreateAccount()
         {
+            Console.WriteLine("Accounts - CreateAccount - start");
             var sift = new Client(ApiKey);
             var createAccount = new CreateAccount
             {
@@ -122,11 +124,13 @@ namespace Test.Integration.Net7.EventsAPI
             };
             EventResponse res = sift.SendAsync(eventRequest).Result;
             Assert.Equal("0", res.Status.ToString());
+            Console.WriteLine("Accounts - CreateAccount - end");
         }
 
         [Fact]
         public void UpdateAccount()
         {
+            Console.WriteLine("Accounts - UpdateAccount - start");
             var sift = new Client(ApiKey);
             var updateAccount = new UpdateAccount
             {
@@ -209,6 +213,7 @@ namespace Test.Integration.Net7.EventsAPI
             };
             EventResponse res = sift.SendAsync(eventRequest).Result;
             Assert.Equal("0", res.Status.ToString());
+            Console.WriteLine("Accounts - UpdateAccount - end");
         }
     }
 }

@@ -1,4 +1,5 @@
 using Sift;
+using System;
 using System.Collections.ObjectModel;
 using Test.Integration.Net7.Uitlities;
 using Xunit;
@@ -22,18 +23,34 @@ namespace Test.Integration.Net7.EventsAPI
             ApiKey = environmentVariable.ApiKey;
             UserId = environmentVariable.user_id;
             SessionId = environmentVariable.session_id;
-            OrderId = environmentVariable.order_id;
             UserEmail = environmentVariable.user_email;
             ItemId = environmentVariable.item_id;
             SellerUserId = environmentVariable.seller_user_id;
             PromotionId = environmentVariable.promotion_id;
             WebhookId = environmentVariable.webhook_id;
+
+            long nowMills = DateTimeOffset.Now.ToUnixTimeMilliseconds();
+            OrderId = environmentVariable.order_id + nowMills;
         }
 
         [Fact]
-        public void CreateOrder()
+        public void OrderTest()
         {
+            Console.WriteLine("Order - OrderTest - start");
             var sift = new Client(ApiKey);
+            EventResponse createOrderResp = CreateOrder(sift);
+            Assert.Equal("0", createOrderResp.Status.ToString());
+
+            EventResponse updateOrderResp = UpdateOrder(sift);
+            Assert.Equal("0", updateOrderResp.Status.ToString());
+
+            EventResponse orderStatusResp = OrderStatus(sift);
+            Assert.Equal("0", orderStatusResp.Status.ToString());
+            Console.WriteLine("Order - OrderTest - end");
+        }
+
+        private EventResponse CreateOrder(Client sift)
+        {
             var createOrder = new CreateOrder
             {
                 user_id = UserId,
@@ -151,13 +168,11 @@ namespace Test.Integration.Net7.EventsAPI
                 Event = createOrder
             };
             EventResponse res = sift.SendAsync(eventRequest).Result;
-            Assert.Equal("0", res.Status.ToString());
+            return res;
         }
 
-        [Fact]
-        public void UpdateOrder()
+        private EventResponse UpdateOrder(Client sift)
         {
-            var sift = new Client(ApiKey);
             var updateOrder = new UpdateOrder
             {
                 user_id = UserId,
@@ -276,13 +291,11 @@ namespace Test.Integration.Net7.EventsAPI
                 Event = updateOrder
             };
             EventResponse res = sift.SendAsync(eventRequest).Result;
-            Assert.Equal("0", res.Status.ToString());
+            return res;
         }
 
-        [Fact]
-        public void OrderStatus()
+        private EventResponse OrderStatus(Client sift)
         {
-            var sift = new Client(ApiKey);
             var orderStatus = new OrderStatus
             {
                 user_id = UserId,
@@ -308,7 +321,7 @@ namespace Test.Integration.Net7.EventsAPI
                 Event = orderStatus
             };
             EventResponse res = sift.SendAsync(eventRequest).Result;
-            Assert.Equal("0", res.Status.ToString());
+            return res;
         }
     }
 }

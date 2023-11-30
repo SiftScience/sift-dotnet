@@ -1,4 +1,5 @@
 using Sift;
+using System;
 using System.Collections.ObjectModel;
 using Test.Integration.Net7.Uitlities;
 using Xunit;
@@ -19,9 +20,8 @@ namespace Test.Integration.Net7.EventsAPI
         private readonly string FlaggedBy;
         public Contents()
         {
-                ApiKey = environmentVariable.ApiKey; 
+                ApiKey = environmentVariable.ApiKey;
                 UserId = environmentVariable.UserId;
-                ContentId = environmentVariable.content_id;
                 SessionId = environmentVariable.session_id;
                 ContactEmail = environmentVariable.contact_email;
                 RootContentId = environmentVariable.root_content_id;
@@ -29,59 +29,34 @@ namespace Test.Integration.Net7.EventsAPI
                 ItemId = environmentVariable.item_id;
                 FlaggedBy = environmentVariable.flagged_by;
 
+                long nowMills = DateTimeOffset.Now.ToUnixTimeMilliseconds();
+                ContentId = environmentVariable.content_id + nowMills;
         }
+
         [Fact]
-        public void CreateContentComment()
+        public void ContentCommentOperations()
         {
+            Console.WriteLine("Contents - ContentCommentOperations - start");
             var sift = new Client(ApiKey);
-            var createContent = new CreateContent
-            {
-                user_id = UserId,
-                content_id = ContentId,
-                session_id = SessionId,
-                status = "$active",
-                ip = "255.255.255.0",
-                comment = new Comment()
-                {
-                    body = "Congrats on the new role!",
-                    contact_email = ContactEmail,
-                    parent_comment_id = RootContentId,
-                    root_content_id = RootContentId,
-                    images = new ObservableCollection<Image>()
-                    {
-                        new Image()
-                        {
-                            md5_hash = Md5Hash,
-                            link = "https://www.domain.com/file.png",
-                            description =   "An old picture"
-                        },
-                        new Image()
-                        {
-                            md5_hash = Md5Hash
-                        }
-                    }
-                },
-                browser = new Browser
-                {
-                    user_agent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36",
-                    accept_language = "en-US",
-                    content_language = "en-GB"
-                },
-                brand_name = "sift",
-                site_domain = "sift.com",
-                site_country = "US"
-            };
-            EventRequest eventRequest = new EventRequest()
-            {
-                Event = createContent
-            };
-            EventResponse res = sift.SendAsync(eventRequest).Result;
-            Assert.Equal("0", res.Status.ToString());
+
+            EventResponse resCreate = CreateContentComment(sift);
+            Assert.Equal("0", resCreate.Status.ToString());
+
+            EventResponse resUpdate = UpdateContentComment(sift);
+            Assert.Equal("0", resUpdate.Status.ToString());
+
+            EventResponse resFlag = FlagContent(sift);
+            Assert.Equal("0", resFlag.Status.ToString());
+
+            EventResponse resStatus = ContentStatus(sift);
+            Assert.Equal("0", resStatus.Status.ToString());
+            Console.WriteLine("Contents - ContentCommentOperations - end");
         }
 
         [Fact]
         public void CreateContentListing()
         {
+            Console.WriteLine("Contents - CreateContentListing - start");
             var sift = new Client(ApiKey);
             var createContent = new CreateContent
             {
@@ -176,11 +151,13 @@ namespace Test.Integration.Net7.EventsAPI
             };
             EventResponse res = sift.SendAsync(eventRequest).Result;
             Assert.Equal("0", res.Status.ToString());
+            Console.WriteLine("Contents - CreateContentListing - end");
         }
 
         [Fact]
         public void CreateContentMessage()
         {
+            Console.WriteLine("Contents - CreateContentMessage - start");
             var sift = new Client(ApiKey);
             var createContent = new CreateContent
             {
@@ -201,7 +178,7 @@ namespace Test.Integration.Net7.EventsAPI
                 message = new Message()
                 {
                     subject = "2 Bedroom Apartment for Rent",
-                    body = "Let’s meet at 5pm",
+                    body = "Letï¿½s meet at 5pm",
                     contact_email = ContactEmail,
                     root_content_id = RootContentId,
                     recipient_user_ids = new ObservableCollection<string>() { "fy9h989sjphh71" },
@@ -226,11 +203,13 @@ namespace Test.Integration.Net7.EventsAPI
             };
             EventResponse res = sift.SendAsync(eventRequest).Result;
             Assert.Equal("0", res.Status.ToString());
+            Console.WriteLine("Contents - CreateContentMessage - end");
         }
 
         [Fact]
         public void CreateContentPost()
         {
+            Console.WriteLine("Contents - CreateContentPost -start");
             var sift = new Client(ApiKey);
             var createContent = new CreateContent
             {
@@ -248,7 +227,7 @@ namespace Test.Integration.Net7.EventsAPI
                 post = new Post()
                 {
                     subject = "2 Bedroom Apartment for Rent",
-                    body = "Let’s meet at 5pm",
+                    body = "Letï¿½s meet at 5pm",
                     contact_email = ContactEmail,
                     contact_address = new Address()
                     {
@@ -306,11 +285,13 @@ namespace Test.Integration.Net7.EventsAPI
             };
             EventResponse res = sift.SendAsync(eventRequest).Result;
             Assert.Equal("0", res.Status.ToString());
+            Console.WriteLine("Contents - CreateContentPost - end");
         }
 
         [Fact]
         public void CreateContentProfile()
         {
+            Console.WriteLine("Contents - CreateContentProfile - start");
             var sift = new Client(ApiKey);
             var createContent = new CreateContent
             {
@@ -327,7 +308,7 @@ namespace Test.Integration.Net7.EventsAPI
                 },
                 profile = new Profile()
                 {
-                    body = "Let’s meet at 5pm",
+                    body = "Letï¿½s meet at 5pm",
                     contact_email = ContactEmail,
                     contact_address = new Address()
                     {
@@ -365,11 +346,13 @@ namespace Test.Integration.Net7.EventsAPI
             };
             EventResponse res = sift.SendAsync(eventRequest).Result;
             Assert.Equal("0", res.Status.ToString());
+            Console.WriteLine("Contents - CreateContentProfile - end");
         }
 
         [Fact]
         public void CreateContentReview()
         {
+            Console.WriteLine("Contents - CreateContentReview - start");
             var sift = new Client(ApiKey);
             var createContent = new CreateContent
             {
@@ -449,12 +432,105 @@ namespace Test.Integration.Net7.EventsAPI
             };
             EventResponse res = sift.SendAsync(eventRequest).Result;
             Assert.Equal("0", res.Status.ToString());
+            Console.WriteLine("Contents - CreateContentReview - end");
         }
 
-        [Fact]
-        public void FlagContent()
+        private EventResponse CreateContentComment(Client sift)
         {
-            var sift = new Client(ApiKey);
+            var createContent = new CreateContent
+            {
+                user_id = UserId,
+                content_id = ContentId,
+                session_id = SessionId,
+                status = "$active",
+                ip = "255.255.255.0",
+                comment = new Comment()
+                {
+                    body = "Congrats on the new role!",
+                    contact_email = ContactEmail,
+                    parent_comment_id = RootContentId,
+                    root_content_id = RootContentId,
+                    images = new ObservableCollection<Image>()
+                    {
+                        new Image()
+                        {
+                            md5_hash = Md5Hash,
+                            link = "https://www.domain.com/file.png",
+                            description =   "An old picture"
+                        },
+                        new Image()
+                        {
+                            md5_hash = Md5Hash
+                        }
+                    }
+                },
+                browser = new Browser
+                {
+                    user_agent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36",
+                    accept_language = "en-US",
+                    content_language = "en-GB"
+                },
+                brand_name = "sift",
+                site_domain = "sift.com",
+                site_country = "US"
+            };
+            EventRequest eventRequest = new EventRequest()
+            {
+                Event = createContent
+            };
+            EventResponse res = sift.SendAsync(eventRequest).Result;
+            return res;
+        }
+
+        private EventResponse UpdateContentComment(Client sift)
+        {
+            var updateContent = new UpdateContent
+            {
+                user_id = UserId,
+                content_id = ContentId,
+                session_id = SessionId,
+                status = "$active",
+                ip = "255.255.255.0",
+                comment = new Comment()
+                {
+                    body = "Congrats on the new role - updated!",
+                    contact_email = ContactEmail,
+                    parent_comment_id = RootContentId,
+                    root_content_id = RootContentId,
+                    images = new ObservableCollection<Image>()
+                    {
+                        new Image()
+                        {
+                            md5_hash = Md5Hash,
+                            link = "https://www.domain.com/file.png",
+                            description =   "An old picture"
+                        },
+                        new Image()
+                        {
+                            md5_hash = Md5Hash
+                        }
+                    }
+                },
+                browser = new Browser
+                {
+                    user_agent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36",
+                    accept_language = "en-US",
+                    content_language = "en-GB"
+                },
+                brand_name = "sift",
+                site_domain = "sift.com",
+                site_country = "US"
+            };
+            EventRequest eventRequest = new EventRequest()
+            {
+                Event = updateContent
+            };
+            EventResponse res = sift.SendAsync(eventRequest).Result;
+            return res;
+        }
+
+        private EventResponse FlagContent(Client sift)
+        {
             var flagContent = new FlagContent
             {
                 user_id = UserId,
@@ -469,13 +545,11 @@ namespace Test.Integration.Net7.EventsAPI
                 Event = flagContent
             };
             EventResponse res = sift.SendAsync(eventRequest).Result;
-            Assert.Equal("0", res.Status.ToString());
+            return res;
         }
 
-        [Fact]
-        public void ContentStatus()
+        private EventResponse ContentStatus(Client sift)
         {
-            var sift = new Client(ApiKey);
             var contentStatus = new ContentStatus
             {
                 user_id = UserId,
@@ -499,7 +573,7 @@ namespace Test.Integration.Net7.EventsAPI
                 Event = contentStatus
             };
             EventResponse res = sift.SendAsync(eventRequest).Result;
-            Assert.Equal("0", res.Status.ToString());
+            return res;
         }
     }
 }
