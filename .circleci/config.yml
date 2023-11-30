@@ -39,7 +39,7 @@ jobs:
       - run: ./build.sh --target=restore
       - run: ./build.sh --target=generate
       - run: ./build.sh --target=build
-      - run: ./run_integration_tests.sh
+      - run: ./build.sh --target=testNet7
 
 workflows:
   build-and-test:
