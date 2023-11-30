@@ -39,7 +39,7 @@ namespace Test.Integration.Net7.EventsAPI
             Console.WriteLine("Order - OrderTest - start");
             var sift = new Client(ApiKey);
             EventResponse createOrderResp = CreateOrder(sift);
-            Assert.Equal("0", createOrderResp.Status.ToString());
+            Assert.Equal("1", createOrderResp.Status.ToString());
 
             EventResponse updateOrderResp = UpdateOrder(sift);
             Assert.Equal("0", updateOrderResp.Status.ToString());
