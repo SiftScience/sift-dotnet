@@ -5,12 +5,12 @@ using Xunit;
 
 namespace Test.Integration.Net7.ScoreAPI
 {
-    public class ScoresRequests
+    public class Scores
     {
         private readonly EnvironmentVariable environmentVariable = new();
         private readonly string ApiKey;
         private readonly string UserId;
-        public ScoresRequests()
+        public Scores()
         {
             ApiKey = environmentVariable.ApiKey;
             UserId = environmentVariable.UserId;
@@ -28,8 +28,8 @@ namespace Test.Integration.Net7.ScoreAPI
             ScoreResponse res = sift.SendAsync(scoreRequest).Result;
             Assert.Equal("0", res.Status.ToString());
         }
-                
-        //[Fact]
+
+        [Fact]
         public void ReScoreRequest()
         {
             var sift = new Client(ApiKey);

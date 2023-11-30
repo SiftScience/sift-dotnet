@@ -20,24 +20,24 @@ namespace Test.Integration.Net7.Uitlities
         {
             get
             {
-                var envAPI_KEY = Environment.GetEnvironmentVariable("SIFT_API_KEY");
-                if (configuration["Values:ApiKey"] == "API_KEY")
+                var envAPI_KEY = Environment.GetEnvironmentVariable("API_KEY");
+                if (string.IsNullOrEmpty(envAPI_KEY))
                 {
                     throw new Exception("Specify API Key");
                 }
-                return envAPI_KEY ?? configuration["Values:ApiKey"];
+                return envAPI_KEY;
             }
         }
         public string AccountId
         {
             get
             {
-                var envACCOUNT_ID = Environment.GetEnvironmentVariable("SIFT_ACCOUNT_ID");
-                if (configuration["Values:AccountId"] == "ACCOUNT_ID")
+                var envACCOUNT_ID = Environment.GetEnvironmentVariable("ACCOUNT_ID");
+                if (string.IsNullOrEmpty(envACCOUNT_ID))
                 {
                     throw new Exception("Specify ACCOUNT ID");
                 }
-                return envACCOUNT_ID ?? configuration["Values:AccountId"];
+                return envACCOUNT_ID;
             }
         }
         public string MerchantId
@@ -77,7 +77,6 @@ namespace Test.Integration.Net7.Uitlities
             {
                 return configuration["Values:SendTo"];
             }
-
         }
 
         public string user_id
@@ -86,7 +85,6 @@ namespace Test.Integration.Net7.Uitlities
             {
                 return configuration["Values:user_id"];
             }
-
         }
 
         public string session_id
@@ -95,7 +93,6 @@ namespace Test.Integration.Net7.Uitlities
             {
                 return configuration["Values:session_id"];
             }
-
         }
 
         public string referrer_user_id
@@ -104,7 +101,6 @@ namespace Test.Integration.Net7.Uitlities
             {
                 return configuration["Values:referrer_user_id"];
             }
-
         }
 
         public string merchant_id
@@ -113,7 +109,6 @@ namespace Test.Integration.Net7.Uitlities
             {
                 return configuration["Values:merchant_id"];
             }
-
         }
 
         public string user_email
@@ -122,7 +117,6 @@ namespace Test.Integration.Net7.Uitlities
             {
                 return configuration["Values:user_email"];
             }
-
         }
 
         public string item_id
@@ -131,7 +125,6 @@ namespace Test.Integration.Net7.Uitlities
             {
                 return configuration["Values:item_id"];
             }
-
         }
 
         public string order_id
@@ -140,7 +133,6 @@ namespace Test.Integration.Net7.Uitlities
             {
                 return configuration["Values:order_id"];
             }
-
         }
 
         public string transaction_id
@@ -149,7 +141,6 @@ namespace Test.Integration.Net7.Uitlities
             {
                 return configuration["Values:transaction_id"];
             }
-
         }
 
         public string content_id
@@ -158,7 +149,6 @@ namespace Test.Integration.Net7.Uitlities
             {
                 return configuration["Values:content_id"];
             }
-
         }
 
         public string contact_email
@@ -167,7 +157,6 @@ namespace Test.Integration.Net7.Uitlities
             {
                 return configuration["Values:contact_email"];
             }
-
         }
 
         public string parent_comment_id
@@ -176,7 +165,6 @@ namespace Test.Integration.Net7.Uitlities
             {
                 return configuration["Values:parent_comment_id"];
             }
-
         }
 
         public string root_content_id
@@ -185,7 +173,6 @@ namespace Test.Integration.Net7.Uitlities
             {
                 return configuration["Values:root_content_id"];
             }
-
         }
 
         public string md5_hash
@@ -194,7 +181,6 @@ namespace Test.Integration.Net7.Uitlities
             {
                 return configuration["Values:md5_hash"];
             }
-
         }
 
         public string flagged_by
@@ -203,7 +189,6 @@ namespace Test.Integration.Net7.Uitlities
             {
                 return configuration["Values:flagged_by"];
             }
-
         }
 
         public string username
@@ -212,7 +197,6 @@ namespace Test.Integration.Net7.Uitlities
             {
                 return configuration["Values:username"];
             }
-
         }
 
         public string notified_value
@@ -221,7 +205,6 @@ namespace Test.Integration.Net7.Uitlities
             {
                 return configuration["Values:notified_value"];
             }
-
         }
 
         public string seller_user_id
@@ -230,7 +213,6 @@ namespace Test.Integration.Net7.Uitlities
             {
                 return configuration["Values:seller_user_id"];
             }
-
         }
 
         public string promotion_id
@@ -239,7 +221,6 @@ namespace Test.Integration.Net7.Uitlities
             {
                 return configuration["Values:promotion_id"];
             }
-
         }
 
         public string webhook_id
@@ -248,7 +229,6 @@ namespace Test.Integration.Net7.Uitlities
             {
                 return configuration["Values:webhook_id"];
             }
-
         }
 
         public string verified_value
@@ -257,7 +237,6 @@ namespace Test.Integration.Net7.Uitlities
             {
                 return configuration["Values:verified_value"];
             }
-
         }
     }
 }

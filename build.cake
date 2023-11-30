@@ -37,7 +37,22 @@ Task("test")
     .Does(() => DotNetCoreTest(TEST));
 
 Task("testNet7")
-    .Does(() => DotNetCoreTest(TEST_NET7));
+    .Does(() =>
+    {
+        var testFilter = Argument("filter", "");
+        if (string.IsNullOrEmpty(testFilter))
+        {
+            DotNetCoreTest(TEST_NET7);
+        }
+        else
+        {
+            var settings = new DotNetCoreTestSettings
+            {
+                ArgumentCustomization = args => args.Append("--filter=" + testFilter)
+            };
+            DotNetCoreTest(TEST_NET7, settings);
+        }
+    });
 
 Task("default")
     .IsDependentOn("clean")

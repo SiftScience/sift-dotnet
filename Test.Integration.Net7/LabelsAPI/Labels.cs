@@ -2,7 +2,6 @@ using Sift;
 using Test.Integration.Net7.Uitlities;
 using Xunit;
 
-
 namespace Test.Integration.Net7.LabelsAPI
 {
     public class Labels
@@ -16,7 +15,7 @@ namespace Test.Integration.Net7.LabelsAPI
             UserId = environmentVariable.user_id;
         }
 
-        //[Fact]
+        [Fact]
         public void LabelRequest()
         {
             var sift = new Client(ApiKey);
@@ -35,7 +34,7 @@ namespace Test.Integration.Net7.LabelsAPI
             Assert.Equal("0", labelResponse.Status.ToString());
         }
 
-        //[Fact]
+        [Fact]
         public void UnLabelRequest()
         {
             var sift = new Client(ApiKey);
