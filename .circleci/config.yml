@@ -71,4 +71,4 @@ workflows:
       - run-integration-tests-net7:
           filters:
             branches:
-              only: API-7367-integration-app-in-ci
+              only: master
