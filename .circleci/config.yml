@@ -40,6 +40,7 @@ jobs:
       - run: ./build.sh --target=generate
       - run: ./build.sh --target=build
       # running each group of tests separately
+      #Events API
       - run: ./build.sh --target=testNet7 --filter=Account
       - run: ./build.sh --target=testNet7 --filter=Cart
       - run: ./build.sh --target=testNet7 --filter=Chargebacks
@@ -52,6 +53,16 @@ jobs:
       - run: ./build.sh --target=testNet7 --filter=Sessions
       - run: ./build.sh --target=testNet7 --filter=Transactions
       - run: ./build.sh --target=testNet7 --filter=Verifications
+      # Decisions API
+      - run: ./build.sh --target=testNet7 --filter=DecisionsRequests
+      # Labels API
+      - run: ./build.sh --target=testNet7 --filter=Labels
+      # PSP Merchants API
+      - run: ./build.sh --target=testNet7 --filter=MerchantRequests
+      # Score API
+      - run: ./build.sh --target=testNet7 --filter=Scores
+      # Verification API
+      - run: ./build.sh --target=testNet7 --filter=VerificationsRequests
 
 workflows:
   build-and-test:
