@@ -46,7 +46,7 @@ pipeline {
         stage ('Build and Test') {
             steps {
                 script {
-                    siftDotNetWorkflow.runSiftDotnetBuildAndTest(podTemplateFile, podLabel)
+                    siftDotNetWorkflow.runSiftDotNetBuildAndTest(podTemplateFile, podLabel)
                 }
             }
         }
