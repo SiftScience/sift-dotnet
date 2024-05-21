@@ -1,7 +1,6 @@
 # sift-dotnet
 
 [![Nuget (with prereleases)](https://img.shields.io/nuget/vpre/sift.svg)](https://www.nuget.org/packages/Sift)
-[![CircleCI](https://circleci.com/gh/SiftScience/sift-dotnet.svg?style=svg)](https://circleci.com/gh/SiftScience/sift-dotnet)
 
 The official Sift .NET client, supporting .NET Standard 2.0+
 
@@ -12,7 +11,7 @@ The official Sift .NET client, supporting .NET Standard 2.0+
     // You can also pass in your own HttpClient implementation as the second parameter.
     // Dispose() will dispose of the HttpClient instance.
     var sift = new Client("REST_API_KEY");
-    
+
 ### Reserved Events
 
     // Construct reserved events with known fields for example Create Order
@@ -36,7 +35,7 @@ The official Sift .NET client, supporting .NET Standard 2.0+
     // Augment with custom fields
     createOrder.AddField("foo", "bar");
 
-    try 
+    try
     {
         EventResponse res = sift.SendAsync(new EventRequest
         {
@@ -657,7 +656,7 @@ The official Sift .NET client, supporting .NET Standard 2.0+
         site_domain = "somehost.example.com"
     };
     var sift = new Client("API_KEY");
-         
+
 
     EventRequest eventRequest = new EventRequest
     {
@@ -772,7 +771,7 @@ The official Sift .NET client, supporting .NET Standard 2.0+
                 },
             };
 
-    
+
 ### Decisions
 
     // Apply Decision
