@@ -1,5 +1,5 @@
 // Load Jenkins shared library
-jenkinsBranch = 'jlin-CI-15785'
+jenkinsBranch = 'v0.39.0'
 sharedLib = library("shared-lib@${jenkinsBranch}")
 
 def siftDotNetWorkflow = sharedLib.com.sift.ci.SiftDotNetWorkflow.new()
