@@ -1,3 +1,4 @@
+using Newtonsoft.Json;
 using Sift;
 using Sift.Core;
 using System.Collections.ObjectModel;
@@ -2591,7 +2592,34 @@ namespace Test
 
             Assert.Equal("https://api.sift.com/v205/users/123/score?api_key=345&abuse_types=payment_abuse,promotion_abuse&fields=SCORE_PERCENTILES",
                         Uri.UnescapeDataString(scoreRequest.Request.RequestUri!.ToString()));
-        }   
+        }
+
+        //TestWarnings
+        [Fact]
+        public void TestWarnings()
+        {
+            var sessionId = "sessionId";
+            var transaction = new Transaction
+            {
+                user_id = "vineethk@exalture.com",
+                amount = 1000000000000L,
+                currency_code = "@#$",
+                session_id = sessionId,
+                transaction_type = "$sale",
+                transaction_status = "$failure",
+                decline_category = "$invalid"
+            };
+
+            EventRequest eventRequest = new EventRequest
+            {
+                Event = transaction,
+                ReturnWarnings = true
+            };
+
+            Assert.Equal("https://api.sift.com/v205/events?fields=warnings",
+                          Uri.UnescapeDataString(eventRequest.Request.RequestUri!.ToString()));
+        }
+
     }
 
 }

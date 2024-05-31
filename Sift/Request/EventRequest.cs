@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
+using System.Reflection;
 using System.Text;
 
 namespace Sift
@@ -11,11 +13,13 @@ namespace Sift
 
         public SiftEvent Event { get; set; }
         public List<String> AbuseTypes { get; set; } = new List<string>();
+        public List<String> fields { get; set; } = new List<string>();
         public bool IncludeScorePercentile { get; set; }
         public bool ReturnScore { get; set; }
         public bool ReturnWorkflowStatus { get; set; }
         public bool ReturnRouteInfo { get; set; }
         public bool ForceWorkflowRun { get; set; }
+        public bool ReturnWarnings { get; set; }
 
         public override HttpRequestMessage Request
         {
@@ -41,7 +45,7 @@ namespace Sift
                 
                 if (IncludeScorePercentile)
                 {
-                    url = url.AddQuery("fields", "SCORE_PERCENTILES");
+                    fields.Add("SCORE_PERCENTILES");
                 }
 
                 if (ReturnScore)
@@ -62,6 +66,14 @@ namespace Sift
                 if (ForceWorkflowRun)
                 {
                     url = url.AddQuery("force_workflow_run", "true");
+                }
+                if (ReturnWarnings)
+                {
+                    fields.Add("warnings");
+                }
+                if (fields.Any())
+                {
+                    url = url.AddQuery("fields", string.Join(",", fields));
                 }
 
                 return url;
