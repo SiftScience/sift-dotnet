@@ -1,12 +1,10 @@
 using Newtonsoft.Json;
 using Sift;
 using Sift.Core;
-using Sift.Response;
 using System.Collections.ObjectModel;
 using System.Security.Cryptography;
 using System.Text;
 using Xunit;
-using static Sift.Response.WarningsResponse;
 
 namespace Test
 {
