@@ -1,10 +1,12 @@
 using Newtonsoft.Json;
 using Sift;
 using Sift.Core;
+using Sift.Response;
 using System.Collections.ObjectModel;
 using System.Security.Cryptography;
 using System.Text;
 using Xunit;
+using static Sift.Response.WarningsResponse;
 
 namespace Test
 {
@@ -2601,8 +2603,8 @@ namespace Test
             var sessionId = "sessionId";
             var transaction = new Transaction
             {
-                user_id = "vineethk@exalture.com",
-                amount = 1000000000000L,
+                user_id = "haneeshv@exalture.com",
+                amount = 100000L,
                 currency_code = "@#$",
                 session_id = sessionId,
                 transaction_type = "$sale",
@@ -2616,8 +2618,14 @@ namespace Test
                 ReturnWarnings = true
             };
 
+            string responseBody = "{\"status\":53,\"error_message\":\"Invalid field value(s) for fields: $.$amount, $.$currency_code. Please check the documentation for valid field values.\",\"time\":1717399201,\"warnings\":{\"count\":2,\"items\":[{\"message\":\"Invalid field value at $.$amount\"},{\"message\":\"Invalid field value at $.$currency_code\"}]}}";
+
+            EventResponse response = JsonConvert.DeserializeObject<EventResponse>(responseBody);
+
             Assert.Equal("https://api.sift.com/v205/events?fields=warnings",
                           Uri.UnescapeDataString(eventRequest.Request.RequestUri!.ToString()));
+            Assert.Equal(2, response.Warnings.Count);
+
         }
 
     }
