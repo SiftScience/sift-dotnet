@@ -2,9 +2,9 @@ name: ciworkflow
 
 on:
   push:
-    branches: [ "CI-16184" ]
+    branches: [ "master" ]
   pull_request:
-    branches: [ "CI-16184" ]
+    branches: [ "master" ]
 
 env:
   # Setting an environment variable with the value of a configuration variable
