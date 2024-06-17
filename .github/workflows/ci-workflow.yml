@@ -23,7 +23,7 @@ jobs:
       - name: Install OpenSSH and Git
         run: |
           sudo apt-get update && sudo apt-get install -y openssh-client git
-      - name: checkout
+      - name: siftDotNetIntegrationTest
         run: |
           ./build.sh --target=restore
           ./build.sh --target=generate
