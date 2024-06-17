@@ -18,11 +18,11 @@ jobs:
           dotnet-version: 7.x.x
       - name: Install unzip
         run: |
-          apt-get update  
-          apt-get install -y unzip
+          sudo apt-get update  
+          sudo apt-get install -y unzip
       - name: Install OpenSSH and Git
         run: |
-          apt-get update && apt-get install -y openssh-client git
+          sudo apt-get update && sudo apt-get install -y openssh-client git
       - name: checkout
         run: |
           ./build.sh --target=restore
