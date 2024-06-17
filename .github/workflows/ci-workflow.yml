@@ -2,9 +2,9 @@ name: ciworkflow
 
 on:
   push:
-    branches: [ "master" ]
+    branches: [ "CI-16184" ]
   pull_request:
-    branches: [ "master" ]
+    branches: [ "CI-16184" ]
 
 jobs:
   build:
