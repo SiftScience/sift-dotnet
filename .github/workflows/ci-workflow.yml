@@ -8,8 +8,8 @@ on:
 
 env:
   # Setting an environment variable with the value of a configuration variable
-  ACCOUNT_ID: ${{ vars.ACCOUNT_ID }}
-  API_KEY: ${{ vars.API_KEY }}
+  ACCOUNT_ID: ${{ secrets.ACCOUNT_ID }}
+  API_KEY: ${{ secrets.API_KEY }}
 
 jobs:
   build:
