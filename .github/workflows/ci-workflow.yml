@@ -1,0 +1,48 @@
+name: ciworkflow
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    env:
+      DOTNET_CLI_TELEMETRY_OPTOUT: 1
+    runs-on: mcr.microsoft.com/dotnet/sdk:7.0
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup NuGet
+        uses: NuGet/setup-nuget@v1.0.5
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 7.x.x
+      - name: Install unzip
+        run: |
+          apt-get update  
+          apt-get install -y unzip
+      - name: Install OpenSSH and Git
+        run: |
+          apt-get update && apt-get install -y openssh-client git
+      - name: checkout
+        run: |
+          ./build.sh --target=restore
+          ./build.sh --target=generate
+          ./build.sh --target=build
+          ./build.sh --target=test
+          ./build.sh --target=testNet7 --filter=Account
+          ./build.sh --target=testNet7 --filter=Cart
+          ./build.sh --target=testNet7 --filter=Chargebacks
+          ./build.sh --target=testNet7 --filter=Contents
+          ./build.sh --target=testNet7 --filter=LoginLogout
+          ./build.sh --target=testNet7 --filter=Notifications
+          ./build.sh --target=testNet7 --filter=Order
+          ./build.sh --target=testNet7 --filter=Passwords
+          ./build.sh --target=testNet7 --filter=Promotions
+          ./build.sh --target=testNet7 --filter=Sessions
+          ./build.sh --target=testNet7 --filter=Transactions
+          ./build.sh --target=testNet7 --filter=Verifications
+          ./build.sh --target=testNet7 --filter=DecisionsRequests
+          ./build.sh --target=testNet7 --filter=Labels
+          ./build.sh --target=testNet7 --filter=MerchantRequests
+          ./build.sh --target=testNet7 --filter=Scores
+          ./build.sh --target=testNet7 --filter=VerificationsRequests
