@@ -6,6 +6,11 @@ on:
   pull_request:
     branches: [ "CI-16184" ]
 
+env:
+  # Setting an environment variable with the value of a configuration variable
+  ACCOUNT_ID: ${{ vars.ACCOUNT_ID }}
+  API_KEY: ${{ vars.API_KEY }}
+
 jobs:
   build:
 
