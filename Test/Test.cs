@@ -1340,7 +1340,7 @@ namespace Test
                 ReturnScore = true
             };
 
-            Assert.Equal("https://api.sift.com/v205/events?abuse_types=legacy,payment_abuse&fields=SCORE_PERCENTILES&return_score=true",
+            Assert.Equal("https://api.sift.com/v205/events?abuse_types=legacy,payment_abuse&return_score=true&fields=SCORE_PERCENTILES",
                           Uri.UnescapeDataString(eventRequest.Request.RequestUri!.ToString()));
         }
 
