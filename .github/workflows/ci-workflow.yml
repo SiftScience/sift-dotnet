@@ -1,8 +1,9 @@
 name: ciworkflow
 
 on:
-  pull_request:
-    branches: [ "master" ]
+  push:
+    branches:
+      - '*'
 
 env:
   # Setting an environment variable with the value of a configuration variable
@@ -11,9 +12,33 @@ env:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 7.x.x
+      - name: Install unzip
+        run: |
+          sudo apt-get update  
+          sudo apt-get install -y unzip
+      - name: Install OpenSSH and Git
+        run: |
+          sudo apt-get update && sudo apt-get install -y openssh-client git
+      - name: build
+        run: |
+          ./build.sh --target=restore
+          ./build.sh --target=generate
+          ./build.sh --target=build
+          ./build.sh --target=test
+
+  siftDotNetIntegrationTest:
+    runs-on: ubuntu-latest
+    env:
+      PUSH_PACKAGES: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' }}
+    steps:
+      - if: ${{ env.PUSH_PACKAGES }}
       - uses: actions/checkout@v4
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
@@ -31,7 +56,6 @@ jobs:
           ./build.sh --target=restore
           ./build.sh --target=generate
           ./build.sh --target=build
-          ./build.sh --target=test
           ./build.sh --target=testNet7 --filter=Account
           ./build.sh --target=testNet7 --filter=Cart
           ./build.sh --target=testNet7 --filter=Chargebacks
