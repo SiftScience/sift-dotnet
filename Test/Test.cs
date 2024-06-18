@@ -1,3 +1,4 @@
+using Newtonsoft.Json;
 using Sift;
 using Sift.Core;
 using System.Collections.ObjectModel;
@@ -1339,7 +1340,7 @@ namespace Test
                 ReturnScore = true
             };
 
-            Assert.Equal("https://api.sift.com/v205/events?abuse_types=legacy,payment_abuse&fields=SCORE_PERCENTILES&return_score=true",
+            Assert.Equal("https://api.sift.com/v205/events?abuse_types=legacy,payment_abuse&return_score=true&fields=SCORE_PERCENTILES",
                           Uri.UnescapeDataString(eventRequest.Request.RequestUri!.ToString()));
         }
 
@@ -2591,7 +2592,40 @@ namespace Test
 
             Assert.Equal("https://api.sift.com/v205/users/123/score?api_key=345&abuse_types=payment_abuse,promotion_abuse&fields=SCORE_PERCENTILES",
                         Uri.UnescapeDataString(scoreRequest.Request.RequestUri!.ToString()));
-        }   
+        }
+
+        //TestWarnings
+        [Fact]
+        public void TestWarnings()
+        {
+            var sessionId = "sessionId";
+            var transaction = new Transaction
+            {
+                user_id = "haneeshv@exalture.com",
+                amount = 100000L,
+                currency_code = "@#$",
+                session_id = sessionId,
+                transaction_type = "$sale",
+                transaction_status = "$failure",
+                decline_category = "$invalid"
+            };
+
+            EventRequest eventRequest = new EventRequest
+            {
+                Event = transaction,
+                ReturnWarnings = true
+            };
+
+            string responseBody = "{\"status\":53,\"error_message\":\"Invalid field value(s) for fields: $.$amount, $.$currency_code. Please check the documentation for valid field values.\",\"time\":1717399201,\"warnings\":{\"count\":2,\"items\":[{\"message\":\"Invalid field value at $.$amount\"},{\"message\":\"Invalid field value at $.$currency_code\"}]}}";
+
+            EventResponse response = JsonConvert.DeserializeObject<EventResponse>(responseBody);
+
+            Assert.Equal("https://api.sift.com/v205/events?fields=warnings",
+                          Uri.UnescapeDataString(eventRequest.Request.RequestUri!.ToString()));
+            Assert.Equal(2, response.Warnings.Count);
+
+        }
+
     }
 
 }
