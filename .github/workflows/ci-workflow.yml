@@ -37,7 +37,6 @@ jobs:
     runs-on: ubuntu-latest
     env:
       PUSH_PACKAGES: ${{ github.event_name == 'push' && github.ref == 'refs/heads/master' }}
-    if: ${{ env.PUSH_PACKAGES }}
     steps:
       - uses: actions/checkout@v4
       - name: Setup .NET
@@ -52,6 +51,7 @@ jobs:
         run: |
           sudo apt-get update && sudo apt-get install -y openssh-client git
       - name: siftDotNetIntegrationTest
+        if: ${{ env.PUSH_PACKAGES }}
         run: |
           ./build.sh --target=restore
           ./build.sh --target=generate
