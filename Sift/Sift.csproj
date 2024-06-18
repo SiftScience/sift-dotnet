@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <Description>The official sync/async .NET client for the Sift API</Description>
     <Authors>Sift</Authors>
