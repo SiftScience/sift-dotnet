@@ -1,9 +1,12 @@
 name: ciworkflow
 
 on:
+  push:
+    branches:
+      - master
   pull_request:
     branches:
-      - '*'
+      - master
 
 env:
   # Setting an environment variable with the value of a configuration variable
@@ -28,12 +31,10 @@ jobs:
 
   siftDotNetIntegrationTest:
     runs-on: ubuntu-latest
-    env:
-      PUSH_PACKAGES: ${{ github.event_name == 'pull_request' || github.event_name == 'push' && github.ref == 'refs/heads/master' }}
+    if: ${{ github.ref == 'refs/heads/master' }}
     steps:
       - uses: actions/checkout@v4
       - name: Setup .NET
-        if: ${{ env.PUSH_PACKAGES }}
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: 7.x.x
