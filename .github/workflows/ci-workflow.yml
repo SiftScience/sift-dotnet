@@ -39,7 +39,6 @@ jobs:
         with:
           dotnet-version: 7.x.x
       - name: siftDotNetIntegrationTest
-        if: ${{ env.PUSH_PACKAGES }}
         run: |
           ./build.sh --target=restore
           ./build.sh --target=generate
