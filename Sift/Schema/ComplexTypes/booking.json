@@ -25,6 +25,9 @@
         "$currency_code": {
             "type": [ "string", "null" ]
         },
+        "$iata_carrier_code": {
+            "type": [ "string", "null" ]
+        },
         "$quantity": {
             "type": [ "integer", "null" ]
         },
