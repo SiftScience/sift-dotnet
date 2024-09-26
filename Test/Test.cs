@@ -55,6 +55,7 @@ namespace Test
                         end_time= 2038412903,
                         price = 49900000,
                         currency_code = "USD",
+                        iata_carrier_code = "AS", 
                         quantity = 1,
                         venue_id = "venue-123",
                         event_id = "event-123",
@@ -161,7 +162,7 @@ namespace Test
                          "\"$session_id\":\"sessionId\",\"$order_id\":\"oid\",\"$user_email\":\"bill@gmail.com\"," +
                          "\"$amount\":1000000000000,\"$currency_code\":\"USD\",\"$billing_address\":{\"$name\":\"gary\",\"$city\":\"san francisco\"}," +
                          "\"$bookings\":[{\"$booking_type\":\"$flight\",\"$title\":\"SFO - LAS, 2 Adults\",\"$start_time\":2038412903," +
-                         "\"$end_time\":2038412903,\"$price\":49900000,\"$currency_code\":\"USD\",\"$quantity\":1,\"$guests\":[{\"$name\":\"John Doe\"," +
+                         "\"$end_time\":2038412903,\"$price\":49900000,\"$currency_code\":\"USD\",\"$iata_carrier_code\":\"AS\",\"$quantity\":1,\"$guests\":[{\"$name\":\"John Doe\"," +
                          "\"$email\":\"jdoe@domain.com\",\"$phone\":\"1-415-555-6040\",\"$loyalty_program\":\"skymiles\",\"$loyalty_program_id\":\"PSOV34DF\"," +
                          "\"$birth_date\":\"1985-01-19\"},{\"$name\":\"John Doe\"}],\"$segments\":[{\"$start_time\":203841290300,\"$end_time\":2038412903," +
                          "\"$vessel_number\":\"LH454\",\"$departure_airport_code\":\"SFO\",\"$arrival_airport_code\":\"LAS\",\"$fare_class\":\"Premium Economy\"," +
