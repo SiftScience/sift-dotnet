@@ -16,7 +16,7 @@ namespace Test.Integration.NetFx48.EventsAPI
 
         public Wagers()
         {
-            ApiKey = "8e6580678c3f1983"; // environmentVariable.ApiKey;
+            ApiKey = environmentVariable.ApiKey;
             UserId = environmentVariable.user_id;
 
             long nowMills = DateTimeOffset.Now.ToUnixTimeMilliseconds();

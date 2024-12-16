@@ -11,9 +11,6 @@
     "$user_id": {
       "type": [ "string", "null" ]
     },
-    "$session_id": {
-      "type": [ "string", "null" ]
-    },
     "$wager_id": {
       "type": [ "string", "null" ]
     },

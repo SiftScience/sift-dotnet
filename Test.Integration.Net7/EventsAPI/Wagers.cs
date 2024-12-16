@@ -11,7 +11,6 @@ namespace Test.Integration.Net7.EventsAPI
         private readonly EnvironmentVariable environmentVariable = new();
         private readonly string ApiKey;
         private readonly string UserId;
-        private readonly string SessionId;
         private readonly string WagerId;
 
 
