@@ -2756,7 +2756,6 @@ namespace Test
         [Fact]
         public void TestWagerEvent()
         {
-            var sessionId = "sessionId";
             var wager = new Wager
             {
                 user_id = "test_dotnet_wager_event",
