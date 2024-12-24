@@ -2627,6 +2627,180 @@ namespace Test
 
         }
 
+        [Fact]
+        public void TestTransactionEventWithExtraDepositFields()
+        {
+            //Please provide the valid session id in place of 'sessionId'
+            var sessionId = "sessionId";
+            var transaction = new Transaction
+            {
+                user_id = "test_dotnet_transaction_event",
+                amount = 1000000000000L,
+                currency_code = "USD",
+                session_id = sessionId,
+                transaction_type = "$deposit",
+                transaction_status = "$failure",
+                payment_method = new PaymentMethod
+                {
+                    wallet_address = "ZplYVmchAoywfMvC8jCiKlBLfKSBiFtHU6",
+                    wallet_type = "$crypto"
+                }
+                ,
+                minimum_deposit_amount = 100000L,
+                maximum_deposit_amount = 1000000000000L,
+                current_balance = 0L,
+                new_balance = 1000000000000L
+            };
+
+            Assert.Equal("{" +
+            "\"$type\":\"$transaction\"," +
+            "\"$user_id\":\"test_dotnet_transaction_event\"," +
+            "\"$session_id\":\"sessionId\"," +
+            "\"$transaction_type\":\"$deposit\"," +
+
+            "\"$transaction_status\":\"$failure\"," +
+            "\"$amount\":1000000000000," +
+            "\"$currency_code\":\"USD\"," +
+            "" +
+            "\"$payment_method\":{" +
+            "\"$wallet_address\":\"ZplYVmchAoywfMvC8jCiKlBLfKSBiFtHU6\"," +
+            "\"$wallet_type\":\"$crypto\"" +
+            "}," +
+            "\"$minimum_deposit_amount\":100000," +
+            "\"$maximum_deposit_amount\":1000000000000," +
+            "\"$current_balance\":0," +
+            "\"$new_balance\":1000000000000" +
+            "}", transaction.ToJson());
+
+            EventRequest eventRequest = new EventRequest
+            {
+                Event = transaction
+            };
+
+            Assert.Equal("https://api.sift.com/v205/events", eventRequest.Request.RequestUri!.ToString());
+
+            eventRequest = new EventRequest
+            {
+                Event = transaction,
+                AbuseTypes = { "legacy", "payment_abuse" },
+                ReturnScore = true
+            };
+
+            Assert.Equal("https://api.sift.com/v205/events?abuse_types=legacy,payment_abuse&return_score=true",
+                          Uri.UnescapeDataString(eventRequest.Request.RequestUri!.ToString()));
+        }
+
+        [Fact]
+        public void TestTransactionEventWithExtraWithdrawalFields()
+        {
+            //Please provide the valid session id in place of 'sessionId'
+            var sessionId = "sessionId";
+            var transaction = new Transaction
+            {
+                user_id = "test_dotnet_transaction_event",
+                amount = 1000000000000L,
+                currency_code = "USD",
+                session_id = sessionId,
+                transaction_type = "$withdrawal",
+                transaction_status = "$failure",
+                payment_method = new PaymentMethod
+                {
+                    wallet_address = "ZplYVmchAoywfMvC8jCiKlBLfKSBiFtHU6",
+                    wallet_type = "$crypto"
+                }
+                ,
+                minimum_withdrawal_amount = 100000L,
+                maximum_withdrawal_amount = 1000000000000L,
+                current_balance = 1000000000000L,
+                new_balance = 0
+            };
+
+            Assert.Equal("{" +
+            "\"$type\":\"$transaction\"," +
+            "\"$user_id\":\"test_dotnet_transaction_event\"," +
+            "\"$session_id\":\"sessionId\"," +
+            "\"$transaction_type\":\"$withdrawal\"," +
+
+            "\"$transaction_status\":\"$failure\"," +
+            "\"$amount\":1000000000000," +
+            "\"$currency_code\":\"USD\"," +
+            "" +
+            "\"$payment_method\":{" +
+            "\"$wallet_address\":\"ZplYVmchAoywfMvC8jCiKlBLfKSBiFtHU6\"," +
+            "\"$wallet_type\":\"$crypto\"" +
+            "}," +
+            "\"$minimum_withdrawal_amount\":100000," +
+            "\"$maximum_withdrawal_amount\":1000000000000," +
+            "\"$current_balance\":1000000000000," +
+            "\"$new_balance\":0" +
+            "}", transaction.ToJson());
+
+            EventRequest eventRequest = new EventRequest
+            {
+                Event = transaction
+            };
+
+            Assert.Equal("https://api.sift.com/v205/events", eventRequest.Request.RequestUri!.ToString());
+
+            eventRequest = new EventRequest
+            {
+                Event = transaction,
+                AbuseTypes = { "legacy", "payment_abuse" },
+                ReturnScore = true
+            };
+
+            Assert.Equal("https://api.sift.com/v205/events?abuse_types=legacy,payment_abuse&return_score=true",
+                          Uri.UnescapeDataString(eventRequest.Request.RequestUri!.ToString()));
+        }
+
+        [Fact]
+        public void TestWagerEvent()
+        {
+            var wager = new Wager
+            {
+                user_id = "test_dotnet_wager_event",
+                wager_id = "wager123",
+                wager_type = "$parlay",
+                wager_status = "$accept",
+                amount = 5000L,
+                currency_code = "USD",
+                wager_event_type = "NFL",
+                wager_event_name = "Example Game",
+                wager_event_id = "event456",
+                minimum_wager_amount = 100L
+            };
+
+            Assert.Equal("{" +
+                "\"$type\":\"$wager\"," +
+                "\"$user_id\":\"test_dotnet_wager_event\"," +
+                "\"$wager_id\":\"wager123\"," +
+                "\"$wager_type\":\"$parlay\"," +
+                "\"$wager_status\":\"$accept\"," +
+                "\"$amount\":5000," +
+                "\"$currency_code\":\"USD\"," +
+                "\"$wager_event_type\":\"NFL\"," +
+                "\"$wager_event_name\":\"Example Game\"," +
+                "\"$wager_event_id\":\"event456\"," +
+                "\"$minimum_wager_amount\":100" +
+                "}", wager.ToJson());
+
+            EventRequest eventRequest = new EventRequest
+            {
+                Event = wager
+            };
+
+            Assert.Equal("https://api.sift.com/v205/events", eventRequest.Request.RequestUri!.ToString());
+
+            eventRequest = new EventRequest
+            {
+                Event = wager,
+                AbuseTypes = { "legacy", "payment_abuse" },
+                ReturnScore = true
+            };
+
+            Assert.Equal("https://api.sift.com/v205/events?abuse_types=legacy,payment_abuse&return_score=true",
+                          Uri.UnescapeDataString(eventRequest.Request.RequestUri!.ToString()));
+        }
     }
 
 }

@@ -129,6 +129,30 @@
     },
     "$verification_phone_number": {
       "type": [ "string", "null" ]
+    },
+    "$minimum_deposit_amount": {
+      "type": [ "integer", "null" ],
+      "format": "long"
+    },
+    "$maximum_deposit_amount": {
+      "type": [ "integer", "null" ],
+      "format": "long"
+    },
+    "$minimum_withdrawal_amount": {
+      "type": [ "integer", "null" ],
+      "format": "long"
+    },
+    "$maximum_withdrawal_amount": {
+      "type": [ "integer", "null" ],
+      "format": "long"
+    },
+    "$current_balance": {
+      "type": [ "integer", "null" ],
+      "format": "long"
+    },
+    "$new_balance": {
+      "type": [ "integer", "null" ],
+      "format": "long"
     }
   }
 }

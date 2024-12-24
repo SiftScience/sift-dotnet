@@ -179,5 +179,66 @@ namespace Test.Integration.Net7.EventsAPI
             EventResponse res = sift.SendAsync(eventRequest).Result;
             Assert.Equal("0", res.Status.ToString());
         }
+
+        [Fact]
+        public void DepositTransactionTest()
+        {
+            var sift = new Client(ApiKey);
+            var transaction = new Transaction
+            {
+                user_id = UserId,
+                user_email = UserEmail,
+                amount = 60000000,
+                currency_code = "EUR",
+                transaction_type = "$deposit",
+                transaction_status = "$success",
+                payment_method =  new PaymentMethod()
+                {
+                    wallet_address = "wallet1",
+                    wallet_type = "$digital"
+                },
+                minimum_deposit_amount = 10000,
+                maximum_deposit_amount = 60000000,
+                current_balance = 0,
+                new_balance = 506790000
+            };
+            EventRequest eventRequest = new EventRequest()
+            {
+                Event = transaction
+            };
+            EventResponse res = sift.SendAsync(eventRequest).Result;
+            Assert.Equal("0", res.Status.ToString());
+        }
+
+        [Fact]
+        public void WithdrawalTransactionTest()
+        {
+            var sift = new Client(ApiKey);
+            var transaction = new Transaction
+            {
+                user_id = UserId,
+                user_email = UserEmail,
+                amount = 60000000,
+                currency_code = "EUR",
+                transaction_type = "$withdrawal",
+                transaction_status = "$success",
+                payment_method =  new PaymentMethod()
+                {
+                    wallet_address = "wallet1",
+                    wallet_type = "$digital"
+                },
+
+                minimum_withdrawal_amount = 10000,
+                maximum_withdrawal_amount = 60000000,
+                current_balance = 60000000,
+                new_balance = 0
+            };
+            EventRequest eventRequest = new EventRequest()
+            {
+                Event = transaction
+            };
+            EventResponse res = sift.SendAsync(eventRequest).Result;
+            Assert.Equal("0", res.Status.ToString());
+        }
     }
 }

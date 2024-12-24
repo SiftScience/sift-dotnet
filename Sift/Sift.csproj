@@ -4,8 +4,8 @@
     <Authors>Sift</Authors>
     <AssemblyTitle>Sift</AssemblyTitle>
     <AssemblyName>Sift</AssemblyName>
-    <VersionPrefix>1.4.0</VersionPrefix>
-    <PackageReleaseNotes>Release 1.4.0</PackageReleaseNotes>
+    <VersionPrefix>1.5.0</VersionPrefix>
+    <PackageReleaseNotes>Release 1.5.0</PackageReleaseNotes>
     <TargetFramework>netstandard2.0</TargetFramework>
     <PackageId>Sift</PackageId>
     <PackageTags>sift;siftscience;client;api;client;async</PackageTags>

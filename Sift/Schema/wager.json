@@ -1,0 +1,44 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Wager",
+  "type": "object",
+  "required": [ "$type" ],
+  "properties": {
+    "$type": {
+      "type": "string",
+      "default": "$wager"
+    },
+    "$user_id": {
+      "type": [ "string", "null" ]
+    },
+    "$wager_id": {
+      "type": [ "string", "null" ]
+    },
+    "$wager_type": {
+      "type": [ "string", "null" ]
+    },
+    "$wager_status": {
+      "type": [ "string", "null" ]
+    },
+    "$amount": {
+      "type": [ "integer", "null" ],
+      "format": "long"
+    },
+    "$currency_code": {
+      "type": [ "string", "null" ]
+    },
+    "$wager_event_type": {
+      "type": [ "string", "null" ]
+    },
+    "$wager_event_name": {
+      "type": [ "string", "null" ]
+    },
+    "$wager_event_id": {
+      "type": [ "string", "null" ]
+    },
+    "$minimum_wager_amount": {
+      "type": [ "integer", "null" ],
+      "format": "long"
+    }          
+  }
+}
