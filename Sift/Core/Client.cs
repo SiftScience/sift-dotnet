@@ -15,11 +15,22 @@ namespace Sift
 
         public Client(String apiKey)
         {
+            if (apiKey is null)
+            {
+                throw new ArgumentNullException(nameof(apiKey));
+            }
+
             this.apiKey = apiKey;
             this.http = new HttpClient();
         }
 
-        public Client(String apiKey, HttpClient http) {
+        public Client(String apiKey, HttpClient http)
+        {
+            if (apiKey is null)
+            {
+                throw new ArgumentNullException(nameof(apiKey));
+            }
+
             this.apiKey = apiKey;
             this.http = http;
         }
