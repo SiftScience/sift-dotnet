@@ -15,7 +15,7 @@ namespace Sift
 
         public Client(String apiKey)
         {
-            if (apiKey is null)
+            if (string.IsNullOrWhiteSpace(apiKey))
             {
                 throw new ArgumentNullException(nameof(apiKey));
             }
@@ -26,7 +26,7 @@ namespace Sift
 
         public Client(String apiKey, HttpClient http)
         {
-            if (apiKey is null)
+            if (string.IsNullOrWhiteSpace(apiKey))
             {
                 throw new ArgumentNullException(nameof(apiKey));
             }
