@@ -5,7 +5,7 @@ using Xunit;
 
 namespace Test
 {
-    public class Client
+    public class ClientTest
     {
         [Fact]
         public void TestCreateClientWithAPIKeyNull()
