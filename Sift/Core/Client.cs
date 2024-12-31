@@ -26,10 +26,10 @@ namespace Sift
 
         public Client(String apiKey, HttpClient http)
         {
-//            if (string.IsNullOrWhiteSpace(apiKey))
-//            {
-//                throw new ArgumentNullException(nameof(apiKey));
-//            }
+            if (string.IsNullOrWhiteSpace(apiKey))
+            {
+                throw new ArgumentNullException(nameof(apiKey));
+            }
 
             this.apiKey = apiKey;
             this.http = http;
