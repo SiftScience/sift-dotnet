@@ -27,6 +27,10 @@
     "$currency_code": {
       "type": [ "string", "null" ]
     },
+    "$amount_usd": {
+      "type": [ "integer", "null" ],
+      "format": "long"
+    },
     "$billing_address": {
       "oneOf": [
         { "$ref": "ComplexTypes/address.json" },

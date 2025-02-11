@@ -13,9 +13,13 @@
     "$currency_code": {
       "type": [ "string", "null" ]
     },
-    "$minimum_purchase_amount": {
+    "$amount_usd": {
       "type": [ "integer", "null" ],
       "format": "long"
     },
+    "$minimum_purchase_amount": {
+      "type": [ "integer", "null" ],
+      "format": "long"
+    }
   }
 }

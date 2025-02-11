@@ -16,6 +16,10 @@
     "$currency_code": {
       "type": [ "string", "null" ]
     },
+    "$price_usd": {
+      "type": [ "integer", "null" ],
+      "format": "long"
+    },
     "$quantity": {
       "type": [ "integer", "null" ]
     },

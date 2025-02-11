@@ -15,6 +15,15 @@
     "$card_last4": {
       "type": [ "string", "null" ]
     },
+    "$card_bin_country": {
+      "type": [ "string", "null" ]
+    },
+    "$card_brand": {
+      "type": [ "string", "null" ]
+    },
+    "$card_type": {
+      "type": [ "string", "null" ]
+    },
     "$avs_result_code": {
       "type": [ "string", "null" ]
     },

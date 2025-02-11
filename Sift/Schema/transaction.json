@@ -30,6 +30,10 @@
     "$currency_code": {
       "type": [ "string", "null" ]
     },
+    "$amount_usd": {
+      "type": [ "integer", "null" ],
+      "format": "long"
+    },
     "$order_id": {
       "type": [ "string", "null" ]
     },
