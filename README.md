@@ -313,7 +313,8 @@ The official Sift .NET client, supporting .NET Standard 2.0+
                 user_email = "billjones1@example.com",
                 verification_phone_number = "+123456789012",
                 amount = 115940000,
-                currency_code = "USD",
+                currency_code = "CAD",
+                amount_usd = 100940000,
                 billing_address = new Address()
                 {
                     name = "Bill Jones",
@@ -332,7 +333,10 @@ The official Sift .NET client, supporting .NET Standard 2.0+
                         payment_type = "$credit_card",
                         payment_gateway = "$braintree",
                         card_bin = "542486",
-                        card_last4 = "4444"
+                        card_last4 = "4444",
+                        card_bin_country = "US",
+                        card_brand = "visa",
+                        card_type = "gold"
                     },
                     new PaymentMethod()
                     {
@@ -381,7 +385,8 @@ The official Sift .NET client, supporting .NET Standard 2.0+
                         item_id = "12344321",
                         product_title = "Microwavable Kettle Corn: Original Flavor",
                         price = 4990000,
-                        currency_code = "USD",
+                        currency_code = "CAD",
+                        price_usd = 4500000
                         upc = "097564307560",
                         sku = "03586005",
                         isbn = "0446576220",
@@ -408,7 +413,8 @@ The official Sift .NET client, supporting .NET Standard 2.0+
                         discount = new Discount()
                         {
                             amount = 5000000,
-                            currency_code = "USD",
+                            currency_code = "CAD",
+                            amount_usd = 4700000
                             minimum_purchase_amount = 25000000
                         }
                     }
@@ -444,7 +450,8 @@ The official Sift .NET client, supporting .NET Standard 2.0+
                 user_email = "billjones1@example.com",
                 verification_phone_number = "+123456789012",
                 amount = 115940000,
-                currency_code = "USD",
+                currency_code = "CAD",
+                amount_usd = 100940000,
                 billing_address = new Address()
                 {
                     name = "Bill Jones",
@@ -463,7 +470,10 @@ The official Sift .NET client, supporting .NET Standard 2.0+
                         payment_type = "$credit_card",
                         payment_gateway = "$braintree",
                         card_bin = "542486",
-                        card_last4 = "4444"
+                        card_last4 = "4444",
+                        card_bin_country = "US",
+                        card_brand = "visa",
+                        card_type = "gold"
                     },
                     new PaymentMethod()
                     {
@@ -512,7 +522,8 @@ The official Sift .NET client, supporting .NET Standard 2.0+
                         item_id = "12344321",
                         product_title = "Microwavable Kettle Corn: Original Flavor",
                         price = 4990000,
-                        currency_code = "USD",
+                        currency_code = "CAD",
+                        price_usd = 4500000
                         upc = "097564307560",
                         sku = "03586005",
                         isbn = "0446576220",
@@ -539,7 +550,8 @@ The official Sift .NET client, supporting .NET Standard 2.0+
                         discount = new Discount()
                         {
                             amount = 5000000,
-                            currency_code = "USD",
+                            currency_code = "CAD",
+                            amount_usd = 4700000
                             minimum_purchase_amount = 25000000
                         }
                     }
@@ -677,7 +689,8 @@ The official Sift .NET client, supporting .NET Standard 2.0+
         {
             "$user_id"          : "billy_jones_301",
             "$amount"           : 506790000, 
-            "$currency_code"    : "USD",
+            "$currency_code"    : "CAD",
+            "$amount_usd"       : 480090000,
             "$user_email"                : "billjones1@example.com",
             "$verification_phone_number" : "+123456789012",
             "$transaction_type"          : "$sale",
@@ -716,7 +729,10 @@ The official Sift .NET client, supporting .NET Standard 2.0+
                 "$payment_type"    : "$credit_card",
                 "$payment_gateway" : "$braintree",
                 "$card_bin"        : "542486",
-                "$card_last4"      : "4444"
+                "$card_last4"      : "4444",
+                "card_bin_country = "US",
+                "card_brand = "visa",
+                "card_type = "gold"
             },
             "$status_3ds"                     : "$attempted",
             "$triggered_3ds"                  : "$processor",
@@ -767,7 +783,8 @@ The official Sift .NET client, supporting .NET Standard 2.0+
           "$wager_type"           : "spread",
           "$wager_status"         : "$accept",
           "$amount"               : 506790000,
-          "$currency_code"        : "USD",
+          "$currency_code"        : "CAD",
+          "$amount_usd"           : 480090000,
           "$event_type"           : "Sportsbook",
           "$event_name"           : "NFL",
           "$event_id"             : "KHG23423093",
