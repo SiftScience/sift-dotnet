@@ -236,5 +236,36 @@ namespace Test.Integration.NetFx48.EventsAPI
             EventResponse res = sift.SendAsync(eventRequest).Result;
             Assert.Equal("0", res.Status.ToString());
         }
+
+        [Fact]
+        public void TransactionEventWithAmountAndBinMetadataFieldsTest()
+        {
+            var sift = new Client(ApiKey);
+            var transaction = new Transaction
+            {
+                user_id = "test_dotnet_transaction_event",
+                amount = 100000000L,
+                currency_code = "EUR",
+                amount_usd = 120000000L,
+                transaction_type = "$withdrawal",
+                transaction_status = "$failure",
+                payment_method = new PaymentMethod
+                {
+                    payment_type = "$credit_card",
+                    card_bin = "542486",
+                    card_last4 = "4444",
+                    card_bin_country = "US",
+                    card_brand = "Visa",
+                    card_type = "Gold"
+                }
+            };
+
+            EventRequest eventRequest = new EventRequest()
+            {
+                Event = transaction
+            };
+            EventResponse res = sift.SendAsync(eventRequest).Result;
+            Assert.Equal("0", res.Status.ToString());
+        }
     }
 }

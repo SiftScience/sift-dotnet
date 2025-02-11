@@ -321,5 +321,59 @@ namespace Test.Integration.Net7.EventsAPI
             EventResponse res = sift.SendAsync(eventRequest).Result;
             return res;
         }
+
+        [Fact]
+        public void UpdateOrderEventWithItemBookingDiscountPricesInUsdTest()
+        {
+            var sift = new Client(ApiKey);
+
+            var updateOrder = new UpdateOrder
+            {
+                user_id = UserId,
+                session_id = SessionId,
+                order_id = OrderId,
+                amount = 100000,
+                currency_code = "EUR",
+                amount_usd = 120000,
+                items = new ObservableCollection<Item>()
+                {
+                    new Item()
+                    {
+                        price = 100000,
+                        currency_code = "EUR",
+                        price_usd = 120000
+                    }
+                },
+                bookings = new ObservableCollection<Booking>()
+                {
+                    new Booking()
+                    {
+                        booking_type = "$flight",
+                        price = 100000,
+                        currency_code = "EUR",
+                        price_usd = 120000
+                    }
+                },
+                promotions = new ObservableCollection<Promotion>()
+                {
+                    new Promotion()
+                    {
+                        discount = new Discount()
+                        {
+                            amount = 100000,
+                            currency_code = "EUR",
+                            amount_usd = 120000
+                        }
+                    }
+                }
+            };
+
+            EventRequest eventRequest = new EventRequest()
+            {
+                Event = updateOrder
+            };
+            EventResponse res = sift.SendAsync(eventRequest).Result;
+            Assert.Equal("0", res.Status.ToString());
+        }
     }
 }
