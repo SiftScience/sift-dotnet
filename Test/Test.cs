@@ -2801,6 +2801,74 @@ namespace Test
             Assert.Equal("https://api.sift.com/v205/events?abuse_types=legacy,payment_abuse&return_score=true",
                           Uri.UnescapeDataString(eventRequest.Request.RequestUri!.ToString()));
         }
-    }
 
+        [Fact]
+        public void TestTransactionEventWithAmountAndBinMetadataFields()
+        {
+            //Please provide the valid session id in place of 'sessionId'
+            var sessionId = "sessionId";
+            var transaction = new Transaction
+            {
+                user_id = "test_dotnet_transaction_event",
+                amount = 100000000L,
+                currency_code = "EUR",
+                session_id = sessionId,
+                transaction_type = "$deposit",
+                transaction_status = "$failure",
+                payment_method = new PaymentMethod
+                {
+                    payment_type = "$credit_card",
+                    card_bin = "542486",
+                    card_last4 = "4444",
+                    card_bin_metadata = new CardBinMetadata
+                    {
+                        bank = "Chase",
+                        brand = "VISA",
+                        country = "US",
+                        level = "Gold",
+                        type = "CREDIT"
+                    }
+                }
+            };
+
+            Assert.Equal("{" +
+            "\"$type\":\"$transaction\"," +
+            "\"$user_id\":\"test_dotnet_transaction_event\"," +
+            "\"$session_id\":\"sessionId\"," +
+            "\"$transaction_type\":\"$deposit\"," +
+            "\"$transaction_status\":\"$failure\"," +
+            "\"$amount\":100000000," +
+            "\"$currency_code\":\"EUR\"," +
+            "\"$payment_method\":{" +
+            "\"$payment_type\":\"$credit_card\"," +
+            "\"$card_bin\":\"542486\"," +
+            "\"$card_last4\":\"4444\"," +
+            "\"$card_bin_metadata\":{" +
+            "\"$bank\":\"Chase\"," +
+            "\"$brand\":\"VISA\"," +
+            "\"$country\":\"US\"," +
+            "\"$level\":\"Gold\"," +
+            "\"$type\":\"CREDIT\"" +
+            "}" +
+            "}" +
+            "}", transaction.ToJson());
+
+            EventRequest eventRequest = new EventRequest
+            {
+                Event = transaction
+            };
+
+            Assert.Equal("https://api.sift.com/v205/events", eventRequest.Request.RequestUri!.ToString());
+
+            eventRequest = new EventRequest
+            {
+                Event = transaction,
+                AbuseTypes = { "legacy", "payment_abuse" },
+                ReturnScore = true
+            };
+
+            Assert.Equal("https://api.sift.com/v205/events?abuse_types=legacy,payment_abuse&return_score=true",
+                          Uri.UnescapeDataString(eventRequest.Request.RequestUri!.ToString()));
+        }
+    }
 }
