@@ -1,0 +1,18 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema",
+  "title": "ExchangeRate",
+  "type": "object",
+  "required": [
+    "$quote_currency_code",
+    "$rate"
+  ],
+  "properties": {
+    "$quote_currency_code": {
+      "type": [ "string", "null" ]
+    },
+    "$rate": {
+      "type": [ "number", "null" ],
+      "format": "float"
+    }
+  }
+}
