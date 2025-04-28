@@ -39,7 +39,12 @@ namespace Test.Integration.NetFx48.EventsAPI
                 transaction_type = "$sale",
                 transaction_status = "$failure",
                 amount = 506790000,
-                currency_code = "USD",
+                currency_code = "EUR",
+                exchange_rate = new ExchangeRate
+                {
+                    quote_currency_code = "USD",
+                    rate = 1.14
+                },
                 order_id = OrderId,
                 transaction_id = TransactionId,
                 billing_address = new Address()

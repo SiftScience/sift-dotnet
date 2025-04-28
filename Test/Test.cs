@@ -2763,7 +2763,12 @@ namespace Test
                 wager_type = "$parlay",
                 wager_status = "$accept",
                 amount = 5000L,
-                currency_code = "USD",
+                currency_code = "EUR",
+                exchange_rate = new ExchangeRate
+                {
+                    quote_currency_code = "USD",
+                    rate = 1.14
+                },
                 wager_event_type = "NFL",
                 wager_event_name = "Example Game",
                 wager_event_id = "event456",
@@ -2777,7 +2782,11 @@ namespace Test
                 "\"$wager_type\":\"$parlay\"," +
                 "\"$wager_status\":\"$accept\"," +
                 "\"$amount\":5000," +
-                "\"$currency_code\":\"USD\"," +
+                "\"$currency_code\":\"EUR\"," +
+                "\"$exchange_rate\":{" +
+                "\"$quote_currency_code\":\"USD\"," +
+                "\"$rate\":1.14" +
+                "}," +
                 "\"$wager_event_type\":\"NFL\"," +
                 "\"$wager_event_name\":\"Example Game\"," +
                 "\"$wager_event_id\":\"event456\"," +
@@ -2800,6 +2809,151 @@ namespace Test
 
             Assert.Equal("https://api.sift.com/v205/events?abuse_types=legacy,payment_abuse&return_score=true",
                           Uri.UnescapeDataString(eventRequest.Request.RequestUri!.ToString()));
+        }
+
+        [Fact]
+        public void TestTransactionEventWithExchangeRate()
+        {
+            //Please provide the valid session id in place of 'sessionId'
+            var sessionId = "sessionId";
+            var transaction = new Transaction
+            {
+                user_id = "test_dotnet_transaction_event",
+                amount = 100000000L,
+                currency_code = "EUR",
+                session_id = sessionId,
+                transaction_type = "$deposit",
+                transaction_status = "$failure",
+                exchange_rate = new ExchangeRate
+                {
+                    quote_currency_code = "USD",
+                    rate = 1.14
+                },
+            };
+
+            Assert.Equal("{" +
+            "\"$type\":\"$transaction\"," +
+            "\"$user_id\":\"test_dotnet_transaction_event\"," +
+            "\"$session_id\":\"sessionId\"," +
+            "\"$transaction_type\":\"$deposit\"," +
+            "\"$transaction_status\":\"$failure\"," +
+            "\"$amount\":100000000," +
+            "\"$currency_code\":\"EUR\"," +
+            "\"$exchange_rate\":{" +
+            "\"$quote_currency_code\":\"USD\"," +
+            "\"$rate\":1.14" +
+            "}" +
+            "}", transaction.ToJson());
+
+            EventRequest eventRequest = new EventRequest
+            {
+                Event = transaction
+            };
+
+            Assert.Equal("https://api.sift.com/v205/events", eventRequest.Request.RequestUri!.ToString());
+
+            eventRequest = new EventRequest
+            {
+                Event = transaction,
+                AbuseTypes = { "legacy", "payment_abuse" },
+                ReturnScore = true
+            };
+
+            Assert.Equal("https://api.sift.com/v205/events?abuse_types=legacy,payment_abuse&return_score=true",
+                          Uri.UnescapeDataString(eventRequest.Request.RequestUri!.ToString()));
+        }
+
+        [Fact]
+        public void TestCreateOrderWithExchangeRate()
+        {
+            //Please provide the valid session id in place of 'sessionId'
+            var sessionId = "sessionId";
+            var createOrder = new CreateOrder
+            {
+                user_id = "test_dotnet_order_with_all_exchange_rate_fields",
+                order_id = "oid",
+                amount = 1000000000000L,
+                currency_code = "EUR",
+                session_id = sessionId,
+                user_email = "bill@gmail.com",
+                bookings = new ObservableCollection<Booking>()
+                {
+                    new Booking()
+                    {
+                        booking_type = "$flight",
+                        title = "SFO - LAS, 2 Adults",
+                        start_time= 2038412903,
+                        end_time= 2038412903,
+                        price = 49900000,
+                        currency_code = "EUR",
+                        exchange_rate = new ExchangeRate
+                        {
+                            quote_currency_code = "USD",
+                            rate = 1.14
+                        }
+                    }
+                },
+                promotions = new ObservableCollection<Promotion>()
+                {
+                    new Promotion()
+                    {
+                        discount = new Discount()
+                        {
+                            percentage_off = 0.2,
+                            amount = 5000000,
+                            currency_code = "EUR",
+                            exchange_rate = new ExchangeRate
+                            {
+                                quote_currency_code = "USD",
+                                rate = 1.14
+                            }
+                        }
+                    }
+                },
+                items = new ObservableCollection<Item>()
+                {
+                    new Item()
+                    {
+                        item_id = "12344321",
+                        price = 4990000,
+                        currency_code = "EUR",
+                        exchange_rate = new ExchangeRate
+                        {
+                            quote_currency_code = "USD",
+                            rate = 1.14
+                        }
+                    }
+                },
+            };
+
+            // Augment with custom fields
+            Assert.Equal("{\"$type\":\"$create_order\",\"$user_id\":\"test_dotnet_order_with_all_exchange_rate_fields\"," +
+            "\"$session_id\":\"sessionId\",\"$order_id\":\"oid\",\"$user_email\":\"bill@gmail.com\",\"$amount\":1000000000000," +
+            "\"$currency_code\":\"EUR\",\"$items\":[{\"$item_id\":\"12344321\",\"$price\":4990000,\"$currency_code\":\"EUR\"," +
+            "\"$exchange_rate\":{\"$quote_currency_code\":\"USD\",\"$rate\":1.14}}],\"$bookings\":[{\"$booking_type\":\"$flight\"," +
+            "\"$title\":\"SFO - LAS, 2 Adults\",\"$start_time\":2038412903,\"$end_time\":2038412903,\"$price\":49900000," +
+            "\"$currency_code\":\"EUR\",\"$exchange_rate\":{\"$quote_currency_code\":\"USD\",\"$rate\":1.14}}],\"$promotions\":" +
+            "[{\"$discount\":{\"$percentage_off\":0.2,\"$amount\":5000000,\"$currency_code\":\"EUR\",\"$exchange_rate\":" +
+            "{\"$quote_currency_code\":\"USD\",\"$rate\":1.14}}}]}", createOrder.ToJson());
+
+
+            EventRequest eventRequest = new EventRequest
+            {
+                Event = createOrder
+            };
+
+            Assert.Equal("https://api.sift.com/v205/events", eventRequest.Request.RequestUri!.ToString());
+
+            eventRequest = new EventRequest
+            {
+                Event = createOrder,
+                AbuseTypes = { "legacy", "payment_abuse" },
+                ReturnScore = true,
+                ReturnRouteInfo = true
+            };
+
+            Assert.Equal("https://api.sift.com/v205/events?abuse_types=legacy,payment_abuse&return_score=true&return_route_info=true",
+                         Uri.UnescapeDataString(eventRequest.Request.RequestUri!.ToString()));
         }
     }
 
