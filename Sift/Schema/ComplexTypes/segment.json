@@ -23,6 +23,9 @@
         "$fare_class": {
             "type": [ "string", "null" ]
         },
+        "$iata_carrier_code": {
+            "type": [ "string", "null" ]
+        },
         "$departure_address": {
             "oneOf": [
                 { "$ref": "address.json" },

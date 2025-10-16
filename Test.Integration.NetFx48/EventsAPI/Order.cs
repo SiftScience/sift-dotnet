@@ -40,7 +40,12 @@ namespace Test.Integration.NetFx48.EventsAPI
                 order_id = OrderId,
                 user_email = UserEmail,
                 amount = 115940000,
-                currency_code = "USD",
+                currency_code = "EUR",
+                exchange_rate = new ExchangeRate
+                {
+                    quote_currency_code = "USD",
+                    rate = 1.14
+                },
                 billing_address = new Address()
                 {
                     name = "Bill Jones",
@@ -106,7 +111,12 @@ namespace Test.Integration.NetFx48.EventsAPI
                         item_id = ItemId,
                         product_title = "Microwavable Kettle Corn: Original Flavor",
                         price = 4990000,
-                        currency_code = "USD",
+                        currency_code = "EUR",
+                        exchange_rate = new ExchangeRate
+                        {
+                            quote_currency_code = "USD",
+                            rate = 1.14
+                        },
                         upc = "097564307560",
                         sku = "03586005",
                         isbn = "0446576220",
@@ -133,7 +143,12 @@ namespace Test.Integration.NetFx48.EventsAPI
                         discount = new Discount()
                         {
                             amount = 5000000,
-                            currency_code = "USD",
+                            currency_code = "EUR",
+                            exchange_rate = new ExchangeRate
+                            {
+                                quote_currency_code = "USD",
+                                rate = 1.14
+                            },
                             minimum_purchase_amount = 25000000
                         }
                     }

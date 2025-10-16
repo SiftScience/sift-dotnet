@@ -30,6 +30,12 @@
     "$currency_code": {
       "type": [ "string", "null" ]
     },
+    "$exchange_rate": {
+      "oneOf": [
+        { "$ref": "ComplexTypes/exchange_rate.json" },
+        { "type": "null" }
+      ]
+    },
     "$order_id": {
       "type": [ "string", "null" ]
     },

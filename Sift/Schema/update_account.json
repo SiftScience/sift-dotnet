@@ -81,6 +81,10 @@
     },
     "$verification_phone_number": {
       "type": [ "string", "null" ]
+    },
+    "$promotions": {
+      "type": [ "array", "null" ],
+      "items": { "$ref": "ComplexTypes/promotion.json" }
     }
   }
 }

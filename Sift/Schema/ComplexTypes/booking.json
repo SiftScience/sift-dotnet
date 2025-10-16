@@ -25,8 +25,11 @@
         "$currency_code": {
             "type": [ "string", "null" ]
         },
-        "$iata_carrier_code": {
-            "type": [ "string", "null" ]
+        "$exchange_rate": {
+            "oneOf": [
+                { "$ref": "exchange_rate.json" },
+                { "type": "null" }
+            ]
         },
         "$quantity": {
             "type": [ "integer", "null" ]
