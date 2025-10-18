@@ -1,9 +1,9 @@
 using Sift;
 using System;
-using Test.Integration.Net7.Uitlities;
+using Test.Integration.Net.Uitlities;
 using Xunit;
 
-namespace Test.Integration.Net7.VerificationAPI
+namespace Test.Integration.Net.VerificationAPI
 {
     public class VerificationsRequests
     {

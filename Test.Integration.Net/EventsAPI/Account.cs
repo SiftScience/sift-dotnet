@@ -1,9 +1,9 @@
 using Sift;
 using System.Collections.ObjectModel;
-using Test.Integration.Net7.Uitlities;
+using Test.Integration.Net.Uitlities;
 using Xunit;
 
-namespace Test.Integration.Net7.EventsAPI
+namespace Test.Integration.Net.EventsAPI
 {
     public class Account
     {
@@ -173,6 +173,21 @@ namespace Test.Integration.Net7.EventsAPI
                     region = "New Hampshire",
                     country = "US",
                     zipcode = "03257"
+                },
+                promotions = new ObservableCollection<Promotion>()
+                {
+                    new Promotion()
+                    {
+                        promotion_id = "UpdatedPromotion",
+                        status = "$success",
+                        description = "$10 off updated account",
+                        discount = new Discount()
+                        {
+                            amount = 10000000,
+                            currency_code = "USD",
+                            minimum_purchase_amount = 50000000
+                        }
+                    }
                 },
                 social_sign_on_type = "$twitter",
                 browser = new Browser

@@ -1,9 +1,9 @@
 using Sift;
 using System;
-using Test.Integration.Net7.Uitlities;
+using Test.Integration.Net.Uitlities;
 using Xunit;
 
-namespace Test.Integration.Net7.PSPMerchantManagementAPI
+namespace Test.Integration.Net.PSPMerchantManagementAPI
 {
     public class MerchantRequests
     {

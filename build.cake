@@ -4,7 +4,7 @@ var ARTIFACTS_DIR = "./artifacts/";
 var SOLUTION = "./Sift.sln";
 var SIFT = "./Sift/Sift.csproj";
 var TEST = "./Test/Test.csproj";
-var TEST_NET7 = "./Test.Integration.Net7/Test.Integration.Net7.csproj";
+var TEST_NET = "./Test.Integration.Net/Test.Integration.Net.csproj";
 
 Task("clean")
     .Does(() =>
@@ -36,13 +36,13 @@ Task("build")
 Task("test")
     .Does(() => DotNetCoreTest(TEST));
 
-Task("testNet7")
+Task("testNet")
     .Does(() =>
     {
         var testFilter = Argument("filter", "");
         if (string.IsNullOrEmpty(testFilter))
         {
-            DotNetCoreTest(TEST_NET7);
+            DotNetCoreTest(TEST_NET);
         }
         else
         {
@@ -50,7 +50,7 @@ Task("testNet7")
             {
                 ArgumentCustomization = args => args.Append("--filter=" + testFilter)
             };
-            DotNetCoreTest(TEST_NET7, settings);
+            DotNetCoreTest(TEST_NET, settings);
         }
     });
 

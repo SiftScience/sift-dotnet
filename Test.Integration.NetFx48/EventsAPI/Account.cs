@@ -176,6 +176,21 @@ namespace Test.Integration.NetFx48.EventsAPI
                     country = "US",
                     zipcode = "03257"
                 },
+                promotions = new ObservableCollection<Promotion>()
+                {
+                    new Promotion()
+                    {
+                        promotion_id = "UpdatedPromotion",
+                        status = "$success",
+                        description = "$10 off updated account",
+                        discount = new Discount()
+                        {
+                            amount = 10000000,
+                            currency_code = "USD",
+                            minimum_purchase_amount = 50000000
+                        }
+                    }
+                },
                 social_sign_on_type = "$twitter",
                 browser = new Browser
                 {

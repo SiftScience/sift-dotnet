@@ -1,10 +1,10 @@
 using Sift;
 using System;
 using System.Collections.ObjectModel;
-using Test.Integration.Net7.Uitlities;
+using Test.Integration.Net.Uitlities;
 using Xunit;
 
-namespace Test.Integration.Net7.EventsAPI
+namespace Test.Integration.Net.EventsAPI
 {
     public class Order
     {
