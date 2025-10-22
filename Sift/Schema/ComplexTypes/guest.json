@@ -20,6 +20,12 @@
         },
         "$birth_date": {
             "type": [ "string", "null" ]
+        },
+        "$guest_user_id": {
+            "type": [ "string", "null" ]
+        },
+        "$guest_booking_reference_id": {
+            "type": [ "string", "null" ]
         }
     }
 }

@@ -69,7 +69,9 @@ namespace Test
                                 loyalty_program = "skymiles",
                                 loyalty_program_id = "PSOV34DF",
                                 phone = "1-415-555-6040",
-                                email = "jdoe@domain.com"
+                                email = "jdoe@domain.com",
+                                guest_user_id = "johndoe_1985-01-19",
+                                guest_booking_reference_id = "AO0999837df"
                             },
                             new Guest()
                             {
@@ -164,7 +166,7 @@ namespace Test
                          "\"$bookings\":[{\"$booking_type\":\"$flight\",\"$title\":\"SFO - LAS, 2 Adults\",\"$start_time\":2038412903," +
                          "\"$end_time\":2038412903,\"$price\":49900000,\"$currency_code\":\"USD\",\"$quantity\":1,\"$guests\":[{\"$name\":\"John Doe\"," +
                          "\"$email\":\"jdoe@domain.com\",\"$phone\":\"1-415-555-6040\",\"$loyalty_program\":\"skymiles\",\"$loyalty_program_id\":\"PSOV34DF\"," +
-                         "\"$birth_date\":\"1985-01-19\"},{\"$name\":\"John Doe\"}],\"$segments\":[{\"$start_time\":203841290300,\"$end_time\":2038412903," +
+                         "\"$birth_date\":\"1985-01-19\",\"$guest_user_id\":\"johndoe_1985-01-19\",\"$guest_booking_reference_id\":\"AO0999837df\"},{\"$name\":\"John Doe\"}],\"$segments\":[{\"$start_time\":203841290300,\"$end_time\":2038412903," +
                          "\"$vessel_number\":\"LH454\",\"$departure_airport_code\":\"SFO\",\"$arrival_airport_code\":\"LAS\",\"$fare_class\":\"Premium Economy\",\"$iata_carrier_code\":\"AS\"," +
                          "\"$departure_address\":{\"$name\":\"Bill Jones\",\"$address_1\":\"2100 Main Street\",\"$address_2\":\"Apt 3B\",\"$city\":\"New London\"," +
                          "\"$region\":\"New Hampshire\",\"$country\":\"US\",\"$zipcode\":\"03257\",\"$phone\":\"1-415-555-6040\"}," +

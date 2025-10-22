@@ -34,6 +34,7 @@ namespace Test.Integration.NetFx48.EventsAPI
                 user_id = UserId,
                 session_id = SessionId,
                 user_email = UserEmail,
+                verification_phone_number = "+123456789012",
                 name = "Bill Jones",
                 phone = "1-415-555-6040",
                 referrer_user_id = ReferrerUserId,
@@ -90,6 +91,12 @@ namespace Test.Integration.NetFx48.EventsAPI
                     }
                 },
                 social_sign_on_type = "$twitter",
+                app = new App
+                {
+                    app_name = "MyTestApp",
+                    app_version = "1.2.3",
+                    client_language = "en-US"
+                },
                 browser = new Browser
                 {
                     user_agent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36",
@@ -192,6 +199,12 @@ namespace Test.Integration.NetFx48.EventsAPI
                     }
                 },
                 social_sign_on_type = "$twitter",
+                app = new App
+                {
+                    app_name = "MyTestApp",
+                    app_version = "1.2.3",
+                    client_language = "en-US"
+                },
                 browser = new Browser
                 {
                     user_agent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36",

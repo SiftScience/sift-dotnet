@@ -5,7 +5,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [1.6.0] - 2025-01-XX
+## [1.6.0] - 2025-10-18
+
+### Summary
+
+This release brings the sift-dotnet SDK into full compliance with Sift API v205 specifications, including critical updates for multi-currency support, enhanced fraud detection capabilities, and iGaming features.
+
+**Key Highlights:**
+- 🔄 **Breaking Change**: `$iata_carrier_code` moved from `Booking` to `Segment` (see migration guide below)
+- 💱 Multi-currency transaction support via `$exchange_rate` field
+- 🎁 Account promotions tracking in `$update_account` events
+- 💳 Enhanced payment method validation with `$card_bin_metadata`
+- 🎰 Complete iGaming support with enhanced `$transaction` and `$wager` events
+- ✅ Comprehensive test coverage across all new features
 
 ### Breaking Changes
 
@@ -71,17 +83,34 @@ var booking = new Booking
   - Added `osx-arm64` runtime identifier
   - Native support for M1, M2, and M3 Mac processors
 
+- **.NET 8.0 migration**
+  - Migrated integration tests from .NET 7 to .NET 8.0
+  - Renamed `Test.Integration.Net7` project to `Test.Integration.Net`
+  - Maintains backward compatibility with .NET Framework 4.8
+
 #### Developer Experience
 
 - **JetBrains IDE support**
   - Added `.idea/` directory to `.gitignore`
   - Better IDE integration for Rider and IntelliJ users
 
+#### Test Coverage Enhancements
+
+- **Comprehensive integration tests** across both .NET and .NET Framework 4.8:
+  - Added test coverage for `$promotions` field in `$update_account` event
+  - Enhanced `$transaction` event tests with deposit/withdrawal scenarios covering all new iGaming fields
+  - Complete test coverage for `$wager` event with all fields including `$exchange_rate`
+  - Validation tests for `$card_bin_metadata` in payment methods
+  - All new fields verified with end-to-end integration tests
+
 ### Changed
 
 - **Booking model**: Removed deprecated `iata_carrier_code` property (see Breaking Changes)
 - **Segment model**: Added `iata_carrier_code` property
 - **UpdateAccount model**: Added `promotions` array property
+- **Transaction model**: Enhanced with `$exchange_rate` support for multi-currency transactions
+- **Wager model**: Added `$exchange_rate` field for currency conversion tracking
+- **Test projects**: Renamed `Test.Integration.Net7` to `Test.Integration.Net` (targeting .NET 8.0)
 - **Package version**: Updated to 1.6.0
 
 ### Deprecated
@@ -119,11 +148,23 @@ The following JSON schema files were updated:
 - `segment.json` - Added `$iata_carrier_code`
 - `payment_method.json` - Added `$card_bin_metadata`
 
+### Testing & Validation
+
+- ✅ All 51 unit tests passing
+- ✅ Comprehensive integration test coverage across .NET 8.0 and .NET Framework 4.8
+- ✅ All new fields validated with end-to-end API integration tests
+- ✅ Breaking changes verified with migration test scenarios
+- ✅ Multi-currency exchange rate calculations validated
+- ✅ iGaming transaction flows (deposits, withdrawals, wagers) fully tested
+
 ### Notes
 
 This release brings the .NET SDK into full compliance with Sift API v205 specifications as of April 2025, including all reserved field updates from February through April 2025.
 
-For complete migration guidance, see [IATA_CARRIER_CODE_MIGRATION_SUMMARY.md](IATA_CARRIER_CODE_MIGRATION_SUMMARY.md).
+**Migration Support:**
+- For complete `$iata_carrier_code` migration guidance, see [IATA_CARRIER_CODE_MIGRATION_SUMMARY.md](IATA_CARRIER_CODE_MIGRATION_SUMMARY.md)
+- All changes are backward compatible except for the `$iata_carrier_code` field relocation
+- Existing code using other fields will continue to work without modifications
 
 ---
 
@@ -172,9 +213,53 @@ For earlier release notes, see [GitHub Releases](https://github.com/siftscience/
    - Update any tests that reference `booking.iata_carrier_code`
 
 4. **Optional: Leverage new features:**
-   - Use `exchange_rate` fields for multi-currency transactions
-   - Use `card_bin_metadata` for enhanced payment method tracking
-   - Use `promotions` in account update events
+   - **Multi-currency support**: Use `exchange_rate` fields in transactions, wagers, and orders
+     ```csharp
+     var transaction = new Transaction
+     {
+         amount = 100000000L,
+         currency_code = "EUR",
+         exchange_rate = new ExchangeRate
+         {
+             quote_currency_code = "USD",
+             rate = 1.14
+         }
+     };
+     ```
+   - **Enhanced payment validation**: Use `card_bin_metadata` for detailed card information
+     ```csharp
+     payment_method = new PaymentMethod
+     {
+         card_bin = "542486",
+         card_bin_metadata = new CardBinMetadata
+         {
+             bank = "Chase",
+             brand = "VISA",
+             country = "US",
+             level = "Gold",
+             type = "CREDIT"
+         }
+     };
+     ```
+   - **Account promotions tracking**: Use `promotions` in `$update_account` events
+     ```csharp
+     var updateAccount = new UpdateAccount
+     {
+         promotions = new ObservableCollection<Promotion>()
+         {
+             new Promotion()
+             {
+                 promotion_id = "SUMMER2025",
+                 status = "$success",
+                 discount = new Discount()
+                 {
+                     amount = 5000000,
+                     currency_code = "USD"
+                 }
+             }
+         }
+     };
+     ```
 
 ### Compatibility
 
