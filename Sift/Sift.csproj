@@ -13,7 +13,6 @@
     <PackageProjectUrl>https://github.com/siftscience/sift-dotnet</PackageProjectUrl>
     <PackageLicenseUrl>https://raw.github.com/siftscience/sift-dotnet/master/LICENSE</PackageLicenseUrl>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
-    <RuntimeIdentifiers>win10-x64;osx-arm64</RuntimeIdentifiers>
     <SignAssembly>True</SignAssembly>
   </PropertyGroup>
 

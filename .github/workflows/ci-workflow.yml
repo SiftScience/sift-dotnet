@@ -17,11 +17,11 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: Setup .NET
-        uses: actions/setup-dotnet@v4
+        uses: actions/setup-dotnet@v5
         with:
-          dotnet-version: 7.x.x
+          dotnet-version: 8.x.x
       - name: build
         run: |
           ./build.sh --target=restore
@@ -33,30 +33,30 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ github.ref == 'refs/heads/master' }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: Setup .NET
-        uses: actions/setup-dotnet@v4
+        uses: actions/setup-dotnet@v5
         with:
-          dotnet-version: 7.x.x
+          dotnet-version: 8.x.x
       - name: siftDotNetIntegrationTest
         run: |
           ./build.sh --target=restore
           ./build.sh --target=generate
           ./build.sh --target=build
-          ./build.sh --target=testNet7 --filter=Account
-          ./build.sh --target=testNet7 --filter=Cart
-          ./build.sh --target=testNet7 --filter=Chargebacks
-          ./build.sh --target=testNet7 --filter=Contents
-          ./build.sh --target=testNet7 --filter=LoginLogout
-          ./build.sh --target=testNet7 --filter=Notifications
-          ./build.sh --target=testNet7 --filter=Order
-          ./build.sh --target=testNet7 --filter=Passwords
-          ./build.sh --target=testNet7 --filter=Promotions
-          ./build.sh --target=testNet7 --filter=Sessions
-          ./build.sh --target=testNet7 --filter=Transactions
-          ./build.sh --target=testNet7 --filter=Verifications
-          ./build.sh --target=testNet7 --filter=DecisionsRequests
-          ./build.sh --target=testNet7 --filter=Labels
-          ./build.sh --target=testNet7 --filter=MerchantRequests
-          ./build.sh --target=testNet7 --filter=Scores
-          ./build.sh --target=testNet7 --filter=VerificationsRequests
+          ./build.sh --target=testNet --filter=Account
+          ./build.sh --target=testNet --filter=Cart
+          ./build.sh --target=testNet --filter=Chargebacks
+          ./build.sh --target=testNet --filter=Contents
+          ./build.sh --target=testNet --filter=LoginLogout
+          ./build.sh --target=testNet --filter=Notifications
+          ./build.sh --target=testNet --filter=Order
+          ./build.sh --target=testNet --filter=Passwords
+          ./build.sh --target=testNet --filter=Promotions
+          ./build.sh --target=testNet --filter=Sessions
+          ./build.sh --target=testNet --filter=Transactions
+          ./build.sh --target=testNet --filter=Verifications
+          ./build.sh --target=testNet --filter=DecisionsRequests
+          ./build.sh --target=testNet --filter=Labels
+          ./build.sh --target=testNet --filter=MerchantRequests
+          ./build.sh --target=testNet --filter=Scores
+          ./build.sh --target=testNet --filter=VerificationsRequests
