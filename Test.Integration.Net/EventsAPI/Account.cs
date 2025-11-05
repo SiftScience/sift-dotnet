@@ -89,12 +89,6 @@ namespace Test.Integration.Net.EventsAPI
                     }
                 },
                 social_sign_on_type = "$twitter",
-                app = new App
-                {
-                    app_name = "MyTestApp",
-                    app_version = "1.2.3",
-                    client_language = "en-US"
-                },
                 browser = new Browser
                 {
                     user_agent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36",
@@ -197,12 +191,6 @@ namespace Test.Integration.Net.EventsAPI
                     }
                 },
                 social_sign_on_type = "$twitter",
-                app = new App
-                {
-                    app_name = "MyTestApp",
-                    app_version = "1.2.3",
-                    client_language = "en-US"
-                },
                 browser = new Browser
                 {
                     user_agent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36",
