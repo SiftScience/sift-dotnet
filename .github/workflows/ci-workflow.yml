@@ -7,7 +7,6 @@ on:
   pull_request:
     branches:
       - master
-  workflow_dispatch:
 
 env:
   # Setting an environment variable with the value of a configuration variable
