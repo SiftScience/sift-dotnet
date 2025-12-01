@@ -6,7 +6,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sift", "Sift\Sift.csproj", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Test", "Test\Test.csproj", "{E34BBAD1-9AAC-4120-92C9-3574CCFAF01D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Test.Integration.Net7", "Test.Integration.Net7\Test.Integration.Net7.csproj", "{C3E39BBC-D51F-4230-979B-AA2E5597ECD8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Test.Integration.Net", "Test.Integration.Net\Test.Integration.Net.csproj", "{C3E39BBC-D51F-4230-979B-AA2E5597ECD8}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Test.Integration.NetFx48", "Test.Integration.NetFx48\Test.Integration.NetFx48.csproj", "{B5A60307-AAE2-4D1B-B3B6-95440A0F6381}"
 EndProject

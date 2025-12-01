@@ -1,34 +1,34 @@
 using Sift;
-using Test.Integration.Net7.Uitlities;
+using Test.Integration.Net.Uitlities;
 using Xunit;
 
-namespace Test.Integration.Net7.EventsAPI
+namespace Test.Integration.Net.EventsAPI
 {
-    public class Notifications
+    public class Passwords
     {
         private readonly EnvironmentVariable environmentVariable = new();
         private readonly string ApiKey;
         private readonly string UserId;
         private readonly string SessionId;
-        private readonly string NotifiedValue;
-        public Notifications()
+        private readonly string UserEmail;
+        public Passwords()
         {
             ApiKey = environmentVariable.ApiKey;
             UserId = environmentVariable.user_id;
             SessionId = environmentVariable.session_id;
-            NotifiedValue = environmentVariable.notified_value;
+            UserEmail = environmentVariable.user_email;
         }
         [Fact]
-        public void SecurityNotificationTest()
+        public void UpdatePasswordTest()
         {
             var sift = new Client(ApiKey);
-            var securityNotification = new SecurityNotification
+            var updatePassword = new UpdatePassword
             {
                 user_id = UserId,
                 session_id = SessionId,
-                notification_type = "$email",
-                notified_value = NotifiedValue,
-                notification_status = "$sent",
+                status = "$success",
+                reason = "$forced_reset",
+                ip = "128.148.1.135",
                 browser = new Browser
                 {
                     user_agent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36",
@@ -37,11 +37,13 @@ namespace Test.Integration.Net7.EventsAPI
                 },
                 brand_name = "sift",
                 site_domain = "sift.com",
-                site_country = "US"
+                site_country = "US",
+                user_email = UserEmail,
+                verification_phone_number = "+123456789012"
             };
             EventRequest eventRequest = new EventRequest()
             {
-                Event = securityNotification
+                Event = updatePassword
             };
             EventResponse res = sift.SendAsync(eventRequest).Result;
             Assert.Equal("0", res.Status.ToString());

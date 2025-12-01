@@ -2,13 +2,14 @@
 using System;
 using System.Net.Http;
 using System.Reflection;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 
 namespace Sift
 {
     public class Client : IDisposable
     {
-        static string UserAgent = "sift-dotnet/" + Assembly.GetExecutingAssembly().GetName().Version;
+        static string UserAgent = $"sift-dotnet/{Assembly.GetExecutingAssembly().GetName().Version} ({RuntimeInformation.FrameworkDescription}; {RuntimeInformation.OSArchitecture}; {Environment.OSVersion})";
 
         readonly String apiKey;
         readonly HttpClient http;

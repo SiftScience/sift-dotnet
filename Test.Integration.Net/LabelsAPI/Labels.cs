@@ -1,8 +1,8 @@
 using Sift;
-using Test.Integration.Net7.Uitlities;
+using Test.Integration.Net.Uitlities;
 using Xunit;
 
-namespace Test.Integration.Net7.LabelsAPI
+namespace Test.Integration.Net.LabelsAPI
 {
     public class Labels
     {

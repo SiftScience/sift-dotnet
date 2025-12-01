@@ -2,7 +2,7 @@
 using System;
 using System.IO;
 
-namespace Test.Integration.Net7.Uitlities
+namespace Test.Integration.Net.Uitlities
 {
     internal class EnvironmentVariable
     {
@@ -10,9 +10,10 @@ namespace Test.Integration.Net7.Uitlities
 
         public EnvironmentVariable()
         {
-            var builder = new ConfigurationBuilder()
+            var builder = new ConfigurationManager()
                  .SetBasePath(Directory.GetCurrentDirectory())
-                 .AddJsonFile("local.settings.json", optional: true, reloadOnChange: true);
+                 .AddJsonFile("local.settings.json", optional: true, reloadOnChange: true)
+                 .AddEnvironmentVariables();
             configuration = builder.Build();
         }
 
@@ -20,7 +21,7 @@ namespace Test.Integration.Net7.Uitlities
         {
             get
             {
-                var envAPI_KEY = Environment.GetEnvironmentVariable("API_KEY");
+                var envAPI_KEY = configuration["API_KEY"] ?? configuration["Values:ApiKey"];
                 if (string.IsNullOrEmpty(envAPI_KEY))
                 {
                     throw new Exception("Specify API Key");
@@ -32,7 +33,7 @@ namespace Test.Integration.Net7.Uitlities
         {
             get
             {
-                var envACCOUNT_ID = Environment.GetEnvironmentVariable("ACCOUNT_ID");
+                var envACCOUNT_ID = configuration["ACCOUNT_ID"] ?? configuration["Values:AccountId"];
                 if (string.IsNullOrEmpty(envACCOUNT_ID))
                 {
                     throw new Exception("Specify ACCOUNT ID");

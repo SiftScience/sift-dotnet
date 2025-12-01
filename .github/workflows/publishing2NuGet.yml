@@ -10,17 +10,15 @@ jobs:
       SOLUTION: 'Sift.sln'
     runs-on: windows-latest
     steps:
-    - uses: actions/checkout@v2
-    - name: Setup NuGet
-      uses: NuGet/setup-nuget@v1.0.5
+    - uses: actions/checkout@v5
     - name: Setup .NET
-      uses: actions/setup-dotnet@v1
+      uses: actions/setup-dotnet@v5
       with:
-        dotnet-version: 7.x.x
+        dotnet-version: 8.x.x
     - name: Build
       run: |
-        dotnet --info  
+        dotnet --info
         echo $GITHUB_REF_NAME
         bash -x ./build.sh --target=pack
     - name: Publish
-      run: nuget push artifacts\Sift*.nupkg -Source 'https://api.nuget.org/v3/index.json' -ApiKey ${{secrets.NUGET_API_KEY}}
+      run: dotnet nuget push artifacts\Sift*.nupkg --source 'https://api.nuget.org/v3/index.json' --api-key ${{secrets.NUGET_API_KEY}}

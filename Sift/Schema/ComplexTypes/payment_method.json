@@ -92,6 +92,12 @@
     },
     "$wallet_type": {
       "type": [ "string", "null" ]
+    },
+    "$card_bin_metadata": {
+      "oneOf": [
+        { "$ref": "card_bin_metadata.json" },
+        { "type": "null" }
+      ]
     }
   }
 }

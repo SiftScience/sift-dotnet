@@ -2,10 +2,10 @@ using Sift;
 using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
-using Test.Integration.Net7.Uitlities;
+using Test.Integration.Net.Uitlities;
 using Xunit;
 
-namespace Test.Integration.Net7.EventsAPI
+namespace Test.Integration.Net.EventsAPI
 {
     public class Transactions
     {
@@ -43,7 +43,12 @@ namespace Test.Integration.Net7.EventsAPI
                 transaction_type = "$sale",
                 transaction_status = "$failure",
                 amount = 506790000,
-                currency_code = "USD",
+                currency_code = "EUR",
+                exchange_rate = new ExchangeRate
+                {
+                    quote_currency_code = "USD",
+                    rate = 1.14
+                },
                 order_id = OrderId,
                 transaction_id = TransactionId,
                 billing_address = new Address()
@@ -233,6 +238,41 @@ namespace Test.Integration.Net7.EventsAPI
                 current_balance = 60000000,
                 new_balance = 0
             };
+            EventRequest eventRequest = new EventRequest()
+            {
+                Event = transaction
+            };
+            EventResponse res = sift.SendAsync(eventRequest).Result;
+            Assert.Equal("0", res.Status.ToString());
+        }
+
+        [Fact]
+        public void TransactionEventWithAmountAndBinMetadataFieldsTest()
+        {
+            var sift = new Client(ApiKey);
+            var transaction = new Transaction
+            {
+                user_id = "test_dotnet_transaction_event",
+                amount = 100000000L,
+                currency_code = "EUR",
+                transaction_type = "$withdrawal",
+                transaction_status = "$failure",
+                payment_method = new PaymentMethod
+                {
+                    payment_type = "$credit_card",
+                    card_bin = "542486",
+                    card_last4 = "4444",
+                    card_bin_metadata = new CardBinMetadata
+                        {
+                            bank = "Chase",
+                            brand = "VISA",
+                            country = "US",
+                            level = "Gold",
+                            type = "CREDIT"
+                        }
+                }
+            };
+
             EventRequest eventRequest = new EventRequest()
             {
                 Event = transaction

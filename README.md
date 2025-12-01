@@ -4,7 +4,42 @@
 
 The official Sift .NET client, supporting .NET Standard 2.0+
 
+## Latest Release (v1.6.0)
+
+- Full Sift API v205 compliance with multi-currency support (`$exchange_rate`), enhanced payment validation (`$card_bin_metadata`), and account promotions tracking
+- **Breaking:** `$iata_carrier_code` moved from `Booking` to `Segment` complex type
+- iGaming API enhancements with `$wager`, `$deposit`, and `$withdrawal` transaction support
+
+See [CHANGES.MD](CHANGES.MD) for full release history.
+
 ## Documentation
+
+### Breaking Change in v1.6.0
+
+**`$iata_carrier_code` field relocation**: The `$iata_carrier_code` field has been moved from the `Booking` complex type to the `Segment` complex type to align with Sift API v205 specification.
+
+```csharp
+// BEFORE v1.6.0 - NO LONGER WORKS
+var booking = new Booking
+{
+    iata_carrier_code = "AS",  // ❌ This property no longer exists
+    segments = new ObservableCollection<Segment>() { /* ... */ }
+};
+
+// v1.6.0+ - REQUIRED
+var booking = new Booking
+{
+    segments = new ObservableCollection<Segment>()
+    {
+        new Segment()
+        {
+            iata_carrier_code = "AS",  // ✅ Now at segment level
+            departure_airport_code = "SFO",
+            arrival_airport_code = "LAS"
+        }
+    }
+};
+```
 
 ### Initialization
 
@@ -675,74 +710,92 @@ The official Sift .NET client, supporting .NET Standard 2.0+
     // Construct reserved events with known fields Transaction
     var transaction = new Transaction
         {
-            "$user_id"          : "billy_jones_301",
-            "$amount"           : 506790000, 
-            "$currency_code"    : "USD",
-            "$user_email"                : "billjones1@example.com",
-            "$verification_phone_number" : "+123456789012",
-            "$transaction_type"          : "$sale",
-            "$transaction_status"        : "$failure",
-            "$decline_category"          : "$bank_decline",
-            "$order_id"                  : "ORDER-123124124",
-            "$transaction_id"            : "719637215",
-            "$ip"                        : "54.208.214.78",
-            "$billing_address"  : { 
-                "$name"         : "Bill Jones",
-                "$phone"        : "1-415-555-6041",
-                "$address_1"    : "2100 Main Street",
-                "$address_2"    : "Apt 3B",
-                "$city"         : "New London",
-                "$region"       : "New Hampshire",
-                "$country"      : "US",
-                "$zipcode"      : "03257"
+            user_id = "billy_jones_301",
+            amount = 506790000,
+            currency_code = "EUR",
+            exchange_rate = new ExchangeRate  // NEW in v1.6.0: Multi-currency support
+            {
+                quote_currency_code = "USD",
+                rate = 1.14
             },
-            "$brand_name"   : "sift",
-            "$site_domain"  : "sift.com",
-            "$site_country" : "US",
-            "$ordered_from" : {
-                "$store_id"      : "123",
-                "$store_address" : {
-                "$name"       : "Bill Jones",
-                "$phone"      : "1-415-555-6040",
-                "$address_1"  : "2100 Main Street",
-                "$address_2"  : "Apt 3B",
-                "$city"       : "New London",
-                "$region"     : "New Hampshire",
-                "$country"    : "US",
-                "$zipcode"    : "03257"
+            user_email = "billjones1@example.com",
+            verification_phone_number = "+123456789012",
+            transaction_type = "$sale",
+            transaction_status = "$failure",
+            decline_category = "$bank_decline",
+            order_id = "ORDER-123124124",
+            transaction_id = "719637215",
+            billing_address = new Address()
+            {
+                name = "Bill Jones",
+                phone = "1-415-555-6041",
+                address_1 = "2100 Main Street",
+                address_2 = "Apt 3B",
+                city = "New London",
+                region = "New Hampshire",
+                country = "US",
+                zipcode = "03257"
+            },
+            brand_name = "sift",
+            site_domain = "sift.com",
+            site_country = "US",
+            ordered_from = new OrderedFrom()
+            {
+                store_id = "123",
+                store_address = new Address()
+                {
+                    name = "Bill Jones",
+                    phone = "1-415-555-6040",
+                    address_1 = "2100 Main Street",
+                    address_2 = "Apt 3B",
+                    city = "New London",
+                    region = "New Hampshire",
+                    country = "US",
+                    zipcode = "03257"
                 }
             },
-            "$payment_method"   : {
-                "$payment_type"    : "$credit_card",
-                "$payment_gateway" : "$braintree",
-                "$card_bin"        : "542486",
-                "$card_last4"      : "4444"
+            payment_method = new PaymentMethod()
+            {
+                payment_type = "$credit_card",
+                payment_gateway = "$braintree",
+                card_bin = "542486",
+                card_last4 = "4444",
+                card_bin_metadata = new CardBinMetadata  // NEW in v1.6.0: Enhanced card validation
+                {
+                    bank = "Chase",
+                    brand = "VISA",
+                    country = "US",
+                    level = "Gold",
+                    type = "CREDIT"
+                }
             },
-            "$status_3ds"                     : "$attempted",
-            "$triggered_3ds"                  : "$processor",
-            "$merchant_initiated_transaction" : false,
-            "$shipping_address" : {
-                "$name"         : "Bill Jones",
-                "$phone"        : "1-415-555-6041",
-                "$address_1"    : "2100 Main Street",
-                "$address_2"    : "Apt 3B",
-                "$city"         : "New London",
-                "$region"       : "New Hampshire",
-                "$country"      : "US",
-                "$zipcode"      : "03257"
+            status_3ds = "$attempted",
+            triggered_3ds = "$processor",
+            merchant_initiated_transaction = false,
+            shipping_address = new Address()
+            {
+                name = "Bill Jones",
+                phone = "1-415-555-6041",
+                address_1 = "2100 Main Street",
+                address_2 = "Apt 3B",
+                city = "New London",
+                region = "New Hampshire",
+                country = "US",
+                zipcode = "03257"
             },
-            "$session_id"       : "gigtleqddo84l8cm15qe4il",
-            "$seller_user_id"     : "slinkys_emporium",
-            "digital_wallet"      : "apple_pay", 
-            "coupon_code"         : "dollarMadness",
-            "shipping_choice"     : "FedEx Ground Courier",
-            "is_first_time_buyer" : false,
-            "$browser"        : {
-                "$user_agent"       : "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36",
-                "$accept_language"  : "en-US",
-                "$content_language" : "en-GB"
+            session_id = "gigtleqddo84l8cm15qe4il",
+            seller_user_id = "slinkys_emporium",
+            browser = new Browser
+            {
+                user_agent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36",
+                accept_language = "en-US",
+                content_language = "en-GB"
             }
         };
+    // Augment with custom fields
+    transaction.AddField("digital_wallet", "apple_pay");
+    transaction.AddField("coupon_code", "dollarMadness");
+    transaction.AddField("is_first_time_buyer", false);
 
     EventRequest eventRequest = new EventRequest()
     {
@@ -757,26 +810,84 @@ The official Sift .NET client, supporting .NET Standard 2.0+
         // Handle InnerException
     }
 
-    // Construct reserved events with known fields Wager
+    // Construct reserved events with known fields Wager (NEW in v1.5.0: iGaming support)
     var wager = new Wager
         {
-          "$type"                 : "$wager",
-          "$api_key"              : "YOUR_API_KEY",
-          "$user_id"              : "billy_jones_301",
-          "$wager_id".            : "ID000001",
-          "$wager_type"           : "spread",
-          "$wager_status"         : "$accept",
-          "$amount"               : 506790000,
-          "$currency_code"        : "USD",
-          "$event_type"           : "Sportsbook",
-          "$event_name"           : "NFL",
-          "$event_id"             : "KHG23423093",
-          "$minimum_wager_amount" : 3000000
+          user_id = "billy_jones_301",
+          wager_id = "ID000001",
+          wager_type = "$parlay",
+          wager_status = "$accept",
+          amount = 506790000,
+          currency_code = "EUR",
+          exchange_rate = new ExchangeRate  // NEW in v1.6.0: Multi-currency support for wagers
+          {
+              quote_currency_code = "USD",
+              rate = 1.14
+          },
+          minimum_wager_amount = 3000000,
+          wager_event_type = "Sportsbook",
+          wager_event_name = "Bulls-Lakers",
+          wager_event_id = "nba-23-11100"
         };
 
     EventRequest eventRequest = new EventRequest()
     {
         Event = wager
+    };
+    try
+    {
+        EventResponse res = sift.SendAsync(eventRequest).Result;
+    }
+    catch (AggregateException ae)
+    {
+        // Handle InnerException
+    }
+
+    // Construct reserved events with known fields UpdateAccount
+    var updateAccount = new UpdateAccount
+    {
+        user_id = "billy_jones_301",
+        user_email = "billjones1@example.com",
+        name = "Bill Jones",
+        phone = "1-415-555-6041",
+        changed_password = true,
+        billing_address = new Address()
+        {
+            name = "Bill Jones",
+            phone = "1-415-555-6041",
+            address_1 = "2100 Main Street",
+            address_2 = "Apt 3B",
+            city = "New London",
+            region = "New Hampshire",
+            country = "US",
+            zipcode = "03257"
+        },
+        promotions = new ObservableCollection<Promotion>()  // NEW in v1.6.0: Promotions tracking
+        {
+            new Promotion()
+            {
+                promotion_id = "FirstTimeBuyer",
+                status = "$success",
+                description = "$5 off",
+                discount = new Discount()
+                {
+                    amount = 5000000,
+                    currency_code = "USD",
+                    minimum_purchase_amount = 25000000
+                }
+            }
+        },
+        browser = new Browser
+        {
+            user_agent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36",
+            accept_language = "en-US",
+            content_language = "en-GB"
+        }
+    };
+
+    EventRequest eventRequest = new EventRequest()
+    {
+        Event = updateAccount
     };
     try
     {

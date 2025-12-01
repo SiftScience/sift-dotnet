@@ -1,10 +1,10 @@
 using Sift;
 using System;
 using System.Diagnostics;
-using Test.Integration.Net7.Uitlities;
+using Test.Integration.Net.Uitlities;
 using Xunit;
 
-namespace Test.Integration.Net7.EventsAPI
+namespace Test.Integration.Net.EventsAPI
 {
     public class Wagers
     {
@@ -34,7 +34,12 @@ namespace Test.Integration.Net7.EventsAPI
                 wager_type = "$parlay",
                 wager_status = "$accept",
                 amount = 5000,
-                currency_code = "USD",
+                currency_code = "EUR",
+                exchange_rate = new ExchangeRate
+                {
+                    quote_currency_code = "USD",
+                    rate = 1.14
+                },
                 minimum_wager_amount = 100L,
                 wager_event_type = "NBA",
                 wager_event_name = "Bulls-Lakers",

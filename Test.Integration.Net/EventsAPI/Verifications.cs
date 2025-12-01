@@ -1,49 +1,51 @@
 using Sift;
-using Test.Integration.Net7.Uitlities;
+using Test.Integration.Net.Uitlities;
 using Xunit;
 
-namespace Test.Integration.Net7.EventsAPI
+namespace Test.Integration.Net.EventsAPI
 {
-    public class Passwords
+    public class Verifications
     {
         private readonly EnvironmentVariable environmentVariable = new();
         private readonly string ApiKey;
-        private readonly string UserId;
         private readonly string SessionId;
-        private readonly string UserEmail;
-        public Passwords()
+        private readonly string UserId;
+        private readonly string VerifiedValue;
+        public Verifications()
         {
             ApiKey = environmentVariable.ApiKey;
-            UserId = environmentVariable.user_id;
             SessionId = environmentVariable.session_id;
-            UserEmail = environmentVariable.user_email;
+            UserId = environmentVariable.user_id;
+            VerifiedValue = environmentVariable.verified_value;
         }
         [Fact]
-        public void UpdatePasswordTest()
+        public void VerificationTest()
         {
             var sift = new Client(ApiKey);
-            var updatePassword = new UpdatePassword
+            var sessionId = "sessionId";
+            var verification = new Verification
             {
                 user_id = UserId,
                 session_id = SessionId,
-                status = "$success",
-                reason = "$forced_reset",
-                ip = "128.148.1.135",
+                status = "$pending",
                 browser = new Browser
                 {
                     user_agent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36",
                     accept_language = "en-US",
                     content_language = "en-GB"
                 },
+                verified_event = "$login",
+                verified_entity_id = sessionId,
+                verification_type = "$sms",
+                verified_value = VerifiedValue,
+                reason = "$user_setting",
                 brand_name = "sift",
                 site_domain = "sift.com",
-                site_country = "US",
-                user_email = UserEmail,
-                verification_phone_number = "+123456789012"
+                site_country = "US"
             };
             EventRequest eventRequest = new EventRequest()
             {
-                Event = updatePassword
+                Event = verification
             };
             EventResponse res = sift.SendAsync(eventRequest).Result;
             Assert.Equal("0", res.Status.ToString());
