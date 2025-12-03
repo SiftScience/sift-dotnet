@@ -69,7 +69,8 @@ Task("pack")
       {
           OutputDirectory = ARTIFACTS_DIR,
           NoBuild = true,
-          NoRestore = true
+          NoRestore = true,
+          Configuration = "Debug"
       };
 
       DotNetCorePack(SIFT, settings);
