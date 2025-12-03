@@ -1,5 +1,13 @@
 # CHANGES
 
+## 1.7.0 (2025-12-03)
+
+### Added
+- **`$ip`** field support in events
+- **`$user_email`** field in `$create_content`, `$update_content` events
+- **`$verification_phone_number`** field in `$update_content` event
+- **`$reviewed_user_id`** field in `$review` complex type
+
 ## 1.6.0 (2025-10-18)
 
 ### NuGet Package Updates
