@@ -44,6 +44,9 @@
     },
     "$verification_phone_number": {
       "type": [ "string", "null" ]
+    },
+    "$ip": {
+      "type": [ "string", "null" ]
     }
   }
 }

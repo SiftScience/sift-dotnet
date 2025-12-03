@@ -155,7 +155,8 @@ namespace Test
                 },
                 site_country = "US",
                 site_domain = "sift.com",
-                brand_name = "sift"
+                brand_name = "sift",
+                ip = "1.2.3.4"
             };
 
             // Augment with custom fields
@@ -178,7 +179,7 @@ namespace Test
                          "\"$app_version\":\"1.0\",\"$client_language\":\"en-US\"},\"$brand_name\":\"sift\",\"$site_country\":\"US\",\"$site_domain\":\"sift.com\"," +
                          "\"$ordered_from\":{\"$store_id\":\"123\",\"$store_address\":{\"$name\":\"Bill Jones\",\"$address_1\":\"2100 Main Street\"," +
                          "\"$address_2\":\"Apt 3B\",\"$city\":\"New London\",\"$region\":\"New Hampshire\",\"$country\":\"US\",\"$zipcode\":\"03257\"," +
-                         "\"$phone\":\"1-415-555-6040\"}},\"foo\":\"bar\"}",
+                         "\"$phone\":\"1-415-555-6040\"}},\"$ip\":\"1.2.3.4\",\"foo\":\"bar\"}",
                          createOrder.ToJson());
 
 
@@ -284,14 +285,15 @@ namespace Test
                 session_id = sessionId,
                 transaction_type = "$sale",
                 transaction_status = "$failure",
-                decline_category = "$invalid"
+                decline_category = "$invalid",
+                ip = "1.2.3.4"
             };
 
             // Augment with custom fields
             transaction.AddField("foo", "bar");
             Assert.Equal("{\"$type\":\"$transaction\",\"$user_id\":\"test_dotnet_transaction_event\",\"$session_id\":\"sessionId\"," +
                                  "\"$transaction_type\":\"$sale\",\"$transaction_status\":\"$failure\",\"$amount\":1000000000000,\"$currency_code\":\"USD\"," +
-                                 "\"$decline_category\":\"$invalid\",\"foo\":\"bar\"}", transaction.ToJson());
+                                 "\"$decline_category\":\"$invalid\",\"$ip\":\"1.2.3.4\",\"foo\":\"bar\"}", transaction.ToJson());
 
             EventRequest eventRequest = new EventRequest
             {
@@ -1112,7 +1114,8 @@ namespace Test
                         zipcode = "03257"
                     }
                 },
-                ach_return_code = "B02"
+                ach_return_code = "B02",
+                ip = "1.2.3.4"
             };
 
             // Augment with custom fields
@@ -1122,7 +1125,7 @@ namespace Test
                                  "\"$merchant_profile\":{\"$merchant_id\":\"123\",\"$merchant_category_code\":\"9876\",\"$merchant_name\":\"ABC Merchant\",\"$merchant_address\":" +
                                  "{\"$name\":\"Bill Jones\",\"$address_1\":\"2100 Main Street\",\"$address_2\":\"Apt 3B\",\"$city\":\"New London\",\"$region\":\"New Hampshire\"," +
                                  "\"$country\":\"US\",\"$zipcode\":\"03257\",\"$phone\":\"1-415-555-6040\"}}," +
-                                 "\"$ach_return_code\":\"B02\",\"foo\":\"bar\"}",
+                                 "\"$ach_return_code\":\"B02\",\"$ip\":\"1.2.3.4\",\"foo\":\"bar\"}",
                                  chargeback.ToJson());
 
             EventRequest eventRequest = new EventRequest
@@ -1173,7 +1176,8 @@ namespace Test
                         zipcode = "03257"
                     }
                 },
-                account_types = new ObservableCollection<string>() { "merchant", "premium" }
+                account_types = new ObservableCollection<string>() { "merchant", "premium" },
+                ip = "1.2.3.4"
             };
 
             // Augment with custom fields
@@ -1184,7 +1188,7 @@ namespace Test
                                  "\"$twitter\",\"$merchant_profile\":{\"$merchant_id\":\"123\",\"$merchant_category_code\":\"9876\",\"$merchant_name\":\"ABC Merchant\"," +
                                  "\"$merchant_address\":{\"$name\":\"Bill Jones\",\"$address_1\":\"2100 Main Street\",\"$address_2\":\"Apt 3B\",\"$city\":\"New London\"," +
                                  "\"$region\":\"New Hampshire\",\"$country\":\"US\",\"$zipcode\":\"03257\",\"$phone\":\"1-415-555-6040\"}},\"$account_types\":" +
-                                 "[\"merchant\",\"premium\"],\"foo\":\"bar\"}",
+                                 "[\"merchant\",\"premium\"],\"$ip\":\"1.2.3.4\",\"foo\":\"bar\"}",
                                  createAccount.ToJson());
 
             EventRequest eventRequest = new EventRequest
@@ -1235,7 +1239,8 @@ namespace Test
                         zipcode = "03257"
                     }
                 },
-                account_types = new ObservableCollection<string>() { "merchant", "premium" }
+                account_types = new ObservableCollection<string>() { "merchant", "premium" },
+                ip = "1.2.3.4"
             };
 
             // Augment with custom fields
@@ -1246,7 +1251,7 @@ namespace Test
                                  "\"$twitter\",\"$merchant_profile\":{\"$merchant_id\":\"123\",\"$merchant_category_code\":\"9876\",\"$merchant_name\":\"ABC Merchant\"," +
                                  "\"$merchant_address\":{\"$name\":\"Bill Jones\",\"$address_1\":\"2100 Main Street\",\"$address_2\":\"Apt 3B\",\"$city\":" +
                                  "\"New London\",\"$region\":\"New Hampshire\",\"$country\":\"US\",\"$zipcode\":\"03257\",\"$phone\":\"1-415-555-6040\"}}," +
-                                 "\"$account_types\":[\"merchant\",\"premium\"],\"foo\":\"bar\"}",
+                                 "\"$account_types\":[\"merchant\",\"premium\"],\"$ip\":\"1.2.3.4\",\"foo\":\"bar\"}",
                                  updateAccount.ToJson());
 
             EventRequest eventRequest = new EventRequest
@@ -1895,10 +1900,11 @@ namespace Test
                 site_country = "US",
                 site_domain = "sift.com",
                 user_email = "billjones1@example.com",
-                verification_phone_number = "+123456789012"
+                verification_phone_number = "+123456789012",
+                ip = "1.2.3.4"
             };
 
-            string addItemToCartBody = "{\"$type\":\"$add_item_to_cart\",\"$user_id\":\"billy_jones_301\",\"$session_id\":\"gigtleqddo84l8cm15qe4il\",\"$item\":{\"$item_id\":\"B004834GQO\",\"$product_title\":\"The Slanket Blanket-Texas Tea\",\"$price\":39990000,\"$currency_code\":\"USD\",\"$quantity\":16,\"$upc\":\"6786211451001\",\"$sku\":\"004834GQ\",\"$isbn\":\"0446576220\",\"$brand\":\"Slanket\",\"$manufacturer\":\"Slanket\",\"$category\":\"Blankets & Throws\",\"$tags\":[\"Awesome\",\"Wintertime specials\"],\"$color\":\"Texas Tea\"},\"$browser\":{\"$user_agent\":\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36\",\"$accept_language\":\"en-US\",\"$content_language\":\"en-GB\"},\"$brand_name\":\"sift\",\"$site_country\":\"US\",\"$site_domain\":\"sift.com\",\"$user_email\":\"billjones1@example.com\",\"$verification_phone_number\":\"+123456789012\"}";
+            string addItemToCartBody = "{\"$type\":\"$add_item_to_cart\",\"$user_id\":\"billy_jones_301\",\"$session_id\":\"gigtleqddo84l8cm15qe4il\",\"$item\":{\"$item_id\":\"B004834GQO\",\"$product_title\":\"The Slanket Blanket-Texas Tea\",\"$price\":39990000,\"$currency_code\":\"USD\",\"$quantity\":16,\"$upc\":\"6786211451001\",\"$sku\":\"004834GQ\",\"$isbn\":\"0446576220\",\"$brand\":\"Slanket\",\"$manufacturer\":\"Slanket\",\"$category\":\"Blankets & Throws\",\"$tags\":[\"Awesome\",\"Wintertime specials\"],\"$color\":\"Texas Tea\"},\"$browser\":{\"$user_agent\":\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36\",\"$accept_language\":\"en-US\",\"$content_language\":\"en-GB\"},\"$brand_name\":\"sift\",\"$site_country\":\"US\",\"$site_domain\":\"sift.com\",\"$user_email\":\"billjones1@example.com\",\"$verification_phone_number\":\"+123456789012\",\"$ip\":\"1.2.3.4\"}";
 
             Assert.Equal(addItemToCartBody, addItemToCart.ToJson());
 
@@ -1964,10 +1970,11 @@ namespace Test
                 site_country = "US",
                 site_domain = "sift.com",
                 user_email = "billjones1@example.com",
-                verification_phone_number = "+123456789012"
+                verification_phone_number = "+123456789012",
+                ip = "1.2.3.4"
             };
 
-            string addPromotionbody = "{\"$type\":\"$add_promotion\",\"$user_id\":\"billy_jones_301\",\"$session_id\":\"gigtleqddo84l8cm15qe4il\",\"$promotions\":[{\"$promotion_id\":\"NewCustomerReferral2016\",\"$status\":\"$success\",\"$failure_reason\":\"$already_used\",\"$description\":\"$5 off your first 5 rides\",\"$referrer_user_id\":\"elon-m93903\",\"$discount\":{\"$percentage_off\":0.2,\"$amount\":5000000,\"$currency_code\":\"USD\",\"$minimum_purchase_amount\":50000000},\"$credit_point\":{\"$amount\":5000,\"$credit_point_type\":\"character xp points\"}},{\"$promotion_id\":\"NewCustomerReferral2016\"}],\"$browser\":{\"$user_agent\":\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36\",\"$accept_language\":\"en-US\",\"$content_language\":\"en-GB\"},\"$brand_name\":\"sift\",\"$site_country\":\"US\",\"$site_domain\":\"sift.com\",\"$user_email\":\"billjones1@example.com\",\"$verification_phone_number\":\"+123456789012\"}";
+            string addPromotionbody = "{\"$type\":\"$add_promotion\",\"$user_id\":\"billy_jones_301\",\"$session_id\":\"gigtleqddo84l8cm15qe4il\",\"$promotions\":[{\"$promotion_id\":\"NewCustomerReferral2016\",\"$status\":\"$success\",\"$failure_reason\":\"$already_used\",\"$description\":\"$5 off your first 5 rides\",\"$referrer_user_id\":\"elon-m93903\",\"$discount\":{\"$percentage_off\":0.2,\"$amount\":5000000,\"$currency_code\":\"USD\",\"$minimum_purchase_amount\":50000000},\"$credit_point\":{\"$amount\":5000,\"$credit_point_type\":\"character xp points\"}},{\"$promotion_id\":\"NewCustomerReferral2016\"}],\"$browser\":{\"$user_agent\":\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36\",\"$accept_language\":\"en-US\",\"$content_language\":\"en-GB\"},\"$brand_name\":\"sift\",\"$site_country\":\"US\",\"$site_domain\":\"sift.com\",\"$user_email\":\"billjones1@example.com\",\"$verification_phone_number\":\"+123456789012\",\"$ip\":\"1.2.3.4\"}";
 
             Assert.Equal(addPromotionbody, addPromotion.ToJson());
 
@@ -2008,10 +2015,11 @@ namespace Test
                 site_country = "US",
                 site_domain = "sift.com",
                 user_email = "billjones1@example.com",
-                verification_phone_number = "+123456789012"
+                verification_phone_number = "+123456789012",
+                ip = "1.2.3.4"
             };
 
-            string contentStatusbody = "{\"$type\":\"$content_status\",\"$user_id\":\"billy_jones_301\",\"$session_id\":\"gigtleqddo84l8cm15qe4il\",\"$content_id\":\"9671500641\",\"$status\":\"$paused\",\"$browser\":{\"$user_agent\":\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36\",\"$accept_language\":\"en-US\",\"$content_language\":\"en-GB\"},\"$brand_name\":\"sift\",\"$site_country\":\"US\",\"$site_domain\":\"sift.com\",\"$user_email\":\"billjones1@example.com\",\"$verification_phone_number\":\"+123456789012\"}";
+            string contentStatusbody = "{\"$type\":\"$content_status\",\"$user_id\":\"billy_jones_301\",\"$session_id\":\"gigtleqddo84l8cm15qe4il\",\"$content_id\":\"9671500641\",\"$status\":\"$paused\",\"$browser\":{\"$user_agent\":\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36\",\"$accept_language\":\"en-US\",\"$content_language\":\"en-GB\"},\"$brand_name\":\"sift\",\"$site_country\":\"US\",\"$site_domain\":\"sift.com\",\"$user_email\":\"billjones1@example.com\",\"$verification_phone_number\":\"+123456789012\",\"$ip\":\"1.2.3.4\"}";
 
             Assert.Equal(contentStatusbody, contentStatus.ToJson());
 
@@ -2050,10 +2058,11 @@ namespace Test
                     accept_language = "en-US",
                     content_language = "en-GB"
                 },
-                verification_phone_number = "+123456789012"
+                verification_phone_number = "+123456789012",
+                ip = "1.2.3.4"
             };
 
-            string flagcontentbody = "{\"$type\":\"$flag_content\",\"$user_id\":\"billy_jones_301\",\"$session_id\":\"gigtleqddo84l8cm15qe4il\",\"$content_id\":\"9671500641\",\"$flagged_by\":\"jamieli89\",\"$reason\":\"$toxic\",\"$user_email\":\"billjones1@example.com\",\"$browser\":{\"$user_agent\":\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36\",\"$accept_language\":\"en-US\",\"$content_language\":\"en-GB\"},\"$verification_phone_number\":\"+123456789012\"}";
+            string flagcontentbody = "{\"$type\":\"$flag_content\",\"$user_id\":\"billy_jones_301\",\"$session_id\":\"gigtleqddo84l8cm15qe4il\",\"$content_id\":\"9671500641\",\"$flagged_by\":\"jamieli89\",\"$reason\":\"$toxic\",\"$user_email\":\"billjones1@example.com\",\"$browser\":{\"$user_agent\":\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36\",\"$accept_language\":\"en-US\",\"$content_language\":\"en-GB\"},\"$verification_phone_number\":\"+123456789012\",\"$ip\":\"1.2.3.4\"}";
 
             Assert.Equal(flagcontentbody, flagContent.ToJson());
 
@@ -2108,10 +2117,11 @@ namespace Test
                 site_country = "US",
                 site_domain = "sift.com",
                 user_email = "billjones1@example.com",
-                verification_phone_number = "+123456789012"
+                verification_phone_number = "+123456789012",
+                ip = "1.2.3.4"
             };
 
-            string removeitemfromcartbody = "{\"$type\":\"$remove_item_from_cart\",\"$user_id\":\"billy_jones_301\",\"$session_id\":\"gigtleqddo84l8cm15qe4il\",\"$item\":{\"$item_id\":\"B004834GQO\",\"$product_title\":\"The Slanket Blanket-Texas Tea\",\"$price\":39990000,\"$currency_code\":\"USD\",\"$quantity\":2,\"$upc\":\"6786211451001\",\"$sku\":\"004834GQ\",\"$isbn\":\"0446576220\",\"$brand\":\"Slanket\",\"$manufacturer\":\"Slanket\",\"$category\":\"Blankets & Throws\",\"$tags\":[\"Awesome\",\"Wintertime specials\"],\"$color\":\"Texas Tea\"},\"$browser\":{\"$user_agent\":\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36\",\"$accept_language\":\"en-US\",\"$content_language\":\"en-GB\"},\"$brand_name\":\"sift\",\"$site_country\":\"US\",\"$site_domain\":\"sift.com\",\"$user_email\":\"billjones1@example.com\",\"$verification_phone_number\":\"+123456789012\"}";
+            string removeitemfromcartbody = "{\"$type\":\"$remove_item_from_cart\",\"$user_id\":\"billy_jones_301\",\"$session_id\":\"gigtleqddo84l8cm15qe4il\",\"$item\":{\"$item_id\":\"B004834GQO\",\"$product_title\":\"The Slanket Blanket-Texas Tea\",\"$price\":39990000,\"$currency_code\":\"USD\",\"$quantity\":2,\"$upc\":\"6786211451001\",\"$sku\":\"004834GQ\",\"$isbn\":\"0446576220\",\"$brand\":\"Slanket\",\"$manufacturer\":\"Slanket\",\"$category\":\"Blankets & Throws\",\"$tags\":[\"Awesome\",\"Wintertime specials\"],\"$color\":\"Texas Tea\"},\"$browser\":{\"$user_agent\":\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36\",\"$accept_language\":\"en-US\",\"$content_language\":\"en-GB\"},\"$brand_name\":\"sift\",\"$site_country\":\"US\",\"$site_domain\":\"sift.com\",\"$user_email\":\"billjones1@example.com\",\"$verification_phone_number\":\"+123456789012\",\"$ip\":\"1.2.3.4\"}";
 
             Assert.Equal(removeitemfromcartbody, removeItemFromCart.ToJson());
 
@@ -2249,9 +2259,10 @@ namespace Test
                     user_agent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36",
                     accept_language = "en-US",
                     content_language = "en-GB"
-                }
+                },
+                ip = "1.2.3.4"
             };
-            string createorderbody = "{\"$type\":\"$create_order\",\"$user_id\":\"billy_jones_301\",\"$session_id\":\"gigtleqddo84l8cm15qe4il\",\"$order_id\":\"ORDER-28168441\",\"$user_email\":\"billjones1@example.com\",\"$amount\":115940000,\"$currency_code\":\"USD\",\"$billing_address\":{\"$name\":\"Bill Jones\",\"$address_1\":\"2100 Main Street\",\"$address_2\":\"Apt 3B\",\"$city\":\"New London\",\"$region\":\"New Hampshire\",\"$country\":\"US\",\"$zipcode\":\"03257\",\"$phone\":\"1-415-555-6041\"},\"$payment_methods\":[{\"$payment_type\":\"$credit_card\",\"$payment_gateway\":\"$braintree\",\"$card_bin\":\"542486\",\"$card_last4\":\"4444\"},{\"$payment_type\":\"$credit_card\"}],\"$shipping_address\":{\"$name\":\"Bill Jones\",\"$address_1\":\"2100 Main Street\",\"$address_2\":\"Apt 3B\",\"$city\":\"New London\",\"$region\":\"New Hampshire\",\"$country\":\"US\",\"$zipcode\":\"03257\",\"$phone\":\"1-415-555-6041\"},\"$expedited_shipping\":true,\"$items\":[{\"$item_id\":\"12344321\",\"$product_title\":\"Microwavable Kettle Corn: Original Flavor\",\"$price\":4990000,\"$currency_code\":\"USD\",\"$quantity\":4,\"$upc\":\"097564307560\",\"$sku\":\"03586005\",\"$isbn\":\"0446576220\",\"$brand\":\"Peters Kettle Corn\",\"$manufacturer\":\"Peters Kettle Corn\",\"$category\":\"Food and Grocery\",\"$tags\":[\"Popcorn\",\"Snacks\",\"On Sale\"],\"$color\":\"Texas Tea\"},{\"$item_id\":\"12344321\"}],\"$seller_user_id\":\"slinkys_emporium\",\"$promotions\":[{\"$promotion_id\":\"FirstTimeBuyer\",\"$status\":\"$success\",\"$description\":\"$5 off\",\"$discount\":{\"$amount\":5000000,\"$currency_code\":\"USD\",\"$minimum_purchase_amount\":25000000}}],\"$shipping_method\":\"$physical\",\"$browser\":{\"$user_agent\":\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36\",\"$accept_language\":\"en-US\",\"$content_language\":\"en-GB\"},\"$brand_name\":\"sift\",\"$site_country\":\"US\",\"$site_domain\":\"sift.com\",\"$ordered_from\":{\"$store_id\":\"123\",\"$store_address\":{\"$name\":\"Bill Jones\",\"$address_1\":\"2100 Main Street\",\"$address_2\":\"Apt 3B\",\"$city\":\"New London\",\"$region\":\"New Hampshire\",\"$country\":\"US\",\"$zipcode\":\"03257\",\"$phone\":\"1-415-555-6040\"}},\"$verification_phone_number\":\"+123456789012\",\"$shipping_carrier\":\"UPS\",\"$shipping_tracking_numbers\":[\"1Z204E380338943508\",\"1Z204E380338943509\"]}";
+            string createorderbody = "{\"$type\":\"$create_order\",\"$user_id\":\"billy_jones_301\",\"$session_id\":\"gigtleqddo84l8cm15qe4il\",\"$order_id\":\"ORDER-28168441\",\"$user_email\":\"billjones1@example.com\",\"$amount\":115940000,\"$currency_code\":\"USD\",\"$billing_address\":{\"$name\":\"Bill Jones\",\"$address_1\":\"2100 Main Street\",\"$address_2\":\"Apt 3B\",\"$city\":\"New London\",\"$region\":\"New Hampshire\",\"$country\":\"US\",\"$zipcode\":\"03257\",\"$phone\":\"1-415-555-6041\"},\"$payment_methods\":[{\"$payment_type\":\"$credit_card\",\"$payment_gateway\":\"$braintree\",\"$card_bin\":\"542486\",\"$card_last4\":\"4444\"},{\"$payment_type\":\"$credit_card\"}],\"$shipping_address\":{\"$name\":\"Bill Jones\",\"$address_1\":\"2100 Main Street\",\"$address_2\":\"Apt 3B\",\"$city\":\"New London\",\"$region\":\"New Hampshire\",\"$country\":\"US\",\"$zipcode\":\"03257\",\"$phone\":\"1-415-555-6041\"},\"$expedited_shipping\":true,\"$items\":[{\"$item_id\":\"12344321\",\"$product_title\":\"Microwavable Kettle Corn: Original Flavor\",\"$price\":4990000,\"$currency_code\":\"USD\",\"$quantity\":4,\"$upc\":\"097564307560\",\"$sku\":\"03586005\",\"$isbn\":\"0446576220\",\"$brand\":\"Peters Kettle Corn\",\"$manufacturer\":\"Peters Kettle Corn\",\"$category\":\"Food and Grocery\",\"$tags\":[\"Popcorn\",\"Snacks\",\"On Sale\"],\"$color\":\"Texas Tea\"},{\"$item_id\":\"12344321\"}],\"$seller_user_id\":\"slinkys_emporium\",\"$promotions\":[{\"$promotion_id\":\"FirstTimeBuyer\",\"$status\":\"$success\",\"$description\":\"$5 off\",\"$discount\":{\"$amount\":5000000,\"$currency_code\":\"USD\",\"$minimum_purchase_amount\":25000000}}],\"$shipping_method\":\"$physical\",\"$browser\":{\"$user_agent\":\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36\",\"$accept_language\":\"en-US\",\"$content_language\":\"en-GB\"},\"$brand_name\":\"sift\",\"$site_country\":\"US\",\"$site_domain\":\"sift.com\",\"$ordered_from\":{\"$store_id\":\"123\",\"$store_address\":{\"$name\":\"Bill Jones\",\"$address_1\":\"2100 Main Street\",\"$address_2\":\"Apt 3B\",\"$city\":\"New London\",\"$region\":\"New Hampshire\",\"$country\":\"US\",\"$zipcode\":\"03257\",\"$phone\":\"1-415-555-6040\"}},\"$verification_phone_number\":\"+123456789012\",\"$shipping_carrier\":\"UPS\",\"$shipping_tracking_numbers\":[\"1Z204E380338943508\",\"1Z204E380338943509\"],\"$ip\":\"1.2.3.4\"}";
 
             Assert.Equal(createorderbody, createOrder.ToJson());
 
@@ -2406,9 +2417,10 @@ namespace Test
                         zipcode = "03257"
 
                     }
-                }
+                },
+                ip = "1.2.3.4"
             };
-            string updateorderbody = "{\"$type\":\"$update_order\",\"$user_id\":\"billy_jones_301\",\"$session_id\":\"gigtleqddo84l8cm15qe4il\",\"$order_id\":\"ORDER-28168441\",\"$user_email\":\"billjones1@example.com\",\"$amount\":115940000,\"$currency_code\":\"USD\",\"$billing_address\":{\"$name\":\"Bill Jones\",\"$address_1\":\"2100 Main Street\",\"$address_2\":\"Apt 3B\",\"$city\":\"New London\",\"$region\":\"New Hampshire\",\"$country\":\"US\",\"$zipcode\":\"03257\",\"$phone\":\"1-415-555-6041\"},\"$payment_methods\":[{\"$payment_type\":\"$credit_card\",\"$payment_gateway\":\"$braintree\",\"$card_bin\":\"542486\",\"$card_last4\":\"4444\"},{\"$payment_type\":\"$credit_card\"}],\"$shipping_address\":{\"$name\":\"Bill Jones\",\"$address_1\":\"2100 Main Street\",\"$address_2\":\"Apt 3B\",\"$city\":\"New London\",\"$region\":\"New Hampshire\",\"$country\":\"US\",\"$zipcode\":\"03257\",\"$phone\":\"1-415-555-6041\"},\"$expedited_shipping\":true,\"$items\":[{\"$item_id\":\"12344321\",\"$product_title\":\"Microwavable Kettle Corn: Original Flavor\",\"$price\":4990000,\"$currency_code\":\"USD\",\"$quantity\":4,\"$upc\":\"097564307560\",\"$sku\":\"03586005\",\"$isbn\":\"0446576220\",\"$brand\":\"Peters Kettle Corn\",\"$manufacturer\":\"Peters Kettle Corn\",\"$category\":\"Food and Grocery\",\"$tags\":[\"Popcorn\",\"Snacks\",\"On Sale\"],\"$color\":\"Texas Tea\"},{\"$item_id\":\"12344321\"}],\"$seller_user_id\":\"slinkys_emporium\",\"$promotions\":[{\"$promotion_id\":\"FirstTimeBuyer\",\"$status\":\"$success\",\"$description\":\"$5 off\",\"$discount\":{\"$amount\":5000000,\"$currency_code\":\"USD\",\"$minimum_purchase_amount\":25000000}}],\"$shipping_method\":\"$physical\",\"$browser\":{\"$user_agent\":\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36\",\"$accept_language\":\"en-US\",\"$content_language\":\"en-GB\"},\"$brand_name\":\"sift\",\"$site_country\":\"US\",\"$site_domain\":\"sift.com\",\"$ordered_from\":{\"$store_id\":\"123\",\"$store_address\":{\"$name\":\"Bill Jones\",\"$address_1\":\"2100 Main Street\",\"$address_2\":\"Apt 3B\",\"$city\":\"New London\",\"$region\":\"New Hampshire\",\"$country\":\"US\",\"$zipcode\":\"03257\",\"$phone\":\"1-415-555-6040\"}},\"$verification_phone_number\":\"+123456789012\",\"$shipping_carrier\":\"UPS\",\"$shipping_tracking_numbers\":[\"1Z204E380338943508\",\"1Z204E380338943509\"],\"$merchant_profile\":{\"$merchant_id\":\"AX527123\",\"$merchant_category_code\":\"1234\",\"$merchant_name\":\"Dream Company\",\"$merchant_address\":{\"$address_1\":\"2100 Main Street\",\"$address_2\":\"Apt 3B\",\"$city\":\"New London\",\"$region\":\"New Hampshire\",\"$country\":\"US\",\"$zipcode\":\"03257\",\"$phone\":\"1-415-555-6040\"}}}";
+            string updateorderbody = "{\"$type\":\"$update_order\",\"$user_id\":\"billy_jones_301\",\"$session_id\":\"gigtleqddo84l8cm15qe4il\",\"$order_id\":\"ORDER-28168441\",\"$user_email\":\"billjones1@example.com\",\"$amount\":115940000,\"$currency_code\":\"USD\",\"$billing_address\":{\"$name\":\"Bill Jones\",\"$address_1\":\"2100 Main Street\",\"$address_2\":\"Apt 3B\",\"$city\":\"New London\",\"$region\":\"New Hampshire\",\"$country\":\"US\",\"$zipcode\":\"03257\",\"$phone\":\"1-415-555-6041\"},\"$payment_methods\":[{\"$payment_type\":\"$credit_card\",\"$payment_gateway\":\"$braintree\",\"$card_bin\":\"542486\",\"$card_last4\":\"4444\"},{\"$payment_type\":\"$credit_card\"}],\"$shipping_address\":{\"$name\":\"Bill Jones\",\"$address_1\":\"2100 Main Street\",\"$address_2\":\"Apt 3B\",\"$city\":\"New London\",\"$region\":\"New Hampshire\",\"$country\":\"US\",\"$zipcode\":\"03257\",\"$phone\":\"1-415-555-6041\"},\"$expedited_shipping\":true,\"$items\":[{\"$item_id\":\"12344321\",\"$product_title\":\"Microwavable Kettle Corn: Original Flavor\",\"$price\":4990000,\"$currency_code\":\"USD\",\"$quantity\":4,\"$upc\":\"097564307560\",\"$sku\":\"03586005\",\"$isbn\":\"0446576220\",\"$brand\":\"Peters Kettle Corn\",\"$manufacturer\":\"Peters Kettle Corn\",\"$category\":\"Food and Grocery\",\"$tags\":[\"Popcorn\",\"Snacks\",\"On Sale\"],\"$color\":\"Texas Tea\"},{\"$item_id\":\"12344321\"}],\"$seller_user_id\":\"slinkys_emporium\",\"$promotions\":[{\"$promotion_id\":\"FirstTimeBuyer\",\"$status\":\"$success\",\"$description\":\"$5 off\",\"$discount\":{\"$amount\":5000000,\"$currency_code\":\"USD\",\"$minimum_purchase_amount\":25000000}}],\"$shipping_method\":\"$physical\",\"$browser\":{\"$user_agent\":\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36\",\"$accept_language\":\"en-US\",\"$content_language\":\"en-GB\"},\"$brand_name\":\"sift\",\"$site_country\":\"US\",\"$site_domain\":\"sift.com\",\"$ordered_from\":{\"$store_id\":\"123\",\"$store_address\":{\"$name\":\"Bill Jones\",\"$address_1\":\"2100 Main Street\",\"$address_2\":\"Apt 3B\",\"$city\":\"New London\",\"$region\":\"New Hampshire\",\"$country\":\"US\",\"$zipcode\":\"03257\",\"$phone\":\"1-415-555-6040\"}},\"$verification_phone_number\":\"+123456789012\",\"$shipping_carrier\":\"UPS\",\"$shipping_tracking_numbers\":[\"1Z204E380338943508\",\"1Z204E380338943509\"],\"$merchant_profile\":{\"$merchant_id\":\"AX527123\",\"$merchant_category_code\":\"1234\",\"$merchant_name\":\"Dream Company\",\"$merchant_address\":{\"$address_1\":\"2100 Main Street\",\"$address_2\":\"Apt 3B\",\"$city\":\"New London\",\"$region\":\"New Hampshire\",\"$country\":\"US\",\"$zipcode\":\"03257\",\"$phone\":\"1-415-555-6040\"}},\"$ip\":\"1.2.3.4\"}";
 
             Assert.Equal(updateorderbody, updateOrder.ToJson());
 
@@ -2513,10 +2525,11 @@ namespace Test
                 reason = "$user_setting",
                 brand_name = "xyz",
                 site_country = "AU",
-                site_domain = "somehost.example.com"
+                site_domain = "somehost.example.com",
+                ip = "1.2.3.4"
             };
 
-            Assert.Equal("{\"$type\":\"$verification\",\"$user_id\":\"billy_jones_301\",\"$session_id\":\"sessionId\",\"$status\":\"$pending\",\"$browser\":{\"$user_agent\":\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36\",\"$accept_language\":\"en-GB\",\"$content_language\":\"en-US\"},\"$verified_event\":\"$login\",\"$verified_entity_id\":\"123\",\"$verification_type\":\"$sms\",\"$verified_value\":\"14155551212\",\"$reason\":\"$user_setting\",\"$brand_name\":\"xyz\",\"$site_country\":\"AU\",\"$site_domain\":\"somehost.example.com\"}",
+            Assert.Equal("{\"$type\":\"$verification\",\"$user_id\":\"billy_jones_301\",\"$session_id\":\"sessionId\",\"$status\":\"$pending\",\"$browser\":{\"$user_agent\":\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36\",\"$accept_language\":\"en-GB\",\"$content_language\":\"en-US\"},\"$verified_event\":\"$login\",\"$verified_entity_id\":\"123\",\"$verification_type\":\"$sms\",\"$verified_value\":\"14155551212\",\"$reason\":\"$user_setting\",\"$brand_name\":\"xyz\",\"$site_country\":\"AU\",\"$site_domain\":\"somehost.example.com\",\"$ip\":\"1.2.3.4\"}",
                                  verification.ToJson());
 
             EventRequest eventRequest = new EventRequest

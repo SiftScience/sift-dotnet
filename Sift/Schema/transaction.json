@@ -136,6 +136,9 @@
     "$verification_phone_number": {
       "type": [ "string", "null" ]
     },
+    "$ip": {
+      "type": [ "string", "null" ]
+    },
     "$minimum_deposit_amount": {
       "type": [ "integer", "null" ],
       "format": "long"

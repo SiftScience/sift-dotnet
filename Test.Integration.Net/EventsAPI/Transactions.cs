@@ -175,7 +175,8 @@ namespace Test.Integration.Net.EventsAPI
                         digital_asset = "BTC"
                     }
                 },
-                receiver_external_address = true
+                receiver_external_address = true,
+                ip = "1.2.3.4"
             };
             EventRequest eventRequest = new EventRequest()
             {

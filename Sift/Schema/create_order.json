@@ -117,6 +117,9 @@
     "$shipping_tracking_numbers": {
       "type": [ "array", "null" ],
       "items": { "type": "string" }
+    },
+    "$ip": {
+      "type": [ "string", "null" ]
     }
   }
 }

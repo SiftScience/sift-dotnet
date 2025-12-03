@@ -526,7 +526,8 @@ namespace Test.Integration.Net.EventsAPI
                 content_id = ContentId,
                 flagged_by = FlaggedBy,
                 reason = "$toxic",
-                verification_phone_number = "+123456789012"
+                verification_phone_number = "+123456789012",
+                ip = "1.2.3.4"
             };
             EventRequest eventRequest = new EventRequest()
             {
@@ -553,7 +554,8 @@ namespace Test.Integration.Net.EventsAPI
                 brand_name = "sift",
                 site_country = "US",
                 site_domain = "sift.com",
-                verification_phone_number = "+123456789012"
+                verification_phone_number = "+123456789012",
+                ip = "1.2.3.4"
             };
 
             EventRequest eventRequest = new EventRequest()

@@ -116,8 +116,10 @@
         { "$ref": "ComplexTypes/merchant_profile.json" },
         { "type": "null" }
       ]
+    },
+    "$ip": {
+      "type": [ "string", "null" ]
     }
-
   }
 
 }
