@@ -140,7 +140,9 @@ namespace Test.Integration.Net.EventsAPI
                 },
                 brand_name = "sift",
                 site_domain = "sift.com",
-                site_country = "US"
+                site_country = "US",
+                user_email = "bill@gmail.com",
+                verification_phone_number = "+123456789012"
             };
             EventRequest eventRequest = new EventRequest()
             {
@@ -170,6 +172,8 @@ namespace Test.Integration.Net.EventsAPI
                 brand_name = "sift",
                 site_domain = "sift.com",
                 site_country = "US",
+                user_email = "bill@gmail.com",
+                verification_phone_number = "+123456789012",
                 message = new Message()
                 {
                     subject = "2 Bedroom Apartment for Rent",
@@ -270,7 +274,9 @@ namespace Test.Integration.Net.EventsAPI
                 },
                 brand_name = "sift",
                 site_domain = "sift.com",
-                site_country = "US"
+                site_country = "US",
+                user_email = "bill@gmail.com",
+                verification_phone_number = "+123456789012"
             };
             EventRequest eventRequest = new EventRequest()
             {
@@ -329,7 +335,9 @@ namespace Test.Integration.Net.EventsAPI
                 },
                 brand_name = "sift",
                 site_domain = "sift.com",
-                site_country = "US"
+                site_country = "US",
+                user_email = "bill@gmail.com",
+                verification_phone_number = "+123456789012"
             };
             EventRequest eventRequest = new EventRequest()
             {
@@ -396,6 +404,7 @@ namespace Test.Integration.Net.EventsAPI
                         size = "6",
                     },
                     reviewed_content_id = "listing-234234",
+                    reviewed_user_id = "fyw3989sjpqr71",
                     rating = 4.5,
                     images = new ObservableCollection<Image>()
                     {
@@ -413,7 +422,9 @@ namespace Test.Integration.Net.EventsAPI
                 },
                 brand_name = "sift",
                 site_domain = "sift.com",
-                site_country = "US"
+                site_country = "US",
+                user_email = "bill@gmail.com",
+                verification_phone_number = "+123456789012"
             };
             EventRequest eventRequest = new EventRequest()
             {
@@ -460,7 +471,9 @@ namespace Test.Integration.Net.EventsAPI
                 },
                 brand_name = "sift",
                 site_domain = "sift.com",
-                site_country = "US"
+                site_country = "US",
+                user_email = "bill@gmail.com",
+                verification_phone_number = "+123456789012"
             };
             EventRequest eventRequest = new EventRequest()
             {
@@ -507,7 +520,9 @@ namespace Test.Integration.Net.EventsAPI
                 },
                 brand_name = "sift",
                 site_domain = "sift.com",
-                site_country = "US"
+                site_country = "US",
+                user_email = "bill@gmail.com",
+                verification_phone_number = "+123456789012"
             };
             EventRequest eventRequest = new EventRequest()
             {
@@ -526,6 +541,7 @@ namespace Test.Integration.Net.EventsAPI
                 content_id = ContentId,
                 flagged_by = FlaggedBy,
                 reason = "$toxic",
+                user_email = "bill@gmail.com",
                 verification_phone_number = "+123456789012",
                 ip = "1.2.3.4"
             };
@@ -554,6 +570,7 @@ namespace Test.Integration.Net.EventsAPI
                 brand_name = "sift",
                 site_country = "US",
                 site_domain = "sift.com",
+                user_email = "bill@gmail.com",
                 verification_phone_number = "+123456789012",
                 ip = "1.2.3.4"
             };

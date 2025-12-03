@@ -22,6 +22,9 @@
     "$reviewed_content_id": {
       "type": [ "string", "null" ]
     },
+    "$reviewed_user_id": {
+      "type": [ "string", "null" ]
+    },
     "$rating": {
       "type": [ "number", "null" ]
     },
