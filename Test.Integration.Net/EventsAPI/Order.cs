@@ -174,7 +174,8 @@ namespace Test.Integration.Net.EventsAPI
                     user_agent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36",
                     accept_language = "en-US",
                     content_language = "en-GB"
-                }
+                },
+                ip = "1.2.3.4"
             };
             EventRequest eventRequest = new EventRequest()
             {
@@ -297,7 +298,8 @@ namespace Test.Integration.Net.EventsAPI
                     user_agent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36",
                     accept_language = "en-US",
                     content_language = "en-GB"
-                }
+                },
+                ip = "1.2.3.4"
             };
             EventRequest eventRequest = new EventRequest()
             {
@@ -327,7 +329,8 @@ namespace Test.Integration.Net.EventsAPI
                 },
                 brand_name = "sift",
                 site_country = "US",
-                site_domain = "sift.com"
+                site_domain = "sift.com",
+                ip = "1.2.3.4"
             };
             EventRequest eventRequest = new EventRequest()
             {

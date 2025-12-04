@@ -46,6 +46,9 @@
     },
     "$ach_return_code": {
       "type": [ "string", "null" ]
+    },
+    "$ip": {
+      "type": [ "string", "null" ]
     }
   }
 }

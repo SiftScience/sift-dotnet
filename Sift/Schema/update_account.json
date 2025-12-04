@@ -85,6 +85,9 @@
     "$promotions": {
       "type": [ "array", "null" ],
       "items": { "$ref": "ComplexTypes/promotion.json" }
+    },
+    "$ip": {
+      "type": [ "string", "null" ]
     }
   }
 }

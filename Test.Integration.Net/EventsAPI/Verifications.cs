@@ -41,7 +41,8 @@ namespace Test.Integration.Net.EventsAPI
                 reason = "$user_setting",
                 brand_name = "sift",
                 site_domain = "sift.com",
-                site_country = "US"
+                site_country = "US",
+                ip = "1.2.3.4"
             };
             EventRequest eventRequest = new EventRequest()
             {

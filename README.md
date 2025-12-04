@@ -4,11 +4,7 @@
 
 The official Sift .NET client, supporting .NET Standard 2.0+
 
-## Latest Release (v1.6.0)
-
-- Full Sift API v205 compliance with multi-currency support (`$exchange_rate`), enhanced payment validation (`$card_bin_metadata`), and account promotions tracking
-- **Breaking:** `$iata_carrier_code` moved from `Booking` to `Segment` complex type
-- iGaming API enhancements with `$wager`, `$deposit`, and `$withdrawal` transaction support
+## Latest Release (v1.7.0)
 
 See [CHANGES.MD](CHANGES.MD) for full release history.
 
@@ -150,7 +146,8 @@ var booking = new Booking
                 site_country = "US",
                 site_domain = "sift.com",
                 user_email = "billjones1@example.com",
-                verification_phone_number = "+123456789012"
+                verification_phone_number = "+123456789012",
+                ip = "1.2.3.4"
             };
 
             EventRequest eventRequest = new EventRequest()
@@ -208,7 +205,8 @@ var booking = new Booking
                 site_country = "US",
                 site_domain = "sift.com",
                 user_email = "billjones1@example.com",
-                verification_phone_number = "+123456789012"
+                verification_phone_number = "+123456789012",
+                ip = "1.2.3.4"
             };
 
             EventRequest eventRequest = new EventRequest()
@@ -242,7 +240,8 @@ var booking = new Booking
                 site_country = "US",
                 site_domain = "sift.com",
                 user_email = "billjones1@example.com",
-                verification_phone_number = "+123456789012"
+                verification_phone_number = "+123456789012",
+                ip = "1.2.3.4"
             };
 
             EventRequest eventRequest = new EventRequest()
@@ -274,7 +273,8 @@ var booking = new Booking
                     accept_language = "en-US",
                     content_language = "en-GB"
                 },
-                verification_phone_number = "+123456789012"
+                verification_phone_number = "+123456789012",
+                ip = "1.2.3.4"
             };
 
             EventRequest eventRequest = new EventRequest()
@@ -322,7 +322,8 @@ var booking = new Booking
                 site_country = "US",
                 site_domain = "sift.com",
                 user_email = "billjones1@example.com",
-                verification_phone_number = "+123456789012"
+                verification_phone_number = "+123456789012",
+                ip = "1.2.3.4"
             };
 
             EventRequest eventRequest = new EventRequest()
@@ -453,7 +454,8 @@ var booking = new Booking
                     user_agent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36",
                     accept_language = "en-US",
                     content_language = "en-GB"
-                }
+                },
+                ip = "1.2.3.4"
             };
 
             EventRequest eventRequest = new EventRequest()
@@ -601,7 +603,8 @@ var booking = new Booking
                         zipcode = "03257"
 
                     }
-                }
+                },
+                ip = "1.2.3.4"
             };
 
             EventRequest eventRequest = new EventRequest()
@@ -688,7 +691,8 @@ var booking = new Booking
         reason = "$user_setting",
         brand_name = "xyz",
         site_country = "AU",
-        site_domain = "somehost.example.com"
+        site_domain = "somehost.example.com",
+        ip = "1.2.3.4"
     };
     var sift = new Client("API_KEY");
 
@@ -720,6 +724,7 @@ var booking = new Booking
             },
             user_email = "billjones1@example.com",
             verification_phone_number = "+123456789012",
+            ip = "1.2.3.4",
             transaction_type = "$sale",
             transaction_status = "$failure",
             decline_category = "$bank_decline",
@@ -882,7 +887,8 @@ var booking = new Booking
             user_agent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36",
             accept_language = "en-US",
             content_language = "en-GB"
-        }
+        },
+        ip = "1.2.3.4"
     };
 
     EventRequest eventRequest = new EventRequest()

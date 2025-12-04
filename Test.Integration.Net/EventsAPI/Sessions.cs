@@ -23,7 +23,8 @@ namespace Test.Integration.Net.EventsAPI
             var linkSessionToUser = new LinkSessionToUser
             {
                 user_id = UserId,
-                session_id = SessionId
+                session_id = SessionId,
+                ip = "1.2.3.4"
             };
             EventRequest eventRequest = new EventRequest()
             {

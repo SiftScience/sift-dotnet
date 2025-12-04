@@ -47,7 +47,8 @@ namespace Test.Integration.Net.EventsAPI
                         zipcode = "03257"
 
                     }
-                }
+                },
+                ip = "1.2.3.4"
             };
             EventRequest eventRequest = new EventRequest()
             {

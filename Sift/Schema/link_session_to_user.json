@@ -25,6 +25,9 @@
         { "$ref": "ComplexTypes/browser.json" },
         { "type": "null" }
       ]
+    },
+    "$ip": {
+      "type": [ "string", "null" ]
     }
   }
 }

@@ -52,6 +52,9 @@
     },
     "$site_domain": {
       "type": [ "string", "null" ]
+    },
+    "$ip": {
+      "type": [ "string", "null" ]
     }
   }
 }
