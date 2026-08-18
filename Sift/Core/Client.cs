@@ -120,6 +120,16 @@ namespace Sift
             return await SendAsync<GetMerchantDetailsResponse>(getMerchantRequest);
         }
 
+        public async Task<GlobalProfileResponse> SendAsync(GlobalProfileRequest globalProfileRequest)
+        {
+            return await SendAsync<GlobalProfileResponse>(globalProfileRequest);
+        }
+
+        public async Task<GlobalProfileResponse> SendAsync(GlobalProfileLookupRequest globalProfileLookupRequest)
+        {
+            return await SendAsync<GlobalProfileResponse>(globalProfileLookupRequest);
+        }
+
         async Task<T> SendAsync<T>(SiftRequest siftRequest) where T : SiftResponse
         {
             siftRequest.ApiKey = this.apiKey;
