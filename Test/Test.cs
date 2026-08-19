@@ -1149,6 +1149,25 @@ namespace Test
         }
 
         [Fact]
+        public void TestGlobalProfileLookupRequestWithEmailOnly()
+        {
+            var accountId = "12345678";
+            var apiKey = "key";
+            var globalProfileLookupRequest = new GlobalProfileLookupRequest
+            {
+                AccountId = accountId,
+                Email = "gary@example.com"
+            };
+            globalProfileLookupRequest.ApiKey = apiKey;
+
+            Assert.Equal("https://api.sift.com/v3/accounts/" + accountId + "/global_profile/lookup",
+                         globalProfileLookupRequest.Request.RequestUri!.ToString());
+
+            Assert.Equal("{\"email\":\"gary@example.com\"}",
+                         JsonConvert.SerializeObject(globalProfileLookupRequest));
+        }
+
+        [Fact]
         public void TestGlobalProfileLookupRequestRequiresEmailOrPhone()
         {
             var globalProfileLookupRequest = new GlobalProfileLookupRequest
@@ -1200,7 +1219,7 @@ namespace Test
                 "\"locations\":{" +
                     "\"unique_billing_addresses\":2,\"unique_shipping_addresses\":4," +
                     "\"distinct_countries_count\":3,\"distinct_regions_count\":5," +
-                    "\"location_connected_accounts\":[{\"city\":\"Kyiv\",\"country\":\"UA\"}]," +
+                    "\"location_connected_accounts\":[{\"city\":\"Kyiv\",\"country\":\"UA\",\"region\":\"Kyiv Oblast\"}]," +
                     "\"location_last_used_timestamp\":1881090536" +
                 "}" +
             "}";
@@ -1211,15 +1230,17 @@ namespace Test
             Assert.Equal(12, response.LookbackMonths);
             Assert.True(response.ProfileSummary!.IdentityFound);
             Assert.Equal(7, response.ProfileSummary.LinkCount);
-            Assert.Equal(3, response.ProfileSummary.LinkedAccountsCountPerIndustry!["finances"]);
+            Assert.Equal(3L, response.ProfileSummary.LinkedAccountsCountPerIndustry!["finances"]);
             Assert.Equal(1681090536, response.IdentityAge!.OldestAccountAgeTimestamp);
-            Assert.Equal(12, response.UserDecisions!.Total);
-            Assert.Equal(3, response.Chargebacks!.Total);
-            Assert.Equal(50, response.Orders!.Total);
-            Assert.Equal(120, response.Transactions!.Total);
-            Assert.Equal(2, response.Locations!.UniqueBillingAddresses);
+            Assert.Equal(12L, response.UserDecisions!.Total);
+            Assert.Equal(3L, response.Chargebacks!.Total);
+            Assert.Equal(50L, response.Orders!.Total);
+            Assert.Equal(120L, response.Transactions!.Total);
+            Assert.Equal(2L, response.Locations!.UniqueBillingAddresses);
             Assert.Single(response.Locations.LocationConnectedAccounts!);
             Assert.Equal("Kyiv", response.Locations.LocationConnectedAccounts![0].City);
+            Assert.Equal("UA", response.Locations.LocationConnectedAccounts![0].Country);
+            Assert.Equal("Kyiv Oblast", response.Locations.LocationConnectedAccounts![0].Region);
         }
 
         [Fact]
