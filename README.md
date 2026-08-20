@@ -4,7 +4,7 @@
 
 The official Sift .NET client, supporting .NET Standard 2.0+
 
-## Latest Release (v1.7.0)
+## Latest Release (v1.8.0)
 
 See [CHANGES.MD](CHANGES.MD) for full release history.
 
@@ -1045,6 +1045,40 @@ var booking = new Booking
         GetDecisionsResponse response = sift.SendAsync(new GetDecisionsRequest
         {
             AccountId = "ACCOUNT_ID"
+        }).Result;
+    }
+    catch (AggregateException ae)
+    {
+        // Handle InnerException
+    }
+
+### Global Profile
+
+    // Get Global Profile for a user
+    try
+    {
+        GlobalProfileResponse response = sift.SendAsync(new GlobalProfileRequest
+        {
+            AccountId = "ACCOUNT_ID",
+            UserId = "gary",
+            GlobalOnly = false,
+            IncludeOwnData = true
+        }).Result;
+    }
+    catch (AggregateException ae)
+    {
+        // Handle InnerException
+    }
+
+    // Look up a Global Profile by email and/or phone.
+    // At least one of Email or Phone is required; omitting both throws a MissingFieldException.
+    try
+    {
+        GlobalProfileResponse response = sift.SendAsync(new GlobalProfileLookupRequest
+        {
+            AccountId = "ACCOUNT_ID",
+            Email = "gary@example.com",
+            Phone = "+15555550100"
         }).Result;
     }
     catch (AggregateException ae)

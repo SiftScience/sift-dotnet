@@ -1,4 +1,11 @@
-# CHANGES
+﻿# CHANGES
+
+## 1.8.0 (2026-08-18)
+
+### Added
+- **Global Profile API** support: `GlobalProfileRequest`/`GlobalProfileResponse` for
+  `GET /v3/accounts/{accountId}/global_profile/users/{userId}` and
+  `GlobalProfileLookupRequest` for `POST /v3/accounts/{accountId}/global_profile/lookup`
 
 ## 1.7.0 (2025-12-03)
 

@@ -1084,6 +1084,199 @@ namespace Test
         }
 
         [Fact]
+        public void TestGlobalProfileRequest()
+        {
+            //Please provide the valid account id in place of dummy number;
+            var accountId = "12345678";
+            var userId = "user-1";
+            //Please provide the valid api key in place of 'key'
+            var apiKey = "key";
+            var globalProfileRequest = new GlobalProfileRequest
+            {
+                AccountId = accountId,
+                UserId = userId
+            };
+            globalProfileRequest.ApiKey = apiKey;
+
+            Assert.Equal(Convert.ToBase64String(Encoding.Default.GetBytes(apiKey)),
+                globalProfileRequest.Request.Headers.Authorization!.Parameter);
+
+            Assert.Equal("https://api.sift.com/v3/accounts/" + accountId + "/global_profile/users/" + userId,
+                         globalProfileRequest.Request.RequestUri!.ToString());
+        }
+
+        [Fact]
+        public void TestGlobalProfileRequestWithQueryParams()
+        {
+            var accountId = "12345678";
+            var userId = "user-1";
+            var apiKey = "key";
+            var globalProfileRequest = new GlobalProfileRequest
+            {
+                AccountId = accountId,
+                UserId = userId,
+                GlobalOnly = true,
+                IncludeOwnData = false
+            };
+            globalProfileRequest.ApiKey = apiKey;
+
+            Assert.Equal("https://api.sift.com/v3/accounts/" + accountId + "/global_profile/users/" + userId +
+                         "?global_only=true&include_own_data=false",
+                         Uri.UnescapeDataString(globalProfileRequest.Request.RequestUri!.ToString()));
+        }
+
+        [Fact]
+        public void TestGlobalProfileLookupRequest()
+        {
+            var accountId = "12345678";
+            var apiKey = "key";
+            var globalProfileLookupRequest = new GlobalProfileLookupRequest
+            {
+                AccountId = accountId,
+                Email = "gary@example.com",
+                Phone = "+15555550100"
+            };
+            globalProfileLookupRequest.ApiKey = apiKey;
+
+            Assert.Equal(Convert.ToBase64String(Encoding.Default.GetBytes(apiKey)),
+                globalProfileLookupRequest.Request.Headers.Authorization!.Parameter);
+
+            Assert.Equal("https://api.sift.com/v3/accounts/" + accountId + "/global_profile/lookup",
+                         globalProfileLookupRequest.Request.RequestUri!.ToString());
+
+            Assert.Equal("{\"email\":\"gary@example.com\",\"phone\":\"+15555550100\"}",
+                         JsonConvert.SerializeObject(globalProfileLookupRequest));
+        }
+
+        [Fact]
+        public void TestGlobalProfileLookupRequestWithEmailOnly()
+        {
+            var accountId = "12345678";
+            var apiKey = "key";
+            var globalProfileLookupRequest = new GlobalProfileLookupRequest
+            {
+                AccountId = accountId,
+                Email = "gary@example.com"
+            };
+            globalProfileLookupRequest.ApiKey = apiKey;
+
+            Assert.Equal("https://api.sift.com/v3/accounts/" + accountId + "/global_profile/lookup",
+                         globalProfileLookupRequest.Request.RequestUri!.ToString());
+
+            Assert.Equal("{\"email\":\"gary@example.com\"}",
+                         JsonConvert.SerializeObject(globalProfileLookupRequest));
+        }
+
+        [Fact]
+        public void TestGlobalProfileLookupRequestRequiresEmailOrPhone()
+        {
+            var globalProfileLookupRequest = new GlobalProfileLookupRequest
+            {
+                AccountId = "12345678"
+            };
+            globalProfileLookupRequest.ApiKey = "key";
+
+            Assert.Throws<Sift.MissingFieldException>(
+                () => globalProfileLookupRequest.Request
+            );
+        }
+
+        [Fact]
+        public void TestGlobalProfileResponseDeserialization()
+        {
+            var json = "{" +
+                "\"status\":0," +
+                "\"error_message\":\"OK\"," +
+                "\"error_code\":null," +
+                "\"lookback_months\":12," +
+                "\"profile_summary\":{" +
+                    "\"identity_found\":true," +
+                    "\"has_links\":true," +
+                    "\"link_count\":7," +
+                    "\"linked_accounts_count_per_industry\":{\"finances\":3,\"internet\":4}" +
+                "}," +
+                "\"identity_age\":{" +
+                    "\"oldest_account_age_timestamp\":1681090536," +
+                    "\"newest_account_age_timestamp\":1881090536," +
+                    "\"average_account_age_timestamp\":1781090536" +
+                "}," +
+                "\"user_decisions\":{" +
+                    "\"total\":12,\"blocked\":2,\"watched\":3,\"accepted\":6," +
+                    "\"manual\":4,\"auto\":8,\"last_type\":\"BLOCK\",\"last_timestamp\":1881090536" +
+                "}," +
+                "\"chargebacks\":{" +
+                    "\"total\":3,\"fraudulent\":2,\"other\":1," +
+                    "\"last_timestamp\":1881090536,\"last_fraudulent_timestamp\":1881090536" +
+                "}," +
+                "\"orders\":{" +
+                    "\"total\":50,\"blocked\":2,\"watched\":5,\"accepted\":40," +
+                    "\"last_timestamp\":1881090536,\"last_blocked_timestamp\":1881090536" +
+                "}," +
+                "\"transactions\":{" +
+                    "\"total\":120,\"failed_fraud\":3,\"failed_other\":5,\"successful\":112," +
+                    "\"last_timestamp\":1881090536,\"last_failed_fraud_timestamp\":1881090536" +
+                "}," +
+                "\"locations\":{" +
+                    "\"unique_billing_addresses\":2,\"unique_shipping_addresses\":4," +
+                    "\"distinct_countries_count\":3,\"distinct_regions_count\":5," +
+                    "\"location_connected_accounts\":[{\"city\":\"Kyiv\",\"country\":\"UA\",\"region\":\"Kyiv Oblast\"}]," +
+                    "\"location_last_used_timestamp\":1881090536" +
+                "}" +
+            "}";
+
+            var response = JsonConvert.DeserializeObject<GlobalProfileResponse>(json);
+
+            Assert.Equal(0, response!.Status);
+            Assert.Equal(12, response.LookbackMonths);
+            Assert.True(response.ProfileSummary!.IdentityFound);
+            Assert.Equal(7, response.ProfileSummary.LinkCount);
+            Assert.Equal(3L, response.ProfileSummary.LinkedAccountsCountPerIndustry!["finances"]);
+            Assert.Equal(1681090536, response.IdentityAge!.OldestAccountAgeTimestamp);
+            Assert.Equal(12L, response.UserDecisions!.Total);
+            Assert.Equal(3L, response.Chargebacks!.Total);
+            Assert.Equal(50L, response.Orders!.Total);
+            Assert.Equal(120L, response.Transactions!.Total);
+            Assert.Equal(2L, response.Locations!.UniqueBillingAddresses);
+            Assert.Single(response.Locations.LocationConnectedAccounts!);
+            Assert.Equal("Kyiv", response.Locations.LocationConnectedAccounts![0].City);
+            Assert.Equal("UA", response.Locations.LocationConnectedAccounts![0].Country);
+            Assert.Equal("Kyiv Oblast", response.Locations.LocationConnectedAccounts![0].Region);
+        }
+
+        [Fact]
+        public void TestGlobalProfileResponseWhenIdentityNotFound()
+        {
+            var json = "{" +
+                "\"status\":0," +
+                "\"error_message\":\"OK\"," +
+                "\"error_code\":null," +
+                "\"lookback_months\":null," +
+                "\"profile_summary\":{" +
+                    "\"identity_found\":false," +
+                    "\"has_links\":false," +
+                    "\"link_count\":0," +
+                    "\"linked_accounts_count_per_industry\":{}" +
+                "}," +
+                "\"identity_age\":null," +
+                "\"user_decisions\":null," +
+                "\"chargebacks\":null," +
+                "\"orders\":null," +
+                "\"transactions\":null," +
+                "\"locations\":null" +
+            "}";
+
+            var response = JsonConvert.DeserializeObject<GlobalProfileResponse>(json);
+
+            Assert.False(response!.ProfileSummary!.IdentityFound);
+            Assert.Null(response.IdentityAge);
+            Assert.Null(response.UserDecisions);
+            Assert.Null(response.Chargebacks);
+            Assert.Null(response.Orders);
+            Assert.Null(response.Transactions);
+            Assert.Null(response.Locations);
+        }
+
+        [Fact]
         public void TestChargebackEvent()
         {
             //Please provide the valid session id in place of 'sessionId'
