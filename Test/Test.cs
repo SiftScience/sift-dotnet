@@ -1176,7 +1176,7 @@ namespace Test
             };
             globalProfileLookupRequest.ApiKey = "key";
 
-            Assert.Throws<MissingFieldException>(
+            Assert.Throws<Sift.MissingFieldException>(
                 () => globalProfileLookupRequest.Request
             );
         }
