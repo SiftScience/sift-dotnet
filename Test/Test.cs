@@ -314,6 +314,46 @@ namespace Test
         }
 
         [Fact]
+        public void TestTransactionStructuredFieldsEvent()
+        {
+            var transaction = new Transaction
+            {
+                user_id = "test_dotnet_transaction_structured_fields",
+                amount = 506790000,
+                currency_code = "USD",
+                kyc = new Kyc
+                {
+                    names_match = true,
+                    bin_nationality_match = true,
+                    provider = "lexisnexis"
+                },
+                geo = new Geo
+                {
+                    uuid = "gc-abc-123",
+                    provider = "geocomply"
+                },
+                bot_identification = new BotIdentification
+                {
+                    result = "$suspected",
+                    provider = "human_security"
+                }
+            };
+
+            Assert.Equal("{\"$type\":\"$transaction\",\"$user_id\":\"test_dotnet_transaction_structured_fields\"," +
+                                 "\"$amount\":506790000,\"$currency_code\":\"USD\",\"$kyc\":{\"$names_match\":true," +
+                                 "\"$bin_nationality_match\":true,\"$provider\":\"lexisnexis\"},\"$geo\":{\"$uuid\":\"gc-abc-123\"," +
+                                 "\"$provider\":\"geocomply\"},\"$bot_identification\":{\"$result\":\"$suspected\",\"$provider\":\"human_security\"}}",
+                                 transaction.ToJson());
+
+            EventRequest eventRequest = new EventRequest
+            {
+                Event = transaction
+            };
+
+            Assert.Equal("https://api.sift.com/v205/events", eventRequest.Request.RequestUri!.ToString());
+        }
+
+        [Fact]
         public void TestTransactionEventWithCryptoFields()
         {
             //Please provide the valid session id in place of 'sessionId'
@@ -1210,6 +1250,46 @@ namespace Test
         }
 
         [Fact]
+        public void TestCreateAccountStructuredFieldsEvent()
+        {
+            var createAccount = new CreateAccount
+            {
+                user_id = "test_dotnet_create_account_structured_fields",
+                nationality = "US",
+                year_of_birth = 1985,
+                kyc = new Kyc
+                {
+                    names_match = true,
+                    kyc_level = "$basic",
+                    provider = "lexisnexis"
+                },
+                geo = new Geo
+                {
+                    uuid = "gc-abc-123",
+                    provider = "geocomply"
+                },
+                bot_identification = new BotIdentification
+                {
+                    result = "$human",
+                    provider = "datadome"
+                }
+            };
+
+            Assert.Equal("{\"$type\":\"$create_account\",\"$user_id\":\"test_dotnet_create_account_structured_fields\"," +
+                                 "\"$nationality\":\"US\",\"$year_of_birth\":1985,\"$kyc\":{\"$names_match\":true,\"$kyc_level\":\"$basic\"," +
+                                 "\"$provider\":\"lexisnexis\"},\"$geo\":{\"$uuid\":\"gc-abc-123\",\"$provider\":\"geocomply\"}," +
+                                 "\"$bot_identification\":{\"$result\":\"$human\",\"$provider\":\"datadome\"}}",
+                                 createAccount.ToJson());
+
+            EventRequest eventRequest = new EventRequest
+            {
+                Event = createAccount
+            };
+
+            Assert.Equal("https://api.sift.com/v205/events", eventRequest.Request.RequestUri!.ToString());
+        }
+
+        [Fact]
         public void TestUpdateAccountEvent()
         {
             //Please provide the valid session id in place of 'sessionId'
@@ -1273,6 +1353,46 @@ namespace Test
         }
 
         [Fact]
+        public void TestUpdateAccountStructuredFieldsEvent()
+        {
+            var updateAccount = new UpdateAccount
+            {
+                user_id = "test_dotnet_update_account_structured_fields",
+                nationality = "US",
+                year_of_birth = 1985,
+                kyc = new Kyc
+                {
+                    names_match = true,
+                    kyc_level = "$full",
+                    provider = "prove"
+                },
+                geo = new Geo
+                {
+                    uuid = "gc-abc-123",
+                    provider = "geocomply"
+                },
+                bot_identification = new BotIdentification
+                {
+                    result = "$human",
+                    provider = "datadome"
+                }
+            };
+
+            Assert.Equal("{\"$type\":\"$update_account\",\"$user_id\":\"test_dotnet_update_account_structured_fields\"," +
+                                 "\"$nationality\":\"US\",\"$year_of_birth\":1985,\"$kyc\":{\"$names_match\":true,\"$kyc_level\":\"$full\"," +
+                                 "\"$provider\":\"prove\"},\"$geo\":{\"$uuid\":\"gc-abc-123\",\"$provider\":\"geocomply\"}," +
+                                 "\"$bot_identification\":{\"$result\":\"$human\",\"$provider\":\"datadome\"}}",
+                                 updateAccount.ToJson());
+
+            EventRequest eventRequest = new EventRequest
+            {
+                Event = updateAccount
+            };
+
+            Assert.Equal("https://api.sift.com/v205/events", eventRequest.Request.RequestUri!.ToString());
+        }
+
+        [Fact]
         public void TestLoginEvent()
         {
             //Please provide the valid session id in place of 'sessionId'
@@ -1323,6 +1443,38 @@ namespace Test
 
             Assert.Equal("https://api.sift.com/v205/events?abuse_types=legacy,payment_abuse&return_score=true",
                           Uri.UnescapeDataString(eventRequest.Request.RequestUri!.ToString()));
+        }
+
+        [Fact]
+        public void TestLoginStructuredFieldsEvent()
+        {
+            var login = new Login
+            {
+                user_id = "test_dotnet_login_structured_fields",
+                login_status = "$success",
+                geo = new Geo
+                {
+                    uuid = "gc-abc-123",
+                    provider = "geocomply"
+                },
+                bot_identification = new BotIdentification
+                {
+                    result = "$human",
+                    provider = "datadome"
+                }
+            };
+
+            Assert.Equal("{\"$type\":\"$login\",\"$user_id\":\"test_dotnet_login_structured_fields\",\"$login_status\":\"$success\"," +
+                                 "\"$geo\":{\"$uuid\":\"gc-abc-123\",\"$provider\":\"geocomply\"}," +
+                                 "\"$bot_identification\":{\"$result\":\"$human\",\"$provider\":\"datadome\"}}",
+                                 login.ToJson());
+
+            EventRequest eventRequest = new EventRequest
+            {
+                Event = login
+            };
+
+            Assert.Equal("https://api.sift.com/v205/events", eventRequest.Request.RequestUri!.ToString());
         }
 
         [Fact]
@@ -2298,6 +2450,47 @@ namespace Test
         }
 
         [Fact]
+        public void TestCreateOrderStructuredFieldsEvent()
+        {
+            var createOrder = new CreateOrder
+            {
+                user_id = "test_dotnet_create_order_structured_fields",
+                order_id = "ORDER-NEB4778-001",
+                amount = 115940000,
+                currency_code = "USD",
+                kyc = new Kyc
+                {
+                    names_match = true,
+                    kyc_level = "$basic",
+                    provider = "lexisnexis"
+                },
+                geo = new Geo
+                {
+                    uuid = "gc-abc-123",
+                    provider = "geocomply"
+                },
+                bot_identification = new BotIdentification
+                {
+                    result = "$human",
+                    provider = "datadome"
+                }
+            };
+            string createorderbody = "{\"$type\":\"$create_order\",\"$user_id\":\"test_dotnet_create_order_structured_fields\"," +
+                "\"$order_id\":\"ORDER-NEB4778-001\",\"$amount\":115940000,\"$currency_code\":\"USD\",\"$kyc\":{\"$names_match\":true," +
+                "\"$kyc_level\":\"$basic\",\"$provider\":\"lexisnexis\"},\"$geo\":{\"$uuid\":\"gc-abc-123\",\"$provider\":\"geocomply\"}," +
+                "\"$bot_identification\":{\"$result\":\"$human\",\"$provider\":\"datadome\"}}";
+
+            Assert.Equal(createorderbody, createOrder.ToJson());
+
+            EventRequest eventRequest = new EventRequest
+            {
+                Event = createOrder
+            };
+
+            Assert.Equal("https://api.sift.com/v205/events", eventRequest.Request.RequestUri!.ToString());
+        }
+
+        [Fact]
         public void TestUpdateOrderEvent()
         {
             var updateOrder = new UpdateOrder
@@ -2455,6 +2648,46 @@ namespace Test
                             Uri.UnescapeDataString(eventRequest.Request.RequestUri!.ToString()));
         }
 
+        [Fact]
+        public void TestUpdateOrderStructuredFieldsEvent()
+        {
+            var updateOrder = new UpdateOrder
+            {
+                user_id = "test_dotnet_update_order_structured_fields",
+                order_id = "ORDER-NEB4778-002",
+                amount = 115940000,
+                currency_code = "USD",
+                kyc = new Kyc
+                {
+                    names_match = true,
+                    kyc_level = "$basic",
+                    provider = "lexisnexis"
+                },
+                geo = new Geo
+                {
+                    uuid = "gc-abc-123",
+                    provider = "geocomply"
+                },
+                bot_identification = new BotIdentification
+                {
+                    result = "$human",
+                    provider = "datadome"
+                }
+            };
+            string updateorderbody = "{\"$type\":\"$update_order\",\"$user_id\":\"test_dotnet_update_order_structured_fields\"," +
+                "\"$order_id\":\"ORDER-NEB4778-002\",\"$amount\":115940000,\"$currency_code\":\"USD\",\"$kyc\":{\"$names_match\":true," +
+                "\"$kyc_level\":\"$basic\",\"$provider\":\"lexisnexis\"},\"$geo\":{\"$uuid\":\"gc-abc-123\",\"$provider\":\"geocomply\"}," +
+                "\"$bot_identification\":{\"$result\":\"$human\",\"$provider\":\"datadome\"}}";
+
+            Assert.Equal(updateorderbody, updateOrder.ToJson());
+
+            EventRequest eventRequest = new EventRequest
+            {
+                Event = updateOrder
+            };
+
+            Assert.Equal("https://api.sift.com/v205/events", eventRequest.Request.RequestUri!.ToString());
+        }
 
         [Fact]
         public void TestCreateContentCommentEvent()
@@ -2563,6 +2796,36 @@ namespace Test
 
             Assert.Equal("https://api.sift.com/v205/events?abuse_types=legacy,payment_abuse&return_score=true",
                           Uri.UnescapeDataString(eventRequest.Request.RequestUri!.ToString()));
+        }
+
+        [Fact]
+        public void TestVerificationStructuredFieldsEvent()
+        {
+            var verification = new Verification
+            {
+                user_id = "test_dotnet_verification_structured_fields",
+                status = "$success",
+                verification_type = "$kyc",
+                kyc = new Kyc
+                {
+                    names_match = true,
+                    kyc_level = "$basic",
+                    bin_nationality_match = false,
+                    provider = "lexisnexis"
+                }
+            };
+
+            Assert.Equal("{\"$type\":\"$verification\",\"$user_id\":\"test_dotnet_verification_structured_fields\"," +
+                                 "\"$status\":\"$success\",\"$verification_type\":\"$kyc\",\"$kyc\":{\"$names_match\":true," +
+                                 "\"$kyc_level\":\"$basic\",\"$bin_nationality_match\":false,\"$provider\":\"lexisnexis\"}}",
+                                 verification.ToJson());
+
+            EventRequest eventRequest = new EventRequest
+            {
+                Event = verification
+            };
+
+            Assert.Equal("https://api.sift.com/v205/events", eventRequest.Request.RequestUri!.ToString());
         }
 
         [Fact]
