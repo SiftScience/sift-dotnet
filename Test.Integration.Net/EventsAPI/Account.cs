@@ -116,6 +116,25 @@ namespace Test.Integration.Net.EventsAPI
 
                     }
                 },
+                nationality = "US",
+                year_of_birth = 1985,
+                kyc = new Kyc
+                {
+                    names_match = true,
+                    kyc_level = "$basic",
+                    bin_nationality_match = true,
+                    provider = "lexisnexis"
+                },
+                geo = new Geo
+                {
+                    uuid = "gc-abc-123",
+                    provider = "geocomply"
+                },
+                bot_identification = new BotIdentification
+                {
+                    result = "$human",
+                    provider = "datadome"
+                },
                 ip = "1.2.3.4"
             };
             EventRequest eventRequest = new EventRequest()

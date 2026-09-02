@@ -1,0 +1,19 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema",
+  "title": "Kyc",
+  "type": "object",
+  "properties": {
+    "$names_match": {
+      "type": [ "boolean", "null" ]
+    },
+    "$kyc_level": {
+      "type": [ "string", "null" ]
+    },
+    "$bin_nationality_match": {
+      "type": [ "boolean", "null" ]
+    },
+    "$provider": {
+      "type": [ "string", "null" ]
+    }
+  }
+}

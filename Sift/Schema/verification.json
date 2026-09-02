@@ -55,6 +55,12 @@
     },
     "$ip": {
       "type": [ "string", "null" ]
+    },
+    "$kyc": {
+      "oneOf": [
+        { "$ref": "ComplexTypes/kyc.json" },
+        { "type": "null" }
+      ]
     }
   }
 }
