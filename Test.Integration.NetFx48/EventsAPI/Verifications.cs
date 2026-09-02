@@ -39,7 +39,14 @@ namespace Test.Integration.NetFx48.EventsAPI
                 reason = "$user_setting",
                 brand_name = "sift",
                 site_domain = "sift.com",
-                site_country = "US"
+                site_country = "US",
+                kyc = new Kyc
+                {
+                    names_match = true,
+                    kyc_level = "$basic",
+                    bin_nationality_match = false,
+                    provider = "lexisnexis"
+                }
             };
             EventRequest eventRequest = new EventRequest()
             {

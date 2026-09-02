@@ -42,6 +42,13 @@ namespace Test.Integration.Net.EventsAPI
                 brand_name = "sift",
                 site_domain = "sift.com",
                 site_country = "US",
+                kyc = new Kyc
+                {
+                    names_match = true,
+                    kyc_level = "$basic",
+                    bin_nationality_match = false,
+                    provider = "lexisnexis"
+                },
                 ip = "1.2.3.4"
             };
             EventRequest eventRequest = new EventRequest()
