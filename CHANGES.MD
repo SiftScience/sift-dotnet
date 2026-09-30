@@ -1,5 +1,12 @@
 # CHANGES
 
+## 1.8.0 (2026-08-25)
+
+### Added
+- **`$nationality`**, **`$year_of_birth`** fields in `$create_account`, `$update_account` events
+- **`$kyc`** complex type in `$create_account`, `$update_account`, `$transaction`, `$create_order`, `$update_order`, `$verification` events
+- **`$geo`**, **`$bot_identification`** complex types in `$create_account`, `$update_account`, `$login`, `$transaction`, `$create_order`, `$update_order` events
+
 ## 1.7.0 (2025-12-03)
 
 ### Added

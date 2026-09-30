@@ -176,6 +176,22 @@ namespace Test.Integration.Net.EventsAPI
                     }
                 },
                 receiver_external_address = true,
+                kyc = new Kyc
+                {
+                    names_match = true,
+                    bin_nationality_match = true,
+                    provider = "lexisnexis"
+                },
+                geo = new Geo
+                {
+                    uuid = "gc-abc-123",
+                    provider = "geocomply"
+                },
+                bot_identification = new BotIdentification
+                {
+                    result = "$suspected",
+                    provider = "human_security"
+                },
                 ip = "1.2.3.4"
             };
             EventRequest eventRequest = new EventRequest()

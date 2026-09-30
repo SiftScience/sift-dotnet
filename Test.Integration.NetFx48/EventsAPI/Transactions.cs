@@ -171,7 +171,23 @@ namespace Test.Integration.NetFx48.EventsAPI
                         digital_asset = "BTC"
                     }
                 },
-                receiver_external_address = true
+                receiver_external_address = true,
+                kyc = new Kyc
+                {
+                    names_match = true,
+                    bin_nationality_match = true,
+                    provider = "lexisnexis"
+                },
+                geo = new Geo
+                {
+                    uuid = "gc-abc-123",
+                    provider = "geocomply"
+                },
+                bot_identification = new BotIdentification
+                {
+                    result = "$suspected",
+                    provider = "human_security"
+                }
             };
             EventRequest eventRequest = new EventRequest()
             {

@@ -44,7 +44,17 @@ namespace Test.Integration.Net.EventsAPI
                 account_types = new ObservableCollection<string>() { "merchant", "premium" },
                 brand_name = "sift",
                 site_domain = "sift.com",
-                site_country = "US"
+                site_country = "US",
+                geo = new Geo
+                {
+                    uuid = "gc-abc-123",
+                    provider = "geocomply"
+                },
+                bot_identification = new BotIdentification
+                {
+                    result = "$human",
+                    provider = "datadome"
+                }
             };
             EventRequest eventRequest = new EventRequest()
             {

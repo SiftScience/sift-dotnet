@@ -175,6 +175,22 @@ namespace Test.Integration.Net.EventsAPI
                     accept_language = "en-US",
                     content_language = "en-GB"
                 },
+                kyc = new Kyc
+                {
+                    names_match = true,
+                    kyc_level = "$basic",
+                    provider = "lexisnexis"
+                },
+                geo = new Geo
+                {
+                    uuid = "gc-abc-123",
+                    provider = "geocomply"
+                },
+                bot_identification = new BotIdentification
+                {
+                    result = "$human",
+                    provider = "datadome"
+                },
                 ip = "1.2.3.4"
             };
             EventRequest eventRequest = new EventRequest()
@@ -298,6 +314,22 @@ namespace Test.Integration.Net.EventsAPI
                     user_agent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36",
                     accept_language = "en-US",
                     content_language = "en-GB"
+                },
+                kyc = new Kyc
+                {
+                    names_match = true,
+                    kyc_level = "$basic",
+                    provider = "lexisnexis"
+                },
+                geo = new Geo
+                {
+                    uuid = "gc-abc-123",
+                    provider = "geocomply"
+                },
+                bot_identification = new BotIdentification
+                {
+                    result = "$human",
+                    provider = "datadome"
                 },
                 ip = "1.2.3.4"
             };

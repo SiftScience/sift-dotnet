@@ -123,6 +123,25 @@ namespace Test.Integration.NetFx48.EventsAPI
                         zipcode = "03257"
 
                     }
+                },
+                nationality = "US",
+                year_of_birth = 1985,
+                kyc = new Kyc
+                {
+                    names_match = true,
+                    kyc_level = "$basic",
+                    bin_nationality_match = true,
+                    provider = "lexisnexis"
+                },
+                geo = new Geo
+                {
+                    uuid = "gc-abc-123",
+                    provider = "geocomply"
+                },
+                bot_identification = new BotIdentification
+                {
+                    result = "$human",
+                    provider = "datadome"
                 }
             };
             EventRequest eventRequest = new EventRequest()
@@ -231,6 +250,25 @@ namespace Test.Integration.NetFx48.EventsAPI
                         zipcode = "03257"
 
                     }
+                },
+                nationality = "US",
+                year_of_birth = 1985,
+                kyc = new Kyc
+                {
+                    names_match = true,
+                    kyc_level = "$full",
+                    bin_nationality_match = true,
+                    provider = "prove"
+                },
+                geo = new Geo
+                {
+                    uuid = "gc-abc-123",
+                    provider = "geocomply"
+                },
+                bot_identification = new BotIdentification
+                {
+                    result = "$human",
+                    provider = "datadome"
                 }
             };
             EventRequest eventRequest = new EventRequest()

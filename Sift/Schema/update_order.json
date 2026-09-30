@@ -119,6 +119,24 @@
     },
     "$ip": {
       "type": [ "string", "null" ]
+    },
+    "$kyc": {
+      "oneOf": [
+        { "$ref": "ComplexTypes/kyc.json" },
+        { "type": "null" }
+      ]
+    },
+    "$geo": {
+      "oneOf": [
+        { "$ref": "ComplexTypes/geo.json" },
+        { "type": "null" }
+      ]
+    },
+    "$bot_identification": {
+      "oneOf": [
+        { "$ref": "ComplexTypes/bot_identification.json" },
+        { "type": "null" }
+      ]
     }
   }
 

@@ -4,7 +4,7 @@
 
 The official Sift .NET client, supporting .NET Standard 2.0+
 
-## Latest Release (v1.7.0)
+## Latest Release (v1.8.0)
 
 See [CHANGES.MD](CHANGES.MD) for full release history.
 
